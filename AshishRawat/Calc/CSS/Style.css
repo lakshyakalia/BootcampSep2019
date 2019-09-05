@@ -1,0 +1,27 @@
+.digits:hover{
+color: aqua;
+}
+.table{
+    background-color: #e06f6f;
+        height: 300px;
+        width: 100px;
+        border-radius: 10px;
+        position: relative;
+        top: 100px;
+        left: 300px;
+
+}
+.digits{
+    background-color: beige;
+    width: 50px;
+    height: 50px;
+
+}
+.operators{
+    background-color: rgb(65, 129, 65);
+    width: 50px;
+    height: 50px;
+}
+.result{
+    background-color: aqua
+}
