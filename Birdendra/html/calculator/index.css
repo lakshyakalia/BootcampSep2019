@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: aqua;
+    border: 0;
+    margin: 0;
+}
+.main{
+    width: 250px;
+    height: 310px;
+    background: black;
+    padding: 10px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 10px;
+}
+.display{
+    margin: 10px;
+    width: 90%;
+    height: 60px;
+    background: white;
+    border-radius: 5px;
+    text-align: right;
+}
+.row{
+    margin-left: 10px;
+    /* width: 90%; */
+    height: 50px;
+    padding: 2px;
+}
+.box{
+    display: inline-block;
+    height: 50px;
+    width: 22.2%;
+    background: gainsboro;
+    font-size: 20px;
+    border-radius: 2px;
+}
+.box:hover{
+    background: purple;
+    color: white;
+}
