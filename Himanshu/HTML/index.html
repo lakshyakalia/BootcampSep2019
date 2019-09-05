@@ -1,43 +1,46 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles.css">
+        <title>Calculator</title>
     </head>
-<body>
-    <table border="2" align="center">
-        <h1>Calculator</h1>
-        <th colspan="4">
-            <section class="screen"></section>
-        </th>
-        <tr>
-            <td class="sign">CE</td>
-            <td class="sign">C</td>
-            <td class="sign">&larr;</td>
-            <td class="sign">/</td>
-        </tr>
-        <tr>
-            <td class="bold">7</td>
-            <td class="bold">8</td>
-            <td class="bold">9</td>
-            <td class="sign">*</td>
-        </tr>
-        <tr>
-            <td class="bold">4</td>
-            <td class="bold">5</td>
-            <td class="bold">6</td>
-            <td class="sign">+</td>
-        </tr>
-        <tr>
-            <td class="bold">1</td>
-            <td class="bold">2</td>
-            <td class="bold">3</td>
-            <td class="sign">-</td>
-        </tr>
-        <tr>
-            <td class="sign">&plusmn;</td>
-            <td class="bold">0</td>
-            <td class="sign">.</td>
-            <td class="sign">=</td>
-        </tr>
-    </table>
-</body>
+    <body>
+        <div class="calculator-card">
+            <div class="calculator-screen">
+                <div class="result-screen"></div>
+                <p>CT-512</p>
+            </div>
+            <div class="calculator-buttons">
+                <div class="button-list">
+                    <input type="button" value="C" class="button">
+                    <input type="button" value="+/-" class="button sign-button">
+                    <input type="button" value="&larr; "class="button sign-button">
+                    <input type="button" value="/" class="button">
+                </div>
+                <div class="button-list">
+                    <input type="button" value="7" class="button">
+                    <input type="button" value="8" class="button">
+                    <input type="button" value="9" class="button">
+                    <input type="button" value="*" class="button">
+                </div>
+                <div class="button-list">
+                    <input type="button" value="4" class="button">
+                    <input type="button" value="5" class="button">
+                    <input type="button" value="6" class="button">
+                    <input type="button" value="+" class="button">
+                </div>
+                <div class="button-list">
+                    <input type="button" value="1" class="button">
+                    <input type="button" value="2" class="button">
+                    <input type="button" value="3" class="button">
+                    <input type="button" value="-" class="button">
+                </div>
+                <div class="button-list">
+                    <input type="button" value="&plusmn;" class="button">
+                    <input type="button" value="0" class="button">
+                    <input type="button" value="." class="button">
+                    <input type="button" value="=" class="button color">
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
