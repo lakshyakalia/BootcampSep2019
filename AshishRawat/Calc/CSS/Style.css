@@ -21,6 +21,7 @@ color: aqua;
     color: white;
     size: 2px;
     align-items: centre;
+    padding: 4px;
 }
 .operator{
     background-color: rgb(255, 136, 0);
@@ -32,6 +33,9 @@ color: aqua;
 }
 .result{
     background-color: rgb(187, 175, 175);
+    border-radius: 16px;
+    padding: 1px;
+
 }
 .pop:hover{
 background-color: blueviolet
