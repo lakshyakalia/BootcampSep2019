@@ -2,9 +2,16 @@ table, th, td {
     text-align:center;
 }
 
+table{
+    border: 3px solid black;
+    height: 64%;
+    width: 40%;
+}
+
 td{
     padding: 10px 20px;
     font-size: 24px;
+    border: none;
 }
 
 h1{
@@ -12,9 +19,31 @@ h1{
 }
 .screen{
     width: 100%;
-    height: 55px;
+    height: 75px;
 }
 
 td:hover{
     cursor: pointer;
+}
+
+.bold{
+    background-color: #C6C1C1;
+}
+
+
+.bold{
+    font-weight: bold;
+}
+
+.sign{
+    background-color: #EAE6E6;
+}
+
+.sign:hover{
+    background-color: #DAD7D7;
+    color: white;
+}
+
+.bold:hover{
+    background-color:#E5DFDF;
 }
