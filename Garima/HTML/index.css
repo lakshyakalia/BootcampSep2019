@@ -7,15 +7,22 @@ body{
 
   width: 40%;
  background: linear-gradient(to right, #0000cc 0%, #000066 100%);
-  
+   box-shadow: 5px 8px ##0a0a29;
+   cursor: pointer;
   color: white;
+
+}
+.a{
+    background-color: #001a66;
+  text-align: right;
+  cursor: pointer;
+  padding: 8px;
 }
 
 td {
-
-  
   text-align: center;
   padding: 8px;
+  cursor: pointer;
 }
 
 td:hover{
@@ -26,15 +33,17 @@ td:hover{
   background-color: #3333cc;
    text-align: center;
   border-radius: 50px;
-  
+  box-shadow: 5px 8px #0f0f3d;
+  cursor: pointer;
   padding: 8px;	
 }
 
 .table2{
 	 background-color: #191966;
 	  text-align: center;
+    box-shadow: 5px 8px #000000;
   border-radius: 50px;
-  
+  cursor: pointer;
   padding: 8px;
 }
 .table:hover{
@@ -42,9 +51,13 @@ td:hover{
 }
 
 .table2:hover{
-  background-color:background-color:
+  background-color: rgba(255,255,255,0.6);
 }
 
 .a{
 	padding-top: 94px;
+}
+table
+{
+  box-shadow:10px 10px #0a0a29;
 }
