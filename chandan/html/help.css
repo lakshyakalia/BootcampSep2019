@@ -2,9 +2,15 @@ td
 {
     text-align:center;
     border:1px solid black;
+    font-weight:bold;
+    background-color:yellow
+    
 }
+td:hover {
+    background-color: burlywood;
+  }
 input{
-    padding: 14px 28px;
+    padding: 20px 28px;
 }
 table{
     border: 3px solid black;
