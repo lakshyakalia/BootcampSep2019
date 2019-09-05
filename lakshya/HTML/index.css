@@ -1,0 +1,50 @@
+table{
+    background: linear-gradient(to right, #000066 0%, #0066ff 100%)
+}
+td:hover{
+    background-color:rgba(255,255,255,0.4);
+    cursor:pointer;
+
+
+
+  }
+  .head
+  {
+    color:rgba(255,255,255,0.8); background-color:rgba(255,255,255,0.6);
+  }
+  input{
+    
+    margin-left:0; 
+    height: 80px;
+    width: 200px;
+
+  }
+  th{
+    border: 2px solid rgb(14, 41, 133,0);
+  }
+  td{
+      font-weight: bold;
+      border-radius: 10%;
+    text-align:center;
+    color: aliceblue;
+    background-color: rgba(15, 16, 46,0.6);
+  }
+table{
+border-bottom-right-radius: 14px;
+border-top-left-radius: 14px;
+margin-top:110px;
+padding-top: 12px ;
+border: 2px solid rgb(14, 41, 133);
+box-shadow: 5px 5px 100px;
+
+}
+th
+{
+   padding:60px 80px;
+}
+.a{
+    background-color:  rgba(15, 16, 46,0.9);
+}
+.a:hover{
+    background-color: rgba(255, 255, 255,0.4)
+}
