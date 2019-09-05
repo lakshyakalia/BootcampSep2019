@@ -1,0 +1,30 @@
+.container {
+        border: "1";
+        align-content: center;
+        padding: 10px;
+        box-align:center;
+        border-radius: 5px;
+        top: 100px;
+        margin-top: 200px;
+        margin-left: 550px; 
+        background-color: rgb(46, 41, 41);
+}
+
+.digits{
+   background-color: antiquewhite;
+   border-radius: 30px;
+   align:center;
+}
+
+.Result{
+    background-color: white;
+}
+
+.operations{
+    background-color: brown;
+    border-radius: 30px;
+}
+
+.Answer{
+    background-color: rgb(196, 192, 191);
+}
