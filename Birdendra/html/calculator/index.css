@@ -22,7 +22,7 @@ body{
     height: 60px;
     background: white;
     border-radius: 5px;
-    text-align: right;
+    text-align:right;
 }
 .row{
     margin-left: 10px;
