@@ -3,16 +3,32 @@ td
     text-align:center;
     border:1px solid black;
     font-weight:bold;
-    background-color:yellow
-    
+    background-color:yellow;
+    color:white;
+    border-radius: 32px;
+    width:30;
 }
 td:hover {
-    background-color: burlywood;
+    background-color:
   }
 input{
     padding: 20px 28px;
+    border:1px solid black;
 }
 table{
     border: 3px solid black;
-    margin-top:200px
+    margin-top:170px;
+   
+}
+.A
+{
+    background-color: #BAC4B1
+}
+.B
+{
+    background-color: #FFAE00
+}
+.C
+{
+    background-color: #070600
 }
