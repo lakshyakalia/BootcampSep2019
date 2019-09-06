@@ -1,0 +1,83 @@
+a:link, a:visited {
+    background-color: black;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .btn {
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    left: 250px;
+    align: center;
+  }
+.button{
+    padding-left: 250px;
+}
+  .info {
+      background-color: rgb(17, 70, 114);
+    } /* Blue */
+
+    .info:hover {
+        background: #0b7dda;
+    }
+
+.head{
+    background-color:black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.welcome-message {
+    padding-top: 20px;
+    margin-top: 0px;
+    margin-left: 250px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+}
+
+.banner-div{
+   
+}
+
+.banner{
+    max-width: 100%;
+   
+    background-color: rgb(197, 194, 194);
+    height: 300px;
+   
+}
+
+.banner-content{
+    max-width: 78%;
+    padding-left: 250px;
+}
+
+
+
+.container{
+    align-content:  center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 100%;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 100%;
+}
+
+.first-column,.second-column,.third-column{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 25%;
+  }
+
