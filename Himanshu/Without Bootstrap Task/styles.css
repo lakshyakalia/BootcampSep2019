@@ -3,11 +3,7 @@ body{
     padding: 0;
 }
 
-li{
-    float: left;
-}
-
-li a{
+.not-active{
     display: block;
     text-decoration: none;
     margin: 5px;
@@ -21,13 +17,13 @@ ul{
     background-color: black;
     overflow: hidden;
 }
-.active{
-    font-size: 25px;
-    margin-top: 8px;
-}
+
 .not-active{
+    float: left;
     margin-top: 15px;
 }
+
+
 .disabled{
     color: grey;
 }
@@ -36,12 +32,18 @@ ul{
     margin-top:6px;
     margin-right: 15px;
 }
+
+.float-left{
+    float: left;
+    margin-top:15px;
+}
 .float-right input{
     padding: 12px 20px;
     box-sizing: border-box;
     border-radius: 8px;
     font-size: 15px;
     border: none;
+    margin-top: 5px;
 }
 .float-right button{
     background-color: black;
@@ -51,12 +53,17 @@ ul{
     text-align: center;
     text-decoration: none;
     font-size: 15px;
+    margin-top: 5px;
 }
-.collapse-button{
-    /* display:none; */
-    float: right;
-    border: none;
-    background-color: black;
+
+.collapse-icon{
+    float:right;
+    display:none;
+}
+
+.collapse-icon i{
+    color: white;
+    font-size: 30px;
 }
 
 .jumbotron-container{
@@ -127,7 +134,15 @@ ul{
     #display{
         display:none;
     }
-    .collapse-button{
+    .collapse-icon{
         display: block;
+        position: absolute;
+        right: 15;
+        top: 15;
     }
+}
+
+ .responsive{
+    display: block!important;
+    float: none!important;
 }

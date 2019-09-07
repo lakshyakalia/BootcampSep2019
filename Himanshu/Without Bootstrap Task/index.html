@@ -3,12 +3,12 @@
         <title>Without Bootstrap</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <div>
+        <div class="navBar">
             <ul>
-                <li><a class="active" href="#Navbar">Navbar</a></li>
+                <li><a class="not-active" href="#Navbar">Navbar</a></li>
                 <li><a class="not-active" href="#" id="display">Home</a></li>
                 <li><a class="not-active" href="#" id="display">Link</a></li>
                 <li><a class="not-active disabled" id="display">Disabled</a></li>
@@ -18,8 +18,8 @@
                 <li class="float-right">
                     <input class="search-text" id="display" type="text" placeholder="Search">
                 </li>
-                <li class="collapse-button">
-                    <i class="material-icons">&#xe909;</i>
+                <li class="collapse-icon">
+                    <i class="fa fa-align-justify" onclick="showNavBar()"></i>
                 </li>
             </ul>
         </div>
@@ -45,5 +45,6 @@
                 <button type="button" class="detail-button">View Details &raquo;</button>
             </div>
         </div>
+        <script src="javascript.js"></script>
     </body>
 </html>
