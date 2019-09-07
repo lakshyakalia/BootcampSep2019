@@ -99,6 +99,25 @@ ul{
     display: inline-block;
 }
 
+.responsive{
+    display: block!important;
+    float: none!important;
+}
+
+.show-search-text{
+    display: block!important;
+    text-align: left;
+    margin-right: 270px;
+    margin-bottom: 10px;
+}
+
+.show-search-button{
+    display: inline-block!important;
+    text-align: left;
+    position: absolute;
+    right:10px;
+
+}
 
 
 /* Media Queries */
@@ -131,7 +150,7 @@ ul{
 } 
 
 @media (max-width: 674px){
-    #display{
+    #display, .search-text, .search-button{
         display:none;
     }
     .collapse-icon{
@@ -140,9 +159,4 @@ ul{
         right: 15;
         top: 15;
     }
-}
-
- .responsive{
-    display: block!important;
-    float: none!important;
 }
