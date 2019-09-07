@@ -1,0 +1,94 @@
+div{
+    margin: 0px;
+    padding:0px;
+}
+
+.nav{
+background-color:black;
+height: 45px;
+margin: 0px;
+}
+li a{
+    display: inline-block;
+    color: white;
+    margin:5px;
+    padding:10px;
+}
+a{
+    text-decoration: none;
+}
+li a:hover{
+    color: aqua;
+}
+li{
+    float: left;
+    list-style-type: none;
+}
+.drop{
+    background-color: black;
+    color: white;
+    border-style: none;
+}
+.section1{
+    color: black;
+
+}
+.div2{
+    width: 100%;
+    margin-top: 0%;
+    background-color: silver;
+    height: 300px;
+}
+.div3{
+    padding-top: 35px;
+    padding-left: 150px;
+    padding-right: 50px;
+    height: 250px;
+}
+
+    
+.p1{
+    color: black;
+    
+}
+.div4{
+    background-color:white;
+    color:black;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.input1{
+    background-color: blue;
+    border: none;
+    font-size: 20px;
+    padding:10px;
+    border-radius: 10px;
+}
+.p11{
+    font-size: 20px;
+    font-weight: bold;
+}
+.leftbox{
+   float: left;
+   width: 33%;
+   padding: 2px;
+   justify-content: center;
+
+}
+.middlebox{
+    float:left;
+    width:33%;
+    padding: 2px;
+    justify-content: center;
+}
+.rightbox{
+    float:right;
+    width:33%;
+    padding: 2px;
+    justify-content: center;
+}
+.a1{
+    margin: 0px;
+}
