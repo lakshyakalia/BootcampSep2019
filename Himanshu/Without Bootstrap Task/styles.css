@@ -1,0 +1,133 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    float: left;
+}
+
+li a{
+    display: block;
+    text-decoration: none;
+    margin: 5px;
+    padding: 10px;
+    color: white;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    overflow: hidden;
+}
+.active{
+    font-size: 25px;
+    margin-top: 8px;
+}
+.not-active{
+    margin-top: 15px;
+}
+.disabled{
+    color: grey;
+}
+.float-right{
+    float:right;
+    margin-top:6px;
+    margin-right: 15px;
+}
+.float-right input{
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-size: 15px;
+    border: none;
+}
+.float-right button{
+    background-color: black;
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+    padding: 11px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+}
+.collapse-button{
+    /* display:none; */
+    float: right;
+    border: none;
+    background-color: black;
+}
+
+.jumbotron-container{
+    padding: 50px 100px 50px 100px;
+    background-color: #F8F9FA;
+}
+.jumbotron-container span{
+    display:inline-block;
+    font-size: 70px;
+}
+.jumbotron-container p{
+    font-size:20px;
+}
+
+.jumbotron-container button, .detail-button{
+    background-color: #007BFF;
+    border: none;
+    padding: 11px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 4px;
+}
+
+.tabs-container{
+    padding: 20px 100px 20px 100px;
+    display: inline-block;
+}
+
+.tabs{
+    width: 33%;
+    font-size: 16px;
+    display: inline-block;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 992px){
+    .tabs-container{
+        padding: 5px;
+    }
+    .tabs{
+        width: 32%;
+    }
+}
+ @media (max-width: 768px){
+    .tabs-container, .jumbotron-container{
+        padding: 20px 40px 20px 40px;
+    }
+    .tabs{
+        display:block;
+        width: 100%;
+    }
+    .tabs p{
+        text-align: justify;
+    }
+    .jumbotron-container span{
+        font-size: 40px;
+    }
+    .jumbotron-container p{
+        font-size: 20px;
+        text-align: justify;
+    }
+} 
+
+@media (max-width: 674px){
+    #display{
+        display:none;
+    }
+    .collapse-button{
+        display: block;
+    }
+}
