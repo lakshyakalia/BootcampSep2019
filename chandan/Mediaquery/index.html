@@ -154,7 +154,7 @@ border:none;
  .button1
  {
   margin-top: 4px;
-    margin-right:30px;
+  margin-right:30px;
  }
 }
 @media screen and (max-width: 415px) {
@@ -167,11 +167,6 @@ border:none;
  .btn1
  {
    visibility: visible;
-  }
-}
-@media (hover: hover) {
-  .btn1:hover {
-    background: yellow;
   }
 }
 @media only screen and (max-width: 415px) {
@@ -219,6 +214,16 @@ border:none;
      padding-bottom: 10px;
   }
  }
+ @media screen and (max-width: 415px) {
+  .dropdown {
+     visibility: hidden;
+  }
+ }
+ /*@media (hover: hover) {
+  .btn1:hover {
+    font-size:40px;
+  }
+}*/
 </style>
 <body>
 
@@ -227,12 +232,12 @@ border:none;
   <li class="xx"><a href="#news">Home</a></li>
   <li class="xx"><a href="#news">Link</a></li>
   <li class="xx"><a href="#news">Disabled</a></li>
-  <li class="xx"class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Dropdown ▾</a>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn" class="xx">Dropdown ▾</a>
     <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="#" class="xx">Link 1</a>
+      <a href="#" class="xx">Link 2</a>
+      <a href="#" class="xx">Link 3</a>
     </div>
   </li>
   
