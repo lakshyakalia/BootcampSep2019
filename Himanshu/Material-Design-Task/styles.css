@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 ul{
     list-style-type: none;
     margin: 0;
@@ -26,6 +30,7 @@ li a{
     background-color: blue;
     text-align: center;
     padding: 10px 0px;
+    height: 540px;
 }
 
 .first-text{
@@ -64,10 +69,15 @@ li a{
 .cart-size{
     font-size: 18px!important;
 }
-/* 
-.second-box img{
-    height: 10;
-    width: 100px;
-    position: fixed;
-    top: 0px;
-} */
+
+.second-box img {
+    width: 650px;
+    height: 400px;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 0px 0px 0px;
+}
+
+.container{
+    padding: 0px 60px;
+}
