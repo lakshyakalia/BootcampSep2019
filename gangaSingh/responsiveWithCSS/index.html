@@ -1,71 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <!-- Viewport allows to view content in differnt screen sizes -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-        <!-- Title to be shown at browser tab screen -->
-        <title>Portfolio</title>
-
-        <!-- link to externel style sheet named styling.css -->
-        <link rel="stylesheet" href="styling.css">
-       
-    </head>
-
-    <!-- Body -->  
-    <body>
-        <!-- Body Content -->
-       <header class="head">
-            <a href="#" class="header-Navbar-tag" >Navbar</a>
-            <a href="#" class="header-home-tag" >Home</a>
-            <a href="#" class="header-link-tag" >Link</a>
-            <a href="#" class="header-disabled-tag" >Disabled</a>
-            <a href="#" class="header-dropdown-tag" >Dropdown</a>
-            <div class="search-container">
-               <form action="/action_page.php">
-                 <input type="text" placeholder="Search.." name="search">
-                 <button class="search-button">Search</button>
-               </form>
-             </div>
-       </header>
-
-       <section class="banner">
-           <div class="banner-div">
-                <h2 class="welcome-message">Hello, World!</h2>
-           <p class="banner-content">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-           <div class="button">
-                <button class="btn info">Info</button>
-           </div>
-           
-           </div>
-           
-       </section>
-
-       <div class="container">
-           
-
-           <article class="first-column">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-           </article>
-
-           <article class="second-column">
-                <h2>Heading</h2>
-                  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-           </article>
-
-           <article class="third-column">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-           </article>
-          
-          </div>
-
-       <footer class="information">
-
-       </footer>
-
-    </body>
+   <head>
+      <meta charset="utf-8">
+      <!-- Viewport allows to view content in differnt screen sizes -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Title to be shown at browser tab screen -->
+      <title>Portfolio</title>
+      <!-- link to externel style sheet named styling.css -->
+      <link rel="stylesheet" href="styling.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   </head>
+   <!-- Body -->  
+   <body>
+      <!-- Body Content -->
+      <header class="head">
+         <div class="navbar">
+            <a href="#home">Navbar</a>
+            <a href="#home" style="font-family: Arial, Helvetica, sans-serif">Home</a>
+            <a href="#news">Disabled</a>
+            <div class="dropdown">
+               <button class="dropbtn" onclick="myFunction()">Dropdown
+               <i class="fa fa-caret-down"></i>
+               </button>
+               <div class="dropdown-content" id="myDropdown">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+               </div>
+            </div>
+         </div>
+         <button class="collapsible">&#9776;</button>
+         <div class="content">
+            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
+            <div class="navbar2">
+                    <a href="#home" class="nav">Navbar</a>
+                    <a href="#home" class="hom" style="font-family: Arial, Helvetica, sans-serif">Home</a>
+                    <a href="#news" class="dis">Disabled</a>
+                     <div class="dropdown"> 
+                       <button class="dropbtn" onclick="myFunction()">Dropdown
+                       <i class="fa fa-caret-down"></i>
+                       </button>
+                       <div class="dropdown-content" id="myDropdown">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                       </div>
+                    </div>
+                 </div>
+         </div>
+      </header>
+      <section class="banner">
+         <div class="banner-div">
+            <h2 class="welcome-message">Hello, World!</h2>
+            <p class="banner-content">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            <div class="button">
+               <button class="btn info">Info</button>
+            </div>
+         </div>
+      </section>
+      <div class="container">
+         <article class="first-column">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+         </article>
+         <article class="second-column">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+         </article>
+         <article class="third-column">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+         </article>
+      </div>
+      <footer class="information">
+      </footer>
+      <script>
+         function myFunction() {
+           document.getElementById("myDropdown").classList.toggle("show");
+         }
+         window.onclick = function(e) {
+           if (!e.target.matches('.dropbtn')) {
+           var myDropdown = document.getElementById("myDropdown");
+             if (myDropdown.classList.contains('show')) {
+               myDropdown.classList.remove('show');
+             }
+           }
+         }
+         
+         var coll = document.getElementsByClassName("collapsible");
+         var i;
+         
+         for (i = 0; i < coll.length; i++) {
+         coll[i].addEventListener("click", function() {
+         this.classList.toggle("active");
+         var content = this.nextElementSibling;
+         if (content.style.display === "block") {
+         content.style.display = "none";
+         } else {
+         content.style.display = "block";
+         }
+         });
+         }
+      </script>
+   </body>
 </html>
-     
