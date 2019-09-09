@@ -97,6 +97,11 @@ ul{
     width: 33%;
     font-size: 16px;
     display: inline-block;
+    /* margin-right: 1px; */
+}
+
+.tabs p{
+    text-align: justify;
 }
 
 .responsive{
