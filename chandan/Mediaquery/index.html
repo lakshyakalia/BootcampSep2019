@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+body{
+    margin: 0px;
+    padding:0px;
+}
+.button1 {
+  background-color: black; 
+  color: green; 
+  border: 2px solid #4CAF50;
+   padding: 10px 20px;
+   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 4px;
+    margin-right:15px;
+}
+.button11
+{
+    background-color: grey; 
+    color:white;
+    padding: 12px 12px;
+    border:none;
+}
+.x
+{
+   background-color: blue;
+   color:white;
+   padding:15px 15px;
+   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border:none;
+}
+.button{
+    background-color: white;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 4px;
+    margin-right:15px;
+    color: gray;
+}
+div {
+  border: 1px solid grey;
+  padding-top: 10px;
+  }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.jumbotron
+{
+    background-color: #ECECEC;
+    text-align: left;
+    padding-top: 0px;
+  padding-left: 180px;
+  padding-right:50px;
+  padding-bottom: 30px;
+    border:none;
+}
+.btn1
+{
+  color:white;
+  display: inline-block;
+  padding: 2px 10px;
+  font-size:20px;
+  text-decoration: none;
+  visibility:hidden;
+  margin-top: 4px;
+    margin-right:8px;
+}
+
+@media screen and (max-width: 768px) {
+  .jumbotron {
+     padding-left: 80px;
+     padding-bottom: 0px;
+  }
+ }
+
+ 
+.tabs
+{
+    width:100%;
+    border:none;
+    padding-left:170px;
+   
+}
+.tab1,.tab2,.tab3
+{
+    width:25%;
+    display:inline-block;
+    border:none;
+}
+
+.hello
+{
+border:none;
+  
+}
+@media screen and (max-width: 768px)
+{
+  .tabs{
+     padding-left:90px;
+  }
+}
+@media screen and (max-width: 768px) {
+ .button1
+ {
+  margin-top: 4px;
+  margin-right:30px;
+ }
+}
+@media screen and (max-width: 415px) {
+ .xx
+ {
+   display:none;
+  }
+}
+@media screen and (max-width: 415px) {
+ .btn1
+ {
+   visibility: visible;
+  }
+}
+@media only screen and (max-width: 415px) {
+  .tab1
+  {
+     display:block;
+     width:87%;
+     
+  }
+}
+@media only screen and (max-width: 415px) {
+  .tab2
+  {
+     display:block;
+     width:87%;
+    
+  }
+}
+@media only screen and (max-width: 415px) {
+  .tab3
+  {
+     display:block;
+     width:87%;
+     
+  }
+}
+@media only screen and (max-width: 415px) {
+  .tabs
+  {
+     display:block;
+     width:90%;
+     padding-left:60px;
+     
+  }
+}
+@media screen and (max-width: 415px) {
+  .jumbotron {
+     padding-left: 50px;
+     padding-bottom: 0px;
+  }
+ }
+ @media screen and (max-width: 768px) {
+  .jumbotron {
+    
+     padding-bottom: 10px;
+  }
+ }
+ @media screen and (max-width: 415px) {
+  .dropdown {
+     visibility: hidden;
+  }
+ }
+ /*@media (hover: hover) {
+  .btn1:hover {
+    font-size:40px;
+  }
+}*/
+</style>
+<body>
+
+<ul>
+  <li style="font-size:17px"><a href="#home">Navbar</a></li>
+  <li class="xx"><a href="#news">Home</a></li>
+  <li class="xx"><a href="#news">Link</a></li>
+  <li class="xx"><a href="#news">Disabled</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn" class="xx">Dropdown ▾</a>
+    <div class="dropdown-content">
+      <a href="#" class="xx">Link 1</a>
+      <a href="#" class="xx">Link 2</a>
+      <a href="#" class="xx">Link 3</a>
+    </div>
+  </li>
+  
+  
+ 
+  <li style="float:right" class="xx"><button class="button1">Search</button></li>
+  <li style="float:right" class="xx"><input type="text" class="button" value="Search"></input></li>
+  <li style="float:right"><b class="btn1">≡</b></li>
+</ul>
+
+<div class="jumbotron">
+    <div class="hello">
+    <p style="font-size:47px">Hello, World!</p>
+     </div>
+    <p style="font-size:17px">This is a template for a simple marketing or informational website.It includes a large callout a jumbotron and three supporting pieces of content.Use it as a starting point to create something more unique.</p>
+      
+    <button class="x" style="font-size:15px">Learn more >></button>
+</div>
+
+<div class="tabs">
+    <div class="tab1">
+            <p style="font-size:25px">Heading</p>
+            <p style="font-size:17px">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid nesciunt nobis accusantium labore ab asperiores illum, eveniet facere maiores iusto id illo vitae mollitia eligendi? Id qui magni impedit excepturi.</p>
+            <button class="button11">View details >></button>
+        </div>
+
+    <div class="tab2">
+            <p style="font-size:25px">Heading</p>
+            <p style="font-size:17px">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid nesciunt nobis accusantium labore ab asperiores illum, eveniet facere maiores iusto id illo vitae mollitia eligendi? Id qui magni impedit excepturi.</p>
+            <button class="button11">View details >></button>
+        </div>
+
+    <div class="tab3">
+            <p style="font-size:25px">Heading</p>
+            <p style="font-size:17px">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid nesciunt nobis accusantium labore ab asperiores illum, eveniet facere maiores iusto id illo vitae mollitia eligendi? Id qui magni impedit excepturi.</p>
+            <button class="button11">View details >></button>
+        </div>
+
+        <p style="font-size:17px;">©Company 2017-2018</p>
+</div>
+
+</body>
+</html>
