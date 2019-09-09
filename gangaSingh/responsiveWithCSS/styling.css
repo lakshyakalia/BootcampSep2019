@@ -131,7 +131,8 @@ h2 {
 .second-column,
 .third-column {
 	width: 30%;
-	height: 50%;
+    height: 50%;
+    text-align: center;
 }
 
 p {
@@ -270,14 +271,15 @@ p {
         display: none;
     }
     .container{
-        display: block;
+        display: table-cell;
 
     }
     .first-column,
 .second-column,
 .third-column {
 	width: 100%;
-	height: 100%;
+    height: 100%;
+    text-align: center;
 }
 
 
