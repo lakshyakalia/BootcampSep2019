@@ -1,0 +1,73 @@
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li{
+    float: left;
+}
+
+li a{
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.navbar{
+    padding: 0px 60px;
+}
+
+.second-box{
+    background-color: blue;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.first-text{
+    font-size: 22px;
+    font-weight: 400;
+    color: white;
+}
+
+.second-text{
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 54px;
+    margin: 0!important;
+    color: white;
+}
+.third-text{
+    padding-top: 20px;
+    font-size: 15px;
+    color: white;
+    margin-bottom: 3px;
+}
+
+.fourth-text{
+    color: white;
+    margin: 0px !important;
+}
+
+.buy-button{
+    padding: 15px 30px;
+    margin-top: 30px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-size{
+    font-size: 18px!important;
+}
+/* 
+.second-box img{
+    height: 10;
+    width: 100px;
+    position: fixed;
+    top: 0px;
+} */
