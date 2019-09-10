@@ -7,6 +7,7 @@ div{
 background-color:black;
 height: 45px;
 margin: 0px;
+width: 100%;
 }
 li a{
     display: inline-block;
@@ -37,13 +38,13 @@ li{
     width: 100%;
     margin-top: 0%;
     background-color:lightgray;
-    height: 300px;
+    height: 440px;
 }
 .div3{
     padding-top: 35px;
     padding-left: 150px;
-    padding-right: 50px;
-    height: 250px;
+    padding-right: 150px;
+    height: 300px;
 }
 
     
@@ -56,13 +57,12 @@ li{
     color:black;
     display: flex;
     flex-wrap: wrap;
-    padding-left: 66px;
-    padding-right:66px;
+    padding-left: 20px;
+    padding-right:20px;
     text-align: center;
     float: left;
     height: 250px;
     padding-top: 20px;
-    border-bottom: 2px solid black;
 }
 .input1{
     background-color: blue;
@@ -77,10 +77,10 @@ li{
 }
 .leftbox{
    float: left;
-   width: 28%;
-   padding: 2px;
+  
+   padding: 20px;
+   flex: 20%;
    text-align: justify;
-   padding-left: 25px;
   
    text-align: center;
    
@@ -88,15 +88,22 @@ li{
 }
 .middlebox{
     float:left;
-    width:28%;
-    padding: 2px;
+   
+    padding: 20px;
     text-align: justify;
+    flex:20%;
 }
 .rightbox{
     float:right;
     width:28%;
-    padding: 2px;
+    padding: 20px;
     text-align: justify;
+    flex:20%;
+}
+@media(max-width:735px){
+    .div4{
+        flex-direction: column;
+    }
 }
 .a1{
     margin: 0px;
@@ -107,6 +114,104 @@ li{
     padding: 5px;
 }
 hr{
-    padding-left: 10px;
+    width: 70%;
+    border: 0;
+    border-top: 1px solid black;
+}
+.container{
+    margin-left: 200px;
+}
+/* .right_align{
+    float: right;
+    align-items: flex-end;
 }
 
+@media screen and (max-width:768px){
+   .leftbox{ width: 50%;
+    font-size: 30px;
+           }
+           .nav{
+               width: 50%;
+               text-align: left;
+           }
+}  
+@media screen and (max-width:768px){
+    .middlebox{ width: 50%;
+        font-size: 30px;
+            }
+ }  
+ @media screen and (max-width:768px){
+    .middlebox{ width: 50%;
+        font-size: 30px;
+            }
+ }  
+
+ @media screen and (max-width:400px){
+    .leftbox{ width: 100%;
+        text-align: center;
+        float: left;
+            }
+            .div3{
+              
+                text-align: left;
+                float: left;
+            }
+ }  
+ @media screen and (max-width:00px){
+    .rightbox{ width: 100%;
+            }
+ }  
+ @media screen and (max-width:400px){
+    .middlebox{ width: 100%;
+            }
+ }  
+ .ff{
+   float: right;
+
+ } */
+
+ .ff1{
+    
+     color:darkgreen;
+     border-color: darkgreen;
+     background-color: black;
+     display: inline-block;
+    border: 1px solid green;
+    float:right;
+ }
+ .ff{
+    float: right;
+ } 
+ 
+ .leftbox{
+     padding: 20px;
+     flex:20%;
+ }
+ @media screen and (max-width:600px){
+.navhide{
+    display: none;
+}
+.ff1{
+    display:none;
+}
+.navhide1{
+    display: none;
+}
+
+ }
+ @media screen and (max-width:375px){
+    .navhide{
+        display: none;
+    }
+    .ff1{
+        display:none;
+    }
+    .navhide1{
+        display: none;
+    }
+    .input1{
+       width: 0.5%;
+    }
+
+    
+     }
