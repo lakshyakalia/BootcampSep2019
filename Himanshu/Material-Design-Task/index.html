@@ -2,22 +2,30 @@
     <head>
         <title>Material Design</title>
         <link rel="stylesheet" href="styles.css">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <div class="navbar">
-            <ul>
-                <li><a href="">Evelynn</a></li>
-                <li><a href="">Demos</a></li>
-                <li><a href="">Works</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Testimonials</a></li>
-                <li><a href="">Pricings</a></li>
-                <li><a href="">Contact</a></li>
-                <li style="float:right;"><a href="">My Account</a></li>
-            </ul>
+        <div class="navigation-bar" id="nav-bar">
+            <a href="">Evelynn</a>
+            <a href="">Demos</a>
+            <a href="">Works</a>
+            <a href="">Services</a>
+            <a href="">Testimonials</a>
+            <a href="">Pricings</a>
+            <a href="">Contact</a>
+            <a href="">My Account</a>
+            <a href="#" class="icon" onclick="shownavbar()"><i class="fa fa-bars"></i></a>
         </div>
         <div class="second-box">
+            <div class="text-box-container">
+                <p>Evelynn + Egret Admin</p>
+                <p>You complete Angular App Development kit</p>
+                <p>Egret implements the official Angular Material Design components and built with Angular CLI. No Bootstrap!, No jQuery! and Only TypeScript!</p>
+                <img src="egret-screen.jpg" alt="egret-screen">
+            </div>
+        </div>
+        <!-- <div class="second-box">
             <p class="first-text">Evelynn + Egret Admin</p>
             <p class="second-text">Your complete Angular App Development kit</p>
             <p class="third-text">Egret implements the official Angular Material Design components and built with Angular</p>
@@ -27,6 +35,8 @@
         </div>
         <div class="container">
             <p>Our Works</p>
-        </div>
+        </div> -->
+        <script src="javascript.js"></script>
     </body>
+    
 </html>
