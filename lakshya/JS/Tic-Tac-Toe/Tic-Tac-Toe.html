@@ -1,0 +1,65 @@
+<html>
+        <head>
+                
+                <script src="ttt.js"></script>
+                <meta charset="utf-8">
+                <meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
+        <title>
+           Tic-Tac-Toe
+        </title>        
+        <style>
+            .a:hover{
+                box-shadow: 1px 0px 10px;
+                transition-duration: 0.4s;
+                
+            }
+            .a{
+                border: 1px solid whitesmoke;
+            }
+        input{
+            text-align: center;
+            font-size: 20px;
+        }
+        #inp1{
+            width: 20px;
+        }
+        .a{
+            margin:auto;
+            margin-top: 40px;
+        }
+        .b{
+            margin: auto;
+            border: 1px solid whitesmoke;
+        }
+        .s{
+            color: rgba(255, 255, 255,0.8);
+            margin-left:100px;
+            font-size: 80px;
+            margin-top: -260px;
+            display: block;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+            
+        }
+        </style>
+        </head>
+        <body background="tic.jpg">
+                <div class="a" style="border-radius: 40px; position:relative;width:580px;height:450px; background-color: rgba(41, 41, 41,0.4); ">
+                        <canvas width="600" height="600"></canvas>
+                        <input type="text" style="position:absolute;left:40px;top:50px;width:150px; height: 100px;" id="1" onmouseout="in1()" onkeyup="key(1)"/>
+                        <input type="text" style="position:absolute;left:210px;top:50px;width:150px; height: 100px;" id="2" onmouseout="in2()" onkeyup="key(2)"/>
+                        <input type="text" style="position:absolute;left:380px;top:50px;width:150px; height: 100px;" id="3"onmouseout="in3()" onkeyup="key(3)"/>
+                        <input type="text" style="position:absolute;left:40px;top:170px;width:150px; height: 100px;" id="4" onmouseout="in4()" onkeyup="key(4)"/>
+                        <input type="text" style="position:absolute;left:210px;top:170px;width:150px; height: 100px;" id="5" onmouseout="in5()" onkeyup="key(5)"/>
+                        <input type="text" style="position:absolute;left:380px;top:170px;width:150px; height: 100px;" id="6" onmouseout="in6()" onkeyup="key(6)"/>
+                        <input type="text" style="position:absolute;left:40px;top:290px;width:150px; height: 100px;" id="7" onmouseout="in7()" onkeyup="key(7)"/>
+                        <input type="text" style="position:absolute;left:210px;top:290px;width:150px; height: 100px;" id="8" onmouseout="in8()" onkeyup="key(8)"/>
+                        <input type="text" style="position:absolute;left:380px;top:290px;width:150px; height: 100px;" id="9" onmouseout="in9()" onkeyup="key(9)"/>
+                        
+                    </div>
+                    <div class="b" style="border-radius: 20px; position: relative; width: 600px; height: 150px; background-color: rgba(122, 122, 122,0.4);">
+                    <input type="text" style=" margin-left: 20px; margin-top: 50px;" placeholder="Player 1:" id="p1" onmouseout="inp1()">
+                    <input type="text" style=" margin-left: 60px;" placeholder="Player 2:" id="p2" onmouseout="inp2()">
+                    </div>
+                    <span class="s">TOE</span><span class="s">TAC</span><span class="s">TIC</span>
+                </body> 
+</html>
