@@ -169,10 +169,13 @@ function checkWinner(id){
 }
 function reSet(){
 
-    var tdArr = document.getElementsByTagName("TD");;
+    var tdArr = document.getElementsByTagName("TD");
     console.log(tdArr.length);
+    var thd = document.getElementById("display");
+    thd.style.backgroundColor='#ffcccc';
+    thd.innerHTML = 'welcome to tic tac toe';
     for ( var i = 0 ; i < tdArr.length ; i++ ){
             tdArr[i].innerHTML = 'click';
-            tdArr[i].style.backgroundColor ="red";
+            tdArr[i].style.backgroundColor ="grey";
     }
 }
