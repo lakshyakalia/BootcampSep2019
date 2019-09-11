@@ -5,6 +5,7 @@ Tic-Tac-Toe
 </title>
 <head>
     <link rel="stylesheet" type="text/css" href="style.css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="script.js">
     </script>
 
@@ -14,8 +15,8 @@ Tic-Tac-Toe
     <div class="head">
         <h1>TIC-TAC-TOE</h1>
     </div>
-    <div>
-        <table class="table">
+    <div class="t1">
+        <table class="table" id="table">
             <tr border="2">
                 <td border="1">
                     <button type="button" class="btn" id="1" data-points="0" onclick="clicked(this.id)"></button>

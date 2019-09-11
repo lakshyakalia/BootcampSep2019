@@ -1,15 +1,31 @@
 body{
-    background-color: blueviolet;
+    background-color: rgb(231, 226, 236);
 }
 
 .btn{
     width: 65px;
     height: 65px;   
     text-align: center;
+    background-color: rgb(166, 173, 143);
+    
 }
 .btn:hover{
-    background-color: aqua;
+    background-color: rgb(128, 163, 163);
 }
 table{
-    padding: 190px 550px;
+    /*padding: 190px 550px;*/
+    background-color: rgb(126, 85, 85)
+}
+.content{
+max-width: 100%;
+    padding: 100px 150px;
+}
+.head{
+max-width: 100%;
+}
+.t1{
+    max-width: 100%;
+    background-color: black;
+    width: fit-content;
+    
 }
