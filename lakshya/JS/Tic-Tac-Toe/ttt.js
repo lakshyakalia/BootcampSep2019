@@ -211,15 +211,19 @@ var c=1;
                             
                             if(flag=='X')
                             {
-                                document.getElementById("win").innerHTML="Player 1 wins!";
+                                document.getElementById("win").style.display='block';
+                                document.getElementById("go2").innerHTML="Player 1 wins!";
                             }
                             else if(flag=='0')
                             {
-                                document.getElementById("win").innerHTML="Player 2 wins!";
+                                document.getElementById("win").style.display='block';
+                                document.getElementById("go2").innerHTML="Player 2 wins!";
                             }
                             else if(count==9)
                             {
-                                document.getElementById("win").innerHTML="DRAW!";
+                                document.getElementById("win").style.display='block';
+                                document.getElementById("go2").innerHTML="DRAW!";
                             }
                             
                         }
+                        
