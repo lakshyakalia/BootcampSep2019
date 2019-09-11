@@ -9,6 +9,10 @@ body{
     font-weight: bold;
     margin-top: 20px;
 }
+
+.game-box{
+    display: none;
+}
 .game-row{
     height: 100px;
     width: 300px;

@@ -72,9 +72,7 @@
     cursor: pointer;
 }
 
-.third-box{
-    padding: 80px 80px 20px 80px;
-}
+.third-box{ padding: 80px 80px 20px 80px; }
 
 .third-box-1{
     font-size: 27px;
@@ -93,6 +91,7 @@
 }
 .card{
     width: 32%;
+    border-radius: 4px;
     display: inline-block;
     margin-right: 5px;
     -webkit-box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.75);
@@ -108,13 +107,23 @@
 .card img{
     width: 100%;
     height: auto;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
-.card-body{ padding: 20px 12px; }
+.card-body{ padding: 16px 12px; }
+.card-footer{ padding: 0px 0px 15px 15px; }
+
+.card-footer i{ 
+    font-size: 26px;
+    cursor: pointer;
+}
 
 .card-body p{
+    padding-bottom: 10px;
     margin-top: 5px;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
+    border-bottom: 1px solid grey;
 }
 
 .customer-box{
@@ -123,7 +132,7 @@
 }
 
 .customer-card img{
-    padding:12px 0px 4px 22px;
+    padding:0px 0px 12px 22px;
 }
 
 .customer-box h3{
@@ -144,6 +153,7 @@
 .customer-card-container{ 
     padding: 40px 30px;
     background: rgba(0,0,0,.024);
+    overflow: hidden;
  }
 .sep-margin{
     margin-left: 10px;
@@ -152,6 +162,7 @@
 .customer-card{ 
     display: inline-block; 
     width: 32%;
+    border-radius: 6px;
     background-color: white;
     -webkit-box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.75);
@@ -167,6 +178,24 @@
     font-size: 20px;
     text-align: justify;
     padding: 22px 20px;
+}
+
+.customer-card-footer img{
+    height: 70px;
+    width: 70px;
+}
+.designation{
+    display:block!important;
+    position: relative;
+    left: 97px;
+    font-size: 16px!important;
+    color: grey; 
+}
+.customer-card-footer p{
+    display: inline-block;
+    position: relative;
+    bottom: 60px;
+    font-size: 20px;
 }
 .service-box{ padding: 0px 40px 20px; }
 .service-box h3{
