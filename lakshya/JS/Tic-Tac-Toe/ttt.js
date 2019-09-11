@@ -2,63 +2,173 @@ var a1,a2,a3,a4,a5,a6,a7,a8,a9;
 var p11=999,p12=999;
 var flag;
 var count=0;
-                        function in1()
-                        {
-                            a1=document.getElementById('1').value;
+var c=1;
+                        function in1(id)
+                        {   if(c==1)
+                            {
+                                document.getElementById(id).innerHTML='X';  
+                                a1='X';
+                                c=0;
+                                key(id);
+                            }
+                            else{
+                                document.getElementById(id).innerHTML='0'; 
+                                a1='0';
+                                c=1;
+                                key(id);
+                            }
+                           
                             check();
                             
                         }
-                        function in2()
-                        {
-                            a2=document.getElementById('2').value;
+                        function in2(id)
+                        {   if(c==1)
+                            {
+                                document.getElementById(id).innerHTML='X';  
+                                a2='X';
+                                c=0;
+                                key(id);
+                            }
+                            else{
+                                document.getElementById(id).innerHTML='0'; 
+                                a2='0';
+                                c=1;
+                                key(id);
+                            }
+                           
                             check();
+                            
                         }
-                        function in3()
-                        {
-                            a3=document.getElementById('3').value;
+                        function in3(id)
+                        {   if(c==1)
+                            {
+                                document.getElementById(id).innerHTML='X';  
+                                a3='X';
+                                c=0;
+                                key(id);
+                            }
+                            else{
+                                document.getElementById(id).innerHTML='0'; 
+                                a3='0';
+                                c=1;
+                                key(id);
+                            }
+                           
                             check();
+                            
                         }
-                        function in4()
-                        {
-                            a4=document.getElementById('4').value;
+                        function in4(id)
+                        {   if(c==1)
+                            {
+                                document.getElementById(id).innerHTML='X';  
+                                a4='X';
+                                c=0;
+                                key(id);
+                            }
+                            else{
+                                document.getElementById(id).innerHTML='0'; 
+                                a4='0';
+                                c=1;
+                                key(id);
+                            }
+                           
                             check();
+                            
                         }
-                        function in5()
-                        {
-                            a5=document.getElementById('5').value;
+                        function in5(id)
+                        {   if(c==1)
+                            {
+                                document.getElementById(id).innerHTML='X';  
+                                a5='X';
+                                c=0;
+                                key(id);
+                            }
+                            else{
+                                document.getElementById(id).innerHTML='0'; 
+                                a5='0';
+                                c=1;
+                                key(id);
+                            }
+                           
                             check();
+                            
                         }
-                        function in6()
-                        {
-                            a6=document.getElementById('6').value;
+                        function in6(id)
+                        {   if(c==1)
+                            {
+                                document.getElementById(id).innerHTML='X';  
+                                a6='X';
+                                c=0;
+                                key(id);
+                            }
+                            else{
+                                document.getElementById(id).innerHTML='0'; 
+                                a6='0';
+                                c=1;
+                                key(id);
+                            }
+                           
                             check();
+                            
                         }
-                        function in7()
-                        {
-                            a7=document.getElementById('7').value;
+                        function in7(id)
+                        {   if(c==1)
+                            {
+                                document.getElementById(id).innerHTML='X';  
+                                a7='X';
+                                c=0;
+                                key(id);
+                            }
+                            else{
+                                document.getElementById(id).innerHTML='0'; 
+                                a7='0';
+                                c=1;
+                                key(id);
+                            }
+                           
                             check();
+                            
                         }
-                        function in8()
-                        {
-                            a8=document.getElementById('8').value;
+                        function in8(id)
+                        {   if(c==1)
+                            {
+                                document.getElementById(id).innerHTML='X';  
+                                a8='X';
+                                c=0;
+                                key(id);
+                            }
+                            else{
+                                document.getElementById(id).innerHTML='0'; 
+                                a8='0';
+                                c=1;
+                                key(id);
+                            }
+                           
                             check();
+                            
                         }
-                        function inp1()
-                        {
-                            p11=document.getElementById('p1').value;
-                        }
-                        function inp2()
-                        {
-                            p12=document.getElementById('p2').value;
-                        }
-                        function in9()
-                        {
-                            a9=document.getElementById('9').value;
+                        function in9(id)
+                        {   if(c==1)
+                            {
+                                document.getElementById(id).innerHTML='X';  
+                                a9='X';
+                                c=0;
+                                key(id);
+                            }
+                            else{
+                                document.getElementById(id).innerHTML='0'; 
+                                a9='0';
+                                c=1;
+                                key(id);
+                            }
+                           
                             check();
+                            
                         }
+                       
                         function key(id)
                         {
-                            document.getElementById(id).setAttribute("readonly", "true");
+                            document.getElementById(id).disabled=true;
                             count++;
                         }
                             
@@ -99,11 +209,11 @@ var count=0;
                                 flag=a7;
                             }
                             
-                            if(flag==p11 && p11!="p")
+                            if(flag=='X')
                             {
                                 document.getElementById("win").innerHTML="Player 1 wins!";
                             }
-                            else if(flag==p12)
+                            else if(flag=='0')
                             {
                                 document.getElementById("win").innerHTML="Player 2 wins!";
                             }
