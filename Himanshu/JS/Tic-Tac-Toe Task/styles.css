@@ -9,10 +9,6 @@ body{
     font-weight: bold;
     margin-top: 20px;
 }
-
-.game-box{
-    display: none;
-}
 .game-row{
     height: 100px;
     width: 300px;
@@ -61,7 +57,15 @@ input[type="button"]:hover{
 }
 
 canvas{
-    position: relative;
     border: 2px solid;
-    
+    width: 296px;
+    height: 296px;  
+}
+
+.container{
+    position: relative;
+}
+
+.container canvas, .game-box{
+    position: absolute;
 }

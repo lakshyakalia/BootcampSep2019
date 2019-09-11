@@ -1,11 +1,26 @@
 var gameValue = "";
 var buttonCount = 0;
+
+function getCanvasCoordinates(a,b,ori){
+    let str = String(a)+String(b)+String(ori)
+    str = str.split("").sort().join("")
+    for(var i in canvas){
+        for(var keys in canvas[i]){
+            if(keys == str){
+                return canvas[i][keys];
+            }
+        }
+    }
+}
+
 function valueStatus(a,b,ori){
-    let a_value, b_value, ori_value;
+    let a_value, b_value, ori_value,str;
     a_value = document.getElementById(String(a)).value;
     b_value = document.getElementById(String(b)).value;
     ori_value = document.getElementById(String(ori)).value;
     if(a_value == ori_value && b_value == ori_value){
+        str = getCanvasCoordinates(a,b,ori);
+        getCanvasLine(str);
         return true;
     }
     return false;
@@ -125,3 +140,59 @@ function checkGameWin(num){
     }
     return false;
 }
+
+function getCanvasLine(obj){
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.moveTo(obj['x1'],obj['y1']);
+    ctx.lineTo(obj['x2'],obj['y2']);
+    ctx.stroke();
+}
+
+let canvas = [
+    {
+      123:{
+        x1:0,
+        y1:50,
+        x2:300,
+        y2:25
+      },
+      456:{
+        x1:0,
+        y1:75,
+        x2:300,
+        y2:75
+      },
+      789:{
+        x1:0,
+        y1:125,
+        x2:300,
+        y2:125
+      },
+      147:{
+        x1:50,
+        y1:0,
+        x2:50,
+        y2:300
+      },
+      258:{
+        x1:150,
+        y1:0,
+        x2:150,
+        y2:300
+      },
+      369:{
+        x1:0,
+        y1:0,
+        x2:600,
+        y2:300
+      },
+      159:{
+          x1:0,
+          y1:0,
+          x2:600,
+          y2:300
+      }
+    }
+  ]
+  
