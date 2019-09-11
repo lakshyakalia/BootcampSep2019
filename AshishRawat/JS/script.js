@@ -25,7 +25,7 @@ var con = document.getElementById(elementbyid).innerHTML;
   {
     window.alert("Select another tile");
   }
-    checkResult();
+     checkResult();
   }
 var arr= new Array(3);
 for(i=0;i<arr.length;i++)
@@ -95,7 +95,9 @@ $(document).ready(function(){
         }); 
 /*------------------------------------------------------------------------------------------------------*/
 
-function checkResult(){
+async function checkResult(){
+  var s1=0;
+    var s2 = 0;
     var elementId=1;
         count=0;
         for (var i = 0; i < 3; i++) { 
@@ -120,6 +122,7 @@ function checkResult(){
                 alert("Cross WIN!");
                 location.reload();
             }
+        
         }
     
         for(var i = 0; i<3;i++){
@@ -140,26 +143,38 @@ function checkResult(){
         }
     
         if(arr[0][0] + arr[1][1] + arr[2][2] === 3)
-        {
+        {   s1=3;
             alert("Circle WIN!");
             location.reload();
         }
         else if(arr[0][0] + arr[1][1] + arr[2][2] === -3)
         {
+            s1=-3;
             alert("Cross WIN!");
             location.reload();
         }
+
     
         if(arr[2][0] + arr[1][1] + arr[0][2] === 3)
-        {
+        {   s1=3;
             alert("Circle WIN!");
             location.reload();
-        }  
+        } 
         else if(arr[2][0] + arr[1][1] + arr[0][2] === -3)
-        {
+        {   s1=-3;
             alert("Cross WIN!");
             location.reload();
         }
+      await checkDraw(s1,rowSum,colSum);
+
+}
+ async function checkDraw(s1,rowSum,colSum)
+{
+    if(s1!==3 || s1!==-3 ||colSum!==3 || colSum!==-3||rowSum!==3||rowSum!==-3)
+    {
+        then.alert("ITS A DRAW");
+        location.reload();
+    }
 
 }
     
