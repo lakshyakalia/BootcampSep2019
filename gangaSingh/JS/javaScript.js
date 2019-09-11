@@ -80,7 +80,7 @@ function clicked(elementName){
      }
      else
         {
-         window.alert("Tile is in use. Please select another tile.");
+         location.alert("Tile is in use. Please select another tile.");
        }
 
        checkResult(count);
@@ -119,10 +119,14 @@ var elementId=1;
         for(var j = 0; j<3;j++){
             rowSum += arr[i][j];
         }
-        if(rowSum === 3)
+        if(rowSum === 3){
             alert("Circle WIN!");
-        else if(rowSum === -3)
+            location.reload();
+        }
+        else if(rowSum === -3){
             alert("Cross WIN!");
+            location.reload();
+        }
     }
 
     for(var i = 0; i<3;i++){
@@ -130,21 +134,37 @@ var elementId=1;
         for(var j = 0; j<3;j++){
             colSum += arr[j][i];
         }
-        if(colSum === 3)
+        if(colSum === 3){
             alert("Circle WIN!");
-        else if(colSum === -3)
+            location.reload();
+        }
+        else if(colSum === -3){
             alert("Cross WIN!");
+            location.reload();
+        }
     }
 
-    if(arr[0][0] + arr[1][1] + arr[2][2] === 3)
+    if(arr[0][0] + arr[1][1] + arr[2][2] === 3){
         alert("Circle WIN!");
-    else if(arr[0][0] + arr[1][1] + arr[2][2] === -3)
+        location.reload();
+    }
+        
+    else if(arr[0][0] + arr[1][1] + arr[2][2] === -3){
         alert("Cross WIN!");
+        location.reload();
+    }
+        
 
-    if(arr[2][0] + arr[1][1] + arr[0][2] === 3)
+    if(arr[2][0] + arr[1][1] + arr[0][2] === 3){
         alert("Circle WIN!");
-    else if(arr[2][0] + arr[1][1] + arr[0][2] === -3)
+        location.reload();
+    }
+        
+    else if(arr[2][0] + arr[1][1] + arr[0][2] === -3){
         alert("Cross WIN!");
+        location.reload();
+    }
+        
         
 }
 
