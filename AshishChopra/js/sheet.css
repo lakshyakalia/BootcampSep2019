@@ -1,16 +1,38 @@
 .button1{
+    display: none;
+    background-color: black;
+    padding: 75px;
     
-    
-    padding: 32px;
     margin: 0px;
+    color: yellow;
+}
+table :hover{
+    background-color:pink}
+
+#reset1{
+    display: none;
 }
 
 .class1{
    background-size: cover;
     margin: 100px;
     height: 400px;
+
 }
-html{
-    color: black;
+td{
+    padding: none;
 }
 
+body{
+    background-color:rgb(14, 3, 3);
+    padding-left: 200px;
+    /* margin-right: 30px; */
+}
+.reset{
+    float: right;
+    padding: 5px;
+    
+}
+.heading{
+
+}

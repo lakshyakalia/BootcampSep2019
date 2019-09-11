@@ -14,6 +14,8 @@ console.log(array);
 
 var count=0
 function myfunc(Element_id){
+
+    // $('#reset1').fadeIn();
     //var selected=0;
     var input=document.getElementById(Element_id).innerHTML;
     if(input==""){
@@ -79,7 +81,10 @@ function checkWinner(){
         if(flag==9){
             window.alert("Match Draw");
         }
-    }
+}
+function Reset(){
+    document.getElementById("#reset1").Reset();
+}
    
 
   
