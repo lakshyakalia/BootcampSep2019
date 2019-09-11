@@ -39,7 +39,7 @@ for (var j = 0; j < 3; j++)
     arr[i][j] = 0; 
 } 
 }
-/*----------------------------JQUERY_ANIMATE----------------------------------------*/
+/*-----------------------------------------JQUERY_ANIMATE-----------------------------------------------*/
 $(document).ready(function(){
 $("#ta").fadeIn(3000);
 });
@@ -84,8 +84,8 @@ $(document).ready(function(){
         });
         });
     $(document).ready(function(){
-        $("#12").click(function(){
-            $("#12").css("color","white").fadeOut(200).fadeIn(12);
+        $("#8").click(function(){
+            $("#8").css("color","white").fadeOut(200).fadeIn(12);
         });
         });
     $(document).ready(function(){
@@ -93,7 +93,7 @@ $(document).ready(function(){
             $("#9").css("color","white").fadeOut(200).fadeIn(12);
         });
         }); 
-/*----------------------------JQUERY_ANIMATE----------------------------------------*/
+/*------------------------------------------------------------------------------------------------------*/
 
 function checkResult(){
     var elementId=1;
