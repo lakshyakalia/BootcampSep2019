@@ -46,7 +46,8 @@ function checkresult(){
        )
        {
           alert("X IS WINNER");
-          reset();
+          location.reload();
+         //  reset();
        }
     else if(document.getElementById("btn1").value=="0"&&
     document.getElementById("btn2").value=="0"&&
@@ -75,7 +76,8 @@ function checkresult(){
     )
     {
        alert("O IS WINNER");
-       reset();
+       location.reload();
+      //  reset();
     }
     else{
         c=c+1;
@@ -84,19 +86,20 @@ function checkresult(){
     {
        alert("DRAW");
        c=0;
-       reset();
+       location.reload();
+      //  reset();
     }
    }   
 
-function reset()
-{
-    document.getElementById("btn1").value="";
-    document.getElementById("btn2").value="";
-    document.getElementById("btn3").value="";
-    document.getElementById("btn4").value="";
-    document.getElementById("btn5").value="";
-    document.getElementById("btn6").value="";
-    document.getElementById("btn7").value="";
-    document.getElementById("btn8").value="";
-    document.getElementById("btn9").value="";
-}
+// function reset()
+// {
+//     document.getElementById("btn1").value="";
+//     document.getElementById("btn2").value="";
+//     document.getElementById("btn3").value="";
+//     document.getElementById("btn4").value="";
+//     document.getElementById("btn5").value="";
+//     document.getElementById("btn6").value="";
+//     document.getElementById("btn7").value="";
+//     document.getElementById("btn8").value="";
+//     document.getElementById("btn9").value="";
+// }
