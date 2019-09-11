@@ -1,5 +1,6 @@
 body{
     background-color: #14BDAC;
+    overflow: hidden;
 }
 
 .heading{
@@ -54,18 +55,38 @@ input[type="button"]:hover{
     font-size: 50px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: 450px;
+    left: 500px;
 }
 
 canvas{
-    border: 2px solid;
     width: 296px;
     height: 296px;  
 }
 
 .container{
     position: relative;
+    left: 500px;
 }
 
 .container canvas, .game-box{
     position: absolute;
+}
+
+.reset-button{
+    position: relative;
+    top: 450px;
+    left: 600px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    display: none;
 }

@@ -1,6 +1,18 @@
 var gameValue = "";
 var buttonCount = 0;
 
+let canvas = [
+    {
+      123:{ x1:0, y1:25, x2:300, y2:25 },
+      456:{ x1:0, y1:75, x2:300, y2:75 },
+      789:{ x1:0, y1:125, x2:300, y2:125 },
+      147:{ x1:50, y1:0, x2:50, y2:300 },
+      258:{ x1:150, y1:0, x2:150, y2:300 },
+      369:{ x1:0, y1:0, x2:600, y2:300 },
+      159:{ x1:0, y1:0, x2:600, y2:300 }
+    }
+]
+
 function getCanvasCoordinates(a,b,ori){
     let str = String(a)+String(b)+String(ori)
     str = str.split("").sort().join("")
@@ -74,7 +86,6 @@ function checkDiagonalWin(num){
 }
 
 function getGameValue(id){
-    let gameColor;
     buttonCount += 1;
     value = document.getElementById(id).value;
     if(gameValue == ""){
@@ -87,15 +98,21 @@ function getGameValue(id){
         gameValue = "X";
     }
     document.getElementById(id).value = gameValue;
-    document.getElementById(id).style.bgcolor = gameColor;
     document.getElementById(id).disabled = true;
     let status = Boolean(checkGameWin(id));
     if(status == true){
-        document.getElementById('winner_result').innerHTML = "You Won the game";
+        document.getElementById('winner_result').innerHTML = gameValue+" Won the game";
+        var ele = document.getElementsByClassName("disable");
+        for(let i=0;i<ele.length;i++){
+            ele[i].disabled = true;
+        }
+        document.getElementById('reset').style.display="block";
     }
     else if(status == false && buttonCount == 9){
         document.getElementById('winner_result').innerHTML = "Game got tied";
+        document.getElementById('reset').style.display="block";
     }
+
 }
 
 function checkGameWin(num){
@@ -113,7 +130,7 @@ function checkGameWin(num){
         case 3:
             str_status = checkStraightWin('left',3);
             down_status = checkDownwardWin('down',3);
-            diag_status = checkDiagonalWin(1);
+            diag_status = checkDiagonalWin(3);
             break;
         case 4:
             str_status = checkStraightWin('right',4);
@@ -149,50 +166,6 @@ function getCanvasLine(obj){
     ctx.stroke();
 }
 
-let canvas = [
-    {
-      123:{
-        x1:0,
-        y1:50,
-        x2:300,
-        y2:25
-      },
-      456:{
-        x1:0,
-        y1:75,
-        x2:300,
-        y2:75
-      },
-      789:{
-        x1:0,
-        y1:125,
-        x2:300,
-        y2:125
-      },
-      147:{
-        x1:50,
-        y1:0,
-        x2:50,
-        y2:300
-      },
-      258:{
-        x1:150,
-        y1:0,
-        x2:150,
-        y2:300
-      },
-      369:{
-        x1:0,
-        y1:0,
-        x2:600,
-        y2:300
-      },
-      159:{
-          x1:0,
-          y1:0,
-          x2:600,
-          y2:300
-      }
-    }
-  ]
-  
+function resetGame(){
+    location.reload();
+}
