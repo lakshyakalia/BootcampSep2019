@@ -2,14 +2,18 @@
 var opt = '';
 var times = 0;
 var flg = false;
+var x = 0;
+var o = 0 ;
+
 function clicking(id){
     times++;
     var input = document.getElementById(id).innerHTML ;
     if ( flg == true ){
         alert("game is over click reset to play again ");
     }
-    else if ( (opt === '' || opt === 'X') && ( input === 'click') ){
+    else if ( (opt === '' || opt === 'X') && ( input === '') ){
         opt = 'O';
+        x++;
     document.getElementById(id).style.background = "#0080ff";
     document.getElementById(id).innerHTML = 'X';
     document.getElementById(id).style.color ='#ffffff';
@@ -17,8 +21,9 @@ function clicking(id){
     if ( times >= 5 )
     checkWinner( id );
     }
-    else if( ( opt ==='' || opt === 'O') && ( input === 'click')) {
+    else if( ( opt ==='' || opt === 'O') && ( input === '')) {
         opt = 'X';
+        o++;
     document.getElementById(id).style.background = "#00ff40";
     document.getElementById(id).innerHTML = 'O';
     document.getElementById(id).style.color ='#ffffff';
@@ -26,7 +31,10 @@ function clicking(id){
     if ( times >= 5 )
     checkWinner(id);
     }
-    
+    if ( x >= 5 && o >= 4 ){
+        x = 0, o = 0;
+        document.getElementById('display').innerHTML = 'Draw';
+    }
 }
 function checkWinner(id){
     console.log(times + ' '+ id );
@@ -174,8 +182,44 @@ function reSet(){
     var thd = document.getElementById("display");
     thd.style.backgroundColor='#ffcccc';
     thd.innerHTML = 'welcome to tic tac toe';
+        opt = '';
+        times = 0;
+        flg = false;
+        x = 0, o = 0;
     for ( var i = 0 ; i < tdArr.length ; i++ ){
-            tdArr[i].innerHTML = 'click';
+            tdArr[i].innerHTML = '';
             tdArr[i].style.backgroundColor ="grey";
     }
 }
+$(document).ready(function(){
+    $('#b1').click(function(){
+        $('#display').addClass('animated shake');
+    });
+    $('#b2').click(function(){
+        $('#display').addClass('animated rotateIn');
+    });
+    $('#b3').click(function(){
+        $('#display').addClass('animated swing');
+    });
+    $('#b4').click(function(){
+        $('#display').addClass('animated rubberBand');
+    });
+    $('#b5').click(function(){
+        $('#display').addClass('animated flash');
+    });
+    $('#b6').click(function(){
+        $('#display').addClass('animated jackInTheBox');
+    });
+    $('#b7').click(function(){
+        $('#display').addClass('animated rollIn');
+    });
+    $('#b8').click(function(){
+        $('#display').addClass('animated slideInDown');
+    });
+    $('#b9').click(function(){
+        $('#display').addClass('animated wobble');
+    });
+    $('button').click(function(){
+        $('table').addClass('animated bounceIn');
+    });
+});
