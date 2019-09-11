@@ -1,0 +1,58 @@
+body {
+  background-color: #5cf;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h2, .scoreboard {
+  text-align: center;
+}
+
+.resetBtn {
+  display: block;
+  margin: 0px auto;
+  color: #eeeeee;
+  background-color: #33d;
+  border: 2px solid #33e;
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 1.4em;
+  cursor: pointer;
+  box-shadow: 0 5px #333;
+  transition: 0.1s;
+}
+
+.resetBtn:hover {
+  background-color: #44f;
+  color: #fff;
+  transition: 0s;
+}
+
+.resetBtn:active {
+  position: relative;
+  top: 3px;
+  box-shadow: 0 3px #333;
+}
+
+/* TIC TAC TOE CONTAINER */
+
+.container {
+  font-size: 4em;
+  display: grid;
+  background-color: #fe6;
+  width: 300px;
+  height: 300px;
+  margin: 2% auto;
+  border: 15px solid #33d;
+  border-radius: 20px;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.tile {
+  text-align: center;
+  line-height: 90px;
+  border: 5px solid #22a;
+  cursor: pointer;
+}
