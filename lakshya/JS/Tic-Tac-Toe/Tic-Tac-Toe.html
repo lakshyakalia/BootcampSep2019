@@ -43,11 +43,29 @@
             font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
             
         }
+        #myCanvas{
+            z-index: 0;
+        }
+        body{
+            z-index: 1;
+        }
+        .win{
+            position: relative;
+            background-color: rgba(255, 255, 255,0.8);
+            height: 190px;
+            width: 15%;
+            left: 1150px;
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            font-size: 30px;
+            vertical-align: 20px;
+            padding-top: 80px;
+        }
         </style>
         </head>
         <body background="tic.jpg">
                 <div class="a" style="border-radius: 40px; position:relative;width:580px;height:450px; background-color: rgba(41, 41, 41,0.4); ">
-                        <canvas width="600" height="600"></canvas>
+                        <canvas id="myCanvas" width="600" height="600" style="border:1px solid black;"></canvas>
                         <input type="text" style="position:absolute;left:40px;top:50px;width:150px; height: 100px;" id="1" onmouseout="in1()" onkeyup="key(1)"/>
                         <input type="text" style="position:absolute;left:210px;top:50px;width:150px; height: 100px;" id="2" onmouseout="in2()" onkeyup="key(2)"/>
                         <input type="text" style="position:absolute;left:380px;top:50px;width:150px; height: 100px;" id="3"onmouseout="in3()" onkeyup="key(3)"/>
@@ -60,9 +78,10 @@
                         
                     </div>
                     <div class="b" style="border-radius: 20px; position: relative; width: 600px; height: 150px; background-color: rgba(122, 122, 122,0.4);">
-                    <input type="text" style=" margin-left: 20px; margin-top: 50px;" placeholder="Player 1:" id="p1" onmouseout="inp1()">
-                    <input type="text" style=" margin-left: 60px;" placeholder="Player 2:" id="p2" onmouseout="inp2()">
+                    <input type="text" style="width: 40%; height: 40px; margin-left: 20px; margin-top: 50px;" placeholder="Player 1:" id="p1" onmouseout="inp1()">
+                    <input type="text" style="height: 40px; margin-left: 60px;" placeholder="Player 2:" id="p2" onmouseout="inp2()">
                     </div>
                     <span class="s">TOE</span><span class="s">TAC</span><span class="s">TIC</span>
+                    <div class="win" id="win"></div>
                 </body> 
 </html>

@@ -101,20 +101,15 @@ var count=0;
                             
                             if(flag==p11 && p11!="p")
                             {
-                                alert("Player 1 wins!");
+                                document.getElementById("win").innerHTML="Player 1 wins!";
                             }
                             else if(flag==p12)
                             {
-                                alert("Player 2 wins!");
+                                document.getElementById("win").innerHTML="Player 2 wins!";
                             }
                             else if(count==9)
                             {
-                                alert("DRAW");
+                                document.getElementById("win").innerHTML="DRAW!";
                             }
-                            
-                            
-                            
-                                
-                            
                             
                         }
