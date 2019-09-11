@@ -1,8 +1,67 @@
 var box=1
 var count_X=0
 var count_O=0
+var count=0
+
+// $(document).ready(function(){
+//     $("button").click(function(){
+//       $("div").animate({
+//         left: '250px',
+//         opacity: '0.5',
+//         height: '150px',
+//         width: '150px'
+//       });
+//     });
+//   });
+$(document).ready(function(){
+    $("#1").click(function(){
+      $("#1").css("color", "white").fadeOut(250).fadeIn(10);
+    });
+  });
+  $(document).ready(function(){
+    $("#2").click(function(){
+      $("#2").css("color", "white").fadeOut(250).fadeIn(10);
+    });
+  });
+  $(document).ready(function(){
+    $("#3").click(function(){
+      $("#3").css("color", "white").fadeOut(250).fadeIn(10);
+    });
+  });
+  $(document).ready(function(){
+    $("#4").click(function(){
+      $("#4").css("color", "white").fadeOut(250).fadeIn(10);
+    });
+  });
+  $(document).ready(function(){
+    $("#5").click(function(){
+      $("#5").css("color", "white").fadeOut(250).fadeIn(10);
+    });
+  });
+  $(document).ready(function(){
+    $("#6").click(function(){
+      $("#6").css("color", "white").fadeOut(250).fadeIn(10);
+    });
+  });
+  $(document).ready(function(){
+    $("#7").click(function(){
+      $("#7").css("color", "white").fadeOut(250).fadeIn(10);
+    });
+  });
+  $(document).ready(function(){
+    $("#8").click(function(){
+      $("#8").css("color", "white").fadeOut(250).fadeIn(10);
+    });
+  });
+  $(document).ready(function(){
+    $("#9").click(function(){
+      $("#9").css("color", "white").fadeOut(250).fadeIn(10);
+    });
+  });
+  
 
 function clicked(elementName){
+  
     var val =document.getElementById(elementName).innerHTML;
      if (val=="") 
      {
@@ -24,7 +83,7 @@ function clicked(elementName){
          window.alert("Tile is in use. Please select another tile.");
        }
 
-       checkResult();
+       checkResult(count);
 }
 
 
@@ -43,7 +102,7 @@ for (var i = 0; i < 3; i++) {
 } 
 // var count1=1;
 
-function checkResult(){
+function checkResult(count){
 var elementId=1;
     count=0;
     for (var i = 0; i < 3; i++) { 
@@ -86,5 +145,6 @@ var elementId=1;
         alert("Circle WIN!");
     else if(arr[2][0] + arr[1][1] + arr[0][2] === -3)
         alert("Cross WIN!");
+        
 }
 
