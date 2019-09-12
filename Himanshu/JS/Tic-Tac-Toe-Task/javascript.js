@@ -101,11 +101,12 @@ function getGameValue(id){
     document.getElementById(id).disabled = true;
     let status = Boolean(checkGameWin(id));
     if(status == true){
-        $("#winner_result").html(gameValue+" won the game")
+        $("#winner_result").animate({left:'450px'}).html(gameValue+" won the game");
         var ele = document.getElementsByClassName("disable");
         for(let i=0;i<ele.length;i++){
             ele[i].disabled = true;
         }
+        $("#reset").animate({top:'430px'}).css({"display":"block"});
         document.getElementById('reset').style.display="block";
     }
     else if(status == false && buttonCount == 9){
