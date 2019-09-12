@@ -101,7 +101,7 @@ function getGameValue(id){
     document.getElementById(id).disabled = true;
     let status = Boolean(checkGameWin(id));
     if(status == true){
-        document.getElementById('winner_result').innerHTML = gameValue+" Won the game";
+        $("#winner_result").html(gameValue+" won the game")
         var ele = document.getElementsByClassName("disable");
         for(let i=0;i<ele.length;i++){
             ele[i].disabled = true;
@@ -125,7 +125,8 @@ function checkGameWin(num){
             diag_status = checkDiagonalWin(1);
             break;
         case 2:
-            str_status = checkDownwardWin('down',2);
+            str_status = checkStraightWin('right',2);
+            down_status = checkDownwardWin('down',2);
             break;
         case 3:
             str_status = checkStraightWin('left',3);
