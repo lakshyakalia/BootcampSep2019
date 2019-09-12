@@ -8,7 +8,7 @@ var con = document.getElementById(elementbyid).innerHTML;
       if(box==0)
       {
         
-        box=1;
+          box=1;
           document.getElementById(elementbyid).innerHTML="X";
           count++;
           document.getElementById(elementbyid).setAttribute("data-points","-1");
@@ -108,11 +108,14 @@ function checkResult(){
             {
                 alert("Circle WIN!");
                 location.reload();
+                return;
+                
             }
             else if(rowSum === -3)
             {
                 alert("Cross WIN!");
                 location.reload();
+                return;
             }
         
         }
@@ -126,11 +129,15 @@ function checkResult(){
             {
                 alert("Circle WIN!");
                 location.reload();
+                return;
+                
             }
             else if(colSum === -3)
             {
                 alert("Cross WIN!");
                 location.reload();
+                return;
+                
             }
         }
     
@@ -138,12 +145,16 @@ function checkResult(){
         {   s1=3;
             alert("Circle WIN!");
             location.reload();
+            return;
+            
         }
         else if(arr[0][0] + arr[1][1] + arr[2][2] === -3)
         {
             s1=-3;
             alert("Cross WIN!");
             location.reload();
+            return;
+            
         }
 
     
@@ -151,15 +162,20 @@ function checkResult(){
         {   s1=3;
             alert("Circle WIN!");
             location.reload();
+            return;
+            
         } 
         else if(arr[2][0] + arr[1][1] + arr[0][2] === -3)
         {   s1=-3;
             alert("Cross WIN!");
             location.reload();
+            return;
+            
         }
       if(count===9){
           alert("Its a Draw");
-          location.reload;
+          location.reload();
+          
       }
 
 }
