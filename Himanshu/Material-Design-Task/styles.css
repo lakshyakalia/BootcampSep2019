@@ -73,7 +73,6 @@
 }
 
 .third-box{ padding: 80px 80px 20px 80px; }
-
 .third-box-1{
     font-size: 27px;
     font-weight: 700;
@@ -86,9 +85,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.card-container{
-    padding: 50px 90px;
-}
+.card-container{ padding: 50px 90px; }
 .card{
     width: 32%;
     border-radius: 4px;
@@ -131,9 +128,7 @@
     background: rgba(0,0,0,.024);
 }
 
-.customer-card img{
-    padding:0px 0px 12px 22px;
-}
+.customer-card img{ padding:0px 0px 12px 22px; }
 
 .customer-box h3{
     font-family: 'Lato', sans-serif;
@@ -210,12 +205,7 @@
     font-size: 20px;
     padding: 0px 150px 0px 26px
 }
-
-
-.service-card-container{ 
-    padding: 40px 80px;
-}
-
+.service-card-container{ padding: 40px 80px; }
 
 .service-card{
     display:inline-block;
@@ -232,10 +222,7 @@
     padding: 0px 16px 0px 26px;
     font-size: 20px;
 } 
-
-.service-card i{
-    font-size: 80px;
-}
+.service-card i{ font-size: 80px; }
 
 .service-card-footer{
     text-align: left;
@@ -246,6 +233,80 @@
     background: rgba(0,0,0,.024); 
 }
 
+.fourth-box{
+    padding: 75px 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: blue;
+    color: white;
+}
+
+.fourth-col1 p:first-child{
+    font-family: 'Lato';
+    font-size: 1.75rem;
+    font-weight: 300;
+}
+
+.fourth-col1 p:last-child{
+    font-family: 'Lato';
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.fourth-col2 button{
+    background-color: #FFC107;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 6px;
+}
+
+.send-us-box{
+    background-color: #ECECEC;
+    padding: 80px;
+}
+.send-us-heading{
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 16px;
+}
+
+.send-us-text{
+    font-size: 16px;
+    margin: 0;
+    color: grey;
+}
+
+.send-us-form{
+    margin-top: 50px;
+}
+.send-us-form input{
+    width: 100%;
+    border: none;
+    padding: 15px 0px;
+    outline: none;
+    background-color: #ECECEC;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+    font-size: 14
+}
+.send-us-form input:focus{
+    border-bottom: 2px solid blue;
+}
+
+.send-us-form button{
+    border: none;
+    padding: 14px 14px;
+    border-radius: 28px;
+    outline: none;
+    cursor: pointer;
+}
+.send-us-form button i{ color: #ECECEC; }
+
 @media(max-width:992px){
     .card-container{ padding:50px 13px; }
     .card-body p{ font-size: 12px;}
@@ -254,7 +315,12 @@
     .third-box-2{ max-width: 53rem; }
     .service-card-container{ padding: 40px 15px;}
     .service-box{ padding: 0px 15px 20px}
+    .fourth-box{ display: block; text-align: center}
+    .fourth-col2 button{ margin-top: 18px; }
+    .fourth-col1 p:first-child, .send-us-heading{ font-size: 2.15rem}
+    .fourth-col1 p:last-child, .send-us-text{ font-size: 21px;}
 }
+
 @media(max-width:768px){
     .navigation-bar a:not(:first-child){display: none; }
     .navigation-bar.responsive{ position: relative; }
