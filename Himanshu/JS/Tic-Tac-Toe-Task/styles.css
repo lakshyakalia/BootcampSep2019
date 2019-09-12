@@ -35,6 +35,8 @@ input[type="button"]{
     border-radius: 35px;
     outline:none;
     cursor: pointer;
+    color: rgba(222,222,222);
+
 }
 
 input[type="button"]:hover{
