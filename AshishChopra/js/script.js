@@ -14,12 +14,12 @@
 
 var array = new Array(9);
 for(var i=0;i<9;i++){
-    array[i] = "R";
+    array[i] = Math.random();
 }
 
 
-var count=0
-var exit=0
+var count=0;
+
 function myfunc(Element_id){
 
     // $('#reset1').fadeIn();
@@ -60,97 +60,90 @@ function addToArray(Element_id){
     // array[2][0] = document.getElementById("7").innerHTML;
     // array[2][1] = document.getElementById("8").innerHTML;
     // array[2][2] = document.getElementById("9").innerHTML;
-    
+           
            checkWinner();
     
 }
 function checkWinner(){
     
-        // if(array[0][0]==array[0][1] && array[0][1]==array[0][2] ){
-        //     window.alert(array[0][0] + " is the winner");
-        //     location.reload();
-        // }
-        // else if(array[1][0]==array[1][1] && array[1][1]==array[1][2] ){
-        //     window.alert(array[1][0] + " is the winner");
-        //     location.reload();
-        // }
-        // else if(array[2][0]==array[2][1] && array[2][1]==array[2][2]){
-        //     window.alert(array[2][0] + " is the winner");
-        //     location.reload();
-        // }
-        // else if(array[0][0]==array[1][0] && array[1][0]==array[2][0] ){
-        //     window.alert(array[0][0] + " is the winner");
-        //     location.reload();
-        // }
-        // else if(array[0][1]==array[1][1] && array[1][1]==array[2][1]){
-        //     window.alert(array[0][1] + " is the winner");
-        //     location.reload();
-        // }
-        // else if(array[0][2]==array[1][2] && array[1][2]==array[2][2]){
-        //     window.alert(array[0][2] + " is the winner");
-        //     location.reload();
-        // }
-        // else if(array[0][0]==array[1][1] && array[1][1]==array[2][2] ){
-        //     window.alert(array[0][0] + " is the winner");
-        //     location.reload();
-        // }
-        // else if(array[0][2]==array[1][1] && array[1][1]==array[2][0] ){
-        //     window.alert(array[0][2] + " is the winner");
-        //     location.reload();
-        // }
-        // flag++;
-        // // if((array[0][0]=="X" || array[0][0]=="O")){
-        // //     window.alert("Match Draw");
-        // // }
-        // if(flag==9){
-        //     window.alert("Match Draw");
-        //     location.reload();
-        // }
-    
+    flag++;
+          
         if(array[0]==array[1] && array[1]==array[2] && (array[0]=="X" || array[0]=="O" || array[1]=="X" || array[1]=="O" || array[2]=="X" || array[2]=="O")  ){
-                 window.alert(array[0] + " is the winner");
+              
+            window.alert(array[0] + " is the winner");
+                 array = []
                  location.reload();
+                 return;
         }
     
 
         else if(array[3]==array[4] && array[4]==array[5] && (array[3]=="X" || array[3]=="O" || array[4]=="X" || array[4]=="O" || array[5]=="X" || array[5]=="O") ){
+            
             window.alert(array[3] + " is the winner");
+            array = []
             location.reload();
+            return;
         }
 
         else if(array[6]==array[7] && array[7]==array[8] && (array[6]=="X" || array[6]=="O" || array[7]=="X" || array[7]=="O" || array[8]=="X" || array[8]=="O") ){
+           
             window.alert(array[6] + " is the winner");
+            array = []
             location.reload();
+            return;
         }
 
         else if(array[0]==array[3] && array[3]==array[6] && (array[1]=="X" || array[1]=="O" || array[3]=="X" || array[3]=="O" || array[6]=="X" || array[6]=="O") ){
+            
             window.alert(array[0] + " is the winner");
+            array = []
             location.reload();
+            return;
         }
 
         else if(array[1]==array[4] && array[4]==array[7] && (array[1]=="X" || array[1]=="O" || array[4]=="X" || array[4]=="O" || array[7]=="X" || array[7]=="O") ){
+           
             window.alert(array[1] + " is the winner");
+            array = []
             location.reload();
+            return;
         }
 
         else if(array[2]==array[5] && array[5]==array[8] && (array[2]=="X" || array[2]=="O" || array[5]=="X" || array[5]=="O" || array[8]=="X" || array[8]=="O")){
+          
             window.alert(array[2] + " is the winner");
+            array = []
             location.reload();
+            return;
         }
 
         else if(array[0]==array[4] && array[4]==array[8] && (array[0]=="X" || array[0]=="O" || array[4]=="X" || array[4]=="O" || array[8]=="X" || array[8]=="O") ){
+           
             window.alert(array[0] + " is the winner");
+            array = []
             location.reload();
+            return;
         }
 
         else if(array[2]==array[4] && array[4]==array[6] && (array[2]=="X" || array[2]=="O" || array[4]=="X" || array[4]=="O" || array[6]=="X" || array[6]=="O") ){
-            window.alert(array[2] + " is the winner");
-            location.reload();
-        }
     
+            window.alert(array[2] + " is the winner");
+            array = []
+            location.reload();
+            return;
+        }
+        
+    
+    if(flag==9){
+        
+    window.alert("Match Draw");
+    location.reload();
+    
+    }
 
         
 }
+
 
 
   

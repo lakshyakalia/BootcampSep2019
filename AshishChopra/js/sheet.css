@@ -6,9 +6,9 @@
     margin: 0px;
     color: yellow;
 }
-table :hover{
+/* table :hover{
     background-color:rgb(61, 77, 67);
-}
+} */
 
 #reset1{
     display: none;
@@ -25,7 +25,7 @@ td{
 }
 
 body{
-    background-color:white;
+    background-color:blanchedalmond;
     padding-left: 200px;
     /* margin-right: 30px; */
 }
@@ -33,7 +33,4 @@ body{
     float: right;
     padding: 5px;
     
-}
-.heading{
-
 }
