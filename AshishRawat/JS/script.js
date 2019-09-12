@@ -1,5 +1,5 @@
 var box=0;
-function clicked(elementbyid)
+async function clicked(elementbyid)
 {
 var con = document.getElementById(elementbyid).innerHTML;
   if(con=="")
@@ -25,7 +25,7 @@ var con = document.getElementById(elementbyid).innerHTML;
   {
     window.alert("Select another tile");
   }
-    checkResult();
+    await checkResult();
   }
 var arr= new Array(3);
 for(i=0;i<arr.length;i++)
@@ -41,61 +41,53 @@ for (var j = 0; j < 3; j++)
 }
 /*-----------------------------------------JQUERY_ANIMATE-----------------------------------------------*/
 $(document).ready(function(){
-$("#ta").fadeIn(3000);
-});
-$(document).ready(function(){
-    $("#1").click(function(){
-        $("#1").css("color","white").fadeOut(200).fadeIn(12);
-    });
-    });
-    $(document).ready(function(){
-    $("#1").click(function(){
-        $("#1").css("color","white").fadeOut(200).fadeIn(12);
-    });
-    });
-    $(document).ready(function(){
+  
+
+        $("#1").click(function(){
+            $("#1").css("color","white").fadeOut(200).fadeIn(12);
+        });
+
         $("#2").click(function(){
             $("#2").css("color","white").fadeOut(200).fadeIn(12);
         });
-        });
-    $(document).ready(function(){
+
+   
         $("#3").click(function(){
             $("#3").css("color","white").fadeOut(200).fadeIn(12);
         });
-        });
-    $(document).ready(function(){
+
+  
         $("#4").click(function(){
             $("#4").css("color","white").fadeOut(200).fadeIn(12);
         });
-        });
-    $(document).ready(function(){
+
+   
         $("#5").click(function(){
             $("#5").css("color","white").fadeOut(200).fadeIn(12);
         });
-        });
-    $(document).ready(function(){
+
+    
         $("#6").click(function(){
             $("#6").css("color","white").fadeOut(200).fadeIn(12);
         });
-         });
-    $(document).ready(function(){
+   
         $("#7").click(function(){
             $("#7").css("color","white").fadeOut(200).fadeIn(12);
         });
-        });
-    $(document).ready(function(){
+   
         $("#8").click(function(){
             $("#8").css("color","white").fadeOut(200).fadeIn(12);
         });
-        });
-    $(document).ready(function(){
+  
         $("#9").click(function(){
             $("#9").css("color","white").fadeOut(200).fadeIn(12);
         });
         }); 
 /*------------------------------------------------------------------------------------------------------*/
 
-function checkResult(){
+async function checkResult(){
+  var s1=0;
+    var s2 = 0;
     var elementId=1;
         count=0;
         for (var i = 0; i < 3; i++) { 
@@ -120,6 +112,7 @@ function checkResult(){
                 alert("Cross WIN!");
                 location.reload();
             }
+        
         }
     
         for(var i = 0; i<3;i++){
@@ -140,26 +133,38 @@ function checkResult(){
         }
     
         if(arr[0][0] + arr[1][1] + arr[2][2] === 3)
-        {
+        {   s1=3;
             alert("Circle WIN!");
             location.reload();
         }
         else if(arr[0][0] + arr[1][1] + arr[2][2] === -3)
         {
+            s1=-3;
             alert("Cross WIN!");
             location.reload();
         }
+
     
         if(arr[2][0] + arr[1][1] + arr[0][2] === 3)
-        {
+        {   s1=3;
             alert("Circle WIN!");
             location.reload();
-        }  
+        } 
         else if(arr[2][0] + arr[1][1] + arr[0][2] === -3)
-        {
+        {   s1=-3;
             alert("Cross WIN!");
             location.reload();
         }
+      checkDraw(s1,rowSum,colSum);
+
+}
+  function checkDraw(s1,rowSum,colSum)
+{
+    if(arr[i][j]!=0 && s1!==3 || s1!==-3 ||colSum!==3 || colSum!==-3||rowSum!==3||rowSum!==-3)
+    {
+        alert("ITS A DRAW");
+        //location.reload();
+    }
 
 }
     
