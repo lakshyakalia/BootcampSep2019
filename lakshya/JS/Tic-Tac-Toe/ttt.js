@@ -210,17 +210,24 @@ var c=1;
                             }
                             
                             if(flag=='X')
-                            {
+                            {   
+                               
+                                
+                                $(".win").fadeIn(2000);
                                 document.getElementById("win").style.display='block';
                                 document.getElementById("go2").innerHTML="Player 1 wins!";
+                               
+
                             }
                             else if(flag=='0')
                             {
+                                $(".win").fadeIn(2000);
                                 document.getElementById("win").style.display='block';
                                 document.getElementById("go2").innerHTML="Player 2 wins!";
                             }
                             else if(count==9)
                             {
+                                $(".win").fadeIn(2000);
                                 document.getElementById("win").style.display='block';
                                 document.getElementById("go2").innerHTML="DRAW!";
                             }
