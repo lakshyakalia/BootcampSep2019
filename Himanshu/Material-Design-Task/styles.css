@@ -128,7 +128,7 @@
     background: rgba(0,0,0,.024);
 }
 
-.customer-card img{ padding:0px 0px 12px 22px; }
+.customer-card img{ padding:14px 0px 17px 22px; }
 
 .customer-box h3{
     font-family: 'Lato', sans-serif;
@@ -203,25 +203,34 @@
 .service-box p{ 
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
-    padding: 0px 150px 0px 26px
+    padding: 0px 150px 0px 26px;
 }
 .service-card-container{ padding: 40px 80px; }
 
 .service-card{
     display:inline-block;
-    width: 32%;
+    width: 31%;
     text-align: center;
     background-color: white;
-    padding: 36px 0px;
+    padding: 40px 4px;
+    border-radius: 5px;
+    border-top: 3px solid black;
     -webkit-box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.75);
      -moz-box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.75);
      box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.75);
 }
 
+.service-card:hover{
+    border-top: 3px solid blue;
+}
+.service-card:hover i{
+    color:blue;
+}
 .service-card p{
     padding: 0px 16px 0px 26px;
     font-size: 20px;
 } 
+
 .service-card i{ font-size: 80px; }
 
 .service-card-footer{
@@ -307,6 +316,138 @@
 }
 .send-us-form button i{ color: #ECECEC; }
 
+.footer-box{
+    padding: 30px 100px;
+    color: white;
+    background-color: #212121;
+    display: flex;
+} 
+
+.about-us h3, .disclaimer h3,.contact h3{
+    font-family:'Lato';
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.1;
+    text-decoration: underline;
+    text-underline-position: under;
+    text-decoration-color:#FFC107;
+}
+
+.about-us p{
+    font-family: 'Lato';
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.about-us button{
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 36px;
+    font-weight: 400!important;
+    font-family: 'Roboto';
+    font-size: 14px;
+    padding: 0px 5px;
+    background-color: #FFC107;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.email-contact-box, .address-contact-box{
+    padding: 40px 15px;
+    display: flex;
+}
+
+.email-contact-text, .address-contact-text{
+    margin-left: 8px;
+}
+
+.email-contact-box i{ 
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+.address-contact-box i{
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+.disclaimer{ padding: 0px 100px;}
+.disclaimer p{ margin-top: 30px;}
+.social-icons{ margin-top: 30px; }
+
+.social-icons i{ font-size: 35px; 
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.plan-box{ padding: 70px 80px; }
+.plan-box h3{
+    font-family: 'Lato';
+    font-size: 30px;
+    font-weight: 700;
+}
+.plan-box-text{
+    margin-top:30px;
+    font-family: 'Roboto';
+    font-size: 17px;
+}
+
+.plan-box-card{
+    margin-top: 15px;
+    display: inline-block;
+    width: 23%;
+    text-align: center;
+    padding: 60px 0;
+    font-family: 'Roboto';
+    -webkit-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+}
+.plan-box-card:nth-child(2){
+    margin-right: 5px;
+    margin-left: 5px; 
+}
+.plan-box-card:nth-child(3){
+    margin-right: 5px;
+}
+
+.plan-card-heading{
+    padding:10px 0px;
+    background-color: #F4EAEA;
+}
+
+.plan-card-heading p:first-child{
+    font-size: 17px;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.plan-card-heading p:last-child{
+    color: grey;
+    font-size: 14px;
+}
+
+.plan-box-content p:not(:first-child){
+    margin-bottom: 20px;
+}
+.bold{
+    font-weight: 900;
+    font-size: 19px;
+    margin: 10px 0px 20px 0px;
+}
+
+.choose-button{
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #FFC107;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
 @media(max-width:992px){
     .card-container{ padding:50px 13px; }
     .card-body p{ font-size: 12px;}
@@ -319,6 +460,19 @@
     .fourth-col2 button{ margin-top: 18px; }
     .fourth-col1 p:first-child, .send-us-heading{ font-size: 2.15rem}
     .fourth-col1 p:last-child, .send-us-text{ font-size: 21px;}
+    .footer-box{ display: block;}
+    .about-us h3{ font-size: 28px;}
+    .about-us p{ font-size: 19px;}
+    .about-us button{ 
+        font-size:20px; 
+        padding: 7px 12px;
+        margin-top: 25px;
+    }
+    .contact h3{ font-size: 28px; margin-top: 50px;}
+    .email-contact-box, .address-contact-box{ padding: 40px 40px;}
+    .disclaimer{ padding: 28}
+    .disclaimer p{ font-size: 21px;}
+    .plan-box-card{width: 47%}
 }
 
 @media(max-width:768px){
@@ -346,6 +500,7 @@
     .customer-card-container{ padding: 40px 20px;}
     .service-card,.customer-card{ width: 100%; margin-bottom: 20px; }
     .sep-margin{ margin: 0px 0px 20px 0px;}
+    .footer-box{ padding: 30px 45px}
 }
 
 @media(max-width:600px){
@@ -357,4 +512,8 @@
     .card-body h3{ font-size: 22px; }
     .customer-box p{ padding: 0px 0px 0px 20px;}
     .service-box p{padding:0px 26px 0 26px;}
+    .plan-box-card{width: 100%; margin-bottom: 10px;}
+    .plan-box-card:nth-child(2){
+        margin: 0;
+    }
 }
