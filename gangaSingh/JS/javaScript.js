@@ -3,57 +3,31 @@ var count_X=0
 var count_O=0
 var count=0
 
-// $(document).ready(function(){
-//     $("button").click(function(){
-//       $("div").animate({
-//         left: '250px',
-//         opacity: '0.5',
-//         height: '150px',
-//         width: '150px'
-//       });
-//     });
-//   });
 $(document).ready(function(){
     $("#1").click(function(){
       $("#1").css("color", "white").fadeOut(250).fadeIn(10);
     });
-  });
-  $(document).ready(function(){
     $("#2").click(function(){
       $("#2").css("color", "white").fadeOut(250).fadeIn(10);
     });
-  });
-  $(document).ready(function(){
     $("#3").click(function(){
       $("#3").css("color", "white").fadeOut(250).fadeIn(10);
     });
-  });
-  $(document).ready(function(){
     $("#4").click(function(){
       $("#4").css("color", "white").fadeOut(250).fadeIn(10);
     });
-  });
-  $(document).ready(function(){
     $("#5").click(function(){
       $("#5").css("color", "white").fadeOut(250).fadeIn(10);
     });
-  });
-  $(document).ready(function(){
     $("#6").click(function(){
       $("#6").css("color", "white").fadeOut(250).fadeIn(10);
     });
-  });
-  $(document).ready(function(){
     $("#7").click(function(){
       $("#7").css("color", "white").fadeOut(250).fadeIn(10);
     });
-  });
-  $(document).ready(function(){
     $("#8").click(function(){
       $("#8").css("color", "white").fadeOut(250).fadeIn(10);
     });
-  });
-  $(document).ready(function(){
     $("#9").click(function(){
       $("#9").css("color", "white").fadeOut(250).fadeIn(10);
     });
