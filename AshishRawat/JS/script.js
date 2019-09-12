@@ -1,4 +1,5 @@
 var box=0;
+var count=0;
 async function clicked(elementbyid)
 {
 var con = document.getElementById(elementbyid).innerHTML;
@@ -6,9 +7,10 @@ var con = document.getElementById(elementbyid).innerHTML;
   {
       if(box==0)
       {
+        
         box=1;
           document.getElementById(elementbyid).innerHTML="X";
-          
+          count++;
           document.getElementById(elementbyid).setAttribute("data-points","-1");
 
       }
@@ -16,6 +18,7 @@ var con = document.getElementById(elementbyid).innerHTML;
       {
         box=0;
           document.getElementById(elementbyid).innerHTML="O";
+          count++;
           document.getElementById(elementbyid).setAttribute("data-points","1");
 
           
@@ -25,7 +28,7 @@ var con = document.getElementById(elementbyid).innerHTML;
   {
     window.alert("Select another tile");
   }
-    await checkResult();
+    checkResult();
   }
 var arr= new Array(3);
 for(i=0;i<arr.length;i++)
@@ -85,11 +88,10 @@ $(document).ready(function(){
         }); 
 /*------------------------------------------------------------------------------------------------------*/
 
-async function checkResult(){
+function checkResult(){
   var s1=0;
     var s2 = 0;
     var elementId=1;
-        count=0;
         for (var i = 0; i < 3; i++) { 
             for (var j = 0; j < 3; j++) { 
                 var x=document.getElementById(elementId).getAttributeNode('data-points').value; 
@@ -155,16 +157,10 @@ async function checkResult(){
             alert("Cross WIN!");
             location.reload();
         }
-      checkDraw(s1,rowSum,colSum);
+      if(count===9){
+          alert("Its a Draw");
+          location.reload;
+      }
 
 }
-  function checkDraw(s1,rowSum,colSum)
-{
-    if(arr[i][j]!=0 && s1!==3 || s1!==-3 ||colSum!==3 || colSum!==-3||rowSum!==3||rowSum!==-3)
-    {
-        alert("ITS A DRAW");
-        //location.reload();
-    }
 
-}
-    
