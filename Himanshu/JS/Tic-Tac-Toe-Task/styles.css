@@ -73,7 +73,6 @@ canvas{
 .container canvas, .game-box{
     position: absolute;
 }
-
 .reset-button{
     position: relative;
     top: 450px;
