@@ -98,6 +98,7 @@ function getGameValue(id){
         gameValue = "X";
     }
     document.getElementById(id).value = gameValue;
+    document.getElementById(id).style.color = "black";
     document.getElementById(id).disabled = true;
     let status = Boolean(checkGameWin(id));
     if(status == true){
@@ -113,7 +114,6 @@ function getGameValue(id){
         document.getElementById('winner_result').innerHTML = "Game got tied";
         document.getElementById('reset').style.display="block";
     }
-
 }
 
 function checkGameWin(num){
