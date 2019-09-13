@@ -1,6 +1,7 @@
 body{
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .not-active{
@@ -37,13 +38,17 @@ ul{
     float: left;
     margin-top:15px;
 }
-.float-right input{
+
+.right input{
     padding: 12px 20px;
     box-sizing: border-box;
     border-radius: 8px;
     font-size: 15px;
     border: none;
-    margin-top: 5px;
+    margin: 10px 5px;
+    float: right;
+    outline: none;
+    
 }
 .float-right button{
     background-color: black;
@@ -86,6 +91,7 @@ ul{
     text-decoration: none;
     font-size: 15px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .tabs-container{
@@ -97,7 +103,6 @@ ul{
     width: 33%;
     font-size: 16px;
     display: inline-block;
-    /* margin-right: 1px; */
 }
 
 .tabs p{
@@ -112,16 +117,11 @@ ul{
 .show-search-text{
     display: block!important;
     text-align: left;
-    margin-right: 270px;
-    margin-bottom: 10px;
 }
 
 .show-search-button{
     display: inline-block!important;
     text-align: left;
-    position: absolute;
-    right:10px;
-
 }
 
 
@@ -163,5 +163,9 @@ ul{
         position: absolute;
         right: 15;
         top: 15;
+    }
+    .right input{
+        float:left!important;
+        width: 80%;
     }
 }
