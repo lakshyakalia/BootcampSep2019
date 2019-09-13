@@ -9,21 +9,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
-    <title>Document</title>
+    <title>Assignment</title>
 </head>
 <body>
         <script>
+            // to goggle nav bar on click of menu bar
                 $(document).ready(function(){
                     $('.toggle').click(function(){
-                        console.log('clcick');
                         $('ul').toggleClass("active");
                     })
                 })
             </script>
     <nav>
-        <img src="logo.png" alt="">
+        <img src="image/logo.png" alt="">
+        <!-- menu bar -->
         <a class="toggle">&#9776;</a>
-        <ul class="active">
+        <!-- nav bar  -->
+        <ul >
             <li><a href="#">Demos</a></li>
             <li><a href="#">Works</a></li>
             <li><a href="#">Services</a></li>
@@ -37,6 +39,7 @@
         </ul>
        
     </nav>
+    <!-- body of the page -->
     <div class="mid"><br><br><br><br><br><br><br>
         <h3>Evelynn + Egret Admin</h3>
         <h1>Your complete Angular App Development kit</h1>
@@ -44,16 +47,18 @@
         <button>
             <i class="fa fa-cart-plus" aria-hidden="true"> BUY EGRET</i>
         </button><br><br><br><br><br>
-        <img src="egret-screen.png" alt="img">
+        <img src="image/egret-screen.png" alt="img">
     </div>
+    <!-- this cantain cards with box-shadow property -->
     <div class="main">
         <div class="wrk">
             <h1>Our Work</h1>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br> Ullam culpa minus unde neque.</p>
         </div><br><br>
+        <!-- 3 cards in line -->
         <div class="card">
             <div class="card1">
-                <img src="sq-13.jpg" alt="">
+                <img src="image/sq-13.jpg" alt="">
                 <div class="desp">
                     <h3>Project One</h3>
                     <p>Lorem ipsum dolor sit amet <br>adipisicing elit. Sequi ratione vero<br>veniam molestias</p>
@@ -63,7 +68,7 @@
                 </div>
             </div>
             <div class="card1">
-                <img src="sq-15.jpg" alt="">
+                <img src="image/sq-15.jpg" alt="">
                 <div class="desp">
                     <h3>Project One</h3>
                     <p>Lorem ipsum dolor sit amet <br>adipisicing elit. Sequi ratione vero<br>veniam molestias</p>
@@ -73,7 +78,7 @@
                 </div>
             </div>
             <div class="card1">
-                <img src="sq-16.jpg" alt="">
+                <img src="image/sq-16.jpg" alt="">
                 <div class="desp">
                     <h3>Project One</h3>
                     <p>Lorem ipsum dolor sit amet <br>adipisicing elit. Sequi ratione vero<br>veniam molestias</p>
@@ -91,50 +96,52 @@
         </div>
         <br><br>
     </div>
+    <!-- customer section -->
     <div class="main1"><br><br><br>
         <div class="wrk">
             <h1>What our customers says</h1>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat unde inventore <br>molestias ab adipisci eius nisi placeat at.</p>
         </div><br><br>
+        <!-- 3 cards with manager ceo -->
         <div class="card">
             <div class="card1">
-                <img src="mock-logo-4.png" alt="">
+                <img src="image/mock-logo-4.png" alt="">
                 <p>“I’ve tried using different softwares. The computer is not my strong side. There is excellent support behind DevEgret and people to walk you through it. If you have any questions they’ll go over that and explain to you how to do that. ” </p>
                 <p></p>
                 <br><br>
                 <div class="face">
-                    <img src="face-1.jpg" alt="">
+                    <img src="image/face-1.jpg" alt="">
                     <div>
                         <p>
-                            &nbsp;&nbsp;<span style="font-size: 15px; font-weight:bold;color:gray">Jhone Doe</span> <br>
+                            &nbsp;&nbsp;<span style="font-size: 15px; font-weight:bold;color:gray">Sonam Chophel</span> <br>
                             &nbsp;&nbsp;Product Manager
                         </p>
                     </div>
                 </div>
             </div>
             <div class="card1">
-                <img src="mock-logo-2.png" alt="#">
+                <img src="image/mock-logo-2.png" alt="#">
                 <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit modi voluptas vero iusto fuga quos totam eius, atis magnam tempora doloribus ducimus dolorem culpa animi beatae tenetur! Sapiente, quia tempora."</p>
                 <br><br>
                 <div class="face">
-                    <img src="face-2.jpg" alt="">
+                    <img src="image/face-2.jpg" alt="">
                     <div>
                         <p>
-                            &nbsp;&nbsp;<span style="font-size: 15px; font-weight:bold;color:gray ">Adam Smith</span> <br>
+                            &nbsp;&nbsp;<span style="font-size: 15px; font-weight:bold;color:gray ">Birendra Bhujel</span> <br>
                             &nbsp;&nbsp;CEO
                         </p>
                     </div>
                 </div>
             </div>
             <div class="card1">
-                <img src="mock-logo-3.png" alt="">
+                <img src="image/mock-logo-3.png" alt="">
                 <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit modi voluptas vero iusto fuga quos totam eius, atis magnam tempora doloribus ducimus dolorem culpa animi beatae tenetur! Sapiente, quia tempora."</p>
                 <br><br>
                 <div class="face">
-                    <img src="face-3.jpg" alt="">
+                    <img src="image/face-3.jpg" alt="">
                     <div>
                         <p>
-                            &nbsp;&nbsp;<span style="font-size: 15px; font-weight:bold;color:gray ">Jhone White</span> <br>
+                            &nbsp;&nbsp;<span style="font-size: 15px; font-weight:bold;color:gray ">Pema Thinley</span> <br>
                             &nbsp;&nbsp;Software Engineer
                         </p>
                     </div>
@@ -143,11 +150,13 @@
         </div>
         <br><br><br>
     </div>
+    <!-- service section -->
     <div class="main2">
         <div class="wrk">
             <H1>Our Services</H1>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat unde inventore <br>molestias ab adipisci eius nisi placeat at.</p>
         </div>
+        <!-- 3 cards with different services -->
         <div class="card">
             <div class="card1"><br><br>
                 <i class="fa fa-mobile" aria-hidden="true"></i><br><br><br>
@@ -173,6 +182,7 @@
         </div>
     </div>
     <br><br><br>
+    <!-- this frame gives customer buying option -->
     <div class="frame">
         <div class="sub_frame1"><br><br><br>
             <h2 style="font-size: 20px">Egret Is A Complete UI Framework For Angular</h2>
@@ -185,6 +195,7 @@
         </div>
     </div>
     <div class="main1">
+        <!-- contact detail  -->
         <br><br><br>
         <form action="#">
             <h2>Send Us Email</h2>
@@ -197,6 +208,7 @@
         </form><br><br>
     </div>
    <footer >
+       <!-- this is footer section -->
        <div class="foot">
             <div class="foot1"><br><br>
                 <h2>Contact Us</h2>
@@ -209,7 +221,7 @@
             <div class="foot2"><br><br>
                 <h2>Contact</h2>
                 <hr><br><br>
-                <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp; email@abc.com <br><br><br>
+                <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp; bhujel@gmail.com <br><br><br>
                 <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Cybergrp Noida
             </div>
             <div class="foot3"><br><br>
