@@ -44,48 +44,16 @@ for (var j = 0; j < 3; j++)
 }
 /*-----------------------------------------JQUERY_ANIMATE-----------------------------------------------*/
 $(document).ready(function(){
-  
+        $("table").animate({
+            opacity: '0.5',
+            height: '300px',
+            width: '300px',
+            left: '400px',
+            
+        },"slow");
+        $("#t1").fadeIn(2000);
 
-        $("#1").click(function(){
-            $("#1").css("color","white").fadeOut(200).fadeIn(12);
-        });
-
-        $("#2").click(function(){
-            $("#2").css("color","white").fadeOut(200).fadeIn(12);
-        });
-
-   
-        $("#3").click(function(){
-            $("#3").css("color","white").fadeOut(200).fadeIn(12);
-        });
-
-  
-        $("#4").click(function(){
-            $("#4").css("color","white").fadeOut(200).fadeIn(12);
-        });
-
-   
-        $("#5").click(function(){
-            $("#5").css("color","white").fadeOut(200).fadeIn(12);
-        });
-
-    
-        $("#6").click(function(){
-            $("#6").css("color","white").fadeOut(200).fadeIn(12);
-        });
-   
-        $("#7").click(function(){
-            $("#7").css("color","white").fadeOut(200).fadeIn(12);
-        });
-   
-        $("#8").click(function(){
-            $("#8").css("color","white").fadeOut(200).fadeIn(12);
-        });
-  
-        $("#9").click(function(){
-            $("#9").css("color","white").fadeOut(200).fadeIn(12);
-        });
-        }); 
+        })
 /*------------------------------------------------------------------------------------------------------*/
 
 function checkResult(){
@@ -172,6 +140,7 @@ function checkResult(){
             return;
             
         }
+//---------------------------------------Draw Functionality-------------------------------------------------//
       if(count===9){
           alert("Its a Draw");
           location.reload();

@@ -1,20 +1,22 @@
 body{
-    background-color: rgb(231, 226, 236);
+    background-color:rgb(152, 78, 226);
 }
 
 .btn{
-    width: 65px;
-    height: 65px;   
+    width: 90px;
+    height: 90px;   
     text-align: center;
     background-color: rgb(166, 173, 143);
+    font-size: 46px;
+    border-width: 1px;
     
 }
 .btn:hover{
-    background-color: rgb(128, 163, 163);
+    background-color: rgb(131, 199, 199);
 }
 table{
     /*padding: 190px 550px;*/
-    background-color: rgb(126, 85, 85)
+    background-color: white;
 }
 .content{
 max-width: 100%;
