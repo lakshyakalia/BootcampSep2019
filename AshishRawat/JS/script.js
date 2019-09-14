@@ -140,6 +140,7 @@ function checkResult(){
         if(arr[2][0] + arr[1][1] + arr[0][2] === 3)
         {   s1=3;
             alert("Circle WIN!");
+            location.reload();
             return;
             
             
@@ -147,6 +148,7 @@ function checkResult(){
         else if(arr[2][0] + arr[1][1] + arr[0][2] === -3)
         {   s1=-3;
             alert("Cross WIN!");
+            location.reload();
             return;
            
             
@@ -158,7 +160,7 @@ function checkResult(){
           
       }
 
-      
+ //------------------------------------------reset -------------------------------------------------//     
 
 }
 function Reset()
