@@ -1,0 +1,37 @@
+body{
+    background-color:rgb(152, 78, 226);
+}
+
+.btn{
+    width: 65px;
+    height: 65px;   
+    text-align: center;
+    background-color: rgb(166, 173, 143);
+    font-size: 46px;
+    border-width: 1px;
+    
+}
+.btn:hover{
+    background-color: rgb(131, 199, 199);
+}
+table{
+    /*padding: 190px 550px;*/
+    background-color: white;
+}
+.content{
+max-width: 100%;
+    padding: 100px 150px;
+}
+.head{
+max-width: 100%;
+}
+.t1{
+    max-width: 100%;
+    background-color: black;
+    width: fit-content;
+
+}
+input{
+    background-color: rgb(80,51,218);
+    border: none;
+}
