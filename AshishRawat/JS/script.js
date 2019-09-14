@@ -1,5 +1,6 @@
 var box=0;
 var count=0;
+var m=9;
 async function clicked(elementbyid)
 {
 var con = document.getElementById(elementbyid).innerHTML;
@@ -11,7 +12,9 @@ var con = document.getElementById(elementbyid).innerHTML;
           box=1;
           document.getElementById(elementbyid).innerHTML="X";
           count++;
+          m--;
           document.getElementById(elementbyid).setAttribute("data-points","-1");
+          document.getElementById("sc").value=m;
 
       }
       else if(box==1)
@@ -19,7 +22,9 @@ var con = document.getElementById(elementbyid).innerHTML;
         box=0;
           document.getElementById(elementbyid).innerHTML="O";
           count++;
+          m--;
           document.getElementById(elementbyid).setAttribute("data-points","1");
+          document.getElementById("sc").value=m;
 
           
       }
@@ -44,16 +49,15 @@ for (var j = 0; j < 3; j++)
 }
 /*-----------------------------------------JQUERY_ANIMATE-----------------------------------------------*/
 $(document).ready(function(){
-        $("table").animate({
-            opacity: '0.5',
-            height: '300px',
-            width: '300px',
-            left: '400px',
-            
-        },"slow");
-        $("#t1").fadeIn(2000);
-
-        })
+    var div = $("table");
+    var btn= $(".btn")
+    div.animate({height: '300px', opacity: '0.2'}, "slow");
+    div.animate({width: '300px', opacity: '0.6'}, "slow");
+    btn.animate({height: '90px', opacity: '0.2'}, "slow");
+    btn.animate({width: '90px', opacity: '0.6'}, "slow");
+    //div.animate({height: '100px', opacity: '0.4'}, "slow");
+    //div.animate({width: '100px', opacity: '0.8'}, "slow");
+    });
 /*------------------------------------------------------------------------------------------------------*/
 
 function checkResult(){
@@ -75,12 +79,16 @@ function checkResult(){
             if(rowSum === 3)
             {
                 alert("Circle WIN!");
+                location.reload()
+                return;
 
                 
             }
             else if(rowSum === -3)
             {
                 alert("Cross WIN!");
+                location.reload();
+                return;
                 
             }
         
@@ -94,12 +102,16 @@ function checkResult(){
             if(colSum === 3)
             {
                 alert("Circle WIN!");
+                location.reload();
+                return;
                 
                 
             }
             else if(colSum === -3)
             {
                 alert("Cross WIN!");
+                location.reload();
+                return;
                 
                 
             }
@@ -108,6 +120,8 @@ function checkResult(){
         if(arr[0][0] + arr[1][1] + arr[2][2] === 3)
         {   s1=3;
             alert("Circle WIN!");
+            location.reload();
+            return;
            
             
             
@@ -116,6 +130,8 @@ function checkResult(){
         {
             s1=-3;
             alert("Cross WIN!");
+            location.reload();
+            return;
           
             
         }
@@ -124,12 +140,14 @@ function checkResult(){
         if(arr[2][0] + arr[1][1] + arr[0][2] === 3)
         {   s1=3;
             alert("Circle WIN!");
+            return;
             
             
         } 
         else if(arr[2][0] + arr[1][1] + arr[0][2] === -3)
         {   s1=-3;
             alert("Cross WIN!");
+            return;
            
             
         }
