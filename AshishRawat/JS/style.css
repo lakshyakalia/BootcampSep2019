@@ -31,3 +31,7 @@ max-width: 100%;
     width: fit-content;
 
 }
+input{
+    background-color: rgb(80,51,218);
+    border: none;
+}
