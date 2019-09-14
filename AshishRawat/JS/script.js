@@ -75,15 +75,13 @@ function checkResult(){
             if(rowSum === 3)
             {
                 alert("Circle WIN!");
-                location.reload();
-                return;
+
                 
             }
             else if(rowSum === -3)
             {
                 alert("Cross WIN!");
-                location.reload();
-                return;
+                
             }
         
         }
@@ -96,15 +94,13 @@ function checkResult(){
             if(colSum === 3)
             {
                 alert("Circle WIN!");
-                location.reload();
-                return;
+                
                 
             }
             else if(colSum === -3)
             {
                 alert("Cross WIN!");
-                location.reload();
-                return;
+                
                 
             }
         }
@@ -112,16 +108,15 @@ function checkResult(){
         if(arr[0][0] + arr[1][1] + arr[2][2] === 3)
         {   s1=3;
             alert("Circle WIN!");
-            location.reload();
-            return;
+           
+            
             
         }
         else if(arr[0][0] + arr[1][1] + arr[2][2] === -3)
         {
             s1=-3;
             alert("Cross WIN!");
-            location.reload();
-            return;
+          
             
         }
 
@@ -129,23 +124,28 @@ function checkResult(){
         if(arr[2][0] + arr[1][1] + arr[0][2] === 3)
         {   s1=3;
             alert("Circle WIN!");
-            location.reload();
-            return;
+            
             
         } 
         else if(arr[2][0] + arr[1][1] + arr[0][2] === -3)
         {   s1=-3;
             alert("Cross WIN!");
-            location.reload();
-            return;
+           
             
         }
 //---------------------------------------Draw Functionality-------------------------------------------------//
       if(count===9){
           alert("Its a Draw");
-          location.reload();
+          return;
           
       }
 
+      
+
 }
+function Reset()
+      {
+          location.reload();
+          return;
+      }
 
