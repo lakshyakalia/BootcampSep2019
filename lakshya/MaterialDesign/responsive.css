@@ -1,0 +1,110 @@
+@media(max-width:1020px)
+{
+    .middle
+    {
+        height: 130%;
+    }
+    .span1{
+        display: none;
+    }
+   
+}
+
+@media(max-width:890px)
+{
+    .a1{
+        display: none;
+    }
+    
+   
+    .navbar-toggler{
+        display: block;
+        color: black;
+        float: right;
+        margin-right: 20px;
+        padding: 8px;
+        
+        background-color: transparent;
+        border:1px solid rgba(0,0,0,.4);
+        border-radius: 3px;
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    .bt{
+       
+        margin-right: -100px;
+    }
+}
+@media(max-width:620px)
+{
+    body{
+        overflow-x: hidden;
+    }
+    .im{
+        height: 40%;
+    }
+    .bt{
+        margin-left: -200px;
+        line-height: 2px !important ;
+    }
+    .ttt{
+        flex-direction: column;
+    }
+    .tt{
+        flex-direction: column;
+        margin-left: -60px;
+    }
+    .bt{
+        width: 80px;
+        height: 60px;
+        font-size: 15px;
+        
+        margin-top: -100px;
+    }
+    .middle{
+        height: 97%;
+    }
+    .contents{
+        flex-direction: column;
+        margin-left: -30px;
+    }
+    .c11{
+        margin-top: 10px;
+    }
+    .tt .c11{
+        width: 95%;
+        
+    }
+    .contents .c11{
+        width: 100%;
+    }
+    .choosee{
+        flex-direction: column;
+    }
+    .choose-1{
+        width: 100%;
+    }
+}
+@media(max-width:500px)
+{
+.services-div11{
+    margin-left: -60px;
+}
+body{
+    overflow-x: hidden;
+}
+.im{
+    height: 200px;
+}
+.f1{
+    margin-top: -50px;
+    margin-left: -50px;
+}
+.f2{
+    margin-left: -50px;
+    margin-top: 10px;
+}
+.bt{
+    font-size: 12px;
+}
+}
