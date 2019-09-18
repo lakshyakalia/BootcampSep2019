@@ -55,7 +55,7 @@ class Calculator {
         // console.log(str);
         // this will check for invalid input
         //if found invalid it will return without proceeding further
-        if (obj.isDigit(str.charAt(0)) && obj.isDigit(str.charAt(str.length - 1)))
+        if ( !obj.isDigit(str.charAt(0)) || !obj.isDigit(str.charAt(str.length - 1)))
             return 'INVALID INPUT';
         // transverse full input string and push to stacks 
         for (var i = 0; i < str.length; i++) {
