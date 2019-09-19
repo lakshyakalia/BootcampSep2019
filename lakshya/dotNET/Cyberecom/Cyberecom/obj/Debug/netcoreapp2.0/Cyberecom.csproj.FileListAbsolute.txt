@@ -1,0 +1,11 @@
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\bin\Debug\netcoreapp2.0\Cyberecom.deps.json
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\bin\Debug\netcoreapp2.0\Cyberecom.runtimeconfig.json
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\bin\Debug\netcoreapp2.0\Cyberecom.runtimeconfig.dev.json
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\bin\Debug\netcoreapp2.0\Cyberecom.dll
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\bin\Debug\netcoreapp2.0\Cyberecom.pdb
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\obj\Debug\netcoreapp2.0\Cyberecom.csprojAssemblyReference.cache
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\obj\Debug\netcoreapp2.0\Cyberecom.csproj.CoreCompileInputs.cache
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\obj\Debug\netcoreapp2.0\Cyberecom.AssemblyInfoInputs.cache
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\obj\Debug\netcoreapp2.0\Cyberecom.AssemblyInfo.cs
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\obj\Debug\netcoreapp2.0\Cyberecom.dll
+C:\Users\lakshya.kalia\source\repos\Cyberecom\Cyberecom\obj\Debug\netcoreapp2.0\Cyberecom.pdb
