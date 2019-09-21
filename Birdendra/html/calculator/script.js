@@ -84,7 +84,7 @@ class Calculator {
 	}
 }
 c = new Calculator();
-
+//main function to invoke from html page
 function input(id) {
 	clickV = document.getElementById(id).innerHTML;
 	switch (clickV) {
@@ -92,9 +92,11 @@ function input(id) {
 			if (c.inputStr.indexOf('^') > -1) {
 				c.inputStr = c.powerFns(c.inputStr);
 			}
-
-			c.ans = eval(c.inputStr);
-			c.ans = 'INVALID INPUT';
+			inv = c.inputStr.charAt(0);
+			if (inv == '*' || inv == '/' || inv == '^')
+				c.ans = 'INVALID INPUT';
+			else
+				c.ans = eval(c.inputStr);
 			document.getElementById("res").innerHTML = c.ans;
 			c.inputStr = '';
 			break;
