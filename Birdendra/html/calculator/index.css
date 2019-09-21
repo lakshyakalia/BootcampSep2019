@@ -9,7 +9,7 @@ body{
 }
 .main{
     width: 250px;
-    height: 310px;
+    height: 410px;
     background: black;
     padding: 10px;
     margin: auto;
@@ -44,7 +44,14 @@ body{
     font-weight: bold;
     border-radius: 2px;
 }
+#btn22{
+    background: palevioletred;
+}
 .box:hover{
+    background: purple;
+    color: white;
+}
+#btn22:hover{
     background: purple;
     color: white;
 }
