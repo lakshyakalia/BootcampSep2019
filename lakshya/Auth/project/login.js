@@ -7,7 +7,7 @@ $(document).ready(function () {
         
        
         console.log(name);
-        $.ajax("http://localhost:50365/api/values", {
+        $.ajax("http://localhost:50365/api/Login", {
             type: "POST",
             dataType: "JSON",
             contentType: "application/json",
@@ -23,8 +23,8 @@ $(document).ready(function () {
                 console.log("yo", data, status);
                 window.location.replace("mainscreen.html");
             },
-            error: function () {
-                alert("sonething went wrong");
+            error: function (msg) {
+                alert(msg.responseText);
             }
         });
     });
