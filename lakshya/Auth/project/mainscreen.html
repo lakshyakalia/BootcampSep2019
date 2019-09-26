@@ -1,1 +1,27 @@
-SUCCESS!!!!!
+<html>
+    <head>
+        <title>main screen</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:56355/sample",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    recent: localStorage.getItem('token'),
+                    success: function(recent){
+                        console.log();
+                    },
+                    error:function(xhr, textStatus, errorThown){
+                        console.log("Error")
+                    }
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        Congratss!!!
+        </body>
+</html>
