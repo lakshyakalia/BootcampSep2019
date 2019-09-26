@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
+using Microsoft.IdentityModel.Tokens;
 using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
@@ -14,7 +20,14 @@ namespace WebApplication2.Controllers
     [Route("api/Login")]
     public class LoginController : Controller
     {
+         
         ETestContext obj = new ETestContext();
+        private IConfiguration _config;
+
+        public LoginController(IConfiguration config)
+        {
+            _config = config;
+        }
         // GET: api/Login
         [HttpGet]
         public IEnumerable<string> Get()
@@ -45,8 +58,11 @@ namespace WebApplication2.Controllers
             
             try
             {
-                if(BCrypt.Net.BCrypt.Verify(password,upass))
-                    return Ok(true);
+                if (BCrypt.Net.BCrypt.Verify(password, upass))
+                {
+                    String tokenString = GenerateJSONWebToken(loggedinUser);
+                    return Ok(new { token = tokenString });
+                }
                 //if (loggedinUser.Password.Equals(password))
                 //{
                 //    return Ok(true);
@@ -90,6 +106,43 @@ namespace WebApplication2.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [Route("sample")]
+        [HttpGet]
+        [Authorize]
+        public IActionResult sampleAuthRoute()
+        {
+            try
+            {
+                var currentUser = HttpContext.User;
+                return Ok(new { message = "Sample page working" });
+
+            }
+            catch (Exception ex)
+            {
+               
+            }
+            return BadRequest();
+        }
+
+        private string GenerateJSONWebToken(Signn userInfo)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[] {
+        new Claim("Username", userInfo.Username),
+        new Claim("Collegename", userInfo.Collegename),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    };
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+              _config["Jwt:Issuer"],
+              claims,
+              expires: DateTime.Now.AddMinutes(120),
+              signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

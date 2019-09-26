@@ -24,6 +24,7 @@ $(document).ready(function () {
             ),
             success: function (headers, status) {
                 console.log("yo", headers, status);
+                localStorage.setItem('token',headers.token);
                 window.location.replace("mainscreen.html");
             },
             error: function (msg) {

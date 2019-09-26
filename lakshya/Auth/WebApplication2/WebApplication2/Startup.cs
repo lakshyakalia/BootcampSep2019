@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WebApplication2
 {
@@ -27,6 +30,24 @@ namespace WebApplication2
              {
                  builder.WithOrigins("http://127.0.0.1:5500").AllowAnyMethod().AllowAnyHeader();
              }));
+
+
+                        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = Configuration["Jwt:Issuer"],
+                ValidAudience = Configuration["Jwt:Issuer"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+            };
+            });
+
+
             services.AddMvc();
         }
 
@@ -37,8 +58,10 @@ namespace WebApplication2
             {
                 app.UseDeveloperExceptionPage();
             }
+            
             app.UseCors("ApiCorsPolicy");
             app.UseMvc();
+            app.UseAuthentication();
         }
     }
 }

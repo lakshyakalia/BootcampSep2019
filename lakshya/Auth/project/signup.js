@@ -23,6 +23,7 @@ $(document).ready(function () {
             ),
             success: function (data, status) {
                 console.log("yo", data, status);
+                
                 window.location.replace("index.html");
             },
             error: function () {
