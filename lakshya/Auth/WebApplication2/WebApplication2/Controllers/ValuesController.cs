@@ -11,8 +11,10 @@ namespace WebApplication2.Controllers
     public class ValuesController : Controller
     {
         ETestContext e = new ETestContext();
-      //  GET api/values
-       [HttpGet]
+        private string hashedPassword;
+
+        //  GET api/values
+        [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
@@ -31,6 +33,8 @@ namespace WebApplication2.Controllers
         {
             try
             {
+                hashedPassword = BCrypt.Net.BCrypt.HashPassword(value.Password);
+                value.Password = hashedPassword;
                 e.Signn.Add(value);
                 e.SaveChanges();
                 return Ok(value);

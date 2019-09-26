@@ -39,14 +39,18 @@ namespace WebApplication2.Controllers
             Request.Headers.TryGetValue("password", out passwordValue);
             String username = emailValue.FirstOrDefault();
             String password = passwordValue.FirstOrDefault();
-
             Signn loggedinUser = obj.Signn.Find(username);
+            String upass = loggedinUser.Password;
+           
+            
             try
             {
-                if (loggedinUser.Password.Equals(password))
-                {
+                if(BCrypt.Net.BCrypt.Verify(password,upass))
                     return Ok(true);
-                }
+                //if (loggedinUser.Password.Equals(password))
+                //{
+                //    return Ok(true);
+                //}
             }
             catch (Exception ex)
             {
