@@ -2,7 +2,7 @@ const { Router } = require("express");
 
 const { baseURI } = require("../config").config;
 
-const { users } = require("../controllers")
+const { users } = require("../controller")
 
 module.exports = () => {
   const router = Router();

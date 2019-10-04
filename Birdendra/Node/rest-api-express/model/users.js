@@ -1,3 +1,5 @@
+const schema = require("./modelSchema");
+
 module.exports = {
     getUsers,
     createUser,
@@ -5,54 +7,51 @@ module.exports = {
     deleteUser
   };
   
-  const users = [];
+  async function getUsers(req, res ) {
+    try {
+      const data = await schema.find();
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
+}
   
-  async function getUsers() {
-    return new Promise((resolve, reject) => {
-      resolve({
-        status: 200,
-        statusText: "OK",
-        data: users
-      });
-    });
-  }
-  
-  function createUser(req, res) {
-    const body = req.body;
-    users.push(body);
-  
-    res.send({
+ async function createUser(req, res) {
+     const body = (req.body);
+     const schema1 = new schema(body);
+    await schema1.save();
+    return ({
       status: 200,
       statusText: "OK",
       message: "Client Inserted!"
-    });
+    })
+  
   }
   
-  function updateUser(req, res) {
-    const body = req.body;
-    const id = req.query.id;
-  
-    console.log(id);
-  
-    for (let key in body) {
-      users[id][key] = body[key];
-    }
-  
-    res.send({
+async function updateUser(req, res) {
+  try{
+    const _id = req.query.id;
+        await schema.findByIdAndUpdate(_id,req.body)
+    return({
       status: 200,
       statusText: "OK",
       message: "Client Updated!"
     });
+  }catch(err){
+    console.log(err);
   }
+}
   
-  function deleteUser(req, res) {
-    const id = req.query.id;
-  
-    users.pop(id);
-  
-    res.send({
+async  function deleteUser(req, res) {
+    try{
+      const id = req.query.id;
+      await schema.findByIdAndDelete(id);
+    return ({
       status: 200,
       statusText: "OK",
       message: "Client Deleted!"
     });
+    }catch(err){
+      console.log(err);
   }
+}

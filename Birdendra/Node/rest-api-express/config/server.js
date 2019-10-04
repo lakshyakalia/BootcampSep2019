@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const moongoose = require("../db/mongoose");
 // const auth = require("../auth/authenticator");
 
 const apiRouter = require('../router/apiRouter');

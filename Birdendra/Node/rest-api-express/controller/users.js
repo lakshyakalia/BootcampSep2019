@@ -1,4 +1,4 @@
-const { user } = require("../models");
+const { user } = require("../model");
 
 module.exports = {
   getUsers,
@@ -8,46 +8,42 @@ module.exports = {
 };
 
 async function getUsers(req, res) {
-  const response = await user.getUsers();
-  res.send(response);
-}
-
-function createUser(req, res) {
-  const body = req.body;
-  users.push(body);
-
-  res.send({
-    status: 200,
-    statusText: "OK",
-    message: "Client Inserted!"
-  });
-}
-
-function updateUser(req, res) {
-  const body = req.body;
-  const id = req.query.id;
-
-  console.log(id);
-
-  for (let key in body) {
-    users[id][key] = body[key];
+  try{
+    // const response = await 
+    const response = await user.getUsers();
+    //console.log(response);
+    res.send(response);
+  }catch(err){
+    console.log(err);
   }
-
-  res.send({
-    status: 200,
-    statusText: "OK",
-    message: "Client Updated!"
-  });
 }
 
-function deleteUser(req, res) {
-  const id = req.query.id;
+async function createUser(req, res) {
+  try{
+  const response = await user.createUser(req , res );
+  res.send(response);
+  }catch(err){
+    console.log(err);
+  }
+}
 
-  users.pop(id);
+async function updateUser(req, res) {
+ 
+ try{
+  const response =  user.updateUser(req ,res);
+  res.send(response);
+ }catch(err){
+   console.log(err);
+ }
+}
 
-  res.send({
-    status: 200,
-    statusText: "OK",
-    message: "Client Deleted!"
-  });
+async function deleteUser(req, res) {
+  try{
+
+    const response = await user.deleteUser(req, res );
+    res.send(response);
+  }
+  catch(err){
+    console.log(err);
+  }
 }
