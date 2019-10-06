@@ -71,9 +71,7 @@ class Users extends BaseController {
     try {
       req.on("end", () => {
         let query = req.query;
-
         
-
         const id = Number.parseInt(query.age);
 
         const user = req.body;
