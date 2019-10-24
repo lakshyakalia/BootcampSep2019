@@ -2,9 +2,10 @@ const mongoose  = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const testSchema = new Schema({
-	stdId: String,
+const candidateAnswer = new Schema({
+	candidateId: String,
 	totalScore: Number,
+	testCode:String, //Must be unique 
 	completionTime : {
 		type: Date,
 		default: Date.now
@@ -17,7 +18,7 @@ const testSchema = new Schema({
 	]
 })
 
-const test = mongoose.model('testSchema',testSchema)
+const test = mongoose.model('candidateAnswer',candidateAnswer)
 
 module.exports = {
 	test

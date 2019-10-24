@@ -2,27 +2,33 @@ const mongoose  = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const questionSchema = new Schema({
+const questionDetails = new Schema({
 	qHeading: String,
 	qText: String,
 	qNo: Number,
 	ans: String,
 	options:{
-		op1: String,
-		op2: String,
-		op3: String,
-		op4: String
+		option1: String,
+		option2: String,
+		option3: String,
+		option4: String
 	},
 	weightage: Number,
-	time: {
+	createdDate: {
 		type: Date,
 		default: Date.now
 	},
+	createdBy:String,
+	modifiedDate: {
+		type: Date,
+		default: Date.now
+	},
+	modifiedBy:String,
 	examCode: String
 })
 
-const question = mongoose.model('questionSchema',questionSchema)
+const questionDetail = mongoose.model('question',questionDetails)
 
 module.exports = {
-	question
+	questionDetail
 }

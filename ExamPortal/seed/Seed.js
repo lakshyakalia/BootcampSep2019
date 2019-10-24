@@ -1,6 +1,6 @@
-const { exam } = require('./Models/examDetail')
-const { test } = require('./Models/testRecord')
-const { question } = require('./Models/question')
+const { examDetail } = require('./Models/examDetail')
+const { test } = require('./Models/candidateAnswer')
+const { questionDetail } = require('./Models/question')
 const { user } = require('./Models/userRecord')
 const db = require("./connection").db;
 const users = [
@@ -12,6 +12,7 @@ const users = [
         collegeId: "12345",
         collegeName: "ABC College",
         phoneNumber: "1234567890",
+        modifiedBy:"birendra",
         permissionLevel: 0
     },
     {
@@ -22,6 +23,7 @@ const users = [
         collegeId: "34524",
         collegeName: "DEF College",
         phoneNumber: "9876543210",
+        modifiedBy:"birendra",
         permissionLevel: 0
     },
     {
@@ -32,6 +34,7 @@ const users = [
         collegeId: "12834",
         collegeName: "ABC College",
         phoneNumber: "1234567890",
+        modifiedBy:"birendra",
         permissionLevel: 1
     },
     {
@@ -42,13 +45,14 @@ const users = [
         collegeId: "45432",
         collegeName: "qwe College",
         phoneNumber: "1266465390",
+        modifiedBy:"birendra",
         permissionLevel: 1
     }
 ]
 
-const testRecord = [
+const answerDetails = [
     {
-        stdId: 12345,
+        candidateId: 12345,
         totalScore: 7,
         answers: [
             {
@@ -66,7 +70,7 @@ const testRecord = [
         ]
     },
     {
-        stdId: 14509,
+        candidateId: 14509,
         totalScore: 3,
         answers: [
             {
@@ -98,6 +102,8 @@ const questionDetails = [
             op4: "ijk"
         },
         weightage: 1,
+        createdBy:'himan',
+        modifiedBy:"biren",
         examCode: 1199
         
     },
@@ -113,6 +119,8 @@ const questionDetails = [
             op4: "ijk"
         },
         weightage: 1,
+        createdBy:'himan',
+        modifiedBy:"biren",
         examCode: 1199
     },
     {
@@ -127,6 +135,8 @@ const questionDetails = [
             op4: "ijk"
         },
         weightage: 1,
+        createdBy:'himan',
+        modifiedBy:"biren",
         examCode: 1199
     }
 ]
@@ -135,23 +145,26 @@ const examDetails = [
     {
         examName: "CSE",
         examCode: 1199,
-        facultyId: 1638,
+        examinerId: 1638,
         instructions: "All questions are neccessary to attempt",
-        examDuration: "90min"
+        examDuration: "90min",
+        testStartTime: "10:15pm"
     },
     {
         examName: "ME",
         examCode: 2234,
-        facultyId: 67983,
+        examinerId: 67983,
         instructions: "All questions are neccessary to attempt",
-        examDuration: "90min"
+        examDuration: "90min",
+        testStartTime: "10:15pm"
     },
     {
         examName: "ECE",
         examCode: 3456,
-        facultyId: 7695,
+        examinerId: 7695,
         instructions: "All questions are neccessary to attempt",
-        examDuration: "90min"
+        examDuration: "90min",
+        testStartTime: "10:15pm"
     }
 ]
 
@@ -161,17 +174,17 @@ for(let i=0;i<users.length;i++){
     data.save()
 }
 
-for(let i=0;i<testRecord.length;i++){
-    let data = new test(testRecord[i])
+for(let i=0;i<answerDetails.length;i++){
+    let data = new test(answerDetails[i])
     data.save()
 }
 
 for(let i=0;i<questionDetails.length;i++){
-    let data = new question(questionDetails[i])
+    let data = new questionDetail(questionDetails[i])
     data.save()
 }
 
 for(let i=0;i<examDetails.length;i++){
-    let data = new exam(examDetails[i])
+    let data = new examDetail(examDetails[i])
     data.save()
 }
