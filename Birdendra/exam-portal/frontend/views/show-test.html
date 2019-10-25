@@ -1,41 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>show test</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
-        body{
+        body {
             margin: 0;
             padding: 0;
         }
-        .main-div{
-            width: 80%;
-            /* display: flex; */
+
+        .main-div {
+            width: 90%;
             margin: auto;
+            margin-top: 10px;
+            padding: 10px;
+            display: flex;
         }
-        ul{
+
+        .index {
+            width: 20%;
+        }
+
+        .qustions-index {
+            width: 100%;
+        }
+
+        .qustions-index a:hover {
+            color: blue;
+        }
+
+        .qustions-index a {
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        @media screen and (max-width: 500px) {
+            .index{
+                display: none;
+            }
+        }
+        .question {
+            width: 70%;
+            display: inline-block;
+        }
+
+        .question-div {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            margin: 5px;
+            padding: 10px;
+        }
+
+        .question-div p {
+            font-size: 18px;
+        }
+
+        ul {
             list-style-type: circle;
+            font-size: 18px;
         }
     </style>
 </head>
+
 <body>
     <div class="main-div">
-        <div class="content-div">
-            <h3>Question</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis illum velit blanditiis unde placeat, numquam labore. Inventore incidunt sit ullam similique, molestiae sequi. Incidunt aliquam corporis, laborum minima qui itaque?</p>
-            <ul>
-                <li>option1</li>
-                <li>option2</li>
-                <li>option3</li>
-                <li>option4</li>
-            </ul>
+        <div class="index">
+            <div class="qustions-index">
+                <a href="#q1">Question-1</a>
+            </div>
+            <div class="qustions-index">
+                <a href="#q2">Question-2</a>
+            </div>
+            <div class="qustions-index">
+                <a href="#q3">Question-3</a>
+            </div>
         </div>
-        <div class="btn">
-            <input type="submit" value="Edit">
-            <input type="submit" value="Delete">
+        <div class="question">
+            <div class="question-div" id="q1">
+                <h3>Question-1</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis illum velit blanditiis unde
+                    placeat,
+                    numquam labore. Inventore incidunt sit ullam similique, molestiae sequi. Incidunt aliquam corporis,
+                    laborum minima qui itaque?</p>
+                <ul>
+                    <li>option1</li>
+                    <li>option2</li>
+                    <li>option3</li>
+                    <li>option4</li>
+                </ul>
+                <div class="btn">
+                    <button type="button" class="btn btn-outline-info">Edit</button>
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                </div>
+            </div>
+            <div class="question-div" id="q2">
+                <h3>Question-2</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis illum velit blanditiis unde
+                    placeat,
+                    numquam labore. Inventore incidunt sit ullam similique, molestiae sequi. Incidunt aliquam corporis,
+                    laborum minima qui itaque?</p>
+                <ul>
+                    <li>option1</li>
+                    <li>option2</li>
+                    <li>option3</li>
+                    <li>option4</li>
+                </ul>
+                <div class="btn">
+                    <button type="button" class="btn btn-outline-info">Edit</button>
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                </div>
+            </div>
+            <div class="question-div" id="q3">
+                <h3>Question-3</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis illum velit blanditiis unde
+                    placeat,
+                    numquam labore. Inventore incidunt sit ullam similique, molestiae sequi. Incidunt aliquam corporis,
+                    laborum minima qui itaque?</p>
+                <ul>
+                    <li>option1</li>
+                    <li>option2</li>
+                    <li>option3</li>
+                    <li>option4</li>
+                </ul>
+                <div class="btn">
+                    <button type="button" class="btn btn-outline-info">Edit</button>
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
+
 </html>
