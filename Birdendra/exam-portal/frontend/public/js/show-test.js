@@ -2,24 +2,16 @@ var data =[{
     testName :"Physic end term",
     testCode :"CRSE#90",
     testDate :"12-10-2019 2pm"
-},
+    },
 {
     testName :"DBMS end term",
     testCode :"DMBS#90",
     testDate :"12-10-2019 11;30am"
-}
-];
-var questions = [{
-    question :'Question-',
-    questionText : 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis illum velit blanditiis',
-    option1 : 'option1',
-    option2 : 'option2',
-    option3 : 'option3',
-    option4 : 'option4'
-}]
+    }
+]
 function showQuestion(id){
-    let testCode = $('#'+id).parent().prev().prev().find('p').html()
-    console.log(testCode)
+    // let testCode = $('#'+id).parent().prev().prev().find('p').html()
+    //console.log(testCode)
     editQuestion();
 }
 function deleteTest(id){
@@ -59,7 +51,7 @@ $(document).ready(()=>{
         let btn1 = document.createElement('button')
         btn1.type = 'button'
         btn1.className = 'btn btn-outline-info'
-        btn1.id = 'edit'+i
+        btn1.id = 'view'+i
         btn1.setAttribute('onclick','showQuestion(this.id)')
         btn1.innerHTML = 'View'
         col4.append(btn1)
