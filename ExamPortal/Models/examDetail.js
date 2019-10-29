@@ -8,7 +8,7 @@ const exam = new Schema({
 	examinerId: String,
 	instructions: String,
 	examDuration: String,
-	testStartTime:String
+	examStartTime:String
 })
 
 const examDetail = mongoose.model('exam',exam)
