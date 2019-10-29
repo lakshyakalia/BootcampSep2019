@@ -2,18 +2,17 @@ const mongoose  = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const examSchema = new Schema({
+const exam = new Schema({
 	examName: String,
 	examCode: String,
-	facultyId: String,
+	examinerId: String,
 	instructions: String,
-	examDuration: String
+	examDuration: String,
+	testStartTime:String
 })
 
-const exam = mongoose.model('examSchema',examSchema)
+const examDetail = mongoose.model('exam',exam)
 
 module.exports = {
- exam
+ examDetail
 }
-
-
