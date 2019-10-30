@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const { Users } = require('../controller')
+const { Ques } = require('../controller')
 
 module.exports = () => {
 	app.post('/login', (req, res) => {
@@ -12,13 +13,17 @@ module.exports = () => {
 	})
 
 	//candidates will view quesions using accesskey
-	app.get('/test/:accessKey', (req, res) => {
-		res.send("Hello Word")
+	app.get('/test', (req, res) => {
+		const response = await Ques.testQuestions(req,res)
+        return response
+		// res.send("Hello Word")
 	})
 
 	//post answers selected by candidates
 	app.post('/test', (req, res) => {
-		res.send({ "data": req.body })
+		const response = await Ques.saveCandidateAnswers(req,res)
+        return response
+		// res.send({ "data": req.body })
 	})
 
 
