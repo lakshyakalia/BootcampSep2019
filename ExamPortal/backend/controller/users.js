@@ -1,9 +1,8 @@
-const {examDetails} = require('./examDetailController')
+const examController = require('./examDetailController')
 
-const examDetail = (res,req)=>{
-    
-    examDetails.examDetail(req,res)
+const examDetails = (req,res)=>{
+    examController.examDetails(req,res)
 }
 module.exports={
-    examDetail
+    examDetails
 }
