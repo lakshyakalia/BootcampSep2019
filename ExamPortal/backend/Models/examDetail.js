@@ -12,7 +12,6 @@ const exam = new Schema({
 })
 
 const examDetail = mongoose.model('exam',exam)
-
 module.exports = {
  examDetail
 }
