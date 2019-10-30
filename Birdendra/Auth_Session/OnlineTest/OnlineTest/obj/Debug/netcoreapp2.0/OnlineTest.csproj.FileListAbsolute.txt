@@ -1,0 +1,11 @@
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\bin\Debug\netcoreapp2.0\OnlineTest.deps.json
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\bin\Debug\netcoreapp2.0\OnlineTest.runtimeconfig.json
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\bin\Debug\netcoreapp2.0\OnlineTest.runtimeconfig.dev.json
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\bin\Debug\netcoreapp2.0\OnlineTest.dll
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\bin\Debug\netcoreapp2.0\OnlineTest.pdb
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\obj\Debug\netcoreapp2.0\OnlineTest.csprojAssemblyReference.cache
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\obj\Debug\netcoreapp2.0\OnlineTest.csproj.CoreCompileInputs.cache
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\obj\Debug\netcoreapp2.0\OnlineTest.AssemblyInfoInputs.cache
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\obj\Debug\netcoreapp2.0\OnlineTest.AssemblyInfo.cs
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\obj\Debug\netcoreapp2.0\OnlineTest.dll
+C:\Users\birendra.bhujel\Desktop\BootcampSep2019\Birdendra\Auth_Session\OnlineTest\OnlineTest\obj\Debug\netcoreapp2.0\OnlineTest.pdb
