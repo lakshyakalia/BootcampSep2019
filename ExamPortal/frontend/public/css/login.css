@@ -42,17 +42,16 @@ li {
       background-color: white;
       margin:auto;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-      width: 60%;
+      width: 30%;
   }
   .flex-1{
-      flex: 3;
-  }
-  .flex-2{
       flex: 2;
+     margin-top: 30px;
   }
-  .flex-2{
+ 
+  /* .flex-2{
      border-left: 4px solid black;
-  }
+  } */
   .display-image{
       width: 102.5%;
       height: 100%;
@@ -70,6 +69,4 @@ li {
   form :nth-child(1)
   {
       color: #555555;
-  
-   
   }
