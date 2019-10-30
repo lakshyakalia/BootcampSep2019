@@ -40,11 +40,10 @@ function abc() {
 }
 
 function editQuestion() {
-
+//load template to display question
     $.each(questions, (index, item) => {
         let indexTemplate = $("#index-template").html();
         $("#question-Index").append(Mustache.render(indexTemplate, { index: index + 1 }))
-        console.log(indexTemplate)
         let questionContent = $("#question-template-body").html()
         item.index = index + 1
         $("#question-Display").append(Mustache.render(questionContent, item))
