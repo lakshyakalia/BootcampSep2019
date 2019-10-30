@@ -23,11 +23,11 @@ const testQuestions = async(req,res)=>{
     let lastQuestion = await questionDetail.find().sort({$natural:-1}).limit(1)
     if(lastQuestion[0].qText === ques[ques.length-1].qText) lastQuestionStatus = true
     else lastQuestionStatus = false
-    const time = await examDetail.find({'examCode':req.headers.code}).select({testStartTime:1,examDuration:1})
+    const time = await examDetail.find({'examCode':req.headers.code}).select({examStartTime:1,examDuration:1})
     res.status(200).send({
         "questions":ques,
         lastQuestionStatus: lastQuestionStatus,
-        startTime:time[0].testStartTime,
+        startTime:time[0].examStartTime,
         duration:time[0].examDuration
     })
 }
