@@ -1,0 +1,68 @@
+<html>
+    <head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	    <link rel="stylesheet" href="../client/public/css/index.css">
+        <script type="text/javascript" src="../client/public/js/index.js"></script>
+		
+    </head>
+    <body>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Online Test Portal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+            
+            <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Create Test</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Show Test</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Student Performance</a>
+            </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+            </form>
+            </div>
+            </nav>
+        <div class="form1">
+        <form class="addQuestion">
+            <div class="form-group">
+                <label for="addquestionTestname">Test Name</label>
+                <input type="text" class="form-control" id="addquestionTestname" aria-describedby="emailHelp" placeholder="Enter Test Name">
+            </div>
+            <div class="form-group">
+                <label for="addquestionTestcode">Test Code</label>
+                <input type="text" class="form-control" id="addquestionTestcode" placeholder="Enter Test Code">
+            </div>
+            <div class="form-group">
+                <label for="addquestionTestduration">Test Duration</label>
+                <input type="text" class="form-control" id="addquestionTestduration" aria-describedby="emailHelp" placeholder="Enter Test Duration">
+            </div>
+            <div class="form-group">
+                    <label for="addquestionTestduration">Test Date</label>
+                    <input type="text" class="form-control" id="addquestionTestduration" aria-describedby="emailHelp" placeholder="Enter Test Date">
+                </div>
+            <div class="form-group">
+                <label for="addquestionTestinstruction">Test Instruction</label>
+                <textarea class="form-control rounded-0" id="addquestionTestinstruction" rows="5" placeholder="Enter Test Instruction"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" id="btnSave">Submit</button>
+        </form>
+    </div>
+    </body>
+</html>
