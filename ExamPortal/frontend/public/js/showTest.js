@@ -23,8 +23,6 @@ function deleteTest(id){
     console.log(testCode)
 }
 
-
-
 $(document).ready(()=>{
     let parent = $(".test-detail")
 //create DOM to display tests as per its need
