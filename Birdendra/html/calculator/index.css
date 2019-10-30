@@ -1,49 +1,122 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+	margin: 0;
+	padding: 0;
 }
-body{
-    background-color: aqua;
-    border: 0;
-    margin: 0;
+
+body {
+	background-color: aqua;
+	border: 0;
+	margin: 0;
 }
-.main{
-    width: 250px;
-    height: 310px;
-    background: black;
-    padding: 10px;
+.heading{
     margin: auto;
-    margin-top: 100px;
-    border-radius: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    width: 20%;
+    margin-top: 20px;
 }
-.display{
-    margin: 10px;
-    width: 90%;
-    height: 60px;
-    background: white;
-    border-radius: 5px;
-    position: relative;
+.main {
+	width: 250px;
+	height: 410px;
+	background: black;
+	padding: 10px;
+	margin: auto;
+	margin-top: 30px;
+	border-radius: 10px;
 }
-.display h3{
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-}
-.row{
-    margin-left: 10px;
-    /* width: 90%; */
-    height: 50px;
-    padding: 2px;
-}
-.box{
-    display: inline-block;
-    height: 50px;
-    width: 22.2%;
-    background: gainsboro;
-    font-size: 20px;
-    border-radius: 2px;
-}
-.box:hover{
-    background: purple;
+.credit{
+    width: 15%;
+    margin: auto;
+    margin-top: 10px;
     color: white;
+}
+.display {
+	margin: 10px;
+	width: 90%;
+	height: 60px;
+	background: white;
+	border-radius: 5px;
+	position: relative;
+}
+
+.display h3 {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+}
+
+.row {
+	margin-left: 10px;
+	/* width: 90%; */
+	height: 50px;
+	padding: 2px;
+}
+
+.box {
+	display: inline-block;
+	height: 50px;
+	width: 22.2%;
+	background: gainsboro;
+	font-size: 20px;
+	font-weight: bold;
+	border-radius: 2px;
+}
+
+#btn1,
+#btn2,
+#btn3,
+#btn4,
+#btn8,
+#btn12,
+#btn16,
+#btn19,
+#btn20,
+#btn21 {
+	background: rgb(118, 204, 233);
+}
+
+#btn22 {
+	background: palevioletred;
+}
+
+#btn23 {
+	background: blue;
+	width: 46.5%;
+}
+
+.box:hover {
+	background: purple;
+	color: white;
+}
+
+#btn22:hover,
+#btn23:hover,
+#btn1:hover,
+#btn2:hover,
+#btn3:hover,
+#btn4:hover,
+#btn8:hover,
+#btn12:hover,
+#btn16:hover,
+#btn19:hover,
+#btn20:hover,
+#btn21:hover {
+	background: purple;
+	color: white;
+}
+
+@media screen and( max-width: 600px) {
+	.main {
+		height: 340px;
+		width: 200px;
+	}
+	.display {
+		height: 50px;
+	}
+	.row {
+		height: 40px;
+	}
+	.box {
+		height: 40px;
+	}
 }
