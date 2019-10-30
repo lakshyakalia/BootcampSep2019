@@ -3,10 +3,9 @@ const mongoose  = require('mongoose')
 const Schema = mongoose.Schema
 
 const questionDetails = new Schema({
-	qHeading: String,
-	qText: String,
-	qNo: Number,
-	ans: String,
+	questionHeading: String,
+	questionText: String,
+	answer: String,
 	options:{
 		option1: String,
 		option2: String,

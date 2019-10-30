@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../public/css/show-test.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
 </head>
 <body>
     <div class="container">
     <div class="row" id="testId">
         <div class="col-md-12 test-detail">
+            <h2>exam details</h2>
             <div class="row heading">
                 <div class="col-md-2">
                     <h5>TEST NAME</h5>
@@ -36,7 +38,29 @@
             <div class="col-md-10" id="question-Display"></div>
         </div>
     </div>
-    <script src="../public/js/show-questions.js"></script>
-    <script src="../public/js/show-test.js"></script>
+    <script id="index-template" type="text/html">
+        <a href="#{{index}}">Question-{{index}}</a>
+    </script>
+    <script id="question-template-body" type="text/html">
+    <div class="row">
+        <div class="col-md-12 question-div" id="{{index}}">
+            <h3>Question-{{index}}</h3>
+            <p>{{questionText}}</p>
+            <ul>
+                <li>{{options.option1}}</li>
+                <li>{{options.option2}}</li>
+                <li>{{options.option3}}</li>
+                <li>{{options.option4}}</li>
+            </ul>
+            <h6>Answer : {{answer}} </h6>
+            <div class="btn1">
+                <button type="button" class="btn btn-outline-info" onclick="abc()">Edit</button>
+                <button type="button" class="btn btn-outline-danger">Delete</button>
+            </div>
+        </div>
+    </div>       
+    </script>
+    <script src="../public/js/showQuestions.js"></script>
+    <script src="../public/js/showTest.js"></script>
 </body>
 </html>
