@@ -93,7 +93,6 @@ const questionDetails = [
     {
         qHeading: "MCQ",
         qText: "The physical devices of a computer ",
-        qNo: 1,
         ans: 3,
         options:{
             option1: "Software",
@@ -110,7 +109,6 @@ const questionDetails = [
     {
         qHeading: "MCQ",
         qText: " Which of the following is designed to control the operations of a computer?",
-        qNo: 2,
         ans: 2,
         options:{
             option1: "Application Software",
@@ -126,7 +124,6 @@ const questionDetails = [
     {
         qHeading: "MCQ",
         qText: "Which of the following is not an example of system software?",
-        qNo: 3,
         ans: 4,
         options:{
             option1: "Language Translator",
@@ -142,7 +139,6 @@ const questionDetails = [
     {
         qHeading: "MCQ",
         qText: "What is the full form of RMI?",
-        qNo: 4,
         ans: 4,
         options:{
             option1: "Remote Memory Installation",
@@ -158,7 +154,6 @@ const questionDetails = [
     {
         qHeading: "MCQ",
         qText: "What is Scheduling?",
-        qNo: 5,
         ans: 1,
         options:{
             option1: "allowing a job to use the processor",
@@ -202,20 +197,20 @@ const examDetails = [
 ]
 
 
-// for(let i=0;i<users.length;i++){
-//     let data = new user(users[i])
-//     data.save()
-// }
+for(let i=0;i<users.length;i++){
+    let data = new user(users[i])
+    data.save()
+}
 
 // for(let i=0;i<answerDetails.length;i++){
 //     let data = new test(answerDetails[i])
 //     data.save()
 // }
 
-for(let i=0;i<questionDetails.length;i++){
-    let data = new questionDetail(questionDetails[i])
-    data.save()
-}
+// for(let i=0;i<questionDetails.length;i++){
+//     let data = new questionDetail(questionDetails[i])
+//     data.save()
+// }
 
 // for(let i=0;i<examDetails.length;i++){
 //     let data = new examDetail(examDetails[i])
