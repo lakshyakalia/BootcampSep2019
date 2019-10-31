@@ -9,27 +9,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../public/css/show-test.css">
+    <link rel="stylesheet" href="../public/css/exam.css">
+    <!-- <link rel="stylesheet" href="../public/css/examdetails.css"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row" id="testId">
-            <div class="col-md-12 test-detail">
+    <div class="container-fluid">
+        <div class="row" id="examId">
+            <div class="col-md-12 exam-detail">
                 <h2>exam details</h2>
                 <div class="row heading">
                     <div class="col-md-3">
-                        <h5>TEST NAME</h5>
+                        <h5>Exam NAME</h5>
                     </div>
                     <div class="col-md-2">
-                        <h5>TEST CODE</h5>
+                        <h5>Exam CODE</h5>
                     </div>
                     <div class="col-md-2">
-                        <h5>TEST TIME</h5>
+                        <h5>Exam Duration</h5>
                     </div>
                     <div class="col-md-2">
-                        <h5>Test Start At </h5>
+                        <h5>Exam Date </h5>
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-1"></div>
@@ -38,37 +39,69 @@
             </div>
         </div>
     </div>
-    <script id="display-exam-detail" type="text/html">
-        <div class="row content">
-            <div class="col-md-3">
-                <p>{{testName}}</p>
-            </div>
-            <div class="col-md-2">
-                <p>{{testCode}}</p>
-            </div>
-            <div class="col-md-2">
-                <p>{{testDuration}}</p>
-            </div>
-            <div class="col-md-2">
-                <p>{{testDate}}</p>
-            </div>
-            <div class="col-md-1">
-                <button class="btn btn-outline-info" id="view{{index}}" onclick="showQuestion(this.id)">View</button>
-            </div>
-            <div class="col-md-1">
-                <button class="btn btn-outline-primary" id="edit{{index}}">Edit</button>
-            </div>
-            <div class="col-md-1">
-                <button class="btn btn-outline-danger" id="delete{{index}}">Delete</button>
-            </div>
-        </div>
-    </script>
+    <!-- append view template -->
     <div class="container" id="mainDiv">
         <div class="row">
             <div class="col-md-2" id="question-Index"></div>
             <div class="col-md-10" id="question-Display"></div>
         </div>
     </div>
+    <!-- append edit form template here-->
+    <div class="container-fluid" id="display-form">
+    </div>
+    <script id="display-exam-detail" type="text/html">
+        <div class="row content" id="{{_id}}">
+            <div class="col-md-3" >
+                <p>{{examName}}</p>
+            </div>
+            <div class="col-md-2">
+                <p>{{examCode}}</p>
+            </div>
+            <div class="col-md-2">
+                <p>{{examDuration}}</p>
+            </div>
+            <div class="col-md-2">
+                <p>{{examDate}}</p>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-outline-info" id="view{{index}}" onclick="showQuestion(this.id)">View</button>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-outline-primary" id="edit{{index}}" onclick="editExamDetail(this.id)">Edit</button>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-outline-danger" id="delete{{index}}" onclick="deleteExam(this.id)">Delete</button>
+            </div>
+        </div>
+    </script>
+    <script id="edit-exam-detail" type="text/html">
+        <div class="form1">
+                <form class="addExamDetail">
+                    <div class="form-group">
+                        <label for="addExamName">Exam Name</label>
+                        <input type="text" class="form-control" id="addExamName" aria-describedby="emailHelp" placeholder="Enter Exam Name" value="{{examName}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="addExamCode">Exam Code</label>
+                        <input type="text" class="form-control" id="addExamCode" placeholder="Enter Exam Code" value="{{examCode}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="addExamDuration">Exam Duration</label>
+                        <input type="text" class="form-control" id="addExamDuration" aria-describedby="emailHelp" placeholder="Enter Exam Duration" value="{{examDuration}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="addExamDate">Exam Date</label>
+                        <input type="text" class="form-control" id="addExamDate" aria-describedby="emailHelp" placeholder="Enter Exam Date" value="{{examDate}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="addExamInstruction">Exam Instruction</label>
+                        <textarea class="form-control rounded-0" id="addExamInstruction" rows="5" placeholder="Enter Exam Instruction">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut impedit cum iure, cumque quas minus. Maxime ipsam minima obcaecati sit, numquam, molestiae suscipit quaerat facilis et laborum eligendi explicabo commodi?
+                        </textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+    </script>
     <script id="index-template" type="text/html">
         <a href="#{{index}}">Question-{{index}}</a>
     </script>
@@ -92,7 +125,7 @@
     </div>       
     </script>
     <script src="../public/js/showQuestions.js"></script>
-    <script src="../public/js/showTest.js"></script>
+    <script src="../public/js/showExam.js"></script>
 </body>
 
 </html>

@@ -34,20 +34,34 @@ var questions = [{
         answer: 'option4'
     }
 ]
-
+var data =[{
+    _id      :"21973#2902",
+    examName :"Physic end term",
+    examCode :"CRSE#90",
+    examDuration :"2h",
+    examDate :"12-10-2019 2pm"
+    },
+{
+    _id      :"21973#230",
+    examName :"DBMS end term",
+    examCode :"DMBS#90",
+    examDuration :"4h",
+    examDate :"10-09-2019"
+    }
+]
 function abc() {
     alert('edit')
 }
 
-function editQuestion() {
-//load template to display question
-    $.each(questions, (index, item) => {
-        let indexTemplate = $("#index-template").html();
-        $("#question-Index").append(Mustache.render(indexTemplate, { index: index + 1 }))
-        let questionContent = $("#question-template-body").html()
-        item.index = index + 1
-        $("#question-Display").append(Mustache.render(questionContent, item))
+// function editQuestion() {
+// //load template to display question
+//     $.each(questions, (index, item) => {
+//         let indexTemplate = $("#index-template").html();
+//         $("#question-Index").append(Mustache.render(indexTemplate, { index: index + 1 }))
+//         let questionContent = $("#question-template-body").html()
+//         item.index = index + 1
+//         $("#question-Display").append(Mustache.render(questionContent, item))
 
-    })
+//     })
 
-}
+// }
