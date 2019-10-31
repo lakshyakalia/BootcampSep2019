@@ -1,17 +1,17 @@
-const mongoose  = require('mongoose')
+const mongoose = require('mongoose')
+    // console.log(mongoose.connection.models)
+delete mongoose.connection.models['exam']
 
 const Schema = mongoose.Schema
 
 const exam = new Schema({
-	examName: String,
-	examCode: String,
-	examinerId: String,
-	instructions: String,
-	examDuration: String,
-	examStartTime:String
+    examName: String,
+    examCode: String,
+    examinerId: String,
+    instructions: String,
+    examDuration: String,
+    examStartTime: String
 })
 
-const examDetail = mongoose.model('exam',exam)
-module.exports = {
- examDetail
-}
+// let examDetail = 
+module.exports = mongoose.model('exam', exam)

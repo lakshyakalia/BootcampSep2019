@@ -1,6 +1,7 @@
 // this page will create dom to display questions
 // this page will create dom to display questions
 var questions = [{
+        questionId:"23894",
         question: 'Question-',
         questionText: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis illum velit blanditiis',
         options: {
@@ -12,6 +13,7 @@ var questions = [{
         answer: 'option1'
     },
     {
+        questionId:"238gru7",
         question: 'Question-',
         questionText: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis illum velit blanditiis',
         options: {
@@ -23,6 +25,7 @@ var questions = [{
         answer: 'option3'
     },
     {
+        questionId:"2383454",
         question: 'Question-',
         questionText: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis illum velit blanditiis',
         options: {
@@ -49,19 +52,4 @@ var data =[{
     examDate :"10-09-2019"
     }
 ]
-function abc() {
-    alert('edit')
-}
 
-// function editQuestion() {
-// //load template to display question
-//     $.each(questions, (index, item) => {
-//         let indexTemplate = $("#index-template").html();
-//         $("#question-Index").append(Mustache.render(indexTemplate, { index: index + 1 }))
-//         let questionContent = $("#question-template-body").html()
-//         item.index = index + 1
-//         $("#question-Display").append(Mustache.render(questionContent, item))
-
-//     })
-
-// }

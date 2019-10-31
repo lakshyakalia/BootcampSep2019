@@ -14,7 +14,22 @@ function showQuestion(id){
         $("#question-Display").append(Mustache.render(questionContent, item))
 
     })
-    // editQuestion()
+}
+function editQuestion(id) {
+//load template to edit question
+   console.log(id)
+   let qid = $("#"+id).parent().parent().attr('id')
+   console.log(qid)
+   let pid = $("#"+qid).parent().parent().parent().parent().attr('id')
+   console.log(pid)
+   $('#'+pid).hide()
+   let editTemplate = $("#edit-question-template").html();
+   $.each(questions,(index,val)=>{
+        if(qid === val.questionId){
+            console.log(val.questionId)
+            $("#display-edit-form").append(Mustache.render(editTemplate, val))
+        }
+   })
 }
 
 function editExamDetail(id){
@@ -36,14 +51,24 @@ function deleteExam(id){
 }
 
 $(document).ready(()=>{
+    $.ajax("http://localhost:3000/exam", {
+        type: 'GET',
+        dataType: 'json',
+        contentType: "application/json",
+        success: function(msg) {
 
-    let parent = $(".exam-detail")
-//load html template to display exam detail
-    $.each(data, (index , values )=>{
+        console.log(msg.responseText)
+        let parent = $(".exam-detail")
+        //load html template to display exam detail
+        // $.each(data, (index , values )=>{
 
-       let html = $('#display-exam-detail').html()
-       values.index = index
-        parent.append(Mustache.render(html,values))
-
+        // let html = $('#display-exam-detail').html()
+        // values.index = index
+        // parent.append(Mustache.render(html,values))
+        //         })
+            },
+        error: function(error) {
+           console.log(error)
+        }
     })
 })

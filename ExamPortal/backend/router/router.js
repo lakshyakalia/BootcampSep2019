@@ -3,52 +3,46 @@ const app = express()
 const { Users } = require('../controller')
 
 module.exports = () => {
-	app.post('/login', (req, res) => {
-		res.send({ "data": req.body })
-	})
+    app.post('/login', (req, res) => {
+        res.send({ "data": req.body })
+    })
 
-	app.post('/signup', (req, res) => {
-		res.send({ "data": req.body })
-	})
+    app.post('/signup', (req, res) => {
+        res.send({ "data": req.body })
+    })
 
-	//candidates will view quesions using accesskey
-	app.get('/test/:accessKey', (req, res) => {
-		res.send("Hello Word")
-	})
+    //candidates will view quesions using accesskey
+    app.get('/test/:accessKey', (req, res) => {
+        res.send("Hello Word")
+    })
 
-	//post answers selected by candidates
-	app.post('/test', (req, res) => {
-		res.send({ "data": req.body })
-	})
+    //post answers selected by candidates
+    app.post('/test', (req, res) => {
+        res.send({ "data": req.body })
+    })
 
 
-	//admin will add examiner
-	app.post('/examiner', (req, res) => {
+    //admin will add examiner
+    app.post('/examiner', (req, res) => {
 
-		res.send({ "data": req.body })
-	})
-	//admin will view examiner
-	app.get('/examiner', (req, res) => {
-		res.send("Hello Word")
-	})
-	//admin will delete examiner using id of examiner
-	app.delete('/examiner/:id', (req, res) => {
-		res.send({ "data": req.body })
-	})
-	//admin will view test created by each examiner using their id
-	app.get('/examiner/:id', (req, res) => {
-		res.send("Hello Word")
-	})
+            res.send({ "data": req.body })
+        })
+        //admin will view examiner
+    app.get('/examiner', (req, res) => {
+            res.send("Hello Word")
+        })
+        //admin will delete examiner using id of examiner
+    app.delete('/examiner/:id', (req, res) => {
+            res.send({ "data": req.body })
+        })
+        //admin will view test created by each examiner using their id
+    app.get('/examiner/:id', (req, res) => {
+        res.send("Hello Word")
+    })
 
 	//examiner will create test details
-<<<<<<< HEAD
-	app.post('/exam',(req,res)=>{
-		console.log('route hit')
-		Users.examDetail(req,res)
-=======
 	app.post('/exam', (req, res) => {
 		 Users.examDetails(req, res)
->>>>>>> 170cfbb6f816f4feeb768d2aead1cc24cefff27c
 	})
 	//examiner will view test
 	app.get('/exam', (req, res) => {
@@ -68,14 +62,9 @@ module.exports = () => {
 	})
 
 	//examiner will write tests questions
-<<<<<<< HEAD
 	app.post('/exam/question',(req,res)=>{
 		// res.send({"data":req.body})
 		Users.question(req,res)
-=======
-	app.post('/exam/question', (req, res) => {
-		res.send({ "data": req.body })
->>>>>>> 170cfbb6f816f4feeb768d2aead1cc24cefff27c
 	})
 	//examiner will views questions 
 	app.get('/exam/question', (req, res) => {
@@ -87,14 +76,50 @@ module.exports = () => {
 	})
 
 	//examiner will delete question by id
-<<<<<<< HEAD
+
 	app.delete('/exam/question/:id',(req,res)=>{
 		Users.question(req,res)
-=======
-	app.delete('/exam/question/:id', (req, res) => {
-		res.send({ "data": req.body })
->>>>>>> 170cfbb6f816f4feeb768d2aead1cc24cefff27c
 	})
+    //examiner will create test details
+    app.post('/exam', (req, res) => {
+            Users.examDetails(req, res)
+        })
+        //examiner will view test
+    app.get('/exam', (req, res) => {
+        console.log('called get')
+            res.send(res.body)
+        })
+        //examiner will edit test details
+    app.patch('/exam', (req, res) => {
+            res.send({ "data": req.body })
+        })
+        //examiner will delete test using test id
+    app.delete('/exam/:id', (req, res) => {
+            res.send({ "data": req.body })
+        })
+        //examiner will view performance of candidates
+    app.get('/exam/performance', (req, res) => {
+        console.log('yes')
+        const response = Users.studentPerformance(req, res)
+        return response
+    })
 
-	return app
+    //examiner will write tests questions
+    app.post('/exam/question', (req, res) => {
+            res.send({ "data": req.body })
+        })
+        //examiner will views questions 
+    app.get('/exam/question', (req, res) => {
+            res.send("hello world")
+        })
+        //examiner will edit questions
+    app.patch('/exam/question/:id', (req, res) => {
+        res.send({ "data": req.body })
+    })
+
+    //examiner will delete question by id
+    app.delete('/exam/question/:id', (req, res) => {
+        res.send({ "data": req.body })
+    })
+    return app
 }
