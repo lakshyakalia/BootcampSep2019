@@ -14,7 +14,22 @@ function showQuestion(id){
         $("#question-Display").append(Mustache.render(questionContent, item))
 
     })
-    // editQuestion()
+}
+function editQuestion(id) {
+//load template to edit question
+   console.log(id)
+   let qid = $("#"+id).parent().parent().attr('id')
+   console.log(qid)
+   let pid = $("#"+qid).parent().parent().parent().parent().attr('id')
+   console.log(pid)
+   $('#'+pid).hide()
+   let editTemplate = $("#edit-question-template").html();
+   $.each(questions,(index,val)=>{
+        if(qid === val.questionId){
+            console.log(val.questionId)
+            $("#display-edit-form").append(Mustache.render(editTemplate, val))
+        }
+   })
 }
 
 function editExamDetail(id){
