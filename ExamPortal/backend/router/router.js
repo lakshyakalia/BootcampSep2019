@@ -40,6 +40,46 @@ module.exports = () => {
         res.send("Hello Word")
     })
 
+	//examiner will create test details
+	app.post('/exam', (req, res) => {
+		 Users.examDetails(req, res)
+	})
+	//examiner will view test
+	app.get('/exam', (req, res) => {
+		res.send("hello world")
+	})
+	//examiner will edit test details
+	app.patch('/exam', (req, res) => {
+		res.send({ "data": req.body })
+	})
+	//examiner will delete test using test id
+	app.delete('/exam/:id', (req, res) => {
+		res.send({ "data": req.body })
+	})
+	//examiner will view performance of candidates
+	app.get('/exam/performance', (req, res) => {
+		res.send("Hello Word")
+	})
+
+	//examiner will write tests questions
+	app.post('/exam/question',(req,res)=>{
+		// res.send({"data":req.body})
+		Users.question(req,res)
+	})
+	//examiner will views questions 
+	app.get('/exam/question', (req, res) => {
+		res.send("hello world")
+	})
+	//examiner will edit questions
+	app.patch('/exam/question/:id', (req, res) => {
+		res.send({ "data": req.body })
+	})
+
+	//examiner will delete question by id
+
+	app.delete('/exam/question/:id',(req,res)=>{
+		Users.question(req,res)
+	})
     //examiner will create test details
     app.post('/exam', (req, res) => {
             Users.examDetails(req, res)
@@ -81,6 +121,5 @@ module.exports = () => {
     app.delete('/exam/question/:id', (req, res) => {
         res.send({ "data": req.body })
     })
-
     return app
 }

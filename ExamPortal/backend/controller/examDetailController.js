@@ -3,7 +3,6 @@ const  exam  = require('../models/examDetail')
 const examDetails = async(req, res) => {
     try {
         let examInformation = new exam(req.body)
-
        // console.log(examInformation)
         await examInformation.save()
         res.status(200).send({ msg: 'exam information saved successful' })
