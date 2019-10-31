@@ -7,8 +7,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="../public/css/examdetails.css">
-        <script type="text/javascript" src="../public/js/examdetails.js"></script>
+        <link rel="stylesheet" href="../public/css/examDetails.css">
+        <script type="text/javascript" src="../public/js/examDetails.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css">
         <script src="https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js"></script>
     </head>
@@ -40,25 +40,25 @@
               <h3> Step 1</h3>
               <div class="form-group">
                 <label class="control-label">Test Name</label>
-                <input  maxlength="100" type="text" class="form-control" placeholder="Enter First Name"  />
+                <input  maxlength="100" type="text" class="form-control" placeholder="Enter First Name" id="addExamName" />
               </div>
               <div class="form-group">
-                <label class="control-label">Test Name</label>
-                <input maxlength="100" type="text" class="form-control" placeholder="Enter Last Name" />
+                <label class="control-label">Test Code</label>
+                <input maxlength="100" type="text" class="form-control" placeholder="Enter Last Name" id="addExamCode"/>
               </div>
               <div class="form-group">
                 <label class="control-label">Test Duration</label>
-                <input  maxlength="100" type="text" class="form-control" placeholder="Enter First Name"  />
+                <input  maxlength="100" type="text" class="form-control" placeholder="Enter First Name" id="addExamDuration" />
               </div>
               <div class="form-group">
                 <label class="control-label">Test Date</label>
-                <input maxlength="100" type="text" class="form-control" placeholder="Enter Last Name" />
+                <input maxlength="100" type="text" class="form-control" placeholder="Enter Last Name" id="addExamTestDate" />
               </div>
               <div class="form-group">
                 <label class="control-label">Test Instruction</label>
-                <textarea required="required" class="form-control" placeholder="Enter your address" ></textarea>
+                <textarea required="required" class="form-control" placeholder="Enter your address" id="addExamInstruction"></textarea>
               </div>
-              <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+              <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="btnSave">Next</button>
             </div>
           </div>
         </div>
@@ -87,39 +87,39 @@
               <h3> Step 3</h3>
               <div class="form-group">
                 <label class="control-label">Question</label>
-                <input  maxlength="100" type="text" class="form-control" placeholder="Enter First Name"  />
+                <input  maxlength="100" type="text" id="addtestQuestion" class="form-control" placeholder="Enter First Name"  />
               </div>
               <div class="form-group">
                 <label class="control-label">Option1</label>
-                <input maxlength="100" type="text" class="form-control" placeholder="Enter Last Name" />
+                <input maxlength="100" type="text" id="addtestOption1" class="form-control" placeholder="Enter Last Name" />
               </div>
               <div class="form-group">
                 <label class="control-label">Option2</label>
-                <input  maxlength="100" type="text" class="form-control" placeholder="Enter First Name"  />
+                <input  maxlength="100" type="text" id="addtestOption2" class="form-control" placeholder="Enter First Name"  />
               </div>
               <div class="form-group">
                 <label class="control-label">Option3</label>
-                <input maxlength="100" type="text" class="form-control" placeholder="Enter Last Name" />
+                <input maxlength="100" type="text" id="addtestOption3" class="form-control" placeholder="Enter Last Name" />
               </div>
               <div class="form-group">
                 <label class="control-label">Option4</label>
-                <input maxlength="100" type="text" class="form-control" placeholder="Enter Last Name" />
+                <input maxlength="100" type="text" id="addtestOption4" class="form-control" placeholder="Enter Last Name" />
               </div>
               <div class="form-group">
               <label class="control-label">Answer</label>
-              <select class="mdb-select md-form">
+              <select class="mdb-select md-form" id="addtestAnswer">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
                 <option value="3">Option 3</option>
-                <option value="3">Option 3</option>
+                <option value="3">Option 4</option>
               </select>
             </div>
               <div class="form-group">
                 <label class="control-label">Weightage</label>
-                <input maxlength="100" type="text" class="form-control" placeholder="Enter Last Name" />
+                <input maxlength="100" type="text" id="addtestWeightage" class="form-control" placeholder="Enter Last Name" />
               </div>
-              <button class="btn btn-success btn-lg pull-right" type="button">Submit</button>
+              <button class="btn btn-success btn-lg pull-right" type="button" id="submitBtn">Submit</button>
 
             </div>
             </div>

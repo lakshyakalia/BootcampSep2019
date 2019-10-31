@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const { users } = require('../controller')
+const { Users } = require('../controller')
 
 module.exports = ()=> {
 	app.post('/login',(req,res)=>{
@@ -42,8 +42,8 @@ module.exports = ()=> {
 	
 	//examiner will create test details
 	app.post('/exam',(req,res)=>{
-		// console.log('route hit')
-		users.examDetail(req,res)
+		console.log('route hit')
+		Users.examDetail(req,res)
 	})
 	//examiner will view test
 	app.get('/exam',(req,res)=>{
@@ -64,7 +64,8 @@ module.exports = ()=> {
 	
 	//examiner will write tests questions
 	app.post('/exam/question',(req,res)=>{
-		res.send({"data":req.body})
+		// res.send({"data":req.body})
+		Users.question(req,res)
 	})
 	//examiner will views questions 
 	app.get('/exam/question',(req,res)=>{
@@ -77,7 +78,7 @@ module.exports = ()=> {
 	
 	//examiner will delete question by id
 	app.delete('/exam/question/:id',(req,res)=>{
-		res.send({"data":req.body})
+		Users.question(req,res)
 	})
 
 	return app
