@@ -17,7 +17,7 @@ const studentPerformance = (req, res) => {
     studentPerformanceController.viewPerformance(req, res)
 }
 module.exports = {
-    examDetails,
+    examDetail,
     studentPerformance,
    question
 }
