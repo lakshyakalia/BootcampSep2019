@@ -17,8 +17,8 @@ li {
     }
     .container
     {
-        width:40%;
-        margin-top:7%;
+        width:50%;
+        
     }
     #marginfromtop
     {
@@ -28,3 +28,4 @@ li {
     pre{
         font-weight:bold;
     }
+    

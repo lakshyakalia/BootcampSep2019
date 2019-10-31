@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
-const { Users } = require('../controller')
+
+const { Users,adminDetail } = require('../controller')
 
 module.exports = () => {
 	app.post('/login', (req, res) => {
@@ -24,12 +25,14 @@ module.exports = () => {
 
 	//admin will add examiner
 	app.post('/examiner', (req, res) => {
-
-		res.send({ "data": req.body })
+		const response = adminDetail.adminDetails(req,res)
+		return response;
 	})
 	//admin will view examiner
-	app.get('/examiner', (req, res) => {
-		res.send("Hello Word")
+	app.get('/examiner', async(req, res) => {
+		// const out=  await user.find({});
+		const out = await adminDetail.fetchData(req,res)
+         return out
 	})
 	//admin will delete examiner using id of examiner
 	app.delete('/examiner/:id', (req, res) => {
