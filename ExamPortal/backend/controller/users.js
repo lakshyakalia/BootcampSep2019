@@ -1,8 +1,16 @@
 const examController = require('./examDetailController')
 
-const examDetails = (req,res)=>{
-    examController.examDetails(req,res)
+const studentPerformanceController = require('./studentPerformance')
+
+const examDetails = (req, res) => {
+    examController.examDetails(req, res)
 }
-module.exports={
-    examDetails
+
+const studentPerformance = (req, res) => {
+    console.log("yes yes")
+    studentPerformanceController.viewPerformance(req, res)
+}
+module.exports = {
+    examDetails,
+    studentPerformance
 }
