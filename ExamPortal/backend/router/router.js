@@ -1,14 +1,22 @@
 const express = require('express')
 const app = express()
 const { Users } = require('../controller')
+const middleware = require("../auth/middleware");
+const jwt = require('jsonwebtoken');
+const { SECRET } = require("../config/config")
 
+
+const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
-	app.post('/login', (req, res) => {
-		res.send({ "data": req.body })
+	app.post('/login',async  (req, res) => {
+		const result = await createToken(req)
+		console.log(result)
+		res.send({ result })
 	})
 
 	app.post('/signup', (req, res) => {
-		res.send({ "data": req.body })
+		Users.userRecord(req,res)
+		// res.send( "data")
 	})
 
 	//candidates will view quesions using accesskey
@@ -29,7 +37,17 @@ module.exports = () => {
 	})
 	//admin will view examiner
 	app.get('/examiner', (req, res) => {
+
+			const token =req.headers.token 
+			const decoded = jwt.verify(token, new Buffer(SECRET, 'base64'));
+		  
+		if(decoded.claim=="student")
+		{
+			res.send("student")
+		}
+		else{
 		res.send("Hello Word")
+		}
 	})
 	//admin will delete examiner using id of examiner
 	app.delete('/examiner/:id', (req, res) => {
