@@ -10,48 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
-
+        <link rel="stylesheet" href="../public/css/viewPerformance.css">
     </head>
-    <style>
-        li {
-            margin-left: 50px;
-            font-weight: 500;
-        }
-        
-        li:hover {
-            background-color: #c4e3f3;
-            border-radius: 6px;
-            transition-duration: 0.8s;
-            color: white;
-        }
-        
-        a:hover {
-            color: blue;
-        }
-        
-        .nav-link:hover {
-            color: blue;
-        }
-        /* .navbar-ligh .navbar-nav .nav-link {
-            color: white;
-        } */
-        
-        .performance-table {
-            border: 2px solid black;
-        }
-        
-        table {
-            margin-top: 50px;
-        }
-        
-        body {
-            background-color: #DAE0E6;
-        }
-        
-        h2 {
-            margin-top: 40px;
-        }
-    </style>
 
     <body onload="showStudents()">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -99,8 +59,8 @@
             <script id='view-student-performance' type="text/html">
 
                 <tr id="details">
-                    <td class="table-student-id" id="student-id">{{studentId}}</td>
-                    <td class="table-student-name" id="student-name">{{studentName}}</td>
+                    <td class="table-student-id" id="student-id">{{id}}</td>
+                    <td class="table-student-name" id="student-name">{{name}}</td>
                     <td class="table-test-id" id="test-id">{{testId}}</td>
                     <td class="table-attempted" id="attempted">{{attempted}}</td>
                     <td class="table-correct" id="correct">{{correct}}</td>
