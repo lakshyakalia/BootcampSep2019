@@ -16,21 +16,23 @@ const userRecord = async(req,res)=>{
     res.status(200).send({ msg: 'user information saved successful' })
 } catch (error) {
     console.log(error)
-    res.send({ error: error })
+   return({ error: error })
 }
 }
 const userDetails=async(req,res)=>{
-
+    try{
     const query=await user.find({email:req.body.email})
     //console.log(query)
        return query;
+    }
+    catch(error)
+    {
+        return("User not found")
+    }
     
 }
 module.exports={
     userRecord,
     userDetails,
     decodeToken
-
-
-
 }
