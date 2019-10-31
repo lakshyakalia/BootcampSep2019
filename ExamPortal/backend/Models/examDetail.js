@@ -13,7 +13,5 @@ const exam = new Schema({
     examStartTime: String
 })
 
-let examDetail = mongoose.model('exam', exam)
-module.exports = {
-    examDetail
-}
+// let examDetail = 
+module.exports = mongoose.model('exam', exam)

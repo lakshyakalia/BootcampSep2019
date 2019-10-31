@@ -1,10 +1,10 @@
-const { examDetail } = require('../models/examDetail')
+const  exam  = require('../models/examDetail')
 
 const examDetails = async(req, res) => {
     try {
-        let examInformation = new examDetail(req.body)
+        let examInformation = new exam(req.body)
 
-        console.log(examInformation)
+       // console.log(examInformation)
         await examInformation.save()
         res.status(200).send({ msg: 'exam information saved successful' })
     } catch (error) {

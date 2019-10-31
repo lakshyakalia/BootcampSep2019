@@ -51,14 +51,24 @@ function deleteExam(id){
 }
 
 $(document).ready(()=>{
+    $.ajax("http://localhost:3000/exam", {
+        type: 'GET',
+        dataType: 'json',
+        contentType: "application/json",
+        success: function(msg) {
 
-    let parent = $(".exam-detail")
-//load html template to display exam detail
-    $.each(data, (index , values )=>{
+        console.log(msg.responseText)
+        let parent = $(".exam-detail")
+        //load html template to display exam detail
+        // $.each(data, (index , values )=>{
 
-       let html = $('#display-exam-detail').html()
-       values.index = index
-        parent.append(Mustache.render(html,values))
-
+        // let html = $('#display-exam-detail').html()
+        // values.index = index
+        // parent.append(Mustache.render(html,values))
+        //         })
+            },
+        error: function(error) {
+           console.log(error)
+        }
     })
 })
