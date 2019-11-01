@@ -50,12 +50,8 @@ function editExamDetail(id){
     let mainId = $('#'+id).parent().parent().parent().parent().attr('id')
     $('#'+mainId).hide()
     let editForm = $("#edit-exam-detail").html()
-    $.each(data,(index,val)=>{
-        if( val._id === examId){
-            console.log(val.examName)
-            $("#display-form").append(Mustache.render(editForm,val))
-        }
-    })
+    
+    $("#display-form").append(Mustache.render(editForm,val))
 }
 
 function deleteExam(id){

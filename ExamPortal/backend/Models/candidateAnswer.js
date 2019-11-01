@@ -12,6 +12,7 @@ const candidateAnswer = new Schema({
 	},
 	answers: [
 		{
+			correctStatus: Boolean,
 			answerSubmitted : String,
 			questionId: String
 		}
