@@ -36,7 +36,7 @@ const testQuestions = async(req,res)=>{
 
 const saveCandidateAnswers = async(req,res)=>{
     let checkAnswer = await questionDetail.findById(req.body.qId).select({"ans":1,"weightage":1})
-    let existingAnswer = await test.findOne({ $and:[{candidateId:req.headers.studentid},{testCode:req.body.code}] })
+    let existingAnswer = await test.findOne({ $and:[{candidateId:req.headers.id},{testCode:req.body.code}] })
     if(checkAnswer.ans === req.body.checkedOption){
         if(existingAnswer === null){
             let answerDetail = answerObject(req.body, req.headers, checkAnswer.weightage,true)

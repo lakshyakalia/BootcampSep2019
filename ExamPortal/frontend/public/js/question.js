@@ -69,9 +69,9 @@ $(document).on('click','#submitAnswer',function(){
         type: 'POST',
         dataType: 'JSON',
         //In real student ID would be fetched from token
-        headers:{
-            studentId: '5db3bcf0c5c7e513cc5c85d9'
-        },
+        // headers:{
+        //     studentId: '5db3bcf0c5c7e513cc5c85d9'
+        // },
         data:{
             code: examCode,
             checkedOption: radioValue,
