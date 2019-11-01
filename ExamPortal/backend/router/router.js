@@ -41,18 +41,13 @@ module.exports = () => {
 	})
 
 	//examiner will create test details
-<<<<<<< HEAD
-	app.post('/exam',(req,res)=>{
-		console.log('route hit')
-		Users.examDetail(req,res)
-=======
 	app.post('/exam', (req, res) => {
 		 Users.examDetails(req, res)
->>>>>>> 170cfbb6f816f4feeb768d2aead1cc24cefff27c
 	})
 	//examiner will view test
 	app.get('/exam', (req, res) => {
-		res.send("hello world")
+		console.log("hello")
+		Users.getexamDetail(req, res)
 	})
 	//examiner will edit test details
 	app.patch('/exam', (req, res) => {
@@ -68,16 +63,11 @@ module.exports = () => {
 	})
 
 	//examiner will write tests questions
-<<<<<<< HEAD
 	app.post('/exam/question',(req,res)=>{
 		// res.send({"data":req.body})
 		Users.question(req,res)
-=======
-	app.post('/exam/question', (req, res) => {
-		res.send({ "data": req.body })
->>>>>>> 170cfbb6f816f4feeb768d2aead1cc24cefff27c
-	})
-	//examiner will views questions 
+})
+	//examiner will views questions
 	app.get('/exam/question', (req, res) => {
 		res.send("hello world")
 	})
@@ -87,14 +77,11 @@ module.exports = () => {
 	})
 
 	//examiner will delete question by id
-<<<<<<< HEAD
+
 	app.delete('/exam/question/:id',(req,res)=>{
 		Users.question(req,res)
-=======
-	app.delete('/exam/question/:id', (req, res) => {
-		res.send({ "data": req.body })
->>>>>>> 170cfbb6f816f4feeb768d2aead1cc24cefff27c
 	})
 
 	return app
 }
+

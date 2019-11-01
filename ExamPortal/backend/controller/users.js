@@ -10,7 +10,14 @@ const examDetail = (req,res)=>{
     
     examDetailController.examDetails(req,res)
 }
+
+const getexamDetail = (req,res)=>{
+    console.log("hello1")
+    examDetailController.getexamDetails(req,res)
+}
+
 module.exports={
     examDetail,
-    question
+    question,
+    getexamDetail
 }
