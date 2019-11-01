@@ -1,4 +1,7 @@
+//Himandshu chauhan
 const express = require('express')
+
+
 const app = express()
 
 app.post('/login',(req,res)=>{
@@ -19,9 +22,9 @@ app.post('/test',(req,res)=>{
 	res.send({"data":req.body})
 })
 
-
 //admin will add examiner
 app.post('/examiner',(req,res)=>{
+
 	res.send({"data":req.body})
 })
 //admin will view examiner
