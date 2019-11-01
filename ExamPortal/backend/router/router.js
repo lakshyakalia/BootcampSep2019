@@ -41,7 +41,7 @@ module.exports = () => {
 		return response;
 	})
 	//admin will view examiner
-	app.get('/examiner', (req, res) => {
+	app.get('/examiner', async(req, res) => {
 
 			const result=await Users.fetchData(req,res)
 			res.send(result);

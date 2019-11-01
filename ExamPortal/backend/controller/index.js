@@ -1,2 +1,2 @@
 exports.Users = require('./users')
-exports.adminDetail = require('./adminDetails') 
+//exports.adminDetail = require('./adminDetails') 
