@@ -95,6 +95,9 @@ $(document).ready(function () {
             $.ajax("http://localhost:3000/exam", {
                 type: "POST",
                 dataType: "json",
+                headers: {
+                    token: localStorage.getItem('userToken')
+                },
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
