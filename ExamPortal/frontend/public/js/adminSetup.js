@@ -33,6 +33,7 @@ $(document).ready(function(){
             ),
             success:function(recent){ 
               console.log("Data inserted");
+              window.location.replace("adminHome.html")
             },
             error:function()
             {

@@ -30,17 +30,23 @@ module.exports = () => {
 	})
 	//admin will view examiner
 	app.get('/examiner', async(req, res) => {
-		// const out=  await user.find({});
 		const out = await adminDetail.fetchData(req,res)
          return out
 	})
+	// admin will view examiner by id
+	app.get('/examiner/id', async(req, res) => {
+		const out = await adminDetail.fetchDatabyid(req,res)
+         return out
+	})
 	//admin will delete examiner using id of examiner
-	app.delete('/examiner/:id', (req, res) => {
-		res.send({ "data": req.body })
+	app.delete('/examiner', async(req, res) => {
+		//console.log(req.body)
+		const out=await adminDetail.deleteuser(req,res);
 	})
 	//admin will view test created by each examiner using their id
-	app.get('/examiner/:id', (req, res) => {
-		res.send("Hello Word")
+	app.patch('/examiner', async(req, res) => {
+		const out=await adminDetail.updateuser(req,res);
+		return out
 	})
 
 	//examiner will create test details
