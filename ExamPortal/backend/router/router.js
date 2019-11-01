@@ -37,26 +37,14 @@ module.exports = () => {
 	})
 	//admin will add examiner
 	app.post('/examiner', (req, res) => {
-		if(req.headers.role=="faculty"){
-		res.send({ "data": req.body })
-		}
-		else{
-			res.send("You are not Authorized to")
-		}
+		const response = adminDetail.adminDetails(req,res)
+		return response;
 	})
 	//admin will view examiner
 	app.get('/examiner', async(req, res) => {
 
-			const token =req.headers.token  
-			const decoded = jwt.verify(token, new Buffer(SECRET, 'base64'));
-		  
-		if(decoded.claim=="student")
-		{
-			res.send("student")
-		}
-		else{
-		res.send("Hello Word")
-		}
+			const result=await Users.fetchData(req,res)
+			res.send(result);
 	})
 	//admin will delete examiner using id of examiner
 	app.delete('/examiner/:id', (req, res) => {
