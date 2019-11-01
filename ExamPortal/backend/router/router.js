@@ -9,7 +9,7 @@ module.exports = () => {
     })
 
     app.post('/signup', (req, res) => {
-        res.send({ "data": req.body })
+		Users.userRecord(req,res)
     })
 
 	//candidates will view quesions using accesskey
@@ -71,7 +71,7 @@ module.exports = () => {
 		// res.send({"data":req.body})
 		Users.question(req,res)
 	})
-	//examiner will views questions 
+	//examiner will views questions
 	app.get('/exam/question', (req, res) => {
 		res.send("hello world")
 	})
@@ -85,6 +85,6 @@ module.exports = () => {
 	app.delete('/exam/question/:id',(req,res)=>{
 		Users.question(req,res)
 	})
-   
+
     return app
 }
