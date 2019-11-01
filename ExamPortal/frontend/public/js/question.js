@@ -1,4 +1,4 @@
-function loadQuestions(data,startTime,duration){
+function loadQuestions(data,startTime,duration, marked){
     const questionTemplate = document.querySelector('#question-template').innerHTML
     setTimeForTest(startTime,duration)
     $('#options').empty()
@@ -6,7 +6,8 @@ function loadQuestions(data,startTime,duration){
     for(i=0;i<data.length;i++){
         const html = Mustache.render(questionTemplate,{questions:data[i]})
         op.insertAdjacentHTML("beforeend",html)
-    }
+        showPreviousTicks()
+    }   
 }
 
 function setTimeForTest(time,duration){
@@ -22,8 +23,16 @@ function setTimeForTest(time,duration){
         if (leftTestTime < 0) {
             clearInterval(x);
             $(location).attr('href','./endTest.html')
+            localStorage.clear()
         }
     },1000)
+}
+
+function showPreviousTicks(){
+    let keys = Object.keys(localStorage)
+    for(let i=0;i<keys.length;i++){
+        $(`input[name=${keys[i]}][value=${localStorage.getItem(keys[i])}]`).prop('checked',true)
+    }
 }
 
 $(document).ready(function(){
@@ -31,6 +40,7 @@ $(document).ready(function(){
     localStorage.setItem('code','1199')
     $('#nextQuestion').attr('value',0)
     $('#previousQuestion').attr({'value':0,'disabled':true})
+    
     $.ajax('http://localhost:9000/test',{
         type:'GET',
         dataType: 'JSON',
@@ -139,4 +149,10 @@ $(document).on('click','#modalEndTest',function(){
 
 $(document).on('click','#resetRadio',function(){
     $('.form-check-radio').prop("checked",false)
+})
+
+$(document).on('click',"input[type='radio']",function(){
+    let questionId = $(this)[0].name
+    let answer = $(this)[0].value
+    localStorage.setItem(questionId,answer)
 })

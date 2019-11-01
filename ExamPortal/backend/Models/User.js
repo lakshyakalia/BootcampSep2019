@@ -1,6 +1,6 @@
-const { questionDetail } = require('../Models/question')
-const {  test } = require('../Models/candidateAnswers')
-const { examDetail } = require('../Models/examDetail')
+const { questionDetail } = require('./question')
+const { test } = require('./candidateAnswer')
+const { examDetail } = require('./examDetail')
 
 const answerObject = (body,headers,weightage,status)=>{
     weightage = parseInt(weightage)
