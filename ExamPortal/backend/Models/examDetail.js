@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
-    // console.log(mongoose.connection.models)
-delete mongoose.connection.models['exam']
-
+   
 const Schema = mongoose.Schema
 
 const exam = new Schema({
@@ -10,10 +8,7 @@ const exam = new Schema({
     examinerId: String,
     instructions: String,
     examDuration: String,
-    examStartTime: String
+    examStartTime: String,
 })
-
-let examDetail = mongoose.model('exam', exam)
-module.exports = {
-    examDetail
-}
+ 
+module.exports = mongoose.model('exam', exam)

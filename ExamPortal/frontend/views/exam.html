@@ -40,16 +40,19 @@
             </div>
         </div>
     </div>
-    <!-- append view template -->
+    <!-- append view question template -->
     <div class="container" id="mainDiv">
         <div class="row">
             <div class="col-md-2" id="question-Index"></div>
             <div class="col-md-10" id="question-Display"></div>
         </div>
     </div>
-    <!-- append edit form template here-->
+    <!-- append edit exam form template here-->
     <div class="container-fluid" id="display-form">
     </div>
+    <!-- append edit question template -->
+    <div class="container-fluid" id="display-edit-form"></div>
+    <!-- display exam detail template -->
     <script id="display-exam-detail" type="text/html">
         <div class="row content" id="{{_id}}">
             <div class="col-md-3">
@@ -62,7 +65,7 @@
                 <p>{{examDuration}}</p>
             </div>
             <div class="col-md-2">
-                <p>{{examDate}}</p>
+                <p>{{examStartTime}}</p>
             </div>
             <div class="col-md-1">
                 <button class="btn btn-outline-info" id="view{{index}}" onclick="showQuestion(this.id)">View</button>
@@ -75,6 +78,7 @@
             </div>
         </div>
     </script>
+    <!-- edit exam detail template -->
     <script id="edit-exam-detail" type="text/html">
         <div class="form1">
             <form class="addExamDetail">
@@ -103,12 +107,13 @@
             </form>
         </div>
     </script>
+    <!-- display question template -->
     <script id="index-template" type="text/html">
         <a href="#{{index}}">Question-{{index}}</a>
     </script>
     <script id="question-template-body" type="text/html">
         <div class="row">
-            <div class="col-md-12 question-div" id="{{index}}">
+            <div class="col-md-12 question-div" id="{{_id}}">
                 <h3>Question-{{index}}</h3>
                 <p>{{questionText}}</p>
                 <ul>
@@ -119,10 +124,51 @@
                 </ul>
                 <h6>Answer : {{answer}} </h6>
                 <div class="btn1">
-                    <button type="button" class="btn btn-outline-info" onclick="abc()">Edit</button>
+                    <button type="button" class="btn btn-outline-info" id="editQs{{index}}" onclick="editQuestion(this.id)">Edit</button>
                     <button type="button" class="btn btn-outline-danger">Delete</button>
                 </div>
             </div>
+    </script>
+    <!-- edit question template -->
+    <script id="edit-question-template" type="text/html">
+        <div class="form2">
+            <form class="addQuestion">
+                <div class="form-group">
+                    <label for="addtestQuestion">Question</label>
+                    <input type="text" class="form-control" id="addtestQuestion" aria-describedby="emailHelp" placeholder="Enter Question">
+                </div>
+                <div class="form-group">
+                    <label for="addtestOption1">Option 1</label>
+                    <input type="text" class="form-control" id="addtestOption1" placeholder="Enter Option 1">
+                </div>
+                <div class="form-group">
+                    <label for="addtestOption2">Option 2</label>
+                    <input type="text" class="form-control" id="addtestOption2" aria-describedby="emailHelp" placeholder="Enter Option 2">
+                </div>
+                <div class="form-group">
+                    <label for="addtestOption3">Option 3</label>
+                    <input type="text" class="form-control" id="addtestOption3" placeholder="Enter Option 3">
+                </div>
+                <div class="form-group">
+                    <label for="addtestOption4">Option 4</label>
+                    <input type="text" class="form-control" id="addtestOption4" aria-describedby="emailHelp" placeholder="Enter Option 4">
+                </div>
+                <div class="form-group">
+                    <label for="addTestAnswer">Answer</label><br>
+                    <select class="addTestAnswer">
+                           <option value="" disabled selected>Choose your option</option>
+                           <option value="1">Option 1</option>
+                           <option value="2">Option 2</option>
+                           <option value="3">Option 3</option>
+                           <option value="3">Option 4</option>
+                        </select>
+                </div>
+                <div class="form-group">
+                    <label for="addtestWeightage">Weightage</label>
+                    <input type="text" class="form-control" id="addtestWeightage" aria-describedby="emailHelp" placeholder="Enter Weghtage">
+                </div>
+                <button type="button" class="btn btn-primary" id="addtestbtn">Submit</button>
+            </form>
         </div>
     </script>
     <script src="../public/js/showQuestions.js"></script>

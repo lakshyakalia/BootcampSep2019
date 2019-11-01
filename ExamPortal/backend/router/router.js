@@ -42,11 +42,11 @@ module.exports = () => {
 
     //examiner will create test details
     app.post('/exam', (req, res) => {
-            Users.examDetails(req, res)
+            Users.examDetail(req, res)
         })
         //examiner will view test
     app.get('/exam', (req, res) => {
-            res.send("hello world")
+            Users.getexamDetail(req, res)
         })
         //examiner will edit test details
     app.patch('/exam', (req, res) => {
@@ -65,11 +65,11 @@ module.exports = () => {
 
     //examiner will write tests questions
     app.post('/exam/question', (req, res) => {
-            res.send({ "data": req.body })
+            Users.question(req,res)
         })
         //examiner will views questions 
     app.get('/exam/question', (req, res) => {
-            res.send("hello world")
+            Users.getQuestionDetail(req, res)
         })
         //examiner will edit questions
     app.patch('/exam/question/:id', (req, res) => {
