@@ -6,65 +6,17 @@
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="/public/css/examiner.css">
     </head>
-    <style>
-        li {
-            margin-left: 50px;
-            font-weight: 500;
+
+    <script>
+        function showEdit() {
+            document.getElementById('showEditDiv').style.display = 'block';
         }
-        
-        li:hover {
-            background-color: #c4e3f3;
-            border-radius: 6px;
-            transition-duration: 0.8s;
-            color: white;
-        }
-        
-        a:hover {
-            color: blue;
-        }
-        
-        .nav-link:hover {
-            color: blue;
-        }        
-        .container-1 button {
-            display: block;
-            margin: auto;
-            font-weight: 600;
-            margin-top: 30px;
-        }
-        
-        .container-1 {
-            margin-top: 4%;
-            width: 55%;
-            background-color: rgba(255, 255, 255, 1);
-            padding: 30px;
-            border-radius: 6px;
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0.6)
-        }
-        
-        button {
-            box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5)
-        }
-        
-        .container-1:hover {
-            transition-duration: 0.2s;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.6)
-        }
-        
-        body {
-            background-color: #DAE0E6;
-            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        }
-        
-        .display-4 {
-            margin-top: 40px;
-            margin-left: 18%;
-        }
-    </style>
+    </script>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <a class="navbar-brand" href="#">Online Test Portal</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
@@ -87,17 +39,36 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
+                    <div class="dropdown">
+                        <span>Welcome &nbsp; &nbsp;</span>
+                        <div class="dropdown-content">
+                            <button class="btn btn-danger"><a href='#edit' onclick="showEdit()" style="text-decoration: none; color: rgba(255, 255, 255, 1);">Edit</a></button>
+                        </div>
+                    </div>
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
                 </form>
             </div>
         </nav>
-        <h2 class="container display-4">Choose one of the options Below : </h2>
-        <div class="container container-1">
-            <button type="button" class="btn btn-success">Create Test</button>
-            <button type="button" class="btn btn-primary" id="view-test">View Tests</button>
-            <button type="button" class="btn btn-danger">View Performance of Students</button>
-
+        <h2 class="container display-4" style="margin-top: 70px;">Choose one of the options Below : </h2>
+        <div class="options-div">
+            <div class="container container-1">
+                <button type="button" class="btn btn-success" onclick="location.reload();location.href='examdetails.html'">Create Test</button>
+                <button type="button" class="btn btn-primary" onclick="location.reload();location.href='exam.html'">View Tests</button>
+                <button type="button" class="btn btn-danger" onclick="location.reload();location.href='viewPerformance.html'">View Performance of Students</button>
+            </div>
         </div>
+        <div>
+            <div class="container-1 edit-details" id="showEditDiv">
+                <span class="edit-text"><a name='edit'>Edit Details : </a></span>
+                <input type="text" placeholder="Email : ">
+                <input type="text" placeholder="Name : ">
+                <input type="text" placeholder="Password : ">
+                <input type="text" placeholder="Phone No : ">
+                <input type="text" placeholder="College Name : ">
+                <button class="btn btn-success">Update</button>
+            </div>
+        </div>
+
     </body>
 </head>
 
