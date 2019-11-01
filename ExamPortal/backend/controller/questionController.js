@@ -1,5 +1,5 @@
 const { questionDetail } = require('../Models/question')
-const {  test } = require('../Models/candidateAnswers')
+const {  test } = require('../Models/candidateAnswer')
 const { examDetail } = require('../Models/examDetail')
 
 const answerObject = (body,headers,weightage,status)=>{

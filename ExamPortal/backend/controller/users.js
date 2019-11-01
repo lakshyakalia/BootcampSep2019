@@ -42,5 +42,6 @@ module.exports={
     examDetail,
     question,
     getexamDetail,
-    getQuestionDetail
+    getQuestionDetail,
+    userRecord
 }
