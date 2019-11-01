@@ -1,15 +1,22 @@
 const express = require('express')
 const app = express()
+const { Users } = require('../controller')
+const middleware = require("../auth/middleware");
+const jwt = require('jsonwebtoken');
+const { SECRET } = require("../config/config")
 
-const { Users,adminDetail } = require('../controller')
 
+const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
-	app.post('/login', (req, res) => {
-		res.send({ "data": req.body })
+	app.post('/login',async  (req, res) => {
+		const result = await createToken(req)
+		console.log(result)
+		res.send({ result })
 	})
 
 	app.post('/signup', (req, res) => {
-		res.send({ "data": req.body })
+		Users.userRecord(req,res)
+		// res.send( "data")
 	})
 
 	//candidates will view quesions using accesskey
@@ -29,24 +36,23 @@ module.exports = () => {
 		return response;
 	})
 	//admin will view examiner
-	app.get('/examiner', async(req, res) => {
-		const out = await adminDetail.fetchData(req,res)
-         return out
-	})
-	// admin will view examiner by id
-	app.get('/examiner/id', async(req, res) => {
-		const out = await adminDetail.fetchDatabyid(req,res)
-         return out
+	app.get('/examiner', (req, res) => {
+
+			const result=await Users.fetchData(req,res)
+			res.send(result);
 	})
 	//admin will delete examiner using id of examiner
-	app.delete('/examiner', async(req, res) => {
-		//console.log(req.body)
-		const out=await adminDetail.deleteuser(req,res);
+	app.delete('/examiner/:id', (req, res) => {
+		console.log("----inside-----")
+		debugger
+		const result =Users.facultyDel(req,res)
+		res.send(result)
 	})
 	//admin will view test created by each examiner using their id
-	app.patch('/examiner', async(req, res) => {
-		const out=await adminDetail.updateuser(req,res);
-		return out
+	app.get('/examiner/:id',async  (req, res) => {
+		debugger
+		const result= await Users.testDetails(req,res)
+		res.send(result);
 	})
 
 	//examiner will create test details

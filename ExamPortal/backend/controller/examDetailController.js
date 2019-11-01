@@ -2,14 +2,7 @@ const { examDetail } = require('../models/examDetail')
 
 const examDetails = async (req, res) => {
     try {
-        let examInformation = new examDetail({
-            examName: req.body.examName,
-            examCode: req.body.examCode,
-            examinerId: req.body.examinerId,
-            instructions: req.body.instructions,
-            examDuration: req.body.examDuration,
-            examStartTime:req.body.examStartTime
-        })
+        let examInformation = new examDetail(req.body)
         console.log(examInformation)
         await examInformation.save()
         res.status(200).send({ msg: 'exam information saved successful' })
