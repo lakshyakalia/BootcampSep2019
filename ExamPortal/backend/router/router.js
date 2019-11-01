@@ -8,7 +8,7 @@ module.exports = () => {
     })
 
     app.post('/signup', (req, res) => {
-        res.send({ "data": req.body })
+		Users.userRecord(req,res)
     })
 
     //candidates will view quesions using accesskey
