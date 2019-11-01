@@ -10,13 +10,14 @@ const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
 	app.post('/login',async  (req, res) => {
 		const result = await createToken(req)
+
 		console.log(result)
 		res.send({ result })
 	})
 
-	app.post('/signup', (req, res) => {
-		Users.userRecord(req,res)
-		// res.send( "data")
+	app.post('/signup', async (req, res) => {
+		const result =await Users.userRecord(req,res)
+		 res.send( result)
 	})
 
 	//candidates will view quesions using accesskey
@@ -29,7 +30,11 @@ module.exports = () => {
 		res.send({ "data": req.body })
 	})
 
-
+	app.patch('/examiner',async(req,res)=>{
+		debugger
+		const result =await Users.facultyUpd(req,res)
+		res.send(result)
+	})
 	//admin will add examiner
 	app.post('/examiner', (req, res) => {
 
@@ -68,8 +73,10 @@ module.exports = () => {
 		 Users.examDetails(req, res)
 	})
 	//examiner will view test
-	app.get('/exam', (req, res) => {
-		res.send("hello world")
+	app.get('/exam', async (req, res) => {
+		debugger
+		const result= await Users.userDetails(req,res)
+		res.send(result)
 	})
 	//examiner will edit test details
 	app.patch('/exam', (req, res) => {

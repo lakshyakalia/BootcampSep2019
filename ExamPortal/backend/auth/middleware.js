@@ -11,7 +11,7 @@ module.exports = isAuthenticated = (req, res, next) => {
             res.send({ "message": "session expired" })
 
         } else 
-        {
+        {       req.headers.role= token.claim;
                    next() //TODO: hit the next user profile route
         }
 

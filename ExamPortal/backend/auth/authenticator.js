@@ -41,7 +41,7 @@ async function generateToken(req) {
 
 async function comparePassword(myPlaintextPassword,req){
   const user = await Users.userDetails(req);
-  const hash = "$2b$10$Qf0riMYAzpNknyhvCmWFR.grAc13sKNgSdXLIpHsLm9dw1kLl3M6i";
+  const hash = user[0].password;
   if(bcrypt.compareSync(myPlaintextPassword, hash)) {
     // Passwords match
    return "1";
