@@ -10,7 +10,6 @@ const userRecord =(req,res)=>{
 }
 
 const userDetails = (req,res)=>{
-    debugger
     const data =userController.userDetails(req,res)
     return data;
 
