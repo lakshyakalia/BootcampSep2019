@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <title>Instructions</title>
     <meta charset="utf-8">
@@ -9,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color: black;">
         <img src="../public/assets/cybergrouplogo.png" class="logo">
@@ -28,9 +30,6 @@
                     <a class="nav-link" href="#">Blog</a>
                 </li>
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-success my-2 my-sm-0" style="color: white;" type="submit">Sign Up</button>
-                </form> -->
         </div>
     </nav>
     <br><br>
@@ -63,5 +62,10 @@
             <button type="button" class="btn btn-success startTest">Start Test</button>
         </form>
     </div>
+    <script>
+        $(document).on('click','.startTest',function(){
+            $(location).attr('href','./question.html')
+        })    
+    </script>
 </body>
 </html>

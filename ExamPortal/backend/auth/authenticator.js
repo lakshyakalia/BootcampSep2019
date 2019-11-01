@@ -78,7 +78,7 @@ async function checkAuth(req) {
 	} else {
 		return ({
 			"message": "user not exists please sign up",
-			"token": "null ",
+			"token": "null",
 		})
 	}
 }

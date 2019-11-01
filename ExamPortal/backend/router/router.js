@@ -13,7 +13,13 @@ const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
 	app.post('/login', async (req, res) => {
 		const result = await createToken(req)
-		res.status(200).send(result)
+		if(result.token == "null"){
+			res.status(400).send(result)
+		}
+		else{
+			res.status(200).send(result)
+		}
+		
 	})
 
 	app.post('/signup', async (req, res) => {
@@ -21,15 +27,21 @@ module.exports = () => {
 		res.send(result)
 	})
 
+
 	//candidates will view quesions using accesskey
-	app.get('/test', async (req, res) => {
+	app.get('/test', middleware, async (req, res) => {
 		const response = await Ques.testQuestions(req, res)
 		return response
 	})
 
 	//post answers selected by candidates
-	app.post('/test', async (req, res) => {
+	app.post('/test', middleware, async (req, res) => {
 		const response = await Ques.saveCandidateAnswers(req, res)
+		return response
+	})
+
+	app.post('/test/assessKey',async (req,res)=>{
+		const response = await Ques.checkAccessKey(req,res)
 		return response
 	})
 
@@ -66,7 +78,7 @@ module.exports = () => {
 	app.post('/exam', (req, res) => {
 		Users.examDetail(req, res)
 	})
-	
+
 	//examiner will view test
 	app.get('/exam', async (req, res) => {
 		const result = await Users.userDetails(req, res)

@@ -1,18 +1,19 @@
-$(document).on('click','#loginButton',function(){
+$(document).on('click', '#loginButton', function () {
     let email = $('#inputEmail').val()
     let password = $('#inputPassword').val()
-    
-    $.ajax('http://localhost:3000/login',{
-        type:'POST',
-        dataType:'JSON',
-        data:{
-            'email':email,
-            'password':password
+
+    $.ajax('http://localhost:3000/login', {
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            'email': email,
+            'password': password
         },
-        success: function(data){
-            localStorage.setItem('token',data.token)
+        success: function (data) {
+            localStorage.setItem('token', data.token)
+            $(location).attr('href', '../views/accessKey.html')
         },
-        error: function(error){
+        error: function (error) {
             console.log(error)
         }
 

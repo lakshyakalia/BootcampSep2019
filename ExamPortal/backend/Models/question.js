@@ -3,6 +3,7 @@ const mongoose  = require('mongoose')
 const Schema = mongoose.Schema
 
 const questionDetails = new Schema({
+	qText: String,
 	answer: String,
 	options:{
 		option1: String,
@@ -19,5 +20,9 @@ const questionDetails = new Schema({
 	examCode: String,
 })
 
-module.exports = mongoose.model('question',questionDetails)
+const questionDetail = mongoose.model('question',questionDetails)
+
+module.exports = {
+	questionDetail
+}
 

@@ -91,9 +91,8 @@ const answerDetails = [
 
 const questionDetails = [
     {
-        qHeading: "MCQ",
         qText: "The physical devices of a computer ",
-        ans: 3,
+        answer: 3,
         options:{
             option1: "Software",
             option2: "Package",
@@ -102,14 +101,12 @@ const questionDetails = [
         },
         weightage: 1,
         createdBy:'himan',
-        modifiedBy:"biren",
         examCode: 1199
         
     },
     {
-        qHeading: "MCQ",
         qText: " Which of the following is designed to control the operations of a computer?",
-        ans: 2,
+        answer: 2,
         options:{
             option1: "Application Software",
             option2: "System Software",
@@ -118,11 +115,9 @@ const questionDetails = [
         },
         weightage: 1,
         createdBy:'himan',
-        modifiedBy:"biren",
         examCode: 1199
     },
     {
-        qHeading: "MCQ",
         qText: "Which of the following is not an example of system software?",
         ans: 4,
         options:{
@@ -133,11 +128,9 @@ const questionDetails = [
         },
         weightage: 1,
         createdBy:'himan',
-        modifiedBy:"biren",
         examCode: 1199
     },
     {
-        qHeading: "MCQ",
         qText: "What is the full form of RMI?",
         ans: 4,
         options:{
@@ -148,11 +141,9 @@ const questionDetails = [
         },
         weightage: 2,
         createdBy:'himan',
-        modifiedBy:"biren",
         examCode: 1199
     },
     {
-        qHeading: "MCQ",
         qText: "What is Scheduling?",
         ans: 1,
         options:{
@@ -163,7 +154,6 @@ const questionDetails = [
         },
         weightage: 3,
         createdBy:'himan',
-        modifiedBy:"biren",
         examCode: 1199
     }
     
@@ -197,20 +187,20 @@ const examDetails = [
 ]
 
 
-for(let i=0;i<users.length;i++){
-    let data = new user(users[i])
-    data.save()
-}
+// for(let i=0;i<users.length;i++){
+//     let data = new user(users[i])
+//     data.save()
+// }
 
 // for(let i=0;i<answerDetails.length;i++){
 //     let data = new test(answerDetails[i])
 //     data.save()
 // }
 
-// for(let i=0;i<questionDetails.length;i++){
-//     let data = new questionDetail(questionDetails[i])
-//     data.save()
-// }
+for(let i=0;i<questionDetails.length;i++){
+    let data = new questionDetail(questionDetails[i])
+    data.save()
+}
 
 // for(let i=0;i<examDetails.length;i++){
 //     let data = new examDetail(examDetails[i])
