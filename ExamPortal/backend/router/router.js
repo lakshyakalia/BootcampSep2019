@@ -13,7 +13,7 @@ const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
 	app.post('/login', async (req, res) => {
 		const result = await createToken(req)
-		res.send({ result })
+		res.status(200).send(result)
 	})
 
 	app.post('/signup', async (req, res) => {
@@ -46,22 +46,18 @@ module.exports = () => {
 
 	//admin will view examiner
 	app.get('/examiner', async (req, res) => {
-
 		const result = await Users.fetchData(req, res)
 		res.send(result);
 	})
 
 	//admin will delete examiner using id of examiner
 	app.delete('/examiner/:id', (req, res) => {
-		console.log("----inside-----")
-		debugger
 		const result = Users.facultyDel(req, res)
 		res.send(result)
 	})
 
 	//admin will view test created by each examiner using their id
 	app.get('/examiner/:id', async (req, res) => {
-		debugger
 		const result = await Users.testDetails(req, res)
 		res.send(result);
 	})
@@ -70,6 +66,7 @@ module.exports = () => {
 	app.post('/exam', (req, res) => {
 		Users.examDetail(req, res)
 	})
+	
 	//examiner will view test
 	app.get('/exam', async (req, res) => {
 		const result = await Users.userDetails(req, res)

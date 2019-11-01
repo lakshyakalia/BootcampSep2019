@@ -104,7 +104,7 @@ $(document).on('click','#nextQuestion',function(){
             pageNumber: $('#nextQuestion').attr('value')
         },
         success: function(data){
-            loadQuestions(data.questions)
+            loadQuestions(data.questions,data.startTime,data.duration)
             if(data.lastQuestionStatus === true){
                 $('#nextQuestion').attr('disabled',true)
             }
@@ -135,7 +135,7 @@ $(document).on('click','#previousQuestion',function(){
             if(data.lastQuestionStatus === false){
                 $('#nextQuestion').removeAttr('disabled')
             }
-            loadQuestions(data.questions)
+            loadQuestions(data.questions,data.startTime,data.duration)
         },
         error: function(err){
             console.log(err)
