@@ -99,7 +99,7 @@ $(document).ready(function () {
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
-                    document.getElementById('show-messages').innerHTML = "Account Created"
+                    // document.getElementById('show-messages').innerHTML = "Account Created"
                 },
                 error: function(error) {
                     console.log("error : " + error)

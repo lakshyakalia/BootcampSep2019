@@ -11,7 +11,15 @@ const examDetails = async(req, res) => {
         res.send({ error: error })
     }
 }
-
+const viewExam = async(req,res)=>{
+    try{
+        
+    }
+    catch( error){
+        console.log(error)
+    }
+}
 module.exports = {
-    examDetails
+    examDetails,
+    viewExam
 }
