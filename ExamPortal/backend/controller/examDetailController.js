@@ -1,6 +1,7 @@
-const {examDetail} = require('../Models/examDetail')
+const examDetail = require('../Models/examDetail')
+// const  exam  = require('../models/examDetail')
 
-const examDetails = async (req, res) => {
+const examDetails = async(req, res) => {
     try {
         // console.log()
         let examInformation = new examDetail(req.body)

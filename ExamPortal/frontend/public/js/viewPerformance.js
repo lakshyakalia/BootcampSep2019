@@ -43,10 +43,19 @@ var students_details = [{
 
 function showStudents() {
 
-    $.each(students_details, (index, item) => {
-        console.log(index)
-        let indexTemplate = $("#view-student-performance").html();
-        console.log(indexTemplate)
-        $("#tbdy").append(Mustache.render(indexTemplate, item))
+
+    $.ajax("http://localhost:3000/exam/performance", {
+        type: 'GET',
+        dataType: 'JSON',
+        success: function(data) {
+            // data = JSON.stringify(data)
+            let indexTemplate = $("#view-student-performance").html();
+            // $.each(data, (index, item) => {
+            // console.log(item.name)
+            // console.log(indexTemplate)
+            $("#tbdy").append(Mustache.render(indexTemplate, data))
+                // })
+        },
+        error: function(error) {}
     })
 }

@@ -12,6 +12,17 @@ const questions = async (req, res) => {
     }
 }
 
+const getQuestionDetails = async (req,res) =>{
+    try{
+     let values= await questionDetail.find();
+     res.status(200).send( values)
+    }
+    catch(error){
+     console.log(error)
+    }
+}
+
 module.exports = {
-    questions
+    questions,
+    getQuestionDetails
 }

@@ -1,3 +1,4 @@
+var tempExamCode =''
 $(document).ready(function () {
     var navListItems = $('div.setup-panel div a'),
             allWells = $('.setup-content'),
@@ -85,6 +86,7 @@ $(document).ready(function () {
                 }    
     
         if ((testName || testCode || testDate || testDuration || testInstruction) == true) {
+                tempExamCode= $('#addExamCode').val()
             let examDetail = {
                 examName: $('#addExamName').val(),
                 examCode: $('#addExamCode').val(),
@@ -181,7 +183,8 @@ $(document).ready(function() {
                 option3: $('#addtestOption3').val(),
                 option4: $('#addtestOption4').val(),
                 },
-                weightage: $('#addtestWeightage').val()
+                weightage: $('#addtestWeightage').val(),
+                examCode: tempExamCode 
             }
             $.ajax("http://localhost:3000/exam/question", {
                 type: "POST",
