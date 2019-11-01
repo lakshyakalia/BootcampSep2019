@@ -46,7 +46,7 @@ module.exports = () => {
 	})
 	//examiner will view test
 	app.get('/exam', (req, res) => {
-		res.send("hello world")
+		Users.viewExam(req,res)
 	})
 	//examiner will edit test details
 	app.patch('/exam', (req, res) => {

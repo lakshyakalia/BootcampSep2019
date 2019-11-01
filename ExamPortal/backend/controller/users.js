@@ -16,8 +16,12 @@ const studentPerformance = (req, res) => {
     //console.log("yes yes")
     studentPerformanceController.viewPerformance(req, res)
 }
+const viewExam = (req,res)=>{
+    examDetailController.viewExam(req,res)
+}
 module.exports = {
     examDetail,
     studentPerformance,
-   question
+    question,
+    viewExam
 }

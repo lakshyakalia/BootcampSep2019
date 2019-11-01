@@ -1,6 +1,3 @@
-const { examDetail } = require('../Models/examDetail')
-
-
 const viewPerformance = async(req, res) => {
     try {
         const obj = new Object()
