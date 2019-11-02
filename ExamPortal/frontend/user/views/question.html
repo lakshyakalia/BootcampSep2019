@@ -7,24 +7,30 @@
     <title>Question</title>
     <link rel="stylesheet" href="../public/css/question.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-right">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Test Portal</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <span class="username-text">Username</span>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
-        </form>
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: black;">
+        <img src="../public/assets/cybergrouplogo.png" class="logo">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Educational Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
+            </ul>
+        </div>
     </nav>
-    <div class="container-fluid mt-4">
+    <div class="container-fluid" style="margin-top:100px;">
         <div class="row">
             <div class="col-md-8 col-sm-12">
                 <div class="card question-border">
@@ -78,19 +84,19 @@
                         <p id="{{ examCode }}"><b>Ques - </b>{{ qText }}</p>
                         <label class="form-check-label">
                             <input type="radio" class="form-check-radio" name="{{ _id }}" value="1">
-                            <span>{{ option1 }}</span>
+                            <span class="text-font">{{ option1 }}</span>
                         </label>
                         <label class="form-check-label">
                             <input type="radio" class="form-check-radio" name="{{ _id }}" value="2">
-                            <span>{{ option2 }}</span>
+                            <span class="text-font">{{ option2 }}</span>
                         </label>
                         <label class="form-check-label">
                             <input type="radio" class="form-check-radio" name="{{ _id }}" value="3">
-                            <span>{{ option3 }}</span>
+                            <span class="text-font">{{ option3 }}</span>
                         </label>
                         <label class="form-check-label">
                             <input type="radio" class="form-check-radio" name="{{ _id }}" value="4">
-                            <span>{{ option4 }}</span>
+                            <span class="text-font">{{ option4 }}</span>
                         </label>
                     </div>
                </div>
