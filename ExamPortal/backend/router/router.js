@@ -43,9 +43,13 @@ module.exports = () => {
 	})
 	//admin will view examiner
 	app.get('/examiner', async(req, res) => {
-
-			const result=await Users.fetchData(req,res)
-			res.send(result);
+				if(req.header.role=="admin")
+		{const result=await Users.fetchData(req,res)
+		res.send(result);
+		}
+		else{
+			return("you Are NOT AUthorised to visit this page")
+		}
 	})
 	//admin will delete examiner using id of examiner
 	app.delete('/examiner/:id', (req, res) => {
