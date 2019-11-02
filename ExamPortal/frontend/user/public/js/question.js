@@ -1,5 +1,6 @@
-function loadQuestions(data,startTime,duration, marked){
+function loadQuestions(data,startTime,duration, examName){
     const questionTemplate = document.querySelector('#question-template').innerHTML
+    $('.showTest').text(examName)
     setTimeForTest(startTime,duration)
     $('#options').empty()
     const op = document.querySelector('#options')
@@ -7,7 +8,7 @@ function loadQuestions(data,startTime,duration, marked){
         const html = Mustache.render(questionTemplate,{questions:data[i]})
         op.insertAdjacentHTML("beforeend",html)
         showPreviousTicks()
-    }   
+    }
 }
 
 function setTimeForTest(time,duration){
@@ -31,29 +32,31 @@ function setTimeForTest(time,duration){
 function showPreviousTicks(){
     let keys = Object.keys(localStorage)
     for(let i=0;i<keys.length;i++){
-        $(`input[name=${keys[i]}][value=${localStorage.getItem(keys[i])}]`).prop('checked',true)
+        if(keys[i].length > 20){
+            let value = localStorage.getItem(keys[i])
+            $(`input[name=${keys[i]}][value=${value}]`).prop('checked',true)
+        }
     }
 }
 
 $(document).ready(function(){
     // In real, exam code would be stored when user login to test sucessfully
-    localStorage.setItem('code','1199')
+    // localStorage.setItem('code','1199')
     $('#nextQuestion').attr('value',0)
     $('#previousQuestion').attr({'value':0,'disabled':true})
-    
-    $.ajax('http://localhost:9000/test',{
+    $.ajax('http://localhost:3000/test',{
         type:'GET',
         dataType: 'JSON',
         headers: {
-            code: localStorage.getItem('code'),
-            studentId: '5db3bcf0c5c7e513cc5c85d9'
+            examCode: localStorage.getItem('examCode'),
+            token: localStorage.getItem('token')
         },
         data:{
             pageNumber: $('#nextQuestion').attr('value')
         },
         success: function(data){
             data.duration = parseInt(data.duration)
-            loadQuestions(data.questions,data.startTime,data.duration)
+            loadQuestions(data.questions,data.startTime,data.duration,data.examName)
         },
         error: function(err){
             console.log(err)
@@ -65,13 +68,13 @@ $(document).on('click','#submitAnswer',function(){
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
     let examCode = $(this).parent().parent().parent().parent().children().children().children().children().attr('id')
     let radioValue = $(`input[name=${questionId}]:checked`).val()
-    $.ajax('http://localhost:9000/test',{
+    $.ajax('http://localhost:3000/test',{
         type: 'POST',
         dataType: 'JSON',
         //In real student ID would be fetched from token
-        // headers:{
-        //     studentId: '5db3bcf0c5c7e513cc5c85d9'
-        // },
+        headers:{
+            token: localStorage.getItem('token')
+        },
         data:{
             code: examCode,
             checkedOption: radioValue,
@@ -92,19 +95,18 @@ $(document).on('click','#nextQuestion',function(){
     if( $('#nextQuestion').attr('value')!= 0){
         $('#previousQuestion').removeAttr("disabled");
     }
-    
-    $.ajax('http://localhost:9000/test',{
+    $.ajax('http://localhost:3000/test',{
         type:'GET',
         dataType: 'JSON',
         headers: {
-            code: localStorage.getItem('code'),
-            studentId: '5db3bcf0c5c7e513cc5c85d9'
+            examCode: localStorage.getItem('examCode'),
+            token: localStorage.getItem('token')
         },
         data:{
             pageNumber: $('#nextQuestion').attr('value')
         },
         success: function(data){
-            loadQuestions(data.questions)
+            loadQuestions(data.questions,data.startTime,data.duration)
             if(data.lastQuestionStatus === true){
                 $('#nextQuestion').attr('disabled',true)
             }
@@ -121,12 +123,12 @@ $(document).on('click','#previousQuestion',function(){
     if(pageNumber == 0){
         $('#previousQuestion').attr({'value':0,'disabled':true})
     }
-    $.ajax('http://localhost:9000/test',{
+    $.ajax('http://localhost:3000/test',{
         type:'GET',
         dataType: 'JSON',
         headers: {
-            code: localStorage.getItem('code'),
-            studentId: '5db3bcf0c5c7e513cc5c85d9'
+            examCode: localStorage.getItem('examCode'),
+            token: localStorage.getItem('token')
         },
         data:{
             pageNumber: pageNumber
@@ -135,7 +137,7 @@ $(document).on('click','#previousQuestion',function(){
             if(data.lastQuestionStatus === false){
                 $('#nextQuestion').removeAttr('disabled')
             }
-            loadQuestions(data.questions)
+            loadQuestions(data.questions,data.startTime,data.duration)
         },
         error: function(err){
             console.log(err)

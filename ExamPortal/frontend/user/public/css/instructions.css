@@ -1,5 +1,4 @@
 li {
-    margin-left: 50px;
     font-weight: 500;
     }
     
@@ -40,11 +39,10 @@ li {
 
   }
   .flex{
-    margin-top: 300px;
+    margin-top: 100px;
     display: flex;
     /* margin: auto; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-    width: 40%;
     border-radius: 10px;
     background-color: white;
   }
@@ -60,4 +58,8 @@ li {
   .instructions{
       color: #555555;
       font-size: 20px;
+  }
+
+  ul{
+      padding-left:4px;
   }

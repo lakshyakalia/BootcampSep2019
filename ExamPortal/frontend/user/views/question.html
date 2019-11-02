@@ -5,29 +5,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Question</title>
-    <link rel="stylesheet" href="question.css">
+    <link rel="stylesheet" href="../public/css/question.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-right">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Test Portal</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <span class="username-text">Username</span>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
-        </form>
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: black;">
+        <img src="../public/assets/cybergrouplogo.png" class="logo">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Educational Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
+            </ul>
+        </div>
     </nav>
-    <div class="container-fluid mt-4">
+    <div class="container-fluid" style="margin-top:100px;">
         <div class="row">
             <div class="col-md-8 col-sm-12">
-                <div class="card">
+                <div class="card question-border">
                     <div class="card-header">
                         <h3>MCQ Test</h3>
                     </div>
@@ -40,15 +46,15 @@
                         <p>Time <span id="showTime"></span></p>
                     </div>
                     <div class="test">
-                        <p>Test Name <span class="showTest">ABC Test</span></p>
+                        <p>Test Name <span class="showTest"></span></p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="end">
-            <button type="button" class="btn btn-info btn-lg" id="previousQuestion">Previous</button>
-            <button type="button" class="btn btn-success btn-lg" id="nextQuestion">Next</button>
-            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">End Test</button>
+            <button type="button" class="btn btn-outline-info btn-lg" id="previousQuestion">Previous</button>
+            <button type="button" class="btn btn-outline-success btn-lg" id="nextQuestion">Next</button>
+            <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#myModal">End Test</button>
         </div>
     </div>
     <div class="modal" id="myModal">
@@ -78,19 +84,19 @@
                         <p id="{{ examCode }}"><b>Ques - </b>{{ qText }}</p>
                         <label class="form-check-label">
                             <input type="radio" class="form-check-radio" name="{{ _id }}" value="1">
-                            <span>{{ option1 }}</span>
+                            <span class="text-font">{{ option1 }}</span>
                         </label>
                         <label class="form-check-label">
                             <input type="radio" class="form-check-radio" name="{{ _id }}" value="2">
-                            <span>{{ option2 }}</span>
+                            <span class="text-font">{{ option2 }}</span>
                         </label>
                         <label class="form-check-label">
                             <input type="radio" class="form-check-radio" name="{{ _id }}" value="3">
-                            <span>{{ option3 }}</span>
+                            <span class="text-font">{{ option3 }}</span>
                         </label>
                         <label class="form-check-label">
                             <input type="radio" class="form-check-radio" name="{{ _id }}" value="4">
-                            <span>{{ option4 }}</span>
+                            <span class="text-font">{{ option4 }}</span>
                         </label>
                     </div>
                </div>
@@ -98,8 +104,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="button-group">
-                        <button type="button" class="btn btn-danger  btn-lg" id="resetRadio">Reset</button>
-                        <button type="button" class="btn btn-success btn-lg" id="submitAnswer">Submit</button>
+                        <button type="button" class="btn btn-outline-danger  btn-lg" id="resetRadio">Reset</button>
+                        <button type="button" class="btn btn-outline-success btn-lg" id="submitAnswer">Submit</button>
                     </div>
                 </div>
             </div>
@@ -119,7 +125,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"
         integrity="sha256-I5ZXO8KcMnqNkrXU7baGig70nATYjNDnxxA2d40PcR8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
-    <script src="question.js"></script>
+    <script src="../public/js/question.js"></script>
 </body>
 
 </html>
