@@ -5,6 +5,7 @@ const examDetails = (req,res)=>{
     examController.examDetails(req,res)
 }
 const userRecord =(req,res)=>{
+    debugger
     const result =userController.userRecord(req,res)
     return result;
 }

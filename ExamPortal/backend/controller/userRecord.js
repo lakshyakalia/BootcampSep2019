@@ -10,21 +10,26 @@ function decodeToken(req){
   }
 const userRecord = async(req,res)=>{
     try{
+        const existUser =await user.findOne({email:req.body.email});
+        debugger
+        if(existUser)
+        {
+            return("user Exist")
+        }
+        else{
+
+        
         const userInfo =req.body;
         var myPlaintesxtPassword= userInfo.password;    
         var salt = bcrypt.genSaltSync(10);
         var hash = bcrypt.hashSync(myPlaintesxtPassword,salt)
         userInfo.password=hash;
-        const userExit =await userDetails(req);
-        if(userExit.length==0)
         {
             user.create(userInfo)
             return ({"status":"200","message":"user registered"})
+      
         }
-        else{
-            return("user already exsit")
         }
-    
 } catch (error) {
     console.log(error)
    return({ error: error })
@@ -58,7 +63,7 @@ catch(error)
 }
 const fetchData = async (req,res)=>{
     const data = await user.find();
-    res.send(data)
+    return data
 }
 module.exports={
     userRecord,

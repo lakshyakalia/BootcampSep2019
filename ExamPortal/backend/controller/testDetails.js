@@ -3,7 +3,7 @@ const {examDetais} =require('../models/examDetail')
 const testDetails= async(req,res)=>{
     try{
         debugger
-        const query=await user.findOne({email:req.params.id})
+        const query=await examDetais.findOne(req.body._id)
         //console.log(query)
            return query;
         }
@@ -15,7 +15,8 @@ const testDetails= async(req,res)=>{
     }
 const facultyDel= async(req,res)=>{
     try{
-    const query=await user.deleteOne({email:req.params.id})
+        debugger
+    const query=await user.findByIdAndDelete(req.body._id)
     
     return("User deleted")
     }

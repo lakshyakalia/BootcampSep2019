@@ -16,6 +16,7 @@ module.exports = () => {
 	})
 
 	app.post('/signup', async (req, res) => {
+		debugger
 		const result =await Users.userRecord(req,res)
 		 res.send( result)
 	})

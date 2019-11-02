@@ -32,8 +32,8 @@ $(document).ready(function () {
 
   $(document).on('click', '.deleteButton', function () {
     let id = $(this).attr('id')
-    //console.log(id);
-    $.ajax("http://127.0.0.1:3000/examiner", {
+    console.log(id);
+    $.ajax("http://127.0.0.1:3000/examiner/:id", {
       type: "DELETE",
       dataType: "json",
       contentType: "application/json",
