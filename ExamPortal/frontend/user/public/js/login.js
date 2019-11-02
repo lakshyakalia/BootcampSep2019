@@ -11,7 +11,14 @@ $(document).on('click', '#loginButton', function () {
         },
         success: function (data) {
             localStorage.setItem('token', data.token)
-            $(location).attr('href', '../views/accessKey.html')
+            //here i have used accountType to redirect to respective page
+            if ( data.accountType == "Examiner")
+                $(location).attr('href', '/exminer/views/examiner.html')
+             else if ( data.accountType == "Student")
+                $(location).attr('href', '/user/views/accessKey.html')
+             else{
+                $(location).attr('href', '/admin/views/adminHome.html')
+             }
         },
         error: function (error) {
             console.log(error)
