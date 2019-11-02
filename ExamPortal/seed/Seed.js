@@ -91,54 +91,72 @@ const answerDetails = [
 
 const questionDetails = [
     {
-        qHeading: "MCQ",
-        qText: "What is",
-        qNo: 1,
-        ans: 1,
+        qText: "The physical devices of a computer ",
+        answer: 3,
         options:{
-            op1: "abc",
-            op2: "cde",
-            op3: "fgh",
-            op4: "ijk"
+            option1: "Software",
+            option2: "Package",
+            option3: "Hardware",
+            option4: "System Software"
         },
         weightage: 1,
         createdBy:'himan',
-        modifiedBy:"biren",
         examCode: 1199
         
     },
     {
-        qHeading: "MCQ",
-        qText: "What is",
-        qNo: 2,
-        ans: 3,
+        qText: " Which of the following is designed to control the operations of a computer?",
+        answer: 2,
         options:{
-            op1: "abc",
-            op2: "cde",
-            op3: "fgh",
-            op4: "ijk"
+            option1: "Application Software",
+            option2: "System Software",
+            option3: "Utility Software",
+            option4: "User"
         },
         weightage: 1,
         createdBy:'himan',
-        modifiedBy:"biren",
         examCode: 1199
     },
     {
-        qHeading: "MCQ",
-        qText: "What is",
-        qNo: 3,
-        ans: 4,
+        qText: "Which of the following is not an example of system software?",
+        answer: 4,
         options:{
-            op1: "abc",
-            op2: "cde",
-            op3: "fgh",
-            op4: "ijk"
+            option1: "Language Translator",
+            option2: "Utility Software",
+            option3: "Communication Software",
+            option4: "Word Processors"
         },
         weightage: 1,
         createdBy:'himan',
-        modifiedBy:"biren",
+        examCode: 1199
+    },
+    {
+        qText: "What is the full form of RMI?",
+        answer: 4,
+        options:{
+            option1: "Remote Memory Installation",
+            option2: "Remote Memory Invocation",
+            option3: "Remote Method Installation",
+            option4: "Remote Method Invocation"
+        },
+        weightage: 2,
+        createdBy:'himan',
+        examCode: 1199
+    },
+    {
+        qText: "What is Scheduling?",
+        answer: 1,
+        options:{
+            option1: "allowing a job to use the processor",
+            option2: "making proper use of processor",
+            option3: "all of the mentioned",
+            option4: "none of the mentioned"
+        },
+        weightage: 3,
+        createdBy:'himan',
         examCode: 1199
     }
+    
 ]
 
 const examDetails = [
@@ -148,7 +166,7 @@ const examDetails = [
         examinerId: 1638,
         instructions: "All questions are neccessary to attempt",
         examDuration: "90min",
-        testStartTime: "10:15pm"
+        testStartTime: "27-10-2019 09:51:00"
     },
     {
         examName: "ME",
@@ -169,22 +187,22 @@ const examDetails = [
 ]
 
 
-for(let i=0;i<users.length;i++){
-    let data = new user(users[i])
-    data.save()
-}
+// for(let i=0;i<users.length;i++){
+//     let data = new user(users[i])
+//     data.save()
+// }
 
-for(let i=0;i<answerDetails.length;i++){
-    let data = new test(answerDetails[i])
-    data.save()
-}
+// for(let i=0;i<answerDetails.length;i++){
+//     let data = new test(answerDetails[i])
+//     data.save()
+// }
 
 for(let i=0;i<questionDetails.length;i++){
     let data = new questionDetail(questionDetails[i])
     data.save()
 }
 
-for(let i=0;i<examDetails.length;i++){
-    let data = new examDetail(examDetails[i])
-    data.save()
-}
+// for(let i=0;i<examDetails.length;i++){
+//     let data = new examDetail(examDetails[i])
+//     data.save()
+// }
