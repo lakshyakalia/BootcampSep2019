@@ -1,4 +1,4 @@
-const user = require ('../Models/userRecord')
+const user = require ('../models/userRecord')
 const {SECRET} = require('../config/config')
 const jwt = require('jsonwebtoken');
 

@@ -1,6 +1,6 @@
-const { questionDetail } = require('../Models/question')
-const {  test } = require('../Models/candidateAnswer')
-const { examDetail } = require('../Models/examDetail')
+const { questionDetail } = require('../models/question')
+const {  test } = require('../models/candidateAnswer')
+const { examDetail } = require('../models/examDetail')
 
 const answerObject = (body,headers,weightage,status)=>{
     weightage = parseInt(weightage)
@@ -47,7 +47,7 @@ const saveCandidateAnswers = async(req,res)=>{
             let updatedScore = existingScore.totalScore+checkAnswer.weightage
             let updateScoreStatus = await test.findOneAndUpdate(
                 {$and:[{candidateId:req.headers.studentid},{testCode:req.body.code}]},
-                {   
+                {
                     $push: {answers:{answerSubmitted: req.body.checkedOption,questionId: req.body.qId, correctStatus: true}},
                     $set:{totalScore:updatedScore}
                 }

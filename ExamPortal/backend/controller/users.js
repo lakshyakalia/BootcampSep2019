@@ -34,7 +34,7 @@ const getexamDetail = (req,res)=>{
 }
 
 const getQuestionDetail = (req,res)=>{
-    //console.log("hello1")
+    console.log("hello1 ",req.params.id)
     questionDetail.getQuestionDetails(req,res)
 }
 

@@ -1,4 +1,4 @@
-const examDetail = require('../Models/examDetail')
+const examDetail = require('../models/examDetail')
 // const  exam  = require('../models/examDetail')
 
 const examDetails = async(req, res) => {

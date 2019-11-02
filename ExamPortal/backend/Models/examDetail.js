@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-   
+
 const Schema = mongoose.Schema
 
 const exam = new Schema({
@@ -10,5 +10,5 @@ const exam = new Schema({
     examDuration: String,
     examStartTime: String,
 })
- 
+
 module.exports = mongoose.model('exam', exam)

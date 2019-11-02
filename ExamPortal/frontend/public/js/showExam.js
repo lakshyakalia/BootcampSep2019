@@ -1,16 +1,19 @@
 
 function showQuestion(id){
-    // let testCode = $('#'+id).parent().prev().prev().find('p').html()
-    console.log(id)
+    // eid = $('#'+id).parent().parent().attr('id')
+    let examCode = $('#'+id).parent().prev().prev().prev().find('p').html()
+    console.log(examCode)
     let mainId = $('#'+id).parent().parent().parent().parent().attr('id')
     console.log(mainId)
+    let url = "http://localhost:3000/exam/question/"+encodeURIComponent(examCode)
     $('#'+mainId).hide()
-    
-    $(document).ready(()=>{
-        $.ajax("http://localhost:3000/exam/question", {
+        $.ajax(url, {
             type: 'GET',
             dataType: 'json',
-            contentType: "application/json",
+            contentType: "application/json;charset=utf-8",
+        //    data: JSON.stringify ({
+        //         "examCode":examCode
+        //    }),
             success: function(data) {
                 $.each(data, (index, item) => {
                     let indexTemplate = $("#index-template").html();
@@ -25,7 +28,6 @@ function showQuestion(id){
                console.log(error)
             }
         })
-    })
 }
 function editQuestion(id) {
 //load template to edit question

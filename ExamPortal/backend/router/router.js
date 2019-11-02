@@ -68,7 +68,8 @@ module.exports = () => {
             Users.question(req,res)
         })
         //examiner will views questions 
-    app.get('/exam/question', (req, res) => {
+    app.get('/exam/question/:id', (req, res) => {
+        console.log(req.params.id)
             Users.getQuestionDetail(req, res)
         })
         //examiner will edit questions
