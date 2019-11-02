@@ -3,21 +3,6 @@ const { SECRET } = require('../config/config')
 const { Users } = require("../controller");
 const bcrypt = require('bcrypt')
 
-// async function matchCredentials(req, res) {
-// 	const user = await Users.userDetails(req, res)
-
-// 	// if (user.length == 0) { return "Do sign up" }
-// 	if(user == null) { return "Do sign up"}
-// 	else if (user[0].email == req.body.email) {
-// 		console.log("------matchcredentials")
-// 		return "matched";
-// 	}
-// 	else {
-// 		console.log("create user");
-// 		return "Do sign up"
-// 	}
-// }
-
 async function matchCredentials(req,res){
 	const user = await Users.userDetails(req,res)
 
@@ -26,18 +11,6 @@ async function matchCredentials(req,res){
 		return "matched"
 	}
 }
-
-// async function comparePassword(myPlaintextPassword, req) {
-// 	const user = await Users.userDetails(req);
-// 	const hash = user[0].password;
-// 	if (bcrypt.compareSync(myPlaintextPassword, hash)) {
-// 		// Passwords match
-// 		return "1";
-// 	} else {
-// 		// Passwords don't match
-// 		return "0"
-// 	}
-// }
 
 async function comparePassword(myPlaintextPassword,req){
 	const user = await Users.userDetails(req)
