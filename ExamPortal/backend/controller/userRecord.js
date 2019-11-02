@@ -55,7 +55,7 @@ const userDetails = async (req,res)=>{
     }
 }
 
-const facultyUpd = async (req, res) => {
+const examinerUpd = async (req, res) => {
     try {
         const body = req.body
         debugger
@@ -79,5 +79,5 @@ module.exports = {
     userDetails,
     decodeToken,
     fetchData,
-    facultyUpd
+    examinerUpd
 }
