@@ -119,7 +119,7 @@ const questionDetails = [
     },
     {
         qText: "Which of the following is not an example of system software?",
-        ans: 4,
+        answer: 4,
         options:{
             option1: "Language Translator",
             option2: "Utility Software",
@@ -132,7 +132,7 @@ const questionDetails = [
     },
     {
         qText: "What is the full form of RMI?",
-        ans: 4,
+        answer: 4,
         options:{
             option1: "Remote Memory Installation",
             option2: "Remote Memory Invocation",
@@ -145,7 +145,7 @@ const questionDetails = [
     },
     {
         qText: "What is Scheduling?",
-        ans: 1,
+        answer: 1,
         options:{
             option1: "allowing a job to use the processor",
             option2: "making proper use of processor",

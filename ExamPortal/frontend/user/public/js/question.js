@@ -7,7 +7,7 @@ function loadQuestions(data,startTime,duration, examName){
     for(i=0;i<data.length;i++){
         const html = Mustache.render(questionTemplate,{questions:data[i]})
         op.insertAdjacentHTML("beforeend",html)
-        // showPreviousTicks()
+        showPreviousTicks()
     }
 }
 
@@ -32,7 +32,10 @@ function setTimeForTest(time,duration){
 function showPreviousTicks(){
     let keys = Object.keys(localStorage)
     for(let i=0;i<keys.length;i++){
-        $(`input[name=${keys[i]}][value=${localStorage.getItem(keys[i])}]`).prop('checked',true)
+        if(keys[i].length > 20){
+            let value = localStorage.getItem(keys[i])
+            $(`input[name=${keys[i]}][value=${value}]`).prop('checked',true)
+        }
     }
 }
 
