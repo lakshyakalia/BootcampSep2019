@@ -1,3 +1,10 @@
+$(document).ready(function(){
+    const tok =localStorage.getItem('token');
+    if(tok == null)
+    {
+      location.replace("../../index.html")
+    }
+})
 function showEdit() {
     document.getElementById('showEditDiv').style.display = 'block';
 

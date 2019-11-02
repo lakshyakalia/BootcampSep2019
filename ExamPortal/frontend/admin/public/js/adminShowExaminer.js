@@ -8,6 +8,11 @@ function loadSetupExaminerPage(data){
 
 
 $(document).ready(function () {
+  const tok =localStorage.getItem('token');
+  if(tok == null)
+  {
+    location.replace("../../index.html")
+  }
   $.ajax("http://127.0.0.1:3000/examiner", {
     type: "GET",
     dataType: "json",

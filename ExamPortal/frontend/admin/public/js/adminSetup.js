@@ -1,4 +1,10 @@
 $(document).ready(function(){
+  const token =localStorage.getItem('token');
+  if(token == null)
+  {
+    location.replace("../../index.html")
+  }
+  
     $("#submit").click(function(e){
         e.preventDefault();
         var email=document.getElementById("email").value;

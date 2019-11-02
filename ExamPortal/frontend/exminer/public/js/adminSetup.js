@@ -1,4 +1,9 @@
 $(document).ready(function(){
+  const tok =localStorage.getItem('token');
+  if(tok == null)
+  {
+    location.replace("../../index.html")
+  }
     $("#submit").click(function(e){
         e.preventDefault();
         var email=document.getElementById("email").value;

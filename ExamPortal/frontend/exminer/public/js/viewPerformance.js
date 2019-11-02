@@ -42,7 +42,11 @@ var students_details = [{
 ]
 
 function showStudents() {
-
+    const tok =localStorage.getItem('token');
+    if(tok == null)
+    {
+      location.replace("../../index.html")
+    }
 
     $.ajax("http://localhost:3000/exam/performance", {
         type: 'GET',

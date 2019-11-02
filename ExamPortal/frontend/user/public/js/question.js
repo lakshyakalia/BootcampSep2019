@@ -40,6 +40,12 @@ function showPreviousTicks(){
 }
 
 $(document).ready(function(){
+    const tok =localStorage.getItem('token');
+
+    if(tok == null)
+    {
+      location.replace("../../index.html")
+    }
     // In real, exam code would be stored when user login to test sucessfully
     // localStorage.setItem('code','1199')
     $('#nextQuestion').attr('value',0)
