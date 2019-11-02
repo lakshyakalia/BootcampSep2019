@@ -31,7 +31,7 @@ module.exports = () => {
 	})
 
 	app.patch('/examiner',async(req,res)=>{
-		debugger
+	
 		const result =await Users.facultyUpd(req,res)
 		res.send(result)
 	})
@@ -49,13 +49,13 @@ module.exports = () => {
 	//admin will delete examiner using id of examiner
 	app.delete('/examiner/:id', (req, res) => {
 		console.log("----inside-----")
-		debugger
+		
 		const result =Users.facultyDel(req,res)
 		res.send(result)
 	})
 	//admin will view test created by each examiner using their id
 	app.get('/examiner/:id',async  (req, res) => {
-		debugger
+		
 		const result= await Users.testDetails(req,res)
 		res.send(result);
 	})
