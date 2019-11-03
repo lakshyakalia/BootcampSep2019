@@ -31,6 +31,7 @@ function editDetails() {
     var name = document.getElementById('loggedInName').value
     var phone = document.getElementById('loggedInPhone').value
     var college = document.getElementById('loggedInCollege').value
+    var pass = document.getElementById('loggedInPassword').value
     $.ajax("http://localhost:3000/examiner", {
         type: 'PATCH',
         dataType: 'JSON',
@@ -41,8 +42,8 @@ function editDetails() {
             "email": email,
             "name": name,
             "phoneNumber": phone,
-            "collegeName": college
-
+            "collegeName": college,
+            "password": pass
         }),
         success: function(data) {
 
