@@ -1,4 +1,4 @@
-const { questionDetail } = require('../models/question')
+const  questionDetail  = require('../models/question')
 const {  test } = require('../models/candidateAnswer')
 const { examDetail } = require('../models/examDetail')
 
@@ -97,9 +97,41 @@ const checkAccessKey = async(req,res)=>{
     }
     else return res.status(400).send(status)
 }
+const questions = async (req, res) => {
+    try {
+        let questionInformation = new questionDetail(req.body)
+        await questionInformation.save()
+        res.status(200).send({ msg: 'question saved successful' })
+    }
+    catch (error) {
+        res.send({ error })
+    }
+}
 
+const getQuestionDetails = async (req,res) =>{
+    try{
+     let values= await questionDetail.find({examCode:decodeURIComponent(req.params.id)});
+     res.status(200).send( values)
+    }
+    catch(error){
+     console.log(error)
+    }
+}
+
+const removeByExamCode = async(code)=>{
+    try{
+        await questionDetail.remove({examCode:code})
+        return
+    }catch(error){
+        console.log(error)
+        return
+    }
+}
 module.exports = {
     testQuestions,
     saveCandidateAnswers,
-    checkAccessKey
+    checkAccessKey,
+    questions,
+    getQuestionDetails,
+    removeByExamCode
 }

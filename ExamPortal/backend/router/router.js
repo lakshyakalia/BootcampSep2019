@@ -33,14 +33,19 @@ module.exports = () => {
         //examiner will view exam
     app.get('/exam', (req, res) => {
             Users.viewExamDetail(req, res)
+		})
+	app.get('/exam/:id', (req, res) => {
+            Users.fetchExamDetail(req,res)
         })
         //examiner will edit test details
-    app.patch('/exam', (req, res) => {
-            res.send({ "data": req.body })
+    app.patch('/exam/:id', (req, res) => {
+		Users.editExam(req,res)            
         })
-        //examiner will delete test using test id
+        //examiner will delete exam using test id
     app.delete('/exam/:id', (req, res) => {
-            res.send({ "data": req.body })
+		// console.log('delete ',req.params.id)
+		Users.removeExam(req,res)
+            // res.send({ "data": req.body })
         })
         //examiner will view performance of candidates
     app.get('/exam/performance', (req, res) => {
@@ -60,7 +65,12 @@ module.exports = () => {
         //examiner will edit questions
     app.patch('/exam/question/:id', (req, res) => {
         res.send({ "data": req.body })
-    })
+	})
+	//examiner will delete particular question
+	app.delete('/exam/question/:id', (req, res) => {
+		
+	})
+
 	//candidates will view quesions using accesskey
 	app.get('/test', middleware, async (req, res) => {
 		const response = await Ques.testQuestions(req, res)
@@ -107,54 +117,50 @@ module.exports = () => {
 		res.send(result);
 	})
 
-	//examiner will create test details
-	app.post('/exam', (req, res) => {
-		Users.examDetail(req, res)
-	})
+	// //examiner will create test details
+	// app.post('/exam', (req, res) => {
+	// 	Users.examDetail(req, res)
+	// })
 
-	//examiner will view test
-	app.get('/exam', async (req, res) => {
-		const result = await Users.userDetails(req, res)
-		res.send(result)
-	})
+	// //examiner will view test
+	// app.get('/exam', async (req, res) => {
+	// 	const result = await Users.userDetails(req, res)
+	// 	res.send(result)
+	// })
 
-	//examiner will edit test details
-	app.patch('/exam', (req, res) => {
-		res.send({ "data": req.body })
-	})
+	// //examiner will edit test details
+	// app.patch('/exam', (req, res) => {
+	// 	res.send({ "data": req.body })
+	// })
 
-	//examiner will delete test using test id
-	app.delete('/exam/:id', (req, res) => {
-		res.send({ "data": req.body })
-	})
+	// //examiner will delete test using test id
+	// app.delete('/exam/:id', (req, res) => {
+	// 	res.send({ "data": req.body })
+	// })
 
 	//examiner will view performance of candidates
-	app.get('/exam/performance', (req, res) => {
-		res.send("Hello Word")
-	})
+	// app.get('/exam/performance', (req, res) => {
+	// 	res.send("Hello Word")
+	// })
 
 	//examiner will write tests questions
-	app.post('/exam/question', (req, res) => {
-		// res.send({"data":req.body})
-		Users.question(req, res)
-	})
-	//examiner will views questions 
-	app.get('/exam/question', (req, res) => {
-		res.send("hello world")
-	})
-	//examiner will edit questions
-	app.patch('/exam/question/:id', (req, res) => {
-		res.send({ "data": req.body })
-	})
+	// app.post('/exam/question', (req, res) => {
+	// 	// res.send({"data":req.body})
+	// 	Users.question(req, res)
+	// })
+	// //examiner will views questions 
+	// app.get('/exam/question', (req, res) => {
+	// 	res.send("hello world")
+	// })
+	// //examiner will edit questions
+	// app.patch('/exam/question/:id', (req, res) => {
+	// 	res.send({ "data": req.body })
+	// })
 
-    //examiner will delete question by id
-    app.delete('/exam/question/:id', (req, res) => {
-        res.send({ "data": req.body })
-    })
-
-	app.delete('/exam/question/:id', (req, res) => {
-		Users.question(req, res)
-	})
+    // //examiner will delete question by id
+    // app.delete('/exam/question/:id', (req, res) => {
+    //     res.send({ "data": req.body })
+    // })
 
 	return app
 }
