@@ -40,6 +40,11 @@ var students_details = [{
         percentage: '80%'
     }
 ]
+function logout()
+
+{
+    localStorage.removeItem('token');
+}
 
 function showStudents() {
     const tok =localStorage.getItem('token');
