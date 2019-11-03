@@ -43,7 +43,7 @@ var students_details = [{
 
 function showStudents() {
 
-    $.ajax("http://localhost:3000/exam/performance/", {
+    $.ajax("http://localhost:3000/performance", {
         type: 'GET',
         dataType: 'JSON',
         success: function(data) {

@@ -52,9 +52,11 @@ module.exports = () => {
             // res.send({ "data": req.body })
     })
 
-    //examiner will view performance of candidates
-    app.get('/exam/performance', async(req, res) => {
-        const response = await Users.studentPerformance(req, res)
+    //view performance of students
+    app.get('/performance', (req, res) => {
+
+        const response = Users.studentPerformance(req, res)
+
         return response
     })
 
@@ -80,10 +82,10 @@ module.exports = () => {
     })
 
     app.post('/test/assessKey', async(req, res) => {
-        const response = await Ques.checkAccessKey(req, res)
-        return response
-    })
-
+            const response = await Ques.checkAccessKey(req, res)
+            return response
+        })
+        //update details of examiners
     app.patch('/examiner', async(req, res) => {
 
         const result = await Users.facultyUpd(req, res)

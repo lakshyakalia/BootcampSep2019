@@ -27,8 +27,11 @@ const examDetail = (req, res) => {
     examController.examDetails(req, res)
 }
 
-const studentPerformance = async(req, res) => {
-    await studentPerformanceController.viewPerformance(req, res)
+const studentPerformance = (req, res) => {
+
+    const response = studentPerformanceController.viewPerformance(req, res)
+    return response
+
 }
 
 const viewExamDetail = (req, res) => {
