@@ -1,5 +1,5 @@
 const examController = require('./examDetailController')
-const questionDetail = require('./questionDetail')
+const questionDetail = require('./questionController')
 const studentPerformanceController = require('./studentPerformance')
 const userController = require('./userRecord')
 const bcryptjs = require('bcryptjs')
@@ -35,10 +35,18 @@ const viewExamDetail = (req, res) => {
     //console.log("hello1")
     examController.viewExamDetail(req, res)
 }
-
-const getQuestionDetail = (req, res) => {
-    console.log("hello1 ", req.params.id)
-    questionDetail.getQuestionDetails(req, res)
+const fetchExamDetail = (req,res)=>{
+    examController.fetchExamDetail(req,res)
+}
+const removeExam = (req,res)=>{
+    examController.removeExam(req,res)
+}
+const editExam = (req,res)=>{
+    examController.editExam(req,res)
+}
+const getQuestionDetail = (req,res)=>{
+    // console.log("hello1 ",req.params.id)
+    questionDetail.getQuestionDetails(req,res)
 }
 
 const userDetails = (req, res) => {
@@ -68,7 +76,6 @@ const facultyUpd = (req, res) => {
 }
 
 module.exports = {
-    examDetail,
     userDetails,
     testDetails,
     facultyDel,
@@ -80,5 +87,8 @@ module.exports = {
     viewExamDetail,
     getQuestionDetail,
     userRecord,
-    loggedInDetails
+    loggedInDetails,
+    removeExam,
+    fetchExamDetail,
+    editExam
 }
