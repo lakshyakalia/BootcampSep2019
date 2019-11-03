@@ -4,15 +4,20 @@ const studentPerformanceController = require('./studentPerformance')
 const userController = require('./userRecord')
 const bcryptjs = require('bcryptjs')
 
-const userRecord = async(req,res)=>{
+const userRecord = async(req, res) => {
     let response
-    var hash = bcryptjs.hashSync(req.body.password,8)
+    var hash = bcryptjs.hashSync(req.body.password, 8)
     console.log(hash)
     req.body.password = hash
-    response = await  userController.userRecord(req,res)
+    response = await userController.userRecord(req, res)
     return response
 }
 const testInfo = require('./testDetails')
+
+const loggedInDetails = async(req, res) => {
+    const det = await userController.loggedInDetails(req, res)
+    return det
+}
 
 const question = (req, res) => {
     questionDetail.questions(req, res)
@@ -26,14 +31,14 @@ const studentPerformance = (req, res) => {
     studentPerformanceController.viewPerformance(req, res)
 }
 
-const viewExamDetail = (req,res)=>{
+const viewExamDetail = (req, res) => {
     //console.log("hello1")
-    examController.viewExamDetail(req,res)
+    examController.viewExamDetail(req, res)
 }
 
-const getQuestionDetail = (req,res)=>{
-    console.log("hello1 ",req.params.id)
-    questionDetail.getQuestionDetails(req,res)
+const getQuestionDetail = (req, res) => {
+    console.log("hello1 ", req.params.id)
+    questionDetail.getQuestionDetails(req, res)
 }
 
 const userDetails = (req, res) => {
@@ -73,5 +78,6 @@ module.exports = {
     question,
     viewExamDetail,
     getQuestionDetail,
-    userRecord
+    userRecord,
+    loggedInDetails
 }
