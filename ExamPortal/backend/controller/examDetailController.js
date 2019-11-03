@@ -1,9 +1,8 @@
-const examDetail = require('../Models/examDetail')
+const examDetail = require('../models/examDetail')
 // const  exam  = require('../models/examDetail')
 
 const examDetails = async(req, res) => {
     try {
-        // console.log()
         let examInformation = new examDetail(req.body)
         await examInformation.save()
         res.status(200).send({ msg: 'exam information saved successful' })
@@ -13,7 +12,7 @@ const examDetails = async(req, res) => {
     }
 }
 
-const getexamDetails = async (req,res) =>{
+const viewExamDetail = async (req,res) =>{
     try{
     let values= await examDetail.find()
      res.status(200).send( values)
@@ -21,9 +20,9 @@ const getexamDetails = async (req,res) =>{
     catch(error){
      console.log(error)
     }
-}  
+}
 
 module.exports = {
     examDetails,
-    getexamDetails
+    viewExamDetail
 }

@@ -25,5 +25,7 @@ const questionDetails = new Schema({
 	examCode: String,
 })
 
-module.exports = mongoose.model('question',questionDetails)
+const questionDetail = mongoose.model('question',questionDetails)
+
+module.exports = questionDetail
 
