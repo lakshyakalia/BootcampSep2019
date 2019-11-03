@@ -58,3 +58,8 @@ function showStudents() {
         error: function(error) {}
     })
 }
+
+function logout() {
+    localStorage.removeItem("token")
+    location.replace("../../index.html")
+}

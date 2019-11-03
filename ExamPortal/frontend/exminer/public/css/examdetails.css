@@ -1,25 +1,61 @@
 body {
-    margin-top:40px;
+    margin-top: 40px;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-.container{
+
+.container {
     margin: auto;
     width: 100%;
 }
+
+li {
+    margin-left: 50px;
+    font-weight: 500;
+}
+
+.below {
+    margin-top: 6%;
+}
+
+li:hover {
+    background-color: black;
+    border-radius: 6px;
+    transition-duration: 0.8s;
+    color: white;
+}
+
+.logo {
+    height: 42px;
+}
+
+a:hover {
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .stepwizard-step p {
     margin-top: 10px;
 }
+
 .stepwizard-row {
     display: table-row;
 }
+
 .stepwizard {
     display: table;
     width: 50%;
     position: relative;
 }
+
 .stepwizard-step button[disabled] {
     opacity: 1 !important;
     filter: alpha(opacity=100) !important;
 }
+
 .stepwizard-row:before {
     top: 14px;
     bottom: 0;
@@ -30,11 +66,13 @@ body {
     background-color: #ccc;
     /* z-order: 0; */
 }
+
 .stepwizard-step {
     display: table-cell;
     text-align: center;
     position: relative;
 }
+
 .btn-circle {
     width: 30px;
     height: 30px;

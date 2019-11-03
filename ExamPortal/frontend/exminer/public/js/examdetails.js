@@ -1,16 +1,16 @@
-var tempExamCode =''
-$(document).ready(function () {
+var tempExamCode = ''
+$(document).ready(function() {
     var navListItems = $('div.setup-panel div a'),
-            allWells = $('.setup-content'),
-            allNextBtn = $('.nextBtn');
-  
+        allWells = $('.setup-content'),
+        allNextBtn = $('.nextBtn');
+
     allWells.hide();
-  
-    navListItems.click(function (e) {
+
+    navListItems.click(function(e) {
         e.preventDefault();
         var $target = $($(this).attr('href')),
-                $item = $(this);
-  
+            $item = $(this);
+
         if (!$item.hasClass('disabled')) {
             navListItems.removeClass('btn-primary').addClass('btn-default');
             $item.addClass('btn-primary');
@@ -19,30 +19,30 @@ $(document).ready(function () {
             $target.find('input:eq(0)').focus();
         }
     });
-  
-    allNextBtn.click(function(){
+
+    allNextBtn.click(function() {
         var curStep = $(this).closest(".setup-content"),
             curStepBtn = curStep.attr("id"),
             nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
             curInputs = curStep.find("input[type='text'],input[type='url']"),
             isValid = true;
-  
+
         $(".form-group").removeClass("has-error");
-        for(var i=0; i<curInputs.length; i++){
-            if (!curInputs[i].validity.valid){
+        for (var i = 0; i < curInputs.length; i++) {
+            if (!curInputs[i].validity.valid) {
                 isValid = false;
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
             }
         }
-  
+
         if (isValid)
             nextStepWizard.removeAttr('disabled').trigger('click');
     });
-  
+
     $('div.setup-panel div a.btn-primary').trigger('click');
-  });
- 
-  $(document).ready(function() {
+});
+
+$(document).ready(function() {
     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
@@ -55,38 +55,38 @@ $(document).ready(function () {
         if (testName === "") {
             alert("Please enter test name");
         } else {
-            
-                testName = true;
-            }
+
+            testName = true;
+        }
 
         if (testCode === "") {
             alert("Please enter test code");
-        }  else {
-                testCode = true;
-            }
-    
+        } else {
+            testCode = true;
+        }
+
 
         if (testDuration === "") {
             alert("Please enter test duration");
-        }  else {
-                testDuration = true;
-            }
+        } else {
+            testDuration = true;
+        }
 
 
         if (testDate == "") {
             alert("Please enter your mobile number");
-        }  else {
-                testDate = true;
-            }
-        
+        } else {
+            testDate = true;
+        }
+
         if (testInstruction === "") {
             alert("Please enter test instruction");
-        }  else {
-                testInstruction = true;
-                }    
-    
+        } else {
+            testInstruction = true;
+        }
+
         if ((testName || testCode || testDate || testDuration || testInstruction) == true) {
-                tempExamCode= $('#addExamCode').val()
+            tempExamCode = $('#addExamCode').val()
             let examDetail = {
                 examName: $('#addExamName').val(),
                 examCode: $('#addExamCode').val(),
@@ -128,63 +128,63 @@ $(document).ready(function() {
         var option4 = document.getElementById("addtestOption4").value;
         var answer = document.getElementById("addtestAnswer").value;
         var weightage = document.getElementById("addtestWeightage").value;
-        
-        if ( question=== "") {
+
+        if (question === "") {
             alert("Please enter question");
         } else {
-            
+
             question = true;
-            }
+        }
 
         if (option1 === "") {
             alert("Please enter 1st option");
-        }  else {
-                option1 = true;
-            }
-    
+        } else {
+            option1 = true;
+        }
+
 
         if (option2 === "") {
             alert("Please enter 2nd option");
-        }  else {
-                option2 = true;
-            }
-            if (option3 === "") {
-                alert("Please enter 3rd option");
-            }  else {
-                    option3 = true;
-                }
-        
-    
-            if (option4 === "") {
-                alert("Please enter  4th");
-            }  else {
-                    option4 = true;
-                }
+        } else {
+            option2 = true;
+        }
+        if (option3 === "") {
+            alert("Please enter 3rd option");
+        } else {
+            option3 = true;
+        }
+
+
+        if (option4 === "") {
+            alert("Please enter  4th");
+        } else {
+            option4 = true;
+        }
 
         if (answer == "") {
             alert("Please enter correct option");
-        }  else {
-                answer = true;
-            }
-        
+        } else {
+            answer = true;
+        }
+
         if (weightage === "") {
             alert("Please enter weightage");
-        }  else {
-                weightage = true;
-                }    
-    
-        if ((question || option1 || option2 || option3 || option4 || answer ||weightage) == true) {
+        } else {
+            weightage = true;
+        }
+
+        if ((question || option1 || option2 || option3 || option4 || answer || weightage) == true) {
             let examDetail = {
                 questionText: $('#addtestQuestion').val(),
                 answer: $('#addtestAnswer').val(),
-                options :{
-                option1: $('#addtestOption1').val(),
-                option2: $('#addtestOption2').val(),
-                option3: $('#addtestOption3').val(),
-                option4: $('#addtestOption4').val(),
+                options: {
+                    option1: $('#addtestOption1').val(),
+                    option2: $('#addtestOption2').val(),
+                    option3: $('#addtestOption3').val(),
+                    option4: $('#addtestOption4').val(),
                 },
                 weightage: $('#addtestWeightage').val(),
-                examCode: tempExamCode 
+                examCode: tempExamCode
             }
             $.ajax("http://localhost:3000/exam/question", {
                 type: "POST",
@@ -204,3 +204,8 @@ $(document).ready(function() {
         }
     }
 })
+
+function logout() {
+    localStorage.removeItem("token")
+    location.replace("../../index.html")
+}
