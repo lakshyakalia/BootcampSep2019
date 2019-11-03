@@ -132,7 +132,7 @@ module.exports = () => {
     })
 
 	app.patch('/examiner', async (req, res) => {
-		const result = await Users.facultyUpd(req, res)
+		const result = await Users.examinerUpd(req,res)
 		res.send(result)
 	})
 
