@@ -53,8 +53,8 @@ module.exports = () => {
     })
 
     //examiner will view performance of candidates
-    app.get('/exam/performance', (req, res) => {
-        const response = Users.studentPerformance(req, res)
+    app.get('/exam/performance', async(req, res) => {
+        const response = await Users.studentPerformance(req, res)
         return response
     })
 
@@ -64,57 +64,7 @@ module.exports = () => {
         })
         //examiner will views questions 
     app.get('/exam/question/:id', (req, res) => {
-            Users.getQuestionDetail(req, res)
-        })
-        //examiner will edit questions
-    app.patch('/exam/question/:id', (req, res) => {
-            res.send({ "data": req.body })
-        })
-        //candidates will view quesions using accesskey
-    app.get('/test', middleware, async(req, res) => {
-        const response = await Ques.testQuestions(req, res)
-        return response
-    })
-
-    //post answers selected by candidates
-    app.post('/test', middleware, async(req, res) => {
-        const response = await Ques.saveCandidateAnswers(req, res)
-        return response
-    })
-
-    app.post('/test/assessKey', async(req, res) => {
-        const response = await Ques.checkAccessKey(req, res)
-        return response
-    })
-
-    app.patch('/examiner', async(req, res) => {
-
-        const result = await Users.facultyUpd(req, res)
-        res.send(result)
-    })
-
-    //admin will add examiner
-    app.post('/examiner', (req, res) => {
-        const response = adminDetail.adminDetails(req, res)
-        return response;
-    })
-
-    //admin will view examiner
-    app.get('/examiner', async(req, res) => {
-        const result = await Users.fetchData(req, res)
-        res.send(result);
-    })
-
-    //admin will delete examiner using id of examiner
-    app.delete('/examiner/:id', (req, res) => {
-        const result = Users.facultyDel(req, res)
-        res.send(result)
-    })
-
-    //admin will view test created by each examiner using their id
-    app.get('/examiner/:id', async(req, res) => {
-        const result = await Users.testDetails(req, res)
-        res.send(result);
+        Users.getQuestionDetail(req, res)
     })
 
     //candidates will view quesions using accesskey
@@ -135,6 +85,7 @@ module.exports = () => {
     })
 
     app.patch('/examiner', async(req, res) => {
+
         const result = await Users.facultyUpd(req, res)
         res.send(result)
     })
@@ -162,6 +113,5 @@ module.exports = () => {
         const result = await Users.testDetails(req, res)
         res.send(result);
     })
-
     return app
 }

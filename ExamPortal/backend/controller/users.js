@@ -27,26 +27,26 @@ const examDetail = (req, res) => {
     examController.examDetails(req, res)
 }
 
-const studentPerformance = (req, res) => {
-    studentPerformanceController.viewPerformance(req, res)
+const studentPerformance = async(req, res) => {
+    await studentPerformanceController.viewPerformance(req, res)
 }
 
 const viewExamDetail = (req, res) => {
     //console.log("hello1")
     examController.viewExamDetail(req, res)
 }
-const fetchExamDetail = (req,res)=>{
-    examController.fetchExamDetail(req,res)
+const fetchExamDetail = (req, res) => {
+    examController.fetchExamDetail(req, res)
 }
-const removeExam = (req,res)=>{
-    examController.removeExam(req,res)
+const removeExam = (req, res) => {
+    examController.removeExam(req, res)
 }
-const editExam = (req,res)=>{
-    examController.editExam(req,res)
+const editExam = (req, res) => {
+    examController.editExam(req, res)
 }
-const getQuestionDetail = (req,res)=>{
+const getQuestionDetail = (req, res) => {
     // console.log("hello1 ",req.params.id)
-    questionDetail.getQuestionDetails(req,res)
+    questionDetail.getQuestionDetails(req, res)
 }
 
 const userDetails = (req, res) => {
