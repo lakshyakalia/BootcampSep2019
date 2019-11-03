@@ -1,47 +1,53 @@
-const examDetailController= require('./examDetailController')
+const examDetailController = require('./examDetailController')
 const questionDetail = require('./questionDetail')
 const studentPerformanceController = require('./studentPerformance')
 const userController = require('./userRecord')
 const bcryptjs = require('bcryptjs')
 
-const userRecord = async(req,res)=>{
-    let body,response
-    var hash = bcryptjs.hashSync(req.body.password,8)
+const userRecord = async(req, res) => {
+    let body, response
+    var hash = bcryptjs.hashSync(req.body.password, 8)
     console.log(hash)
     req.body.password = hash
-    response = await  userController.userRecord(req,res)
+    response = await userController.userRecord(req, res)
     return response
 }
-
-const question = (req,res)=>{
-   
-    questionDetail.questions(req,res)
+const loggedInDetails = (req, res) => {
+    const det = userController.loggedIn(req, res)
+    return det
 }
 
-const examDetail = (req,res)=>{
-    
-    examDetailController.examDetails(req,res)
-}   
-  
+const question = (req, res) => {
+
+    questionDetail.questions(req, res)
+}
+
+const examDetail = (req, res) => {
+
+    examDetailController.examDetails(req, res)
+}
+
 const studentPerformance = (req, res) => {
-    //console.log("yes yes")
     studentPerformanceController.viewPerformance(req, res)
 }
 
-const getexamDetail = (req,res)=>{
+const getexamDetail = (req, res) => {
     //console.log("hello1")
-    examDetailController.getexamDetails(req,res)
+    examDetailController.getexamDetails(req, res)
 }
 
-const getQuestionDetail = (req,res)=>{
+const getQuestionDetail = (req, res) => {
     //console.log("hello1")
-    questionDetail.getQuestionDetails(req,res)
+    questionDetail.getQuestionDetails(req, res)
 }
 
-module.exports={
+
+module.exports = {
     examDetail,
     question,
     getexamDetail,
     getQuestionDetail,
-    userRecord
+    studentPerformance,
+    userRecord,
+    loggedInDetails
 }

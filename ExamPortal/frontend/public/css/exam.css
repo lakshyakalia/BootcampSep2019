@@ -50,8 +50,14 @@ h5 {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.8);
-    border-left: 5px solid rgba(0, 0, 255, 0.6);
+    border-left: 2px solid rgba(0, 0, 255, 0.6);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
     /* background-color: lightgrey; */
+}
+
+.content:hover {
+    border-left: 5px solid rgba(0, 0, 255, 0.6);
+    transition-duration: 0.18s;
 }
 
 button {
@@ -73,11 +79,12 @@ a {
 #question-Index a {
     font-size: 16px;
     display: block;
-    font-weight: 400;
+    font-weight: 200;
 }
 
 .question-div {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* border-top: 2px solid blue; */
     transition: 0.3s;
     margin: 5px;
     padding: 30px 50px;

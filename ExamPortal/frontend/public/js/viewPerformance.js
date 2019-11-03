@@ -48,7 +48,8 @@ function showStudents() {
         type: 'GET',
         dataType: 'JSON',
         success: function(data) {
-            // data = JSON.stringify(data)
+            data = JSON.stringify(data)
+            console.log(data)
             let indexTemplate = $("#view-student-performance").html();
             // $.each(data, (index, item) => {
             // console.log(item.name)

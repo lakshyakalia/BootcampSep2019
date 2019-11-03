@@ -11,6 +11,7 @@
     </head>
 
     <body>
+        <!-- nav-bar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <a class="navbar-brand" href="#">Online Test Portal</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +45,8 @@
                 </form>
             </div>
         </nav>
-        <h2 class="container display-4" style="margin-top: 70px;">Choose one of the options Below : </h2>
+        <h2 class="container display-4">Choose one of the options Below : </h2>
+        <!-- choose options div -->
         <div class="options-div">
             <div class="container container-1">
                 <button type="button" class="btn btn-success" onclick="location.reload();location.href='examdetails.html'">Create Test</button>
@@ -52,16 +54,19 @@
                 <button type="button" class="btn btn-danger" onclick="location.reload();location.href='viewPerformance.html'">View Performance of Students</button>
             </div>
         </div>
+        <!-- Edit details div -->
         <div>
             <div class="container-1 edit-details" id="showEditDiv">
                 <span class="edit-text"><a name='edit'>Edit Details : </a></span>
-                <input type="text" placeholder="Email : ">
-                <input type="text" placeholder="Name : ">
+                <input type="text" placeholder="Email : " id="loggedInEmail">
+                <input type="text" placeholder="Name : " id="loggedInName">>
                 <input type="text" placeholder="Password : ">
-                <input type="text" placeholder="Phone No : ">
+                <input type="text" placeholder="Phone No : " id="       ">>
                 <input type="text" placeholder="College Name : ">
-                <button class="btn btn-success" onclick="editDetails()">Update</button>
-                <button class="btn btn-primary back" onclick="hideEditDetails()">Back</button>
+                <div class="edit-div-btn">
+                    <button class="btn btn-success" onclick="editDetails()">Update</button>
+                    <button class="btn btn-primary" onclick="hideEditDetails()">Back</button>
+                </div>
             </div>
         </div>
 

@@ -26,13 +26,13 @@
    }
    
    .container-1 {
-       margin-top: 4%;
+       margin-top: 6%;
        width: 55%;
        background-color: rgba(255, 255, 255, 1);
        padding: 30px;
        padding-bottom: 40px;
        border-radius: 6px;
-       box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
        border-left: 2px solid rgba(75, 54, 192, 0.8);
    }
    
@@ -48,12 +48,12 @@
    
    body {
        background-color: #DAE0E6;
-       overflow-x: hidden;
+       overflow: hidden;
        font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
    }
    
    .display-4 {
-       margin-top: 40px;
+       margin-top: 80px;
        margin-left: 18%;
    }
    
@@ -71,8 +71,17 @@
        z-index: 1;
    }
    
+   .edit-div-btn button {
+       display: inline;
+   }
+   
+   .edit-div-btn {
+       margin-left: 37%;
+   }
+   
    .dropdown:hover .dropdown-content {
        display: block;
+       border-radius: 4px;
    }
    
    .edit-details {
@@ -106,10 +115,16 @@
    }
    
    .options-div {
-       padding-bottom: 200px;
+       padding-bottom: 100px;
+   }
+   
+    ::placeholder {
+       font-weight: 100;
+       color: rgba(0, 0, 0, 0.5);
    }
    
    .edit-text {
        font-size: 24px;
        margin-left: 14%;
+       font-weight: 100;
    }

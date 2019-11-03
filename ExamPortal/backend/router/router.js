@@ -39,8 +39,11 @@ module.exports = () => {
     app.get('/examiner/:id', (req, res) => {
         res.send("Hello Word")
     })
-
-    //examiner will create test details
+    app.get('/loggedIn', (req, res) => {
+            const response = Users.loggedInDetails(req, res)
+            return response
+        })
+        //examiner will create test details
     app.post('/exam', (req, res) => {
             Users.examDetail(req, res)
         })
@@ -58,14 +61,13 @@ module.exports = () => {
         })
         //examiner will view performance of candidates
     app.get('/exam/performance', (req, res) => {
-        console.log('yes')
         const response = Users.studentPerformance(req, res)
         return response
     })
 
     //examiner will write tests questions
     app.post('/exam/question', (req, res) => {
-            Users.question(req,res)
+            Users.question(req, res)
         })
         //examiner will views questions 
     app.get('/exam/question', (req, res) => {
