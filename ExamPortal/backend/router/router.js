@@ -36,9 +36,21 @@ module.exports = () => {
 		const result =await Users.facultyUpd(req,res)
 		res.send(result)
 	})
+	// admin update examiner info
+	app.patch('/examiner/:id',async(req,res)=>
+	{
+		console.log("----inside-----");
+		const result=await Users.updateUser(req,res);
+		res.send(result);
+	})
 	//admin will add examiner
 	app.post('/examiner', (req, res) => {
 		const response = adminDetail.adminDetails(req,res)
+		return response;
+	})
+	////////////////////////// admin login post ///////////////////////////////
+	app.post('/adminlogin',async(req,res)=>{
+		const response = Users.adminLogin(req,res)
 		return response;
 	})
 	//admin will view examiner
@@ -49,7 +61,7 @@ module.exports = () => {
 	})
 	//admin will delete examiner using id of examiner
 	app.delete('/examiner/:id', (req, res) => {
-		console.log("----inside-----")
+		
 		
 		const result =Users.facultyDel(req,res)
 		res.send(result)
