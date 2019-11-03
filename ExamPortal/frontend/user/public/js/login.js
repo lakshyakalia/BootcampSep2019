@@ -1,4 +1,4 @@
-$(document).on('click', '#loginButton', function () {
+$(document).on('click', '#loginButton', function() {
     let email = $('#inputEmail').val()
     let password = $('#inputPassword').val()
 
@@ -9,18 +9,18 @@ $(document).on('click', '#loginButton', function () {
             'email': email,
             'password': password
         },
-        success: function (data) {
+        success: function(data) {
             localStorage.setItem('token', data.token)
-            //here i have used accountType to redirect to respective page
-            if ( data.accountType == "Examiner")
-                $(location).attr('href', '/exminer/views/examiner.html')
-             else if ( data.accountType == "Student")
+                //here i have used accountType to redirect to respective page
+            if (data.accountType == "Examiner")
+                $(location).attr('href', '../../exminer/views/examiner.html')
+            else if (data.accountType == "Student")
                 $(location).attr('href', '/user/views/accessKey.html')
-             else{
+            else {
                 $(location).attr('href', '/admin/views/adminHome.html')
-             }
+            }
         },
-        error: function (error) {
+        error: function(error) {
             console.log(error)
         }
 
