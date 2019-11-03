@@ -13,15 +13,14 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../public/css/admin.css">
+    <link rel="stylesheet" href="/admin/public/css/admin.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
-    <script src="../public/js/adminShowExaminer.js"></script>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Online Test Portal</a>
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: black;">
+        <img src="../assets/cybergrouplogo.png" class="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,11 +29,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ">
 
-
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Educational Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
-            </form>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-success my-2 my-sm-0" style="color: white;" type="submit">Sign Up</button>
+            </form> -->
         </div>
     </nav>
     <div id="targetPage"></div>
@@ -54,36 +64,15 @@
                 <td>{{ createdDate }}</td>
                <td> <button class="btn btn-outline-danger my-2 my-sm-0 deleteButton" type="submit" id="{{ _id }}">Delete</button></td>
                <td> <button class="btn btn-outline-success my-2 my-sm-0 updateButton" type="submit" id="{{ _id }}">Edit</button></td>
-               <td> <button class="btn btn-outline-success my-2 my-sm-0 updateButton" type="submit" id="{{ _id }}">View</button></td>
+               <td> <button class="btn btn-outline-success my-2 my-sm-0 viewButton" type="submit" id="{{ _id }}">View</button></td>
             </tr>
             {{ /data }}
           
         </table>
         
     </script>
-    <script id="update-template" type="text/html">
-        <form>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Email" id="email" >
-                </div>
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" placeholder="Name" id="name">
-                </div>
-                <div class="form-group">
-                    <label>Phone No</label>
-                    <input type="text" class="form-control" placeholder="Phone No" id="phoneno">
-                </div>
-                <div class="form-group">
-                    <label>College Name</label>
-                    <input type="email" class="form-control" placeholder="College Name" id="collegename">
-                </div>
-                    <div style="text-align: center">
-                    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-                </div>
-            </form>
-    </script>
+    
+    <script src="../public/js/adminShowExaminer.js"></script>
 </body>
 
 </html>
