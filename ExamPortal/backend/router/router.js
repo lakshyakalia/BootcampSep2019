@@ -38,16 +38,16 @@ module.exports = () => {
     app.get('/exam', (req, res) => {
             Users.viewExamDetail(req, res)
 		})
+		//examiner will fetch particular exam detail
 	app.get('/exam/:id', (req, res) => {
             Users.fetchExamDetail(req,res)
         })
-        //examiner will edit test details
+        //examiner will edit exam details
     app.patch('/exam/:id', (req, res) => {
 		Users.editExam(req,res)            
         })
-        //examiner will delete exam using test id
+        //examiner will delete exam using exam id
     app.delete('/exam/:id', (req, res) => {
-		// console.log('delete ',req.params.id)
 		Users.removeExam(req,res)
             // res.send({ "data": req.body })
         })
@@ -61,16 +61,31 @@ module.exports = () => {
     //examiner will write exam questions
     app.post('/exam/question', (req, res) => {
             Users.question(req, res)
-        })
+		})
+		
         //examiner will views questions 
     app.get('/exam/question/:id', (req, res) => {
             Users.getQuestionDetail(req, res)
-        })
+		})
+
+		//get particular question using its ID
+	app.get('/exam/question/byid/:id', (req, res) => {
+		// console.log(req.params.id)
+            Users.fetchQuestionById(req,res)
+		})
+		
         //examiner will edit questions
     app.patch('/exam/question/:id', (req, res) => {
-            res.send({ "data": req.body })
-        })
-        //candidates will view quesions using accesskey
+		Users.editQuestion(req,res)
+            // res.send({ "data": req.body })
+		})
+		
+	//examiner will delete question by id
+    app.delete('/exam/question/:id', (req, res) => {
+        Users.removeQuestion(req,res)
+    })
+
+    //candidates will view quesions using accesskey
     app.get('/test', middleware, async(req, res) => {
         const response = await Ques.testQuestions(req, res)
         return response

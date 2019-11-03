@@ -97,6 +97,7 @@ const checkAccessKey = async(req,res)=>{
     }
     else return res.status(400).send(status)
 }
+
 const questions = async (req, res) => {
     try {
         let questionInformation = new questionDetail(req.body)
@@ -118,6 +119,39 @@ const getQuestionDetails = async (req,res) =>{
     }
 }
 
+const fetchQuestionById = async(req,res)=>{
+    try{
+        let obj = await questionDetail.findById({_id:req.params.id})
+        res.status(200).send(obj)
+
+    }catch(error){
+        res.status(404).send(error)
+    }
+}
+
+const editQuestion = async (req,res)=>{
+    try{
+        await questionDetail.findByIdAndUpdate({_id:req.params.id},
+            {
+                $set:{
+                    "questionText":req.body.questionText,
+                    "answer":req.body.answer,
+                    "options":{
+                        "option1":req.body.options.option1,
+                        "option2":req.body.options.option2,
+                        "option3":req.body.options.option3,
+                        "option4":req.body.options.option4
+                    },
+                    "answer":req.body.answer,
+                    "weightage":req.body.weightage
+                }
+            })
+        res.status(200).send({msg:'question updated'})
+    }catch(error){
+        res.status(404).send(error)
+    }
+}
+
 const removeByExamCode = async(code)=>{
     try{
         await questionDetail.remove({examCode:code})
@@ -127,11 +161,23 @@ const removeByExamCode = async(code)=>{
         return
     }
 }
+const removeQuestion = async (req,res)=>{
+    try{
+        await questionDetail.findByIdAndDelete({_id:req.params.id})
+        res.status(200).send({msg:'Question Deleted Successfully'})
+    }
+    catch(error){
+        res.status(404).send(error)
+    }
+}
 module.exports = {
     testQuestions,
     saveCandidateAnswers,
     checkAccessKey,
     questions,
     getQuestionDetails,
-    removeByExamCode
+    removeByExamCode,
+    fetchQuestionById,
+    editQuestion,
+    removeQuestion
 }

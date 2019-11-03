@@ -42,10 +42,8 @@ async function checkAuth(req) {
 	const data = await matchCredentials(req);
 	if (data == "matched") {
 		const valuePass = await comparePassword(req.body.password, req)
-		// console.log(valuePass)
 		if (valuePass == "Examiner" || valuePass == "Student" || valuePass =="Admin") {
 			const token = await generateToken(req);
-			// console.log(token)
 			return ({
 				"message": "password matched",
 				"token": token,

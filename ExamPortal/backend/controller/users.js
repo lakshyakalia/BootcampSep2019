@@ -3,6 +3,7 @@ const questionDetail = require('./questionController')
 const studentPerformanceController = require('./studentPerformance')
 const userController = require('./userRecord')
 const bcryptjs = require('bcryptjs')
+const testInfo = require('./testDetails')
 
 const userRecord = async(req, res) => {
     let response
@@ -12,7 +13,6 @@ const userRecord = async(req, res) => {
     response = await userController.userRecord(req, res)
     return response
 }
-const testInfo = require('./testDetails')
 
 const loggedInDetails = async(req, res) => {
     const det = await userController.loggedInDetails(req, res)
@@ -35,20 +35,34 @@ const viewExamDetail = (req, res) => {
     //console.log("hello1")
     examController.viewExamDetail(req, res)
 }
+
 const fetchExamDetail = (req,res)=>{
     examController.fetchExamDetail(req,res)
 }
+
 const removeExam = (req,res)=>{
     examController.removeExam(req,res)
 }
+
 const editExam = (req,res)=>{
     examController.editExam(req,res)
 }
+
 const getQuestionDetail = (req,res)=>{
     // console.log("hello1 ",req.params.id)
     questionDetail.getQuestionDetails(req,res)
 }
 
+const fetchQuestionById = (req,res)=>{
+    questionDetail.fetchQuestionById(req,res)
+}
+
+const editQuestion = (req,res)=>{
+    questionDetail.editQuestion(req,res)
+}
+const removeQuestion = (req,res)=>{
+    questionDetail.removeQuestion(req,res)
+}
 const userDetails = (req, res) => {
     // console.log('hello world')
     const data = userController.userDetails(req, res)
@@ -89,5 +103,8 @@ module.exports = {
     loggedInDetails,
     removeExam,
     fetchExamDetail,
-    editExam
+    editExam,
+    fetchQuestionById,
+    editQuestion,
+    removeQuestion
 }
