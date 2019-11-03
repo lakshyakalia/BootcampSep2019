@@ -174,6 +174,9 @@ $(document).ready(()=>{
         type: 'GET',
         dataType: 'json',
         contentType: "application/json",
+        headers:{
+            token:localStorage.getItem('token')
+        },
         success: function(data) {
         let parent = $(".exam-detail")
         // load html template to display exam detail
