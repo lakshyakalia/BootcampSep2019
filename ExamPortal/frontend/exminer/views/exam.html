@@ -88,22 +88,21 @@
                 </div>
                 <div class="form-group">
                     <label for="addExamCode">Exam Code</label>
-                    <input type="text" class="form-control" id="addExamCode" placeholder="Enter Exam Code" value="{{examCode}}">
+                    <input type="text" class="form-control" id="addExamCode" placeholder="Enter Exam Code" value="{{examCode}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="addExamDuration">Exam Duration</label>
                     <input type="text" class="form-control" id="addExamDuration" aria-describedby="emailHelp" placeholder="Enter Exam Duration" value="{{examDuration}}">
                 </div>
                 <div class="form-group">
-                    <label for="addExamDate">Exam Date</label>
-                    <input type="text" class="form-control" id="addExamDate" aria-describedby="emailHelp" placeholder="Enter Exam Date" value="{{examDate}}">
+                    <label for="addExamDate">Exam Date and Time</label>
+                    <input type="text" class="form-control" id="addExamDate" aria-describedby="emailHelp" placeholder="Enter Exam Date" value="{{examStartTime}}">
                 </div>
                 <div class="form-group">
                     <label for="addExamInstruction">Exam Instruction</label>
-                    <textarea class="form-control rounded-0" id="addExamInstruction" rows="5" placeholder="Enter Exam Instruction">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut impedit cum iure, cumque quas minus. Maxime ipsam minima obcaecati sit, numquam, molestiae suscipit quaerat facilis et laborum eligendi explicabo commodi?
-                        </textarea>
+                    <textarea class="form-control rounded-0" id="addExamInstruction" rows="5" placeholder="Enter Exam Instruction">{{instructions}}</textarea>
                 </div>
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateExam(this.id)">Submit</button>
             </form>
         </div>
     </script>
