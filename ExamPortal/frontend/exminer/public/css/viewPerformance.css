@@ -3,11 +3,29 @@
            font-weight: 500;
        }
        
-       li:hover {
+       .logo {
+           height: 42px;
+       }
+       /* li:hover {
+
            background-color: #c4e3f3;
            border-radius: 6px;
            transition-duration: 0.8s;
            color: white;
+       } */
+       
+       .main {
+           margin-top: 7%;
+       }
+       
+       a:hover {
+           color: rgba(255, 255, 255, 0.8);
+           cursor: pointer;
+       }
+       
+       #span {
+           font-weight: 200;
+           color: rgba(255, 255, 255, 0.9);
        }
        
        a:hover {

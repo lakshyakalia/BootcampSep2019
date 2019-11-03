@@ -1,4 +1,6 @@
-const viewPerformance = async(req, res) => {
+const examDetail = require('../Models/examDetail')
+
+const viewPerformance = (req, res) => {
     try {
         const obj = new Object()
             // let arr = []
@@ -11,7 +13,13 @@ const viewPerformance = async(req, res) => {
         obj.unattempted = '0'
         obj.totalScore = '5'
         obj.percentage = '50%'
+            // let values = examDetail.find()
+            // let values2 = user.find()
+            // var obj = {
+            //     objUser: values2,
+            //     objExam: values
 
+        // }
 
         res.send(obj)
     } catch (error) {

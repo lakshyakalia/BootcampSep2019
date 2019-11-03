@@ -72,6 +72,7 @@ module.exports = {
     userDetails,
     testDetails,
     facultyDel,
+    studentPerformance,
     fetchData,
     facultyUpd,
     examDetail,

@@ -135,7 +135,8 @@ module.exports = () => {
 
     //examiner will view performance of candidates
     app.get('/exam/performance', (req, res) => {
-        res.send("Hello Word")
+        const response = Users.studentPerformance(req, res)
+        return response
     })
 
     //examiner will write tests questions
