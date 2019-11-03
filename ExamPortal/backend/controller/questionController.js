@@ -98,8 +98,86 @@ const checkAccessKey = async(req,res)=>{
     else return res.status(400).send(status)
 }
 
+const questions = async (req, res) => {
+    try {
+        let questionInformation = new questionDetail(req.body)
+        await questionInformation.save()
+        res.status(200).send({ msg: 'question saved successful' })
+    }
+    catch (error) {
+        res.send({ error })
+    }
+}
+
+const getQuestionDetails = async (req,res) =>{
+    try{
+     let values= await questionDetail.find({examCode:decodeURIComponent(req.params.id)});
+     res.status(200).send( values)
+    }
+    catch(error){
+     console.log(error)
+    }
+}
+
+const fetchQuestionById = async(req,res)=>{
+    try{
+        let obj = await questionDetail.findById({_id:req.params.id})
+        res.status(200).send(obj)
+
+    }catch(error){
+        res.status(404).send(error)
+    }
+}
+
+const editQuestion = async (req,res)=>{
+    try{
+        await questionDetail.findByIdAndUpdate({_id:req.params.id},
+            {
+                $set:{
+                    "questionText":req.body.questionText,
+                    "answer":req.body.answer,
+                    "options":{
+                        "option1":req.body.options.option1,
+                        "option2":req.body.options.option2,
+                        "option3":req.body.options.option3,
+                        "option4":req.body.options.option4
+                    },
+                    "answer":req.body.answer,
+                    "weightage":req.body.weightage
+                }
+            })
+        res.status(200).send({msg:'question updated'})
+    }catch(error){
+        res.status(404).send(error)
+    }
+}
+
+const removeByExamCode = async(code)=>{
+    try{
+        await questionDetail.remove({examCode:code})
+        return
+    }catch(error){
+        console.log(error)
+        return
+    }
+}
+const removeQuestion = async (req,res)=>{
+    try{
+        await questionDetail.findByIdAndDelete({_id:req.params.id})
+        res.status(200).send({msg:'Question Deleted Successfully'})
+    }
+    catch(error){
+        res.status(404).send(error)
+    }
+}
 module.exports = {
     testQuestions,
     saveCandidateAnswers,
-    checkAccessKey
+    checkAccessKey,
+    questions,
+    getQuestionDetails,
+    removeByExamCode,
+    fetchQuestionById,
+    editQuestion,
+    removeQuestion
 }

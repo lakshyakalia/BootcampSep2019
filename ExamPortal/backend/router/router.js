@@ -9,7 +9,8 @@ const { SECRET } = require("../config/config")
 
 const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
-    app.post('/login', async (req, res) => {
+
+  app.post('/login', async (req, res) => {
         const result = await createToken(req)
         if (result.token == "null") {
             res.status(400).send(result)
@@ -23,6 +24,11 @@ module.exports = () => {
     app.post('/signup', async (req, res) => {
         const result = await Users.userRecord(req, res)
         res.send(result)
+      
+//         //for viewing the details of loggedin user
+//     app.get('/loggedIn', async(req, res) => {
+//         const response = await Users.loggedInDetails(req, res)
+//         res.send(response)
     })
 
     //examiner will create exam details
@@ -31,17 +37,21 @@ module.exports = () => {
     })
     //examiner will view exam
     app.get('/exam', (req, res) => {
-        Users.viewExamDetail(req, res)
-    })
-    //examiner will edit test details
-    app.patch('/exam', (req, res) => {
-        res.send({ "data": req.body })
-    })
-    //examiner will delete test using test id
+            Users.viewExamDetail(req, res)
+		})
+		//examiner will fetch particular exam detail
+	app.get('/exam/:id', (req, res) => {
+            Users.fetchExamDetail(req,res)
+        })
+        //examiner will edit exam details
+    app.patch('/exam/:id', (req, res) => {
+		Users.editExam(req,res)            
+        })
+        //examiner will delete exam using exam id
     app.delete('/exam/:id', (req, res) => {
-        res.send({ "data": req.body })
-    })
-    //examiner will view performance of candidates
+		Users.removeExam(req,res)
+        })
+        //examiner will view performance of candidate
     app.get('/exam/performance', (req, res) => {
         console.log('yes')
         const response = Users.studentPerformance(req, res)
@@ -50,16 +60,31 @@ module.exports = () => {
 
     //examiner will write exam questions
     app.post('/exam/question', (req, res) => {
-        Users.question(req, res)
-    })
-    //examiner will views questions 
+            Users.question(req, res)
+		})
+		
+        //examiner will views questions 
     app.get('/exam/question/:id', (req, res) => {
-        Users.getQuestionDetail(req, res)
-    })
-    //examiner will edit questions
+            Users.getQuestionDetail(req, res)
+		})
+
+		//get particular question using its ID
+	app.get('/exam/question/byid/:id', (req, res) => {
+		// console.log(req.params.id)
+            Users.fetchQuestionById(req,res)
+		})
+		
+        //examiner will edit questions
     app.patch('/exam/question/:id', (req, res) => {
-        res.send({ "data": req.body })
+		Users.editQuestion(req,res)
+            // res.send({ "data": req.body })
+		})
+		
+	//examiner will delete question by id
+    app.delete('/exam/question/:id', (req, res) => {
+        Users.removeQuestion(req,res)
     })
+  
     //candidates will view quesions using accesskey
     app.get('/test', middleware, async (req, res) => {
         const response = await Ques.testQuestions(req, res)
@@ -97,8 +122,6 @@ module.exports = () => {
     })
     //admin will delete examiner using id of examiner
     app.delete('/examiner/:id', (req, res) => {
-        console.log("----inside-----")
-        debugger
         const result = Users.examinerDel(req, res)
         res.send(result)
     })
@@ -108,52 +131,10 @@ module.exports = () => {
         res.send(result);
     })
 
-    //examiner will create test details
-    app.post('/exam', (req, res) => {
-        Users.examDetail(req, res)
-    })
-
-    //examiner will view test
-    app.get('/exam', async (req, res) => {
-        const result = await Users.userDetails(req, res)
-        res.send(result)
-    })
-
-    //examiner will edit test details
-    app.patch('/exam', (req, res) => {
-        res.send({ "data": req.body })
-    })
-
-    //examiner will delete test using test id
-    app.delete('/exam/:id', (req, res) => {
-        res.send({ "data": req.body })
-    })
-
-    //examiner will view performance of candidates
-    app.get('/exam/performance', (req, res) => {
-        console.log('yes')
-        const response = Users.studentPerformance(req, res)
-        return response
-    })
-
-    //examiner will write tests questions
-    app.post('/exam/question', (req, res) => {
-        Users.question(req, res)
-    })
-    //examiner will views questions 
-    app.get('/exam/question/:id', (req, res) => {
-        console.log(req.params.id)
-        Users.getQuestionDetail(req, res)
-    })
-    //examiner will edit questions
-    app.patch('/exam/question/:id', (req, res) => {
-        res.send({ "data": req.body })
-    })
-
-    //examiner will delete question by id
-    app.delete('/exam/question/:id', (req, res) => {
-        res.send({ "data": req.body })
-    })
+	app.patch('/examiner', async (req, res) => {
+		const result = await Users.facultyUpd(req, res)
+		res.send(result)
+	})
 
     return app
 }
