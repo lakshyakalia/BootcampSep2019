@@ -61,8 +61,12 @@ const userDetails = async(req, res) => {
 
 const facultyUpd = async(req, res) => {
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const body = req.body
+        const myPlaintextPassword = body.password;
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(myPlaintextPassword, salt)
+        body.password = hash;
         const query = await user.findOneAndUpdate({ email: req.body.email }, body)
         return ({ "status": "200", "message": "user updated" });
     } catch (error) {
