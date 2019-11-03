@@ -17,6 +17,26 @@ function showEdit() {
     })
 }
 
+function showName() {
+    $.ajax("http://localhost:3000/loggedIn", {
+        type: 'GET',
+        dataType: 'JSON',
+        headers: {
+            "token": localStorage.getItem('token'),
+        },
+        success: function(data) {
+
+            console.log(data.name)
+            document.getElementById('span').innerHTML = 'Welcome ' + data.name + '! &nbsp; &nbsp; '
+
+        },
+        error: function(error) {
+            console.log('not working')
+        }
+    })
+
+}
+
 function changeInputFields(data) {
     console.log(data.collegeName)
     document.getElementById('loggedInEmail').value = data.email;
@@ -50,6 +70,7 @@ function editDetails() {
             // console.log('updated')
             window.alert('User Details Updated !')
             hideEditDetails()
+            showName()
 
 
         },

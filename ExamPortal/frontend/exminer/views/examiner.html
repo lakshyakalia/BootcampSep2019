@@ -10,7 +10,7 @@
         <script type="text/javascript" src="../public/js/examiner.js"></script>
     </head>
 
-    <body>
+    <body onload="showName()">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <a class="navbar-brand" href="#">Online Test Portal</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <div class="dropdown">
-                        <span id="span">Welcome &nbsp; &nbsp;</span>
+                        <span id="span">Welcome </span>
                         <div class="dropdown-content">
                             <button class="btn btn-danger"><a href='#edit' onclick="showEdit()" style="text-decoration: none; color: rgba(255, 255, 255, 1);">Edit</a></button>
                         </div>

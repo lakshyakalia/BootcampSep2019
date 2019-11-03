@@ -81,6 +81,7 @@ body {
 
 .dropdown:hover .dropdown-content {
     display: block;
+    margin-left: 60%;
     border-radius: 4px;
 }
 
@@ -121,6 +122,10 @@ select {
  ::placeholder {
     font-weight: 100;
     color: rgba(0, 0, 0, 0.5);
+}
+
+#span {
+    font-weight: 200;
 }
 
 .edit-text {
