@@ -11,9 +11,9 @@ function showQuestion(id){
             type: 'GET',
             dataType: 'json',
             contentType: "application/json;charset=utf-8",
-        //    data: JSON.stringify ({
-        //         "examCode":examCode
-        //    }),
+            headers:{
+                token:localStorage.getItem('token')
+            },
             success: function(data) {
                 $.each(data, (index, item) => {
                     let indexTemplate = $("#index-template").html();
@@ -33,32 +33,91 @@ function editQuestion(id) {
 //load template to edit question
    console.log(id)
    let qid = $("#"+id).parent().parent().attr('id')
-   console.log('qs id ',qid)
+//    console.log('qs id ',qid)
    let pid = $("#"+qid).parent().parent().parent().parent().attr('id')
-   console.log(pid)
+   //console.log(pid)
    $('#'+pid).hide()
-   let editTemplate = $("#edit-question-template").html();
-   $.each(questions,(index,val)=>{
-        if(qid === val.questionId){
-            console.log(val.questionId)
-            $("#display-edit-form").append(Mustache.render(editTemplate, val))
-        }
-   })
+   $.ajax("http://localhost:3000/exam/"+examObjId, {
+    type: 'PATCH',
+    dataType: 'json',
+    contentType: "application/json",
+    headers:{
+        token:localStorage.getItem('token')
+    },
+    success: function(data) {
+        let editTemplate = $("#edit-question-template").html();
+            $("#display-edit-form").append(Mustache.render(editTemplate, data))
+        },
+    error: function(error) {
+       console.log(error)
+    }
+})
+   
 }
-
+function updateExam(examObjId){
+    let examDetail = {
+        examName: $('#addExamName').val(),
+        examCode: $('#addExamCode').val(),
+        examDuration: $('#addExamDuration').val(),
+        examStartTime: $('#addExamDate').val(),
+        instructions: $('#addExamInstruction').val()
+    }
+    $.ajax("http://localhost:3000/exam/"+examObjId, {
+        type: 'PATCH',
+        dataType: 'json',
+        contentType: "application/json",
+        headers:{
+            token:localStorage.getItem('token')
+        },
+        data:JSON.stringify(examDetail),
+        success: function(data) {
+            location.reload(true)
+            },
+        error: function(error) {
+           console.log(error)
+        }
+    })
+}
 function editExamDetail(id){
-    let examId = $('#'+id).parent().parent().attr('id')
-    console.log('examid ',examId)
+    let examObjId = $('#'+id).parent().parent().attr('id')
+    // console.log('examid ',examId)
     let mainId = $('#'+id).parent().parent().parent().parent().attr('id')
     $('#'+mainId).hide()
-    let editForm = $("#edit-exam-detail").html()
-    
-    $("#display-form").append(Mustache.render(editForm,val))
+    $.ajax("http://localhost:3000/exam/"+examObjId, {
+        type: 'GET',
+        dataType: 'json',
+        contentType: "application/json",
+        headers:{
+            token:localStorage.getItem('token')
+        },
+        success: function(data) {
+        //    console.log(data)
+        // console.log(data.instructions)
+        let editForm = $("#edit-exam-detail").html()
+    $("#display-form").append(Mustache.render(editForm,data))
+            },
+        error: function(error) {
+           console.log(error)
+        }
+    })
 }
 
 function deleteExam(id){
-    let testCode = $('#'+id).parent().prev().prev().prev().prev().prev().find('p').html()
-    console.log(testCode)
+    examObjId =  $('#'+id).parent().parent().attr('id')
+    $.ajax("http://localhost:3000/exam/"+examObjId, {
+        type: 'DELETE',
+        dataType: 'json',
+        contentType: "application/json",
+        headers:{
+            token:localStorage.getItem('token')
+        },
+        success: function(data) {
+            location.reload(true)
+            },
+        error: function(error) {
+           console.log(error)
+        }
+    })
 }
 
 $(document).ready(()=>{
@@ -67,12 +126,9 @@ $(document).ready(()=>{
         dataType: 'json',
         contentType: "application/json",
         success: function(data) {
-
-        //console.log(msg.responseText)
         let parent = $(".exam-detail")
         // load html template to display exam detail
         $.each(data, (index , values )=>{
-
         let html = $('#display-exam-detail').html()
         values.index = index
         parent.append(Mustache.render(html,values))
