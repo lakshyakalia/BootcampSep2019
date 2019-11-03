@@ -57,6 +57,7 @@ $(document).ready(function () {
         var testDuration = document.getElementById("addExamDuration").value;
         var testDate = document.getElementById("addExamTestDate").value;
         var testInstruction = document.getElementById("addExamInstruction").value;
+        var token = window.localStorage.getItem('token');
         if (testName === "") {
             alert("Please enter test name");
         } else {
@@ -97,7 +98,8 @@ $(document).ready(function () {
                 examCode: $('#addExamCode').val(),
                 examDuration: $('#addExamDuration').val(),
                 examStartTime: $('#addExamTestDate').val(),
-                instructions: $('#addExamInstruction').val()
+                instructions: $('#addExamInstruction').val(),
+                examinerId: token
             }
             $.ajax("http://localhost:3000/exam", {
                 type: "POST",
