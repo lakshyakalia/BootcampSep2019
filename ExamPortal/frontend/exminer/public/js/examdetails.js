@@ -1,5 +1,10 @@
 var tempExamCode =''
 $(document).ready(function () {
+    const tok =localStorage.getItem('token');
+    if(tok == null)
+    {
+      location.replace("../../index.html")
+    }
     var navListItems = $('div.setup-panel div a'),
             allWells = $('.setup-content'),
             allNextBtn = $('.nextBtn');

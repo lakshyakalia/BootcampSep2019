@@ -39,17 +39,6 @@ const loggedInDetails = async(req, res) => {
     return det;
 }
 
-
-// const userDetails = async (req, res) => {
-//     try {
-//         const query = await user.findOne({ email: req.headers.email })
-//         return query;
-//     }
-//     catch (error) {
-//         return ("User not found")
-//     }
-// }
-
 const userDetails = async(req, res) => {
     try {
         const query = await user.findOne({ email: req.body.email })
@@ -59,7 +48,8 @@ const userDetails = async(req, res) => {
     }
 }
 
-const facultyUpd = async(req, res) => {
+
+const examinerUpd = async (req, res) => {
     try {
         // console.log(req.body)
         const body = req.body
@@ -85,6 +75,5 @@ module.exports = {
     userDetails,
     decodeToken,
     fetchData,
-    facultyUpd,
-    loggedInDetails
+    examinerUpd
 }

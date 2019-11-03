@@ -165,6 +165,11 @@ function deleteExam(id){
 }
 
 $(document).ready(()=>{
+    const tok =localStorage.getItem('token');
+    if(tok == null)
+    {
+      location.replace("../../index.html")
+    }
     $.ajax("http://localhost:3000/exam", {
         type: 'GET',
         dataType: 'json',

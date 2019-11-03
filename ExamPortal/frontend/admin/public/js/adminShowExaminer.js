@@ -8,6 +8,11 @@ function loadSetupExaminerPage(data){
 
 
 $(document).ready(function () {
+  const tok =localStorage.getItem('token');
+  if(tok == null)
+  {
+    location.replace("../../index.html")
+  }
   $.ajax("http://127.0.0.1:3000/examiner", {
     type: "GET",
     dataType: "json",
@@ -56,7 +61,7 @@ $(document).ready(function () {
     })
   })
 
-  $(document).on('click', '.updateButton', function () {
+  $(document).on('click', '.viewButton', function () {
     let id = $(this).attr('id')
     $.ajax("http://127.0.0.1:3000/examiner/id", {
       type: "GET",
@@ -66,7 +71,8 @@ $(document).ready(function () {
         "id": id
       },
       success: function (recent) {
-        loadSetupExaminerPage(recent)
+        console.log(recent);
+        //loadSetupExaminerPage(recent)
       },
       error: function () {
         console.log("Something went wrong");

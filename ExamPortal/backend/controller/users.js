@@ -74,8 +74,8 @@ const testDetails = (req, res) => {
     return result;
 }
 
-const facultyDel = (req, res) => {
-    const result = testInfo.facultyDel(req, res)
+const examinerDel = (req, res) => {
+    const result = testInfo.examinerDel(req, res)
     return result
 }
 
@@ -84,17 +84,17 @@ const fetchData = (req, res) => {
     return result
 }
 
-const facultyUpd = (req, res) => {
-    const result = userController.facultyUpd(req, res)
+const examinerUpd = (req, res) => {
+    const result = userController.examinerUpd(req, res)
     return result
 }
 
 module.exports = {
     userDetails,
     testDetails,
-    facultyDel,
+    examinerDel,
     fetchData,
-    facultyUpd,
+    examinerUpd,
     examDetail,
     question,
     viewExamDetail,
