@@ -1,4 +1,10 @@
 $(document).on('click','#checkAccessKey',function(){
+    const tok =localStorage.getItem('token');
+
+    if(tok == null)
+    {
+      location.replace("../../index.html")
+    }
     $.ajax('http://localhost:3000/test/assessKey',{
         type:'POST',
         dataType:'JSON',
@@ -10,7 +16,7 @@ $(document).on('click','#checkAccessKey',function(){
             $(location).attr('href', '../views/instructions.html')
         },
         error: function(error){
-
+            console.log(error)
         }
     })
 })

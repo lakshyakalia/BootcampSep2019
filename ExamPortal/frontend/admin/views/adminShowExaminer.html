@@ -13,9 +13,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../public/css/admin.css">
+    <link rel="stylesheet" href="/admin/public/css/admin.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
-    <script src="../public/js/adminShowExaminer.js"></script>
 </head>
 
 <body>
@@ -54,7 +53,7 @@
                 <td>{{ createdDate }}</td>
                <td> <button class="btn btn-outline-danger my-2 my-sm-0 deleteButton" type="submit" id="{{ _id }}">Delete</button></td>
                <td> <button class="btn btn-outline-success my-2 my-sm-0 updateButton" type="submit" id="{{ _id }}">Edit</button></td>
-               <td> <button class="btn btn-outline-success my-2 my-sm-0 updateButton" type="submit" id="{{ _id }}">View</button></td>
+               <td> <button class="btn btn-outline-success my-2 my-sm-0 viewButton" type="submit" id="{{ _id }}">View</button></td>
             </tr>
             {{ /data }}
           
@@ -84,6 +83,7 @@
                 </div>
             </form>
     </script>
+    <script src="../public/js/adminShowExaminer.js"></script>
 </body>
 
 </html>

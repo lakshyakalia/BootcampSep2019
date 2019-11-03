@@ -1,5 +1,6 @@
 const mongoose  = require('mongoose')
 
+delete mongoose.connection.models['question'];
 const Schema = mongoose.Schema
 
 const questionDetails = new Schema({
@@ -27,5 +28,6 @@ const questionDetails = new Schema({
 
 const questionDetail = mongoose.model('question',questionDetails)
 
-module.exports = questionDetail
-
+module.exports = {
+	questionDetail
+}
