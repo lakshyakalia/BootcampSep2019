@@ -15,7 +15,7 @@ $(document).on('click', '#loginButton', function () {
             if ( data.accountType == "Examiner")
                 $(location).attr('href', '/exminer/views/examiner.html')
              else if ( data.accountType == "Student")
-                $(location).attr('href', '/user/views/accessKey.html')
+                $(location).attr('href', '../views/accessKey.html')
              else{
                 $(location).attr('href', '/admin/views/adminHome.html')
              }

@@ -1,6 +1,6 @@
-const { questionDetail } = require('../models/question')
-const {  test } = require('../models/candidateAnswer')
-const { examDetail } = require('../models/examDetail')
+const { questionDetail } = require('../Models/question')
+const {  test } = require('../Models/candidateAnswer')
+const { examDetail } = require('../Models/examDetail')
 
 const answerObject = (body,headers,weightage,status)=>{
     weightage = parseInt(weightage)
@@ -29,9 +29,9 @@ const checkExistingOption = async (req,res,status,score)=>{
 const testQuestions = async(req,res)=>{
     let lastQuestionStatus
     let pageNumber = parseInt(req.query.pageNumber)
-    let ques = await questionDetail.find().skip(pageNumber*2).limit(2).select({"qText":1,"options":1,"examCode":1})
-    let lastQuestion = await questionDetail.find().sort({$natural:-1}).limit(1).select({"qText":1})
-    if(lastQuestion[0].qText === ques[ques.length-1].qText) lastQuestionStatus = true 
+    let ques = await questionDetail.find().skip(pageNumber*2).limit(2).select({"questionText":1,"options":1,"examCode":1})
+    let lastQuestion = await questionDetail.find().sort({$natural:-1}).limit(1).select({"questionText":1})
+    if(lastQuestion[0].questionText === ques[ques.length-1].questionText) lastQuestionStatus = true 
     else lastQuestionStatus = false
     const time = await examDetail.find({'examCode':req.headers.examcode}).select({examName:1,examStartTime:1,examDuration:1})
     
