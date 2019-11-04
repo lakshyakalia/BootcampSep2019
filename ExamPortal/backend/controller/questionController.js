@@ -1,4 +1,4 @@
-const  questionDetail  = require('../models/question')
+const { questionDetail } = require('../models/question')
 const {  test } = require('../models/candidateAnswer')
 const { examDetail } = require('../models/examDetail')
 
@@ -17,21 +17,12 @@ const answerObject = (body,headers,weightage,status)=>{
     return answerDetail
 }
 
-const checkExistingOption = async (req,res,status,score)=>{
-    const checkOption = await test.findOneAndUpdate(
-        {answers:{$elemMatch:{questionId: req.body.qId}}},
-        {$set:{"answers.$.answerSubmitted":req.body.checkedOption,"answers.$.correctStatus":status,"totalScore":score}}
-    )
-    if(checkOption == null) return false
-    else return true
-}
-
 const testQuestions = async(req,res)=>{
     let lastQuestionStatus
     let pageNumber = parseInt(req.query.pageNumber)
-    let ques = await questionDetail.find().skip(pageNumber*2).limit(2).select({"qText":1,"options":1,"examCode":1})
-    let lastQuestion = await questionDetail.find().sort({$natural:-1}).limit(1).select({"qText":1})
-    if(lastQuestion[0].qText === ques[ques.length-1].qText) lastQuestionStatus = true 
+    let ques = await questionDetail.find({'examCode':req.headers.examcode}).skip(pageNumber*2).limit(2).select({"questionText":1,"options":1,"examCode":1})
+    let lastQuestion = await questionDetail.find({'examCode':req.headers.examcode}).sort({$natural:-1}).limit(1).select({"questionText":1})
+    if(lastQuestion[0].questionText === ques[ques.length-1].questionText) lastQuestionStatus = true 
     else lastQuestionStatus = false
     const time = await examDetail.find({'examCode':req.headers.examcode}).select({examName:1,examStartTime:1,examDuration:1})
     
@@ -44,51 +35,109 @@ const testQuestions = async(req,res)=>{
     })
 }
 
+const checkExistingRightOption = async (option,qId,studentId,updatedScore)=>{
+    let status = await test.findOne({$and:[{"answers.questionId":qId},{candidateId:studentId}]})
+    if(status !== null){
+        for(let i=0;i<status.answers.length;i++){
+            if(status.answers[i].questionId === qId && status.answers[i].correctStatus == false){
+                await test.update({$and:[
+                    {answers:{
+                        $elemMatch:{questionId:qId}
+                    }},
+                    {candidateId:studentId}
+                    ]},{$set:{
+                        "answers.$.answerSubmitted":option,
+                        "answers.$.correctStatus":true,
+                        "totalScore":updatedScore
+                    }})
+            }
+            else{
+                await test.update({$and:[
+        {answers:{
+            $elemMatch:{questionId:qId}
+        }},
+        {candidateId:studentId}
+    ]},{$set:{
+                    "answers.$.answerSubmitted":option,
+                    "answers.$.correctStatus":true,
+                }})
+            }
+        }
+        return true
+    }
+    return false
+}
+
+const saveCorrectOption = async(req,checkAnswer,existingAnswer)=>{
+    if(existingAnswer === null){
+        let answerDetail = answerObject(req.body, req.headers, checkAnswer.weightage,true)
+        let status = await answerDetail.save()
+    }
+    else{
+        let existingScore = await test.findOne({'testCode':req.body.code}).select({totalScore:1})
+        let updatedScore = existingScore.totalScore+checkAnswer.weightage
+        let existingAnswerStatus = await checkExistingRightOption(req.body.checkedOption,req.body.qId,req.headers.id,updatedScore)
+        if(!existingAnswerStatus){
+            await test.findOneAndUpdate(
+                {$and:[{candidateId:req.headers.id},{testCode:req.body.code}]},
+                {   
+                    $push: {answers:{answerSubmitted: req.body.checkedOption,questionId: req.body.qId, correctStatus: true}},
+                    $set:{totalScore:updatedScore}
+                },
+                {new: true}
+            )
+        }
+    }
+}
+
+const checkExistingWrongOption = async(option,qId,studentId,updatedScore)=>{
+    let status = await test.findOneAndUpdate({$and:[
+        {answers:{
+            $elemMatch:{questionId:qId}
+        }},
+        {candidateId:studentId}
+    ]},{$set:{
+        "answers.$.answerSubmitted":option,
+        "answers.$.correctStatus":false,
+    }})
+    if(status === null) return false
+    else return true
+}
+
+const saveIncorrectOption = async(req,checkAnswer,existingAnswer)=>{
+    if(req.body.checkedOption  === undefined) req.body.checkedOption = null
+    if(existingAnswer === null){
+        let answerDetail = answerObject(req.body,req.headers,0,false)
+        await answerDetail.save()
+    }
+    else{
+        let existingScore = await test.findOne({'testCode':req.body.code}).select({totalScore:1})
+        let updatedScore = existingScore.totalScore-checkAnswer.weightage
+        let existingAnswerStatus = await checkExistingWrongOption(req.body.checkedOption,req.body.qId,req.headers.id,updatedScore)
+        if(!existingAnswerStatus){
+            await test.findOneAndUpdate(
+                {$and:[{candidateId:req.headers.id},{testCode:req.body.code}]},
+                {
+                    $push: {answers:{answerSubmitted: req.body.checkedOption, questionId: req.body.qId, correctStatus: false}}
+                }
+            )
+        }
+    }
+}
+
 const saveCandidateAnswers = async(req,res)=>{
     let checkAnswer = await questionDetail.findById(req.body.qId).select({"answer":1,"weightage":1})
     let existingAnswer = await test.findOne({ $and:[{candidateId:req.headers.id},{testCode:req.body.code}] })
     if(checkAnswer.answer === req.body.checkedOption){
-        if(existingAnswer === null){
-            let answerDetail = answerObject(req.body, req.headers, checkAnswer.weightage,true)
-            await answerDetail.save()
-        }
-        else{
-            let existingScore = await test.findOne({'testCode':req.body.code}).select({totalScore:1})
-            let updatedScore = existingScore.totalScore+checkAnswer.weightage
-            let status = checkExistingOption(req,res,true,updatedScore)
-            if(!status){
-                let updateScoreStatus = await test.findOneAndUpdate(
-                    {$and:[{candidateId:req.headers.id},{testCode:req.body.code}]},
-                    {   
-                        $push: {answers:{answerSubmitted: req.body.checkedOption,questionId: req.body.qId, correctStatus: true}},
-                        $set:{totalScore:updatedScore}
-                    }
-                )
-            }
-        }
+        await saveCorrectOption(req,checkAnswer,existingAnswer)
+        res.status(200).send({"msg":"Saved Successfully"})
     }
     else{
-        if(req.body.checkedOption === undefined) req.body.checkedOption = null
-        if(existingAnswer === null){
-            let answerDetail = answerObject(req.body,req.headers,0,false)
-            await answerDetail.save()
-        }
-        else{
-            let existingScore = await test.findOne({'testCode':req.body.code}).select({totalScore:1})
-            let updatedScore = existingScore.totalScore-checkAnswer.weightage
-            let status = await checkExistingOption(req,res,false,updatedScore)
-            if(!status){
-                await test.findOneAndUpdate(
-                    {$and:[{candidateId:req.headers.id},{testCode:req.body.code}]},
-                    {
-                        $push: {answers:{answerSubmitted: req.body.checkedOption, questionId: req.body.qId, correctStatus: false}}
-                    }
-                )
-            }
-        }
-    }
-    return res.status(200).send({"msg":"Answer saved Succesfully"})
+        await saveIncorrectOption(req,checkAnswer,existingAnswer)
+        res.status(200).send({"msg":"Saved Successfully"})
+    } 
 }
+
 
 const checkAccessKey = async(req,res)=>{
     const status = await examDetail.find({examCode: req.body.examCode})
@@ -118,6 +167,39 @@ const getQuestionDetails = async (req,res) =>{
     }
 }
 
+const fetchQuestionById = async(req,res)=>{
+    try{
+        let obj = await questionDetail.findById({_id:req.params.id})
+        res.status(200).send(obj)
+
+    }catch(error){
+        res.status(404).send(error)
+    }
+}
+
+const editQuestion = async (req,res)=>{
+    try{
+        await questionDetail.findByIdAndUpdate({_id:req.params.id},
+            {
+                $set:{
+                    "questionText":req.body.questionText,
+                    "answer":req.body.answer,
+                    "options":{
+                        "option1":req.body.options.option1,
+                        "option2":req.body.options.option2,
+                        "option3":req.body.options.option3,
+                        "option4":req.body.options.option4
+                    },
+                    "answer":req.body.answer,
+                    "weightage":req.body.weightage
+                }
+            })
+        res.status(200).send({msg:'question updated'})
+    }catch(error){
+        res.status(404).send(error)
+    }
+}
+
 const removeByExamCode = async(code)=>{
     try{
         await questionDetail.remove({examCode:code})
@@ -127,11 +209,23 @@ const removeByExamCode = async(code)=>{
         return
     }
 }
+const removeQuestion = async (req,res)=>{
+    try{
+        await questionDetail.findByIdAndDelete({_id:req.params.id})
+        res.status(200).send({msg:'Question Deleted Successfully'})
+    }
+    catch(error){
+        res.status(404).send(error)
+    }
+}
 module.exports = {
     testQuestions,
     saveCandidateAnswers,
     checkAccessKey,
     questions,
     getQuestionDetails,
-    removeByExamCode
+    removeByExamCode,
+    fetchQuestionById,
+    editQuestion,
+    removeQuestion
 }

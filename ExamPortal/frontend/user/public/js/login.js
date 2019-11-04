@@ -11,7 +11,7 @@ $(document).on('click', '#loginButton', function() {
         },
         success: function(data) {
             localStorage.setItem('token', data.token)
-                //here i have used accountType to redirect to respective page
+         //here i have used accountType to redirect to respective page
             if (data.accountType == "Examiner")
                 $(location).attr('href', '../../exminer/views/examiner.html')
             else if (data.accountType == "Student")

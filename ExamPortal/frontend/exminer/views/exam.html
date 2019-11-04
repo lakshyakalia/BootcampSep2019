@@ -135,7 +135,7 @@
     </script>
     <!-- display question template -->
     <script id="index-template" type="text/html">
-        <a href="#{{index}}">Question-{{index}}</a>
+        <a href="#{{_id}}">Question-{{index}}</a>
     </script>
     <script id="question-template-body" type="text/html">
         <div class="row">
@@ -151,7 +151,7 @@
                 <h6>Answer : {{answer}} </h6>
                 <div class="btn1">
                     <button type="button" class="btn btn-outline-info" id="editQs{{index}}" onclick="editQuestion(this.id)">Edit</button>
-                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                    <button type="button" class="btn btn-outline-danger" id="delQues{{index}}" onclick="removeQuestion(this.id)">Delete</button>
                 </div>
             </div>
     </script>
@@ -161,39 +161,39 @@
             <form class="addQuestion">
                 <div class="form-group">
                     <label for="addtestQuestion">Question</label>
-                    <input type="text" class="form-control" id="addtestQuestion" aria-describedby="emailHelp" placeholder="Enter Question">
+                    <input type="text" class="form-control" id="addtestQuestion" aria-describedby="emailHelp" placeholder="Enter Question" value="{{questionText}}">
                 </div>
                 <div class="form-group">
                     <label for="addtestOption1">Option 1</label>
-                    <input type="text" class="form-control" id="addtestOption1" placeholder="Enter Option 1">
+                    <input type="text" class="form-control" id="addtestOption1" placeholder="Enter Option 1" value="{{options.option1}}">
                 </div>
                 <div class="form-group">
                     <label for="addtestOption2">Option 2</label>
-                    <input type="text" class="form-control" id="addtestOption2" aria-describedby="emailHelp" placeholder="Enter Option 2">
+                    <input type="text" class="form-control" id="addtestOption2" aria-describedby="emailHelp" placeholder="Enter Option 2" value="{{options.option2}}">
                 </div>
                 <div class="form-group">
                     <label for="addtestOption3">Option 3</label>
-                    <input type="text" class="form-control" id="addtestOption3" placeholder="Enter Option 3">
+                    <input type="text" class="form-control" id="addtestOption3" placeholder="Enter Option 3" value="{{options.option3}}">
                 </div>
                 <div class="form-group">
                     <label for="addtestOption4">Option 4</label>
-                    <input type="text" class="form-control" id="addtestOption4" aria-describedby="emailHelp" placeholder="Enter Option 4">
+                    <input type="text" class="form-control" id="addtestOption4" aria-describedby="emailHelp" placeholder="Enter Option 4" value="{{options.option4}}">
                 </div>
                 <div class="form-group">
                     <label for="addTestAnswer">Answer</label><br>
-                    <select class="addTestAnswer">
+                    <select class="addTestAnswer" id="addtestAnswer">
                            <option value="" disabled selected>Choose your option</option>
-                           <option value="1">Option 1</option>
-                           <option value="2">Option 2</option>
-                           <option value="3">Option 3</option>
-                           <option value="3">Option 4</option>
+                           <option >Option 1</option>
+                           <option >Option 2</option>
+                           <option >Option 3</option>
+                           <option >Option 4</option>
                         </select>
                 </div>
                 <div class="form-group">
                     <label for="addtestWeightage">Weightage</label>
-                    <input type="text" class="form-control" id="addtestWeightage" aria-describedby="emailHelp" placeholder="Enter Weghtage">
+                    <input type="text" class="form-control" id="addtestWeightage" aria-describedby="emailHelp" placeholder="Enter Weghtage" value="{{weightage}}">
                 </div>
-                <button type="button" class="btn btn-primary" id="addtestbtn">Submit</button>
+                <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id)">Submit</button>
             </form>
         </div>
     </script>

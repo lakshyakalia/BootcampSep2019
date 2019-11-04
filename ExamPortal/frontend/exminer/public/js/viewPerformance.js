@@ -41,21 +41,39 @@ var students_details = [{
     }
 ]
 
+
 function showStudents() {
+    const tok = localStorage.getItem('token');
+    if (tok == null) {
+        location.replace("../../index.html")
+    }
 
     $.ajax("http://localhost:3000/performance", {
         type: 'GET',
         dataType: 'JSON',
         success: function(data) {
+            let i = 0;
+            let count = 1;
+            // console.log(data.b[0].name)
+            // console.log(data.b.length)
 
-            console.log(data.b.length)
+            while (i < data.b.length) {
 
-            // data = JSON.stringify(data)
-            let indexTemplate = $("#view-student-performance").html();
-            //  $.each(data, (index, item) => {
+                let tr = document.createElement('tr')
+                    //let td = document.createElement('td')
+                    // create attribute and set id in all fields
+                tr.innerHTML = "<td userId='" + data.b[i]._id + "' id='" + count + "' onclick='studentDetails(this)'>" + count + "</td>";
 
-            // $("#tbdy").append(Mustache.render(indexTemplate, item.a))
-            //      })
+                // tr.append(td)
+                // let td1 = document.createElement('td')
+                // td1.innerHTML = data.b[i].name;
+                // tr.append(td1)
+                $("#tbdy").append(tr)
+
+                i++;
+                count++;
+                // console.log(document.getElementById("1").parentNode)
+            }
         },
         error: function(error) {}
     })
@@ -64,4 +82,36 @@ function showStudents() {
 function logout() {
     localStorage.removeItem("token")
     location.replace("../../index.html")
+}
+
+function studentDetails(this) {
+    $.ajax("http://localhost:3000/performance/", {
+        type: 'GET',
+        dataType: 'JSON',
+        success: function(data) {
+            let i = 0;
+            let count = 1;
+            // console.log(data.b[0].name)
+            // console.log(data.b.length)
+
+            while (i < data.b.length) {
+
+                let tr = document.createElement('tr')
+                    //let td = document.createElement('td')
+                    // create attribute and set id in all fields
+                tr.innerHTML = "<td userId='" + data.b[i]._id + "' id='" + count + "' onclick='studentDetails(this)'>" + count + "</td>";
+
+                // tr.append(td)
+                // let td1 = document.createElement('td')
+                // td1.innerHTML = data.b[i].name;
+                // tr.append(td1)
+                $("#tbdy").append(tr)
+
+                i++;
+                count++;
+                // console.log(document.getElementById("1").parentNode)
+            }
+        },
+        error: function(error) {}
+    })
 }

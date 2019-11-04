@@ -2,9 +2,9 @@
 function showQuestion(id){
     // eid = $('#'+id).parent().parent().attr('id')
     let examCode = $('#'+id).parent().prev().prev().prev().find('p').html()
-    console.log(examCode)
+    
     let mainId = $('#'+id).parent().parent().parent().parent().attr('id')
-    console.log(mainId)
+    
     let url = "http://localhost:3000/exam/question/"+encodeURIComponent(examCode)
     $('#'+mainId).hide()
         $.ajax(url, {
@@ -17,7 +17,8 @@ function showQuestion(id){
             success: function(data) {
                 $.each(data, (index, item) => {
                     let indexTemplate = $("#index-template").html();
-                    $("#question-Index").append(Mustache.render(indexTemplate, { index: index + 1 }))
+                    item.index=index+1
+                    $("#question-Index").append(Mustache.render(indexTemplate, item ))
                     let questionContent = $("#question-template-body").html()
                     item.index = index + 1
                     $("#question-Display").append(Mustache.render(questionContent, item))
@@ -29,16 +30,59 @@ function showQuestion(id){
             }
         })
 }
-function editQuestion(id) {
-//load template to edit question
-   console.log(id)
-   let qid = $("#"+id).parent().parent().attr('id')
-//    console.log('qs id ',qid)
-   let pid = $("#"+qid).parent().parent().parent().parent().attr('id')
-   //console.log(pid)
-   $('#'+pid).hide()
-   $.ajax("http://localhost:3000/exam/"+examObjId, {
+function removeQuestion(id){
+    let qsId = $("#"+id).parent().parent().attr('id')
+    $.ajax("http://localhost:3000/exam/question/"+qsId, {
+        type: 'DELETE',
+        dataType: 'json',
+        contentType: "application/json",
+        headers:{
+            token:localStorage.getItem('token')
+        },
+        success: function(data) {
+            location.reload(true)
+            },
+        error: function(error) {
+           console.log(error)
+            }
+        }) 
+}
+function updateQues(id){
+    
+    let questionDetail = {
+        questionText: $('#addtestQuestion').val(),
+        answer: $('#addtestAnswer').val(),
+        options :{
+        option1: $('#addtestOption1').val(),
+        option2: $('#addtestOption2').val(),
+        option3: $('#addtestOption3').val(),
+        option4: $('#addtestOption4').val(),
+        },
+        weightage: $('#addtestWeightage').val(),
+    }
+    $.ajax("http://localhost:3000/exam/question/"+id, {
     type: 'PATCH',
+    dataType: 'json',
+    contentType: "application/json",
+    headers:{
+        token:localStorage.getItem('token')
+    },
+    data:JSON.stringify(questionDetail),
+    success: function(data) {
+       location.reload(true)
+        },
+    error: function(error) {
+       console.log(error)
+        }
+    }) 
+}
+function editQuestion(id) {
+   let qid = $("#"+id).parent().parent().attr('id')
+   let pid = $("#"+qid).parent().parent().parent().parent().attr('id')
+
+   $('#'+pid).hide()
+   $.ajax("http://localhost:3000/exam/question/byid/"+qid, {
+    type: 'GET',
     dataType: 'json',
     contentType: "application/json",
     headers:{
@@ -121,10 +165,18 @@ function deleteExam(id){
 }
 
 $(document).ready(()=>{
+    const tok =localStorage.getItem('token');
+    if(tok == null)
+    {
+      location.replace("../../index.html")
+    }
     $.ajax("http://localhost:3000/exam", {
         type: 'GET',
         dataType: 'json',
         contentType: "application/json",
+        headers:{
+            token:localStorage.getItem('token')
+        },
         success: function(data) {
         let parent = $(".exam-detail")
         // load html template to display exam detail

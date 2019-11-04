@@ -12,4 +12,8 @@ const exam = new Schema({
     examStartTime: String,
 })
 
-module.exports = mongoose.model('exam', exam)
+const examDetail = mongoose.model('exam', exam)
+
+module.exports = {
+    examDetail
+}

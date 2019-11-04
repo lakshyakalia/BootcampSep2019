@@ -1,3 +1,14 @@
+$(document).ready(function(){
+    const tok =localStorage.getItem('token');
+    if(tok == null)
+    {
+      location.replace("../../index.html")
+    }
+})
+function logout()
+{
+    localStorage.removeItem('token');
+}
 function showEdit() {
     $("#showEditDiv").fadeIn("slow");
     $.ajax("http://localhost:3000/loggedIn", {

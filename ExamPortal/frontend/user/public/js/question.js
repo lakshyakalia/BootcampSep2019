@@ -40,6 +40,12 @@ function showPreviousTicks(){
 }
 
 $(document).ready(function(){
+    const tok =localStorage.getItem('token');
+
+    if(tok == null)
+    {
+      location.replace("../../index.html")
+    }
     // In real, exam code would be stored when user login to test sucessfully
     // localStorage.setItem('code','1199')
     $('#nextQuestion').attr('value',0)
@@ -150,7 +156,8 @@ $(document).on('click','#modalEndTest',function(){
 })
 
 $(document).on('click','#resetRadio',function(){
-    $('.form-check-radio').prop("checked",false)
+    let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
+    $(`input[name=${questionId}]:checked`).prop('checked',false)
 })
 
 $(document).on('click',"input[type='radio']",function(){

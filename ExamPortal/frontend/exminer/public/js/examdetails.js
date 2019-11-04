@@ -1,5 +1,9 @@
 var tempExamCode = ''
 $(document).ready(function() {
+    const tok = localStorage.getItem('token');
+    if (tok == null) {
+        location.replace("../../index.html")
+    }
     var navListItems = $('div.setup-panel div a'),
         allWells = $('.setup-content'),
         allNextBtn = $('.nextBtn');
@@ -52,6 +56,7 @@ $(document).ready(function() {
         var testDuration = document.getElementById("addExamDuration").value;
         var testDate = document.getElementById("addExamTestDate").value;
         var testInstruction = document.getElementById("addExamInstruction").value;
+        var token = window.localStorage.getItem('token');
         if (testName === "") {
             alert("Please enter test name");
         } else {
@@ -76,29 +81,27 @@ $(document).ready(function() {
         if (testDate == "") {
             alert("Please enter your mobile number");
         } else {
-            testDate = true;
+            const testD = testDate.slice(0, 10);
+            const testd = testDate.slice(11, 16)
+            testDate = testD.concat(" " + testd + ":00")
         }
 
-        if (testInstruction === "") {
-            alert("Please enter test instruction");
-        } else {
-            testInstruction = true;
-        }
 
-        if ((testName || testCode || testDate || testDuration || testInstruction) == true) {
+
+        if ((testName || testCode || testDuration) == true) {
             tempExamCode = $('#addExamCode').val()
             let examDetail = {
                 examName: $('#addExamName').val(),
                 examCode: $('#addExamCode').val(),
                 examDuration: $('#addExamDuration').val(),
-                examStartTime: $('#addExamTestDate').val(),
+                examStartTime: testDate,
                 instructions: $('#addExamInstruction').val()
             }
             $.ajax("http://localhost:3000/exam", {
                 type: "POST",
                 dataType: "json",
                 headers: {
-                    token: localStorage.getItem('userToken')
+                    token: localStorage.getItem('token')
                 },
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
@@ -190,10 +193,19 @@ $(document).ready(function() {
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
+                headers: {
+                    token: localStorage.getItem('token')
+                },
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
-                    // document.getElementById('show-messages').innerHTML = "Account Created"
+                    document.getElementById("addtestQuestion").value = '';
+                    document.getElementById("addtestOption1").value = '';
+                    document.getElementById("addtestOption2").value = '';
+                    document.getElementById("addtestOption3").value = '';
+                    document.getElementById("addtestOption4").value = '';
+                    document.getElementById("addtestAnswer").value = '';
+                    document.getElementById("addtestWeightage").value = '';
                 },
                 error: function(error) {
                     console.log("error : " + error)
