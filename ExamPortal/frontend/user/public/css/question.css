@@ -91,12 +91,6 @@ body{
     padding-left: 0!important;
 }
 
-@media(max-width: 768px){
-    .card{
-        margin-top: 15px;
-    }
-}
-
 #options{
     padding-bottom: 14px;
 }
@@ -144,4 +138,21 @@ color: rgba(255, 255, 255, 0.5);
 .pagination-card{
     height: 325px;
     margin-top: 40px;
+    padding: 10px;
+    background-color: white;
+    /* text-align: center; */
+}
+
+.circle{
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    border-radius: 30px;
+    display: inline-block;
+}
+
+@media(max-width: 768px){
+    .card{
+        margin-top: 15px;
+    }
 }
