@@ -80,14 +80,17 @@ const adminLogin = async(req,res)=>{
        // console.log(existUser);
         if(existUser)
         {
-           //console.log("inside");
-          // console.log(req.body.password);
+           console.log("inside");
+           console.log(req.body.password);
           //res.send({"message":"Admin exist"})
-        // const pass=await bcrypt.compare(req.body.password,admin.password);
-         //console.log(pass);
-        // if(pass)
+         const pass=await bcrypt.compare(req.body.password,existUser.password);
+         console.log(pass);
+         if(pass)
          {
             res.send({"message":"Admin valid"});
+         }
+         else{
+            res.send({"message":"Email or password is not valid"}); 
          }
         }
         else
