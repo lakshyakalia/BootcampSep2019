@@ -120,11 +120,7 @@ module.exports = () => {
             return ("you Are NOT AUthorised to visit this page")
         }
     })
-
-    app.post('/saveadmin',async(req,res)=>{
-        Ques.saveAdmin(req,res)
-        return "hello"
-    })
+    
     //admin will delete examiner using id of examiner
     app.delete('/examiner/:id',middleware, (req, res) => {
         const result = Users.examinerDel(req, res)
