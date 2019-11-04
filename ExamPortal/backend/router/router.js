@@ -32,37 +32,6 @@ module.exports = () => {
     //     res.send(response)
     // })
 
-<<<<<<< HEAD
-	app.patch('/examiner',async(req,res)=>{
-	
-		const result =await Users.facultyUpd(req,res)
-		res.send(result)
-	})
-	//admin will add examiner
-	app.post('/examiner', (req, res) => {
-		const response = adminDetail.adminDetails(req,res)
-		return response;
-	})
-	//admin will view examiner
-	app.get('/examiner', async(req, res) => {
-
-			const result=await Users.fetchData(req,res)
-			res.send(result);
-	})
-	//admin will delete examiner using id of examiner
-	app.delete('/examiner/:id', (req, res) => {
-		console.log("----inside-----")
-		
-		const result =Users.facultyDel(req,res)
-		res.send(result)
-	})
-	//admin will view test created by each examiner using their id
-	app.get('/examiner/:id',async  (req, res) => {
-		
-		const result= await Users.testDetails(req,res)
-		res.send(result);
-	})
-=======
     //examiner will create exam details
     app.post('/exam',middleware, (req, res) => {
         Users.examDetail(req, res)
@@ -98,7 +67,6 @@ module.exports = () => {
     app.get('/exam/question/:id',middleware, (req, res) => {
             Users.getQuestionDetail(req, res)
 		})
->>>>>>> upstream/himanshu1365-exam-portal
 
 		//get particular question using its ID
 	app.get('/exam/question/byid/:id',middleware, (req, res) => {
