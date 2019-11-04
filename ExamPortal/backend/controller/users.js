@@ -26,8 +26,12 @@ const examDetail = (req, res) => {
     examController.examDetails(req, res)
 }
 
-const studentPerformance = (req, res) => {
-    studentPerformanceController.viewPerformance(req, res)
+const studentPerformance = async(req, res) => {
+
+    const response = await studentPerformanceController.viewPerformance(req, res)
+    console.log('ll')
+    return response
+
 }
 
 const viewExamDetail = (req, res) => {
@@ -35,32 +39,32 @@ const viewExamDetail = (req, res) => {
     examController.viewExamDetail(req, res)
 }
 
-const fetchExamDetail = (req,res)=>{
-    examController.fetchExamDetail(req,res)
+const fetchExamDetail = (req, res) => {
+    examController.fetchExamDetail(req, res)
 }
 
-const removeExam = (req,res)=>{
-    examController.removeExam(req,res)
+const removeExam = (req, res) => {
+    examController.removeExam(req, res)
 }
 
-const editExam = (req,res)=>{
-    examController.editExam(req,res)
+const editExam = (req, res) => {
+    examController.editExam(req, res)
 }
 
-const getQuestionDetail = (req,res)=>{
+const getQuestionDetail = (req, res) => {
     // console.log("hello1 ",req.params.id)
-    questionDetail.getQuestionDetails(req,res)
+    questionDetail.getQuestionDetails(req, res)
 }
 
-const fetchQuestionById = (req,res)=>{
-    questionDetail.fetchQuestionById(req,res)
+const fetchQuestionById = (req, res) => {
+    questionDetail.fetchQuestionById(req, res)
 }
 
-const editQuestion = (req,res)=>{
-    questionDetail.editQuestion(req,res)
+const editQuestion = (req, res) => {
+    questionDetail.editQuestion(req, res)
 }
-const removeQuestion = (req,res)=>{
-    questionDetail.removeQuestion(req,res)
+const removeQuestion = (req, res) => {
+    questionDetail.removeQuestion(req, res)
 }
 const userDetails = (req, res) => {
     // console.log('hello world')
@@ -93,6 +97,7 @@ module.exports = {
     testDetails,
     examinerDel,
     fetchData,
+    studentPerformance,
     examinerUpd,
     examDetail,
     question,

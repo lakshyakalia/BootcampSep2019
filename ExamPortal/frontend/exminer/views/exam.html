@@ -10,11 +10,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../public/css/exam.css">
     <!-- <link rel="stylesheet" href="../public/css/examdetails.css"> -->
+    <script type="text/javascript" src="../public/js/examiner.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: black;">
+        <img src="../../user/public/assets/cybergrouplogo.png" class="logo">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+
+                <li class="nav-item">
+                    <a class="nav-link" onclick="location.href='./examiner.html'">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="location.href='contactUs.html'">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" onclick="location.href='exam.html'">Test Collections</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="logout()">Logout</button>
+            </form>
+        </div>
+    </nav>
 
     <div class="container-fluid">
         <div class="row" id="examId">
@@ -41,7 +68,7 @@
         </div>
     </div>
     <!-- append view question template -->
-    <div class="container" id="mainDiv">
+    <div class="container question-div-pos" id="mainDiv">
         <div class="row">
             <div class="col-md-2" id="question-Index"></div>
             <div class="col-md-10" id="question-Display"></div>

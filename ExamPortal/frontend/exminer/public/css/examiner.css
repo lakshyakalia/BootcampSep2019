@@ -4,18 +4,23 @@ li {
 }
 
 li:hover {
-    background-color: #c4e3f3;
+    background-color: black;
     border-radius: 6px;
     transition-duration: 0.8s;
     color: white;
 }
 
+.logo {
+    height: 42px;
+}
+
 a:hover {
-    color: blue;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
 }
 
 .nav-link:hover {
-    color: blue;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .container-1 button {
@@ -43,7 +48,7 @@ button {
 .container-1:hover {
     transition-duration: 0.2s;
     /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.6); */
-    border-left: 5px solid rgba(75, 54, 192, 0.8);
+    border-left: 6px solid rgba(75, 54, 192, 0.8);
 }
 
 body {
@@ -126,7 +131,7 @@ select {
 
 #span {
     font-weight: 200;
-    color: rgb(8, 3, 36);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .edit-text {
