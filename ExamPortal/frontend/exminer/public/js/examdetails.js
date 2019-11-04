@@ -85,13 +85,9 @@ $(document).ready(function () {
                 testDate = true;
             }
         
-        if (testInstruction === "") {
-            alert("Please enter test instruction");
-        }  else {
-                testInstruction = true;
-                }    
+            
     
-        if ((testName || testCode || testDate || testDuration || testInstruction) == true) {
+        if ((testName || testCode || testDate || testDuration ) == true) {
                 tempExamCode= $('#addExamCode').val()
             let examDetail = {
                 examName: $('#addExamName').val(),
