@@ -57,6 +57,7 @@ $(document).ready(function () {
         var testDuration = document.getElementById("addExamDuration").value;
         var testDate = document.getElementById("addExamTestDate").value;
         var testInstruction = document.getElementById("addExamInstruction").value;
+        var token = window.localStorage.getItem('token');
         if (testName === "") {
             alert("Please enter test name");
         } else {
@@ -84,13 +85,9 @@ $(document).ready(function () {
                 testDate = true;
             }
         
-        if (testInstruction === "") {
-            alert("Please enter test instruction");
-        }  else {
-                testInstruction = true;
-                }    
+            
     
-        if ((testName || testCode || testDate || testDuration || testInstruction) == true) {
+        if ((testName || testCode || testDate || testDuration ) == true) {
                 tempExamCode= $('#addExamCode').val()
             let examDetail = {
                 examName: $('#addExamName').val(),
@@ -103,7 +100,7 @@ $(document).ready(function () {
                 type: "POST",
                 dataType: "json",
                 headers: {
-                    token: localStorage.getItem('userToken')
+                    token: localStorage.getItem('token')
                 },
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
@@ -195,6 +192,9 @@ $(document).ready(function() {
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
+                headers: {
+                    token: localStorage.getItem('token')
+                },
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
