@@ -47,13 +47,15 @@ function showStudents() {
         type: 'GET',
         dataType: 'JSON',
         success: function(data) {
+
+            console.log(data.b.length)
+
             // data = JSON.stringify(data)
             let indexTemplate = $("#view-student-performance").html();
-            // $.each(data, (index, item) => {
-            // console.log(item.name)
-            // console.log(indexTemplate)
-            $("#tbdy").append(Mustache.render(indexTemplate, data))
-                // })
+            //  $.each(data, (index, item) => {
+
+            // $("#tbdy").append(Mustache.render(indexTemplate, item.a))
+            //      })
         },
         error: function(error) {}
     })
