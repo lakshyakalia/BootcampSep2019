@@ -156,7 +156,8 @@ $(document).on('click','#modalEndTest',function(){
 })
 
 $(document).on('click','#resetRadio',function(){
-    $('.form-check-radio').prop("checked",false)
+    let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
+    $(`input[name=${questionId}]:checked`).prop("checked",false)
 })
 
 $(document).on('click',"input[type='radio']",function(){
