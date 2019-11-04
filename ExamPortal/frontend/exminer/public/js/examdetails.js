@@ -85,27 +85,22 @@ $(document).ready(function () {
                 testDate = true;
             }
         
-        if (testInstruction === "") {
-            alert("Please enter test instruction");
-        }  else {
-                testInstruction = true;
-                }    
+            
     
-        if ((testName || testCode || testDate || testDuration || testInstruction) == true) {
+        if ((testName || testCode || testDate || testDuration ) == true) {
                 tempExamCode= $('#addExamCode').val()
             let examDetail = {
                 examName: $('#addExamName').val(),
                 examCode: $('#addExamCode').val(),
                 examDuration: $('#addExamDuration').val(),
                 examStartTime: $('#addExamTestDate').val(),
-                instructions: $('#addExamInstruction').val(),
-                examinerId: token
+                instructions: $('#addExamInstruction').val()
             }
             $.ajax("http://localhost:3000/exam", {
                 type: "POST",
                 dataType: "json",
                 headers: {
-                    token: localStorage.getItem('userToken')
+                    token: localStorage.getItem('token')
                 },
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
@@ -197,6 +192,9 @@ $(document).ready(function() {
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
+                headers: {
+                    token: localStorage.getItem('token')
+                },
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
