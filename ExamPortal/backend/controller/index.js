@@ -1,1 +1,2 @@
-exports.Users = require('./usersController')
+exports.Users = require('./users')
+exports.Ques = require('./questionController')
