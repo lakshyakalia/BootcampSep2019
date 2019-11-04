@@ -95,3 +95,8 @@ function editDetails() {
 function hideEditDetails() {
     $("#showEditDiv").fadeOut("slow");
 }
+
+function logout() {
+    localStorage.removeItem("token")
+    location.replace("../../index.html")
+}

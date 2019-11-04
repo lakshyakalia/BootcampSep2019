@@ -13,7 +13,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color: black;">
-        <img src="/user/public/assets/cybergrouplogo.png" class="logo">
+        <img src="../public/assets/cybergrouplogo.png" class="logo">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ">
 
@@ -41,21 +41,14 @@
                 <p class="instructions">This test consists of two sections: <br>
                     <ul>
 
-                        <li> a multiple-choice question section and a constructed-response assignment section. Each
-                            question in the first section is a
-                            multiple-choice question with four answer choices. Read each question and answer
-                            choice carefully and choose the ONE best answer.</li>
-                        <li>Try to answer all questions. In general, if you have some knowledge about a question, it
-                            is better to try to answer it. You will not be penalized for guessing.</li>
-                        <li>The second section contains one constructed-response assignment. Directions for the
-                            constructed-response assignment section appear immediately before the assignment.</li>
+                        <li> a multiple-choice question section and a constructed-response assignment section. Each question in the first section is a multiple-choice question with four answer choices. Read each question and answer choice carefully and choose
+                            the ONE best answer.</li>
+                        <li>Try to answer all questions. In general, if you have some knowledge about a question, it is better to try to answer it. You will not be penalized for guessing.</li>
+                        <li>The second section contains one constructed-response assignment. Directions for the constructed-response assignment section appear immediately before the assignment.</li>
                         <li>
-                            You may work on the multiple-choice questions and the constructed-response
-                            assignment in any order that you choose. Be sure to allocate your time carefully so you
-                            are able to complete the entire test within the testing session. You may go back and
-                            review your answers at any time during the testing session.</li>
-                        <li> You may NOT use a calculator or reference materials during the testing session.
-                            Select the Next button to continue.</li>
+                            You may work on the multiple-choice questions and the constructed-response assignment in any order that you choose. Be sure to allocate your time carefully so you are able to complete the entire test within the testing session. You may go back and review
+                            your answers at any time during the testing session.</li>
+                        <li> You may NOT use a calculator or reference materials during the testing session. Select the Next button to continue.</li>
                 </p>
                 </ul>
             </div>
@@ -63,9 +56,10 @@
         </form>
     </div>
     <script>
-        $(document).on('click','.startTest',function(){
-            $(location).attr('href','./question.html')
-        })    
+        $(document).on('click', '.startTest', function() {
+            $(location).attr('href', './question.html')
+        })
     </script>
 </body>
+
 </html>
