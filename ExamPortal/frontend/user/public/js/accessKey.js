@@ -16,7 +16,7 @@ $(document).on('click','#checkAccessKey',function(){
             $(location).attr('href', '../views/instructions.html')
         },
         error: function(error){
-            console.log(error)
+            $('.error-msg').text("Wrong Access key")
         }
     })
 })
