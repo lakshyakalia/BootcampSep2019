@@ -13,7 +13,7 @@ function loadQuestions(data,startTime,duration, examName){
 
 function setTimeForTest(time,duration){
     let testStartTime = new Date(time).getTime()
-    let testEndTime = new Date(testStartTime+duration*10000).getTime()
+    let testEndTime = new Date(testStartTime+duration*600000).getTime()
     var x = setInterval(function(){
         let testPresentTime = new Date().getTime()
         let leftTestTime = testEndTime - testPresentTime
