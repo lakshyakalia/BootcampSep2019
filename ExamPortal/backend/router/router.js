@@ -112,13 +112,18 @@ module.exports = () => {
     })
     //admin will view examiner
     app.get('/examiner',middleware, async (req, res) => {
-        if (req.header.role == "admin") {
+        if (req.headers.role == "Admin") {
             const result = await Users.fetchData(req, res)
             res.send(result);
         }
         else {
             return ("you Are NOT AUthorised to visit this page")
         }
+    })
+
+    app.post('/saveadmin',async(req,res)=>{
+        Ques.saveAdmin(req,res)
+        return "hello"
     })
     //admin will delete examiner using id of examiner
     app.delete('/examiner/:id',middleware, (req, res) => {

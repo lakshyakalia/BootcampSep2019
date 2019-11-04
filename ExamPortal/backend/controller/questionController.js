@@ -3,7 +3,6 @@ const {  test } = require('../models/candidateAnswer')
 const { examDetail } = require('../models/examDetail')
 
 
-
 const answerObject = (body,headers,weightage,status)=>{
     weightage = parseInt(weightage)
     let answerDetail = new test({
