@@ -1,167 +1,241 @@
-function loadQuestions(data,startTime,duration, examName){
+function loadQuestions(data, startTime, duration, examName) {
     const questionTemplate = document.querySelector('#question-template').innerHTML
     $('.showTest').text(examName)
-    setTimeForTest(startTime,duration)
+    setTimeForTest(startTime, duration)
     $('#options').empty()
     const op = document.querySelector('#options')
-    for(i=0;i<data.length;i++){
-        const html = Mustache.render(questionTemplate,{questions:data[i]})
-        op.insertAdjacentHTML("beforeend",html)
-        showPreviousTicks()
-    }
+    const html = Mustache.render(questionTemplate, { questions: data[0] })
+    op.insertAdjacentHTML("beforeend", html)
+    showPreviousTicks()
 }
 
-function setTimeForTest(time,duration){
+function loadPaginaton(questions) {
+    const paginationTemplate = document.querySelector('#pagination-template').innerHTML
+    const op = document.querySelector('.pagination-card')
+    for (i = 0; i < questions.length; i++) {
+        let j = i + 1
+        const html = Mustache.render(paginationTemplate, { pages: j, id: questions[i]._id })
+        op.insertAdjacentHTML("beforeend", html)
+    }
+
+}
+
+function setTimeForTest(time, duration) {
     let testStartTime = new Date(time).getTime()
-    let testEndTime = new Date(testStartTime+duration*600000).getTime()
-    var x = setInterval(function(){
+    let testEndTime = new Date(testStartTime + duration * 600000).getTime()
+    var x = setInterval(function () {
         let testPresentTime = new Date().getTime()
         let leftTestTime = testEndTime - testPresentTime
         var hours = Math.floor((leftTestTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((leftTestTime % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((leftTestTime % (1000 * 60)) / 1000);
-        document.getElementById("showTime").innerHTML = hours + "h "+ minutes + "m " + seconds + "s ";
+        document.getElementById("showTime").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
         if (leftTestTime < 0) {
             clearInterval(x);
-            $(location).attr('href','./endTest.html')
+            $(location).attr('href', './endTest.html')
             localStorage.clear()
         }
-    },1000)
+    }, 1000)
 }
 
-function showPreviousTicks(){
+function showPreviousTicks() {
     let keys = Object.keys(localStorage)
-    for(let i=0;i<keys.length;i++){
-        if(keys[i].length > 20){
+    for (let i = 0; i < keys.length; i++) {
+        if (keys[i].length > 20) {
             let value = localStorage.getItem(keys[i])
-            $(`input[name=${keys[i]}][value=${value}]`).prop('checked',true)
+            $(`input[name=${keys[i]}][value=${value}]`).prop('checked', true)
         }
     }
 }
 
-$(document).ready(function(){
-    const tok =localStorage.getItem('token');
-
-    if(tok == null)
-    {
-      location.replace("../../index.html")
+function loadFullWindow() {
+    document.fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
+    if (document.fullscreenEnabled) {
+        let element = document.documentElement
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullScreen) {
+            element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
     }
-    // In real, exam code would be stored when user login to test sucessfully
-    // localStorage.setItem('code','1199')
-    $('#nextQuestion').attr('value',0)
-    $('#previousQuestion').attr({'value':0,'disabled':true})
-    $.ajax('http://localhost:3000/test',{
-        type:'GET',
+}
+
+$(window).on('load',function(){
+    $('#fullScreenModal').modal('show')
+})
+
+$(document).on('click','#goFullWindow',function(){
+    loadFullWindow() 
+    $('#fullScreenModal').modal('hide')
+})
+
+$(document).ready(function () {
+    const tok = localStorage.getItem('token');
+    if (tok == null) {
+        location.replace("../../index.html")
+    }
+    $('#nextQuestion').attr('value', 0)
+    $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
+    $.ajax('http://localhost:3000/test', {
+        type: 'GET',
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
             token: localStorage.getItem('token')
         },
-        data:{
+        data: {
             pageNumber: $('#nextQuestion').attr('value')
         },
-        success: function(data){
+        success: function (data) {
             data.duration = parseInt(data.duration)
-            loadQuestions(data.questions,data.startTime,data.duration,data.examName)
+            loadQuestions(data.questions, data.startTime, data.duration, data.examName)
+            loadPaginaton(data.allQuestions)
         },
-        error: function(err){
+        error: function (err) {
             console.log(err)
         }
     })
 })
 
-$(document).on('click','#submitAnswer',function(){
+$(document).on('click', '#submitAnswer', function () {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
     let examCode = $(this).parent().parent().parent().parent().children().children().children().children().attr('id')
     let radioValue = $(`input[name=${questionId}]:checked`).val()
-    $.ajax('http://localhost:3000/test',{
+    $.ajax('http://localhost:3000/test', {
         type: 'POST',
         dataType: 'JSON',
-        //In real student ID would be fetched from token
-        headers:{
+        headers: {
             token: localStorage.getItem('token')
         },
-        data:{
+        data: {
             code: examCode,
             checkedOption: radioValue,
-            qId : questionId
+            qId: questionId
         },
-        success: function(data){
-            console.log(data.msg)
+        success: function (data) {
+            $('#' + questionId + ".circle").css('background-color', "green")
         },
-        error: function(error){
+        error: function (error) {
             console.log(error)
         }
     })
 })
 
-$(document).on('click','#nextQuestion',function(){
+$(document).on('click', '#nextQuestion', function () {
     let page = parseInt($('#nextQuestion').attr('value'))
-    $('#nextQuestion').attr('value',page+1)
-    if( $('#nextQuestion').attr('value')!= 0){
+    $('#nextQuestion').attr('value', page + 1)
+    if ($('#nextQuestion').attr('value') != 0) {
         $('#previousQuestion').removeAttr("disabled");
     }
-    $.ajax('http://localhost:3000/test',{
-        type:'GET',
+    $.ajax('http://localhost:3000/test', {
+        type: 'GET',
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
             token: localStorage.getItem('token')
         },
-        data:{
+        data: {
             pageNumber: $('#nextQuestion').attr('value')
         },
-        success: function(data){
-            loadQuestions(data.questions,data.startTime,data.duration)
-            if(data.lastQuestionStatus === true){
-                $('#nextQuestion').attr('disabled',true)
+        success: function (data) {
+            loadQuestions(data.questions, data.startTime, data.duration)
+            if (data.lastQuestionStatus === true) {
+                $('#nextQuestion').attr('disabled', true)
             }
         },
-        error: function(err){
+        error: function (err) {
             console.log(err)
         }
     })
 })
 
-$(document).on('click','#previousQuestion',function(){
-    let pageNumber = parseInt($('#nextQuestion').attr('value'))-1
-    $('#nextQuestion').attr('value',pageNumber)
-    if(pageNumber == 0){
-        $('#previousQuestion').attr({'value':0,'disabled':true})
+$(document).on('click', '#previousQuestion', function () {
+    let pageNumber = parseInt($('#nextQuestion').attr('value')) - 1
+    $('#nextQuestion').attr('value', pageNumber)
+    if (pageNumber == 0) {
+        $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
     }
-    $.ajax('http://localhost:3000/test',{
+    $.ajax('http://localhost:3000/test', {
+        type: 'GET',
+        dataType: 'JSON',
+        headers: {
+            examCode: localStorage.getItem('examCode'),
+            token: localStorage.getItem('token')
+        },
+        data: {
+            pageNumber: pageNumber
+        },
+        success: function (data) {
+            if (data.lastQuestionStatus === false) {
+                $('#nextQuestion').removeAttr('disabled')
+            }
+            loadQuestions(data.questions, data.startTime, data.duration)
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+})
+
+$(document).on('click', '#modalEndTest', function () {
+    $.ajax('http://localhost:3000/test/endTest',{
         type:'GET',
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
             token: localStorage.getItem('token')
         },
-        data:{
-            pageNumber: pageNumber
+        body:{
+            code: localStorage.getItem("examCode")
         },
         success: function(data){
-            if(data.lastQuestionStatus === false){
-                $('#nextQuestion').removeAttr('disabled')
-            }
-            loadQuestions(data.questions,data.startTime,data.duration)
+            $(location).attr('href', './endTest.html')
         },
-        error: function(err){
-            console.log(err)
+        error: function(error){
+            console.log(error)
         }
     })
-})
+})  
 
-$(document).on('click','#modalEndTest',function(){
-    $(location).attr('href','./endTest.html')
-})
-
-$(document).on('click','#resetRadio',function(){
+$(document).on('click', '#resetRadio', function () {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
-    $(`input[name=${questionId}]:checked`).prop("checked",false)
+    $(`input[name=${questionId}]:checked`).prop("checked", false)
 })
 
-$(document).on('click',"input[type='radio']",function(){
+$(document).on('click', "input[type='radio']", function () {
     let questionId = $(this)[0].name
     let answer = $(this)[0].value
-    localStorage.setItem(questionId,answer)
+    localStorage.setItem(questionId, answer)
+    $('#' + questionId + ".circle").css('background-color', "blue")
+})
+
+$(document).on('click', '.circle', function () {
+    let upcomingPage = parseInt($(this).children().html()) - 1
+    $.ajax('http://localhost:3000/test', {
+        type: 'GET',
+        dataType: 'JSON',
+        headers: {
+            examCode: localStorage.getItem('examCode'),
+            token: localStorage.getItem('token')
+        },
+        data: {
+            pageNumber: upcomingPage
+        },
+        success: function (data) {
+            $('#nextQuestion').attr('value', data.pageNumber)
+
+            if (data.pageNumber === 0) $('#previousQuestion').attr("disabled", true)
+            else $('#previousQuestion').removeAttr("disabled")
+
+            if (data.lastQuestionStatus) $('#nextQuestion').attr("disabled", true)
+            else $('#nextQuestion').removeAttr("disabled")
+
+            loadQuestions(data.questions, data.startTime, data.duration)
+        },
+        error: function (error) {
+            console.log(error)
+        }
+    })
 })

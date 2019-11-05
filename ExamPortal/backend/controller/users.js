@@ -13,6 +13,7 @@ const userRecord = async(req, res) => {
     return response
 }
 
+
 const loggedInDetails = async(req, res) => {
     const det = await userController.loggedInDetails(req, res)
     return det
@@ -39,11 +40,18 @@ const viewExamDetail = (req, res) => {
 }
 
 const fetchExamDetail = (req, res) => {
-    examController.fetchExamDetail(req, res)
-}
+        examController.fetchExamDetail(req, res)
+    }
+    ///////////////////////
+const adminLogin = async(req, res) => {
 
-const removeExam = (req, res) => {
-    examController.removeExam(req, res)
+    const result = await userController.adminLogin(req, res)
+        //console.log(result);
+    return result;
+}
+const userDetails = (req, res) => {
+    const data = userController.userDetails(req, res)
+    return data;
 }
 
 const editExam = (req, res) => {
@@ -63,13 +71,13 @@ const editQuestion = (req, res) => {
     questionDetail.editQuestion(req, res)
 }
 const removeQuestion = (req, res) => {
-    questionDetail.removeQuestion(req, res)
-}
-const userDetails = (req, res) => {
-    // console.log('hello world')
-    const data = userController.userDetails(req, res)
-    return data;
-}
+        questionDetail.removeQuestion(req, res)
+    }
+    // const userDetails = (req, res) => {
+    //     // console.log('hello world')
+    //     const data = userController.userDetails(req, res)
+    //     return data;
+    // }
 
 const testDetails = (req, res) => {
     const result = testInfo.testDetails(req, res)
@@ -80,11 +88,15 @@ const examinerDel = (req, res) => {
     const result = testInfo.examinerDel(req, res)
     return result
 }
-
 const fetchData = (req, res) => {
-    const result = userController.fetchData(req, res)
-    return result
-}
+        const result = userController.fetchData(req, res)
+        return result
+    }
+    // const facultyUpd= (req,res)=>{
+
+//     const result = userController.facultyUpd(req,res)
+//     return result
+// }
 
 const examinerUpd = (req, res) => {
     const result = userController.examinerUpd(req, res)
@@ -94,26 +106,41 @@ const studPerformance = async(req, res) => {
     const result = await studentPerformanceController.studPerformance(req, res);
     return result;
 }
+const updateUser = (req, res) => {
+    const data = userController.updateuser(req, res)
+    return data;
+}
+const adminDetails = (req, res) => {
+    const data = userController.adminDetails(req, res)
+    return data;
+}
+
+// const question = (req, res) => {
+//     questionDetail.questions(req, res)
+// }
+
 
 module.exports = {
-    userDetails,
-    testDetails,
+    adminDetails,
+    updateUser,
+    examinerUpd,
     examinerDel,
     fetchData,
-    studentPerformance,
-    examinerUpd,
-    examDetail,
-    question,
-    viewExamDetail,
-    getQuestionDetail,
-    userRecord,
-    loggedInDetails,
-    removeExam,
-    fetchExamDetail,
-    editExam,
+    testDetails,
+    removeQuestion,
     fetchQuestionById,
+    getQuestionDetail,
+    editExam,
+    viewExamDetail,
     editQuestion,
     removeQuestion,
-    studPerformance
-
+    studPerformance,
+    userDetails,
+    adminDetails,
+    adminLogin,
+    loggedInDetails,
+    userRecord,
+    examDetail,
+    question,
+    studentPerformance
 }

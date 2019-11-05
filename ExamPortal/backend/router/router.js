@@ -10,6 +10,24 @@ const { SECRET } = require("../config/config")
 const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
 
+    // admin update examiner info
+    app.patch('/examiner/:id', async(req, res) => {
+        const result = await Users.updateUser(req, res);
+        res.send(result);
+    })
+
+    //admin will add examiner
+    app.post('/examiner', async(req, res) => {
+        const response = await Users.adminDetails(req, res)
+        res.send(response);
+    })
+
+    //admin will view examiner
+    app.get('/examiner', async(req, res) => {
+        const result = await Users.fetchData(req, res)
+        res.send(result);
+    })
+
     app.post('/login', async(req, res) => {
         const result = await createToken(req)
         if (result.token == "null") {
@@ -17,10 +35,9 @@ module.exports = () => {
         } else {
             res.status(200).send(result)
         }
-
     })
 
-    app.post('/signup', async(req, res) => {
+    app.post('/signUp', async(req, res) => {
         const result = await Users.userRecord(req, res)
         res.send(result)
     })
@@ -32,7 +49,7 @@ module.exports = () => {
     })
 
     //examiner will create exam details
-    app.post('/exam', middleware, (req, res) => {
+    app.post('/exam', (req, res) => {
         Users.examDetail(req, res)
     })
 
@@ -115,24 +132,18 @@ module.exports = () => {
         return response
     })
 
-    //admin will add examiner
-    app.post('/examiner', middleware, (req, res) => {
-        const response = adminDetail.adminDetails(req, res)
-        return response;
+    app.get('/test/endTest', async(req, res) => {
+        const response = await Ques.saveAllQuestions(req, res)
     })
 
-    //admin will view examiner
-    app.get('/examiner', middleware, async(req, res) => {
-        if (req.header.role == "admin") {
-            const result = await Users.fetchData(req, res)
-            res.send(result);
-        } else {
-            return ("you Are NOT AUthorised to visit this page")
-        }
-    })
+    //admin will add examiner
+    // app.post('/examiner', middleware, (req, res) => {
+    //     const response = adminDetail.adminDetails(req, res)
+    //     return response;
+    // })
 
     //admin will delete examiner using id of examiner
-    app.delete('/examiner/:id', middleware, (req, res) => {
+    app.delete('/examiner/:id', (req, res) => {
             const result = Users.examinerDel(req, res)
             res.send(result)
         })
@@ -142,9 +153,9 @@ module.exports = () => {
         res.send(result);
     })
 
-    //admin will delete examiner using id of examiner
-    app.delete('/examiner/:id', middleware, (req, res) => {
-        const result = Users.examinerDel(req, res)
+    //examiner will create test details
+    app.post('/exam', (req, res) => {
+        Users.examDetails(req, res)
     })
 
     app.patch('/examiner', middleware, async(req, res) => {
@@ -152,6 +163,9 @@ module.exports = () => {
         res.send(result)
     })
 
-
+    //examiner will edit test details
+    app.patch('/exam', (req, res) => {
+        res.send({ "data": req.body })
+    })
     return app
 }

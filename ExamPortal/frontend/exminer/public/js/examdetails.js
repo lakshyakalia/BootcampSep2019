@@ -107,7 +107,9 @@ $(document).ready(function() {
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
-                success: function(data, status) {},
+                success: function(data, status) {
+
+                },
                 error: function(error) {
                     console.log("error : " + error)
                 }
@@ -174,9 +176,8 @@ $(document).ready(function() {
         } else {
             weightage = true;
         }
-
-        if ((question || option1 || option2 || option3 || option4 || weightage) == true) {
-            console.log(answer)
+        console.log(tempExamCode)
+        if ((question || option1 || option2 || option3 || option4 || answer || weightage) == true) {
             let examDetail = {
                 questionText: $('#addtestQuestion').val(),
                 answer: $('#addtestAnswer').val(),
@@ -194,6 +195,9 @@ $(document).ready(function() {
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
+                headers: {
+                    'token': localStorage.getItem('token')
+                },
                 contentType: "application/json; charset=utf-8",
                 success: function(status) {
                     console.log(status)

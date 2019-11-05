@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,7 +39,7 @@
                         <h3>MCQ Test</h3>
                     </div>
                     <div id="options"></div>
-                </div>      
+                </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="card">
@@ -49,35 +50,45 @@
                         <p>Test Name <span class="showTest"></span></p>
                     </div>
                 </div>
-                <div class="pagination-card">
-                    <div class="circle"></div>
-                </div>
+                <div class="pagination-card"></div>
                 <div class="end">
                     <button type="button" class="btn btn-outline-info btn-lg" id="previousQuestion">Previous</button>
                     <button type="button" class="btn btn-outline-success btn-lg" id="nextQuestion">Next</button>
-                    <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#myModal">End Test</button>
+                    <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal"
+                        data-target="#myModal">End Test</button>
                 </div>
             </div>
         </div>
-        
+    </div>
+    <div class="modal" id="fullScreenModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Click OK to go on fullscreen</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="goFullWindow">Full Screen</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Exit Test</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure want to submit the test ?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" id="modalEndTest">Submit</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Exit Test</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to submit the test ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="modalEndTest">Submit</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
+    </div>
     <script id="question-template" type="text/html">
         <div class="container">
             {{ #questions }}
@@ -121,6 +132,12 @@
         </div>
     </script>
 
+    <script type="text/html" id="pagination-template">
+        {{ #pages }}
+            <div class="circle" id="{{ id }}"><p>{{ pages }}</p></div>
+        {{ /pages }}
+    </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -132,6 +149,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"
         integrity="sha256-I5ZXO8KcMnqNkrXU7baGig70nATYjNDnxxA2d40PcR8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.0.0/screenfull.js"></script>
     <script src="../public/js/question.js"></script>
 </body>
 
