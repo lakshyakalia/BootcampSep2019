@@ -187,6 +187,14 @@ $(document).on('click','.circle',function(){
             pageNumber: upcomingPage
         },
         success: function(data){
+            $('#nextQuestion').attr('value',data.pageNumber)
+
+            if(data.pageNumber === 0) $('#previousQuestion').attr("disabled",true)
+            else $('#previousQuestion').removeAttr("disabled")
+
+            if(data.lastQuestionStatus) $('#nextQuestion').attr("disabled",true)
+            else $('#nextQuestion').removeAttr("disabled")
+            
             loadQuestions(data.questions, data.startTime, data.duration)
         },
         error: function(error){

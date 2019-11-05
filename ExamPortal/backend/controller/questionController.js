@@ -32,13 +32,14 @@ const testQuestions = async(req,res)=>{
         startTime:time[0].examStartTime,
         duration:time[0].examDuration,
         examName:time[0].examName,
-        allQuestions: lastQuestion
+        allQuestions: lastQuestion,
+        pageNumber: pageNumber
     })
 }
 
 const checkExistingRightOption = async (option,qId,studentId,updatedScore)=>{
     let status = await test.findOne({candidateId:studentId},{answers:{$elemMatch:{questionId:qId}}})
-    if(status !== null){
+    if(status.answers.length !== 0){
         if(status.answers[0].correctStatus){
             await test.update({$and:[
                 {answers:{ $elemMatch:{questionId:qId} }},
@@ -86,7 +87,7 @@ const saveCorrectOption = async(req,checkAnswer,existingAnswer)=>{
 
 const checkExistingWrongOption = async(option,qId,studentId,updatedScore)=>{
     let status = await test.findOne({candidateId:studentId},{answers:{$elemMatch:{questionId:qId}}})
-    if(status !== null){
+    if(status.answers.length !== 0){
         if(status.answers[0].correctStatus){
             await test.update({$and:[
                 {answers:{ $elemMatch:{questionId:qId} }},
