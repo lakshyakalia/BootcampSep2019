@@ -15,7 +15,7 @@ const adminDetails = async(req, res) => {
     try {
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
-            return ("user Exist")
+            return ({"message": "user already exist"})
         } else {
             const userInfo = req.body;
             var myPlaintesxtPassword = userInfo.password;

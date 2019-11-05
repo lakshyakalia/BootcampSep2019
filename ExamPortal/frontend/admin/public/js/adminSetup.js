@@ -60,9 +60,18 @@ $(document).ready(function(){
                 }
             ),
             success:function(recent){
-              console.log(recent)
-              console.log("Data inserted");
-              location.replace("../views/adminHome.html");
+              console.log("..........");
+              console.log(recent.message);
+              if(recent.message=="user already exist")
+              {
+                console.log("User Already Exist");
+              }
+              else
+              {
+                console.log("Account Created");
+                location.replace("../views/adminHome.html")
+              }
+              
             },
             error:function()
             {

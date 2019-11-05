@@ -63,9 +63,9 @@ module.exports = () => {
 	})
 	//admin will delete examiner using id of examiner
 	app.delete('/examiner/:id', (req, res) => {
-		const result =Users.facultyDel(req,res)
-		res.send(result)
-	})
+        const result = Users.examinerDel(req, res)
+        res.send(result)
+    })
 	//admin will view test created by each examiner using their id
 	app.get('/examiner/:id',async  (req, res) => {
 		
@@ -79,7 +79,7 @@ module.exports = () => {
 	})
 	//examiner will view test
 	app.get('/exam', async (req, res) => {
-		debugger
+		
 		const result= await Users.userDetails(req,res)
 		res.send(result)
 	})

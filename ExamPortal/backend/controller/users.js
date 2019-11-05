@@ -86,6 +86,7 @@ const adminDetails=(req,res)=>{
     return data;
 }
 
+
 module.exports = {
     
     testDetails,
@@ -94,6 +95,7 @@ module.exports = {
     updateUser,
     adminLogin,
     userRecord,
-    adminDetails
+    adminDetails,
+    examinerDel
 
 }

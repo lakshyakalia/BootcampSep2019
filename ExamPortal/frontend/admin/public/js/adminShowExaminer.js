@@ -1,3 +1,8 @@
+function logout()
+{
+   localStorage.removeItem("token");
+   window.location.replace("../../user/views/login.html");
+}
 function loadSetupExaminerPage(data){
   $('#performance').empty()
   $.get('./adminSetupExaminer.html',function(template){
