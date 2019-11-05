@@ -32,7 +32,7 @@ module.exports = () => {
     })
 
     //examiner will create exam details
-    app.post('/exam', middleware, (req, res) => {
+    app.post('/exam', (req, res) => {
         Users.examDetail(req, res)
     })
 
@@ -64,7 +64,7 @@ module.exports = () => {
     })
 
     //examiner will write exam questions
-    app.post('/exam/question', middleware, (req, res) => {
+    app.post('/exam/question', (req, res) => {
         Users.question(req, res)
     })
 
