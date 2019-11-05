@@ -47,16 +47,18 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+
     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
     function validateForm() {
+        console.log('hello')
         var testName = document.getElementById("addExamName").value;
         var testCode = document.getElementById("addExamCode").value;
         var testDuration = document.getElementById("addExamDuration").value;
         var testDate = document.getElementById("addExamTestDate").value;
         var testInstruction = document.getElementById("addExamInstruction").value;
-
+        var token = window.localStorage.getItem('token');
         if (testName === "") {
             alert("Please enter test name");
         } else {
@@ -86,7 +88,6 @@ $(document).ready(function() {
             testDate = testD.concat(" " + testd + ":00")
 
         }
-
 
         if ((testName || testCode || testDuration) == true) {
             tempExamCode = $('#addExamCode').val()
@@ -195,20 +196,15 @@ $(document).ready(function() {
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
-                headers: {
-                    'token': localStorage.getItem('token')
-                },
                 contentType: "application/json; charset=utf-8",
-                success: function(status) {
-                    console.log(status)
+                success: function(data, status) {
                     document.getElementById("addtestQuestion").value = '';
                     document.getElementById("addtestOption1").value = '';
                     document.getElementById("addtestOption2").value = '';
                     document.getElementById("addtestOption3").value = '';
                     document.getElementById("addtestOption4").value = '';
-                    // var answer = document.getElementById("addtestAnswer").value;
+                    document.getElementById("addtestAnswer").value = '';
                     document.getElementById("addtestWeightage").value = '';
-
                 },
                 error: function(error) {
                     console.log("error : " + error)
@@ -218,6 +214,9 @@ $(document).ready(function() {
             return false;
         }
     }
-
-
 })
+
+function logout() {
+    localStorage.removeItem("token")
+    location.replace("../../index.html")
+}

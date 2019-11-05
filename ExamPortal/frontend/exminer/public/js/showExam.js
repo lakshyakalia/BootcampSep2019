@@ -30,6 +30,11 @@ function showQuestion(id) {
     })
 }
 
+function setQsId(id) {
+
+    $("#delQ").attr('id', id)
+}
+
 function removeQuestion(id) {
     let qsId = $("#" + id).parent().parent().attr('id')
     $.ajax("http://localhost:3000/exam/question/" + qsId, {
@@ -148,6 +153,10 @@ function editExamDetail(id) {
             console.log(error)
         }
     })
+}
+
+function setId(id) {
+    $("#del").attr('id', id)
 }
 
 function deleteExam(id) {

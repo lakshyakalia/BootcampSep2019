@@ -14,6 +14,14 @@ const userRecord = async(req, res) => {
 }
 
 
+const viewExamDetail = (req, res) => {
+    examController.viewExamDetail(req, res)
+}
+
+const fetchExamDetail = (req, res) => {
+    examController.fetchExamDetail(req, res)
+}
+
 const loggedInDetails = async(req, res) => {
     const det = await userController.loggedInDetails(req, res)
     return det
@@ -89,14 +97,9 @@ const examinerDel = (req, res) => {
     return result
 }
 const fetchData = (req, res) => {
-        const result = userController.fetchData(req, res)
-        return result
-    }
-    // const facultyUpd= (req,res)=>{
-
-//     const result = userController.facultyUpd(req,res)
-//     return result
-// }
+    const result = userController.fetchData(req, res)
+    return result
+}
 
 const examinerUpd = (req, res) => {
     const result = userController.examinerUpd(req, res)
@@ -127,6 +130,8 @@ module.exports = {
     examinerDel,
     fetchData,
     testDetails,
+    viewExamDetail,
+    fetchExamDetail,
     removeQuestion,
     fetchQuestionById,
     getQuestionDetail,
@@ -136,7 +141,6 @@ module.exports = {
     removeQuestion,
     studPerformance,
     userDetails,
-    adminDetails,
     adminLogin,
     loggedInDetails,
     userRecord,

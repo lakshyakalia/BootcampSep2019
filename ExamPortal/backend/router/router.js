@@ -92,7 +92,7 @@ module.exports = () => {
         Users.question(req, res)
     })
 
-    //examiner will views questions 
+    //examiner will views questions
     app.get('/exam/question/:id', middleware, (req, res) => {
         Users.getQuestionDetail(req, res)
     })
