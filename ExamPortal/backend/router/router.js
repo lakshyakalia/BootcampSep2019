@@ -27,10 +27,10 @@ module.exports = () => {
     })
     
         //for viewing the details of loggedin user
-    // app.get('/loggedIn', async(req, res) => {
-    //     const response = await Users.loggedInDetails(req, res)
-    //     res.send(response)
-    // })
+    app.get('/loggedIn', async(req, res) => {
+        const response = await Users.loggedInDetails(req, res)
+        res.send(response)
+    })
 
     //examiner will create exam details
     app.post('/exam',middleware, (req, res) => {

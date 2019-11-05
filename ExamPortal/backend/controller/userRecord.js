@@ -16,6 +16,7 @@ const userRecord = async(req, res) => {
         if (existUser) {
             return ("user Exist")
         } else {
+            debugger
             const userInfo = req.body;
             var myPlaintesxtPassword = userInfo.password;
             var salt = bcrypt.genSaltSync(10);
@@ -75,5 +76,6 @@ module.exports = {
     userDetails,
     decodeToken,
     fetchData,
-    examinerUpd
+    examinerUpd,
+    loggedInDetails
 }
