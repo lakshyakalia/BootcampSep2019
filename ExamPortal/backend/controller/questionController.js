@@ -176,7 +176,12 @@ const saveAllQuestions = async(req,res)=>{
             }
         } 
     }
-    res.send(200).status({"msg":"All questions saved"})  
+    res.status(200).send({"msg":"All questions saved"})  
+}
+
+const getExamTime = async(req,res)=>{
+    const examData = await examDetail.findOne(req.query).select({examStartTime:1})
+    res.status(200).send(examData)
 }
 
 const questions = async (req, res) => {
@@ -263,5 +268,6 @@ module.exports = {
     fetchQuestionById,
     editQuestion,
     removeQuestion,
-    saveAllQuestions
+    saveAllQuestions,
+    getExamTime
 }

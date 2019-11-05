@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    // let presentTime = new Date
+})
+
 $(document).on('click','#checkAccessKey',function(){
     const tok =localStorage.getItem('token');
 
@@ -5,7 +9,7 @@ $(document).on('click','#checkAccessKey',function(){
     {
       location.replace("../../index.html")
     }
-    $.ajax('http://localhost:3000/test/assessKey',{
+    $.ajax('http://localhost:3000/test/accessKey',{
         type:'POST',
         dataType:'JSON',
         data:{
