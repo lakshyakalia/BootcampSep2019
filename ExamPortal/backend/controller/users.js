@@ -28,8 +28,7 @@ const examDetail = (req, res) => {
 
 const studentPerformance = async(req, res) => {
 
-    const response = await studentPerformanceController.viewPerformance(req, res)
-    console.log('ll')
+    const response = await studentPerformanceController.allExamsMade(req, res)
     return response
 
 }
@@ -91,6 +90,10 @@ const examinerUpd = (req, res) => {
     const result = userController.examinerUpd(req, res)
     return result
 }
+const studPerformance = async(req, res) => {
+    const result = await studentPerformanceController.studPerformance(req, res);
+    return result;
+}
 
 module.exports = {
     userDetails,
@@ -110,5 +113,7 @@ module.exports = {
     editExam,
     fetchQuestionById,
     editQuestion,
-    removeQuestion
+    removeQuestion,
+    studPerformance
+
 }
