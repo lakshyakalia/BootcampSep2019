@@ -3,6 +3,7 @@ const question = require('./questionController')
 
 const examDetails = async(req, res) => {
     try {
+        req.body.examnierId= req.headers.id
         let examInformation = new examDetail(req.body)
         await examInformation.save()
         res.status(200).send({ msg: 'exam information saved successful' })
