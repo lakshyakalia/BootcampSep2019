@@ -93,6 +93,7 @@ $(document).on('click','#submitAnswer',function(){
             qId : questionId
         },
         success: function(data){
+            $('#'+questionId+".circle").css('background-color',"green")
             console.log(data.msg)
         },
         error: function(error){
@@ -170,6 +171,7 @@ $(document).on('click',"input[type='radio']",function(){
     let questionId = $(this)[0].name
     let answer = $(this)[0].value
     localStorage.setItem(questionId,answer)
+    $('#'+questionId+".circle").css('background-color',"blue")
 })
 
 $(document).on('click','.circle',function(){
