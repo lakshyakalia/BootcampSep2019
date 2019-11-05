@@ -50,7 +50,7 @@ const userDetails = async(req, res) => {
 }
 
 
-const examinerUpd = async (req, res) => {
+const examinerUpd = async(req, res) => {
     try {
         // console.log(req.body)
         const body = req.body
@@ -76,6 +76,6 @@ module.exports = {
     userDetails,
     decodeToken,
     fetchData,
-    examinerUpd,
-    loggedInDetails
+    loggedInDetails,
+    examinerUpd
 }

@@ -1,7 +1,6 @@
 $(document).on('click', '#loginButton', function() {
     let email = $('#inputEmail').val()
     let password = $('#inputPassword').val()
-
     $.ajax('http://localhost:3000/login', {
         type: 'POST',
         dataType: 'JSON',
@@ -15,9 +14,9 @@ $(document).on('click', '#loginButton', function() {
             if (data.accountType == "Examiner")
                 $(location).attr('href', '../../exminer/views/examiner.html')
             else if (data.accountType == "Student")
-                $(location).attr('href', '/user/views/accessKey.html')
+                $(location).attr('href',  './accessKey.html')
             else {
-                $(location).attr('href', '/admin/views/adminHome.html')
+               $(location).attr('href', '../../admin/views/adminHome.html')
             }
         },
         error: function(error) {
