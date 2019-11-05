@@ -85,7 +85,7 @@ function logout() {
 }
 
 function studentDetails(this) {
-    $.ajax("http://localhost:3000/performance/", {
+    $.ajax("http://localhost:3000/performance/students", {
         type: 'GET',
         dataType: 'JSON',
         success: function(data) {
