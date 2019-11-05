@@ -4,13 +4,21 @@ function loadQuestions(data,startTime,duration, examName){
     setTimeForTest(startTime,duration)
     $('#options').empty()
     const op = document.querySelector('#options')
-    for(i=0;i<data.length;i++){
-        const html = Mustache.render(questionTemplate,{questions:data[i]})
-        op.insertAdjacentHTML("beforeend",html)
-        showPreviousTicks()
-    }
+    const html = Mustache.render(questionTemplate,{questions:data[0]})
+    op.insertAdjacentHTML("beforeend",html)
+    showPreviousTicks()
 }
 
+function loadPaginaton(questions){
+    const paginationTemplate = document.querySelector('#pagination-template').innerHTML
+    const op = document.querySelector('.pagination-card')
+    for(i=0;i<questions.length;i++){
+        let j = i + 1
+        const html = Mustache.render(paginationTemplate,{pages : j,id:questions[i]._id})
+        op.insertAdjacentHTML("beforeend",html)
+    }
+
+}
 function setTimeForTest(time,duration){
     let testStartTime = new Date(time).getTime()
     let testEndTime = new Date(testStartTime+duration*600000).getTime()
@@ -42,12 +50,10 @@ function showPreviousTicks(){
 $(document).ready(function(){
     const tok =localStorage.getItem('token');
 
-    if(tok == null)
-    {
+    if(tok == null){
       location.replace("../../index.html")
     }
-    // In real, exam code would be stored when user login to test sucessfully
-    // localStorage.setItem('code','1199')
+
     $('#nextQuestion').attr('value',0)
     $('#previousQuestion').attr({'value':0,'disabled':true})
     $.ajax('http://localhost:3000/test',{
@@ -63,6 +69,7 @@ $(document).ready(function(){
         success: function(data){
             data.duration = parseInt(data.duration)
             loadQuestions(data.questions,data.startTime,data.duration,data.examName)
+            loadPaginaton(data.allQuestions)
         },
         error: function(err){
             console.log(err)
@@ -77,7 +84,6 @@ $(document).on('click','#submitAnswer',function(){
     $.ajax('http://localhost:3000/test',{
         type: 'POST',
         dataType: 'JSON',
-        //In real student ID would be fetched from token
         headers:{
             token: localStorage.getItem('token')
         },
@@ -87,6 +93,7 @@ $(document).on('click','#submitAnswer',function(){
             qId : questionId
         },
         success: function(data){
+            $('#'+questionId+".circle").css('background-color',"green")
             console.log(data.msg)
         },
         error: function(error){
@@ -164,4 +171,34 @@ $(document).on('click',"input[type='radio']",function(){
     let questionId = $(this)[0].name
     let answer = $(this)[0].value
     localStorage.setItem(questionId,answer)
+    $('#'+questionId+".circle").css('background-color',"blue")
+})
+
+$(document).on('click','.circle',function(){
+    let upcomingPage = parseInt($(this).children().html())-1
+    $.ajax('http://localhost:3000/test',{
+        type:'GET',
+        dataType: 'JSON',
+        headers: {
+            examCode: localStorage.getItem('examCode'),
+            token: localStorage.getItem('token')
+        },
+        data:{
+            pageNumber: upcomingPage
+        },
+        success: function(data){
+            $('#nextQuestion').attr('value',data.pageNumber)
+
+            if(data.pageNumber === 0) $('#previousQuestion').attr("disabled",true)
+            else $('#previousQuestion').removeAttr("disabled")
+
+            if(data.lastQuestionStatus) $('#nextQuestion').attr("disabled",true)
+            else $('#nextQuestion').removeAttr("disabled")
+            
+            loadQuestions(data.questions, data.startTime, data.duration)
+        },
+        error: function(error){
+            console.log(error)
+        }
+    })
 })

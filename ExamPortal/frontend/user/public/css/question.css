@@ -1,11 +1,11 @@
 body{
-    background-color: #555555;
+    background-color: #EBEBEB;
 }
 .username-text{
     margin-right: 10px;
 }
 
-.card{
+.card, .pagination-card{
     border-radius: 16px;
     -webkit-box-shadow: 0px 0px 9px 8px rgba(153,145,153,1);
     -moz-box-shadow: 0px 0px 9px 8px rgba(153,145,153,1);
@@ -149,6 +149,12 @@ color: rgba(255, 255, 255, 0.5);
     background-color: red;
     border-radius: 30px;
     display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.circle p{
+    margin-top: 12px;
 }
 
 @media(max-width: 768px){

@@ -22,22 +22,24 @@ const testQuestions = async(req,res)=>{
     let lastQuestionStatus
     let pageNumber = parseInt(req.query.pageNumber)
     let ques = await questionDetail.find({'examCode':req.headers.examcode}).skip(pageNumber).limit(1).select({"questionText":1,"options":1,"examCode":1})
-    let lastQuestion = await questionDetail.find({'examCode':req.headers.examcode}).sort({$natural:-1}).limit(1).select({"questionText":1})
-    if(lastQuestion[0].questionText === ques[ques.length-1].questionText) lastQuestionStatus = true 
+    let lastQuestion = await questionDetail.find({'examCode':req.headers.examcode}).select({"questionText":1})
+    if(lastQuestion[lastQuestion.length-1].questionText === ques[ques.length-1].questionText) lastQuestionStatus = true 
     else lastQuestionStatus = false
     const time = await examDetail.find({'examCode':req.headers.examcode}).select({examName:1,examStartTime:1,examDuration:1})
     res.status(200).send({
-        "questions":ques,
+        questions: ques,
         lastQuestionStatus: lastQuestionStatus,
         startTime:time[0].examStartTime,
         duration:time[0].examDuration,
-        examName:time[0].examName
+        examName:time[0].examName,
+        allQuestions: lastQuestion,
+        pageNumber: pageNumber
     })
 }
 
 const checkExistingRightOption = async (option,qId,studentId,updatedScore)=>{
     let status = await test.findOne({candidateId:studentId},{answers:{$elemMatch:{questionId:qId}}})
-    if(status !== null){
+    if(status.answers.length !== 0){
         if(status.answers[0].correctStatus){
             await test.update({$and:[
                 {answers:{ $elemMatch:{questionId:qId} }},
@@ -85,7 +87,7 @@ const saveCorrectOption = async(req,checkAnswer,existingAnswer)=>{
 
 const checkExistingWrongOption = async(option,qId,studentId,updatedScore)=>{
     let status = await test.findOne({candidateId:studentId},{answers:{$elemMatch:{questionId:qId}}})
-    if(status !== null){
+    if(status.answers.length !== 0){
         if(status.answers[0].correctStatus){
             await test.update({$and:[
                 {answers:{ $elemMatch:{questionId:qId} }},
@@ -215,6 +217,7 @@ const removeByExamCode = async(code)=>{
         return
     }
 }
+
 const removeQuestion = async (req,res)=>{
     try{
         await questionDetail.findByIdAndDelete({_id:req.params.id})
@@ -224,6 +227,7 @@ const removeQuestion = async (req,res)=>{
         res.status(404).send(error)
     }
 }
+
 module.exports = {
     testQuestions,
     saveCandidateAnswers,
