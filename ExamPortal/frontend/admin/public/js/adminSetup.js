@@ -64,11 +64,11 @@ $(document).ready(function(){
               console.log(recent.message);
               if(recent.message=="user already exist")
               {
-                console.log("User Already Exist");
+                window.alert("User Already Exist");
               }
               else
               {
-                console.log("Account Created");
+                window.alert("Account Created");
                 location.replace("../views/adminHome.html")
               }
               
