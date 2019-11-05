@@ -146,7 +146,5 @@ module.exports = () => {
         const result = await Users.examinerUpd(req, res)
         res.send(result)
     })
-
-
     return app
 }
