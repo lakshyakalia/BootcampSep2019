@@ -11,7 +11,7 @@ function decodeToken(req) {
     return decoded;
   }
 
-const userRecord = async(req, res) => {
+const adminDetails = async(req, res) => {
     try {
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
@@ -103,10 +103,11 @@ const adminLogin = async(req,res)=>{
         
 } 
 module.exports={
-    userRecord,
+   // userRecord,
     userDetails,
     decodeToken,
     fetchData,
     updateuser,
-    adminLogin
+    adminLogin,
+    adminDetails
 }

@@ -81,7 +81,10 @@ const updateUser=(req,res)=>{
     const data=userController.updateuser(req,res)
     return data;
 }
-
+const adminDetails=(req,res)=>{
+    const data=userController.adminDetails(req,res)
+    return data;
+}
 
 module.exports = {
     
@@ -91,5 +94,6 @@ module.exports = {
     updateUser,
     adminLogin,
     userRecord,
+    adminDetails
 
 }

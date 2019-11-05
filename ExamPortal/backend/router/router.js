@@ -45,13 +45,14 @@ module.exports = () => {
 		res.send(result);
 	})
 	//admin will add examiner
-	app.post('/examiner', (req, res) => {
-		const response = Users.adminDetails(req,res)
-		return response;
+	app.post('/examiner',async (req, res) => {
+		debugger
+		const response = await Users.adminDetails(req,res)
+		res.send(response);
 	})
 	////////////////////////// admin login post ///////////////////////////////
 	app.post('/adminlogin',async(req,res)=>{
-		const response = Users.adminLogin(req,res)
+		const response = await Users.adminLogin(req,res)
 		return response;
 	})
 	//admin will view examiner
@@ -62,8 +63,6 @@ module.exports = () => {
 	})
 	//admin will delete examiner using id of examiner
 	app.delete('/examiner/:id', (req, res) => {
-		
-		
 		const result =Users.facultyDel(req,res)
 		res.send(result)
 	})
