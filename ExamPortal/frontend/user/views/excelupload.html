@@ -1,0 +1,47 @@
+<html>
+  <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    </head>
+  <body>
+      <form>
+         <!-- enctype="multipart/form-data"
+         action="/api/photo"
+         method="post"> -->
+      <input type="file" id="uploadExcelFile" name="uploadExcelFile" />
+      <input type="button" value="Uploadfile" name="submit" onclick="excelUpload()">
+      <span id = "status"></span>
+    </form>
+  </body>
+  <script>
+      function excelUpload(){
+          var path =$("#uploadExcelFile").val()
+          console.log("hello")
+          console.log(path)
+          var formData = new FormData();
+          formData.append('excelFile',path)
+          $.ajax('http://localhost:3000/uploadExcel',{
+        type:'POST',
+        dataType:'JSON',
+        data:formData,
+        contentType:false,
+        processData:false,
+        success: function(data){
+            console.log(data.msg)
+        },
+        error: function(error){
+            console.log(error + " " + error)
+        }
+    })
+      }
+      
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+</html>

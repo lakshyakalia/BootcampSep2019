@@ -11,7 +11,7 @@ const app = express()
 app.use(bodyParser.urlencoded({
     extended: true
 }))
-
+app.use(express.static('../../frontend/exminer/excelFileUpload') )
 app.use(bodyParser.json())
 app.use(cors())
 app.options("*",cors())

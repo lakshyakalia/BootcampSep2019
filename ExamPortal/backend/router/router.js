@@ -5,10 +5,31 @@ const { Ques } = require('../controller')
 const middleware = require("../auth/middleware");
 const jwt = require('jsonwebtoken');
 const { SECRET } = require("../config/config")
+var multer = require('multer')
+const path = require('path')
+var reqPath = path.join(__dirname, '../../frontend/exminer/excelFileUpload')
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, reqPath)
+    }
+    // filename : function (req,file,cb){
+    //     cb(null ,)
+    // }
+})
 
 
 const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
+    // var uploadExcelFile = multer({ dest: 'upload/' }) // fix this part to use common file upload-path
+
+    var uploadExcelFile = multer({ dest: reqPath })
+
+    app.post('/uploadExcel', uploadExcelFile.single('uploadExcelFile'), (req, res) => {
+        console.log("result is : " + req)
+        res.send({ msg: 'excel is uploading' })
+        // Users.quesFromExcel(req, res)
+    })
 
     app.post('/login', async (req, res) => {
         const result = await createToken(req)
@@ -35,7 +56,7 @@ module.exports = () => {
     app.post('/exam', middleware, (req, res) => {
         Users.examDetail(req, res)
     })
-    
+
     //examiner will view exam
     app.get('/exam', middleware, (req, res) => {
         Users.viewExamDetail(req, res)
