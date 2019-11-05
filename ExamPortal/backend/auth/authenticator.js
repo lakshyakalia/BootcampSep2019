@@ -1,85 +1,67 @@
 const jwt = require("jsonwebtoken");
-const {SECRET} = require('../config/config')
-const {Users} = require("../controller");
-const bcrypt = require('bcrypt')
+const { SECRET } = require('../config/config')
+const { Users } = require("../controller");
+const bcrypt = require('bcryptjs')
+    // const bcrypt = require('bcrypt')
 
-async function checkAuth (req) {
-  
- const data =await matchCredentials(req);
+async function matchCredentials(req, res) {
+    // console.log('hello')
+    const user = await Users.userDetails(req, res)
 
- if(data=="matched"){
-  const valuePass = await comparePassword(req.body.password,req)
-  if(valuePass=="1"){
-    const token =await generateToken(req);
-    return ({
-      "message": "password matched",
-      "token" : token,
-    })
-  }else if(valuePass=="0") {
-    return ({
-      "message": "password not matched",
-      "token"  : "null",
-    })
-  }
- }else {
-   return ({
-     "message": "user not exists please sign up",
-     "token" : "null ",
-    })   
- }
-  
+    if (user == null) { return "Do sign up" } else if (user.email == req.body.email) {
+        return "matched"
+    }
+}
+
+async function comparePassword(myPlaintextPassword, req) {
+    const user = await Users.userDetails(req)
+        //i have returned account type here so we can redirect page to admin or student or examiner
+        //redirect happens in login page
+    const hash = user.password
+    if (bcrypt.hashSync(myPlaintextPassword, hash)) {
+
+        return user.accountType
+    } else {
+        console.log('0')
+        return "0"
+    }
 }
 
 async function generateToken(req) {
-  let email = req.body.email;
-  const user = await Users.userDetails(req);
-  const id = user[0]._id;
-  const claim =user[0].accountType
-  var token = jwt.sign( {email, expiresIn: '24h',id,claim},new Buffer(SECRET ,'base64'));
-  return token;
+    let email = req.body.email;
+    const user = await Users.userDetails(req);
+    const id = user._id;
+    const claim = user.accountType
+    var token = jwt.sign({ email, expiresIn: '24h', id, claim }, new Buffer(SECRET, 'base64'));
+    return token;
 }
 
-async function comparePassword(myPlaintextPassword,req){
-  const user = await Users.userDetails(req);
-  const hash = user[0].password;
-  if(bcrypt.compareSync(myPlaintextPassword, hash)) {
-    // Passwords match
-   return "1";
-   } else {
-    // Passwords don't match
-    return "0"
-   }
-}
+async function checkAuth(req) {
 
-async function matchCredentials (req,res){
-  const user = await Users.userDetails(req,res)
-  //console.log(user[0].email)
-  //console.log(req.body.email)
-   console.log("user : "+req.body.email);
-  if(user.length==0) {return "Do sign up"}
-  else if(user[0].email == req.body.email){
-    console.log("------matchcredentials")
-    return "matched";  
-  }
-  else {
-    console.log("create user");
-    return "Do sign up"
-  }
+    const data = await matchCredentials(req);
+    if (data == "matched") {
+        const valuePass = await comparePassword(req.body.password, req)
+        if (valuePass == "Examiner" || valuePass == "Student" || valuePass == "Admin") {
+            const token = await generateToken(req);
+            return ({
+                "message": "password matched",
+                "token": token,
+                "accountType": valuePass
+            })
+        } else {
+            return ({
+                "message": "password not matched",
+                "token": "null",
+            })
+        }
+    } else {
+        return ({
+            "message": "user not exists please sign up",
+            "token": "null",
+        })
+    }
 }
 
 module.exports = {
-  checkAuth
+    checkAuth
 }
-
-
-function hello(){
-  const saltRounds = 10;
-  const myPlaintextPassword = "c1234"
-  bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
-        console.log('hash : '+hash)
-    });
-});
-}
-
-hello()

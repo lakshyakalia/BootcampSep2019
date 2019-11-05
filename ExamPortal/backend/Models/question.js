@@ -1,9 +1,9 @@
 const mongoose  = require('mongoose')
 
+// delete mongoose.connection.models['question'];
 const Schema = mongoose.Schema
 
 const questionDetails = new Schema({
-	questionHeading: String,
 	questionText: String,
 	answer: String,
 	options:{
@@ -23,11 +23,11 @@ const questionDetails = new Schema({
 		default: Date.now
 	},
 	modifiedBy:String,
-	examCode: String
+	examCode: String,
 })
 
 const questionDetail = mongoose.model('question',questionDetails)
 
-	module.exports = {
-		questionDetail
+module.exports = {
+	questionDetail
 }

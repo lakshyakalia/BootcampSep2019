@@ -15,13 +15,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../public/css/admin.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
-    <script src="../public/js/adminShowExaminer.js"></script>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Online Test Portal</a>
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: black;">
+        <img src="../assets/cybergrouplogo.png" class="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,11 +29,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ">
 
-
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Educational Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
-            </form>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-success my-2 my-sm-0" style="color: white;" type="submit">Sign Up</button>
+            </form> -->
         </div>
     </nav>
     <div id="targetPage"></div>
@@ -53,13 +63,19 @@
                 <td>{{ name }}</td>
                 <td>{{ createdDate }}</td>
                <td> <button class="btn btn-outline-danger my-2 my-sm-0 deleteButton" type="submit" id="{{ _id }}">Delete</button></td>
+<<<<<<< HEAD
               
+=======
+               <td> <button class="btn btn-outline-success my-2 my-sm-0 updateButton" type="submit" id="{{ _id }}">Edit</button></td>
+               <td> <button class="btn btn-outline-success my-2 my-sm-0 viewButton" type="submit" id="{{ _id }}">View</button></td>
+>>>>>>> 9d3780521aedffd7e16db7016b65dca186a94403
             </tr>
             {{ /data }}
           
         </table>
         
     </script> -->
+<<<<<<< HEAD
   
   <script id="index-template" type="text/html">
   <table class="table table-hover table-dark" style="width:60%;margin-left:18%;margin-top:10%" >
@@ -83,6 +99,35 @@
       </tbody>
   </table>
 </script> 
+=======
+    <script id="index-template" type="text/html">
+    <table class="table table-hover table-dark" style="width:60%;margin-left:18%;margin-top:10%">
+        <thead>
+          <tr>
+            <th scope="col">Email</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        {{ #data }}
+        <tbody>
+               
+          <tr>
+           
+                <td>{{ email }}</td>
+                <td>{{ name }}</td>
+                <td>{{ createdDate }}</td>
+               <td> <button class="btn btn-outline-danger my-2 my-sm-0 deleteButton" type="submit" id="{{ _id }}">Delete</button></td>
+          </tr>
+          {{ /data }}
+        </tbody>
+      </table>
+    </script>
+
+
+    <script src="../public/js/adminShowExaminer.js"></script>
+>>>>>>> 9d3780521aedffd7e16db7016b65dca186a94403
 </body>
 
 </html>

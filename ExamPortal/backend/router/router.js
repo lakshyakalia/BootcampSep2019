@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const { Users } = require('../controller')
+const { Ques } = require('../controller')
 const middleware = require("../auth/middleware");
 const jwt = require('jsonwebtoken');
 const { SECRET } = require("../config/config")
