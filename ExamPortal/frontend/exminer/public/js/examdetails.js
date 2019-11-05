@@ -47,10 +47,12 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+    
     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
     function validateForm() {
+        console.log('hello')
         var testName = document.getElementById("addExamName").value;
         var testCode = document.getElementById("addExamCode").value;
         var testDuration = document.getElementById("addExamDuration").value;
@@ -108,11 +110,11 @@ $(document).ready(function() {
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
-                    document.getElementById("addExamName").value=' ';
-                    document.getElementById("addExamCode").value=' ';
-                    document.getElementById("addExamDuration").value=' ';
-                    document.getElementById("addExamTestDate").value=' ';
-                    document.getElementById("addExamInstruction").value=' ';
+                    // document.getElementById("addExamName").value=' ';
+                    // document.getElementById("addExamCode").value=' ';
+                    // document.getElementById("addExamDuration").value=' ';
+                    // document.getElementById("addExamTestDate").value=' ';
+                    // document.getElementById("addExamInstruction").value=' ';
                 },
                 error: function(error) {
                     console.log("error : " + error)

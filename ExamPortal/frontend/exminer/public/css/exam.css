@@ -261,3 +261,9 @@ label {
 option {
     font-size: 15px;
 }
+.confirm-box{
+    background: white;
+}
+#modalBody{
+    font-weight: 100px;
+}
