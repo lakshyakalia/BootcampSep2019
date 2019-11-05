@@ -49,13 +49,17 @@
                         <p>Test Name <span class="showTest"></span></p>
                     </div>
                 </div>
+                <div class="pagination-card">
+                    <div class="circle"></div>
+                </div>
+                <div class="end">
+                    <button type="button" class="btn btn-outline-info btn-lg" id="previousQuestion">Previous</button>
+                    <button type="button" class="btn btn-outline-success btn-lg" id="nextQuestion">Next</button>
+                    <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#myModal">End Test</button>
+                </div>
             </div>
         </div>
-        <div class="end">
-            <button type="button" class="btn btn-outline-info btn-lg" id="previousQuestion">Previous</button>
-            <button type="button" class="btn btn-outline-success btn-lg" id="nextQuestion">Next</button>
-            <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#myModal">End Test</button>
-        </div>
+        
     </div>
     <div class="modal" id="myModal">
             <div class="modal-dialog">
@@ -81,7 +85,10 @@
             <div class="row">
                <div class="col-md-12">
                     <div class="optionBox" id="{{ _id }}">
-                        <p id="{{ examCode }}"><b>Ques - </b>{{ questionText }}</p>
+                        <p id="{{ examCode }}"><b>Ques - {{ questionText }}</b></p>
+                        <div class="img-card">
+                            <img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" height="100px" width="100px">
+                        </div>
                         <label class="form-check-label">
                             <input type="radio" class="form-check-radio" name="{{ _id }}" value="1">
                             <span class="text-font">{{ option1 }}</span>

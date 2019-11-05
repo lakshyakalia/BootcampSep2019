@@ -79,35 +79,40 @@ $(document).ready(function() {
 
 
         if (testDate == "") {
-            alert("Please enter your mobile number");
-        } else {
-            const testD = testDate.slice(0, 10);
-            const testd = testDate.slice(11, 16)
-            testDate = testD.concat(" " + testd + ":00")
-        }
-
-
-
-        if ((testName || testCode || testDuration) == true) {
-            tempExamCode = $('#addExamCode').val()
+            alert("Please enter your test date");
+        }  else {
+                const testD=testDate.slice(0,10);
+                const testd=testDate.slice(11,16)
+                testDate=testD.concat(" "+testd+":00")
+                
+            }
+            
+    
+        if ((testName || testCode || testDuration ) == true) {
+                tempExamCode= $('#addExamCode').val()
             let examDetail = {
                 examName: $('#addExamName').val(),
                 examCode: $('#addExamCode').val(),
                 examDuration: $('#addExamDuration').val(),
                 examStartTime: testDate,
-                instructions: $('#addExamInstruction').val()
+                instructions: $('#addExamInstruction').val(),
+                examinerId: token
             }
             $.ajax("http://localhost:3000/exam", {
                 type: "POST",
                 dataType: "json",
                 headers: {
-                    token: localStorage.getItem('token')
+                    token: localStorage.getItem('userToken')
                 },
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
-                    // document.getElementById('show-messages').innerHTML = "Account Created"
+                    document.getElementById("addExamName").value=' ';
+                    document.getElementById("addExamCode").value=' ';
+                    document.getElementById("addExamDuration").value=' ';
+                    document.getElementById("addExamTestDate").value=' ';
+                    document.getElementById("addExamInstruction").value=' ';
                 },
                 error: function(error) {
                     console.log("error : " + error)
@@ -193,9 +198,6 @@ $(document).ready(function() {
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
-                headers: {
-                    token: localStorage.getItem('token')
-                },
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
