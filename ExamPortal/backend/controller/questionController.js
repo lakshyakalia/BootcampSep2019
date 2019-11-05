@@ -175,7 +175,8 @@ const saveAllQuestions = async(req,res)=>{
                 )
             }
         } 
-    }   
+    }
+    res.send(200).status({"msg":"All questions saved"})  
 }
 
 const questions = async (req, res) => {
