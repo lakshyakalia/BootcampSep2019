@@ -59,7 +59,7 @@ const editExam = (req, res) => {
 }
 
 const getQuestionDetail = (req, res) => {
-    // console.log("hello1 ",req.params.id)
+    console.log("hello1 ", req.params.id)
     questionDetail.getQuestionDetails(req, res)
 }
 

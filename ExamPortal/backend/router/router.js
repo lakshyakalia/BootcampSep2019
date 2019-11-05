@@ -82,12 +82,11 @@ module.exports = () => {
     })
 
     app.get('/performance/students', middleware, async(req, res) => {
+        const response = await Users.studPerformance(req, res)
+        console.log(response)
+    })
 
-
-            const response = await Users.studPerformance(req, res)
-            console.log(response)
-        })
-        //examiner will write exam questions
+    //examiner will write exam questions
     app.post('/exam/question', middleware, (req, res) => {
         debugger
         Users.question(req, res)
