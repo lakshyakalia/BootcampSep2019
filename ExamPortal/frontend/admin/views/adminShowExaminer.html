@@ -42,9 +42,9 @@
                     <a class="nav-link" href="#">Blog</a>
                 </li>
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-success my-2 my-sm-0" style="color: white;" type="submit">Sign Up</button>
-            </form> -->
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="logout()">Logout</button>
+            </form>
         </div>
     </nav>
     <div id="targetPage"></div>
@@ -63,19 +63,14 @@
                 <td>{{ name }}</td>
                 <td>{{ createdDate }}</td>
                <td> <button class="btn btn-outline-danger my-2 my-sm-0 deleteButton" type="submit" id="{{ _id }}">Delete</button></td>
-<<<<<<< HEAD
-              
-=======
                <td> <button class="btn btn-outline-success my-2 my-sm-0 updateButton" type="submit" id="{{ _id }}">Edit</button></td>
                <td> <button class="btn btn-outline-success my-2 my-sm-0 viewButton" type="submit" id="{{ _id }}">View</button></td>
->>>>>>> 9d3780521aedffd7e16db7016b65dca186a94403
             </tr>
             {{ /data }}
           
         </table>
         
     </script> -->
-<<<<<<< HEAD
   
   <script id="index-template" type="text/html">
   <table class="table table-hover table-dark" style="width:60%;margin-left:18%;margin-top:10%" >
@@ -99,35 +94,6 @@
       </tbody>
   </table>
 </script> 
-=======
-    <script id="index-template" type="text/html">
-    <table class="table table-hover table-dark" style="width:60%;margin-left:18%;margin-top:10%">
-        <thead>
-          <tr>
-            <th scope="col">Email</th>
-            <th scope="col">Name</th>
-            <th scope="col">Date</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        {{ #data }}
-        <tbody>
-               
-          <tr>
-           
-                <td>{{ email }}</td>
-                <td>{{ name }}</td>
-                <td>{{ createdDate }}</td>
-               <td> <button class="btn btn-outline-danger my-2 my-sm-0 deleteButton" type="submit" id="{{ _id }}">Delete</button></td>
-          </tr>
-          {{ /data }}
-        </tbody>
-      </table>
-    </script>
-
-
-    <script src="../public/js/adminShowExaminer.js"></script>
->>>>>>> 9d3780521aedffd7e16db7016b65dca186a94403
 </body>
 
 </html>

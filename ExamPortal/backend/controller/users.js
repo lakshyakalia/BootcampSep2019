@@ -24,6 +24,10 @@ const adminLogin =async(req,res)=>{
 //     const data =userController.userDetails(req,res)
 //     return data;
 // }
+const userRecord = (req,res)=>{
+    const data =userController.userRecord(req,res)
+    return data;
+}
 
 const editExam = (req, res) => {
     examController.editExam(req, res)
@@ -44,11 +48,11 @@ const editQuestion = (req, res) => {
 const removeQuestion = (req, res) => {
     questionDetail.removeQuestion(req, res)
 }
-const userDetails = (req, res) => {
-    // console.log('hello world')
-    const data = userController.userDetails(req, res)
-    return data;
-}
+// const userDetails = (req, res) => {
+//     // console.log('hello world')
+//     const data = userController.userDetails(req, res)
+//     return data;
+// }
 
 const testDetails = (req, res) => {
     const result = testInfo.testDetails(req, res)
@@ -78,11 +82,14 @@ const updateUser=(req,res)=>{
     return data;
 }
 
+
 module.exports = {
-    userDetails,
+    
     testDetails,
    // facultyDel,
    fetchData,
     updateUser,
-    adminLogin
+    adminLogin,
+    userRecord,
+
 }

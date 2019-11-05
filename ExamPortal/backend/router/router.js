@@ -46,7 +46,7 @@ module.exports = () => {
 	})
 	//admin will add examiner
 	app.post('/examiner', (req, res) => {
-		const response = adminDetail.adminDetails(req,res)
+		const response = Users.adminDetails(req,res)
 		return response;
 	})
 	////////////////////////// admin login post ///////////////////////////////

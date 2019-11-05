@@ -1,4 +1,8 @@
-
+function logout()
+{
+   localStorage.removeItem("token");
+   window.location.replace("../../user/views/login.html");
+}
 $(document).ready(function(){
      $("#submit").click(function(e){
         e.preventDefault();
@@ -30,44 +34,35 @@ $(document).ready(function(){
          {
           window.alert("College Name must be added");
          }
-        
-        // &&(phoneno.toString().length>9)
-         //console.log();
-        // console.log(email);
-        // console.log(name);
-        // console.log(password);
-        // console.log(accountype);
-        // console.log(phoneno);
-        // console.log(collegename);
-        if(!email==""&&!name==""&&!password==""&&!phoneno==""&&!collegename=="")
+        if(!email==""&&!name==""&&!password==""&&!phoneno.toString().length !=10&&!collegename=="")
         {
           console.log("hello buddy");
-      // $.ajax("http://127.0.0.1:3000/signup",{
-      //   type:"POST",
-      //   dataType:"json",
-      //   contentType:"application/json",
+      $.ajax("http://127.0.0.1:3000/examiner",{
+        type:"POST",
+        dataType:"json",
+        contentType:"application/json",
         
-      //       data:JSON.stringify(
-      //           {
-      //             "email":email,
-      //             "name":name,
-      //             "password":password,
-      //             "accountType":accountype,
-      //             "collegeName":collegename,
-      //             "phoneNumber":phoneno
+            data:JSON.stringify(
+                {
+                  "email":email,
+                  "name":name,
+                  "password":password,
+                  "accountType":accountype,
+                  "collegeName":collegename,
+                  "phoneNumber":phoneno
 
-      //           }
-      //       ),
-      //       success:function(recent){ 
-      //         console.log("Data inserted");
-      //         window.location.replace("adminHome.html")
-      //       },
-      //       error:function()
-      //       {
-      //           console.log("Something went wrong");
-      //       }
+                }
+            ),
+            success:function(recent){ 
+              console.log("Data inserted");
+              window.location.replace("adminHome.html")
+            },
+            error:function()
+            {
+                console.log("Something went wrong");
+            }
             
-      //     });
+          });
         }
        });
   });
