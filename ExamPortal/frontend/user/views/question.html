@@ -49,9 +49,7 @@
                         <p>Test Name <span class="showTest"></span></p>
                     </div>
                 </div>
-                <div class="pagination-card">
-                    <div class="circle"></div>
-                </div>
+                <div class="pagination-card"></div>
                 <div class="end">
                     <button type="button" class="btn btn-outline-info btn-lg" id="previousQuestion">Previous</button>
                     <button type="button" class="btn btn-outline-success btn-lg" id="nextQuestion">Next</button>
@@ -119,6 +117,12 @@
             {{ /options }}
             {{ /questions }}
         </div>
+    </script>
+
+    <script type="text/html" id="pagination-template">
+        {{ #pages }}
+            <div class="circle" id="{{ id }}"><p>{{ pages }}</p></div>
+        {{ /pages }}
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
