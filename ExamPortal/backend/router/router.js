@@ -17,7 +17,6 @@ module.exports = () => {
         } else {
             res.status(200).send(result)
         }
-
     })
 
     app.post('/signup', async (req, res) => {
@@ -105,6 +104,10 @@ module.exports = () => {
     app.post('/test/assessKey', async (req, res) => {
         const response = await Ques.checkAccessKey(req, res)
         return response
+    })
+
+    app.get('/test/endTest',async(req,res)=>{
+        const response = await Ques.saveAllQuestions(req,res)
     })
 
     //admin will add examiner
