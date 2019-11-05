@@ -13,7 +13,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/admin/public/css/admin.css">
+    <link rel="stylesheet" href="../public/css/admin.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
 </head>
 
@@ -72,24 +72,24 @@
         
     </script> -->
     <script id="index-template" type="text/html">
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-dark" style="width:60%;margin-left:18%;margin-top:10%">
         <thead>
           <tr>
             <th scope="col">Email</th>
             <th scope="col">Name</th>
             <th scope="col">Date</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
+        {{ #data }}
         <tbody>
-                {{ #data }}
+               
           <tr>
            
                 <td>{{ email }}</td>
                 <td>{{ name }}</td>
                 <td>{{ createdDate }}</td>
                <td> <button class="btn btn-outline-danger my-2 my-sm-0 deleteButton" type="submit" id="{{ _id }}">Delete</button></td>
-               <td> <button class="btn btn-outline-success my-2 my-sm-0 updateButton" type="submit" id="{{ _id }}">Edit</button></td>
-               <td> <button class="btn btn-outline-success my-2 my-sm-0 viewButton" type="submit" id="{{ _id }}">View</button></td>
           </tr>
           {{ /data }}
         </tbody>

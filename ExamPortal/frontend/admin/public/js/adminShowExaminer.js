@@ -17,6 +17,9 @@ $(document).ready(function () {
     type: "GET",
     dataType: "json",
     contentType: "application/json",
+    headers:{
+      token: localStorage.getItem('token')
+    },
     success: function (recent) {
       display(recent);
       // console.log(recent);
