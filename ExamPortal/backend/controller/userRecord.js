@@ -102,8 +102,30 @@ const adminLogin = async(req,res)=>{
         }
         
 } 
+const userRecord = async(req, res) => {
+    try {
+        const existUser = await user.findOne({ email: req.body.email });
+        if (existUser) {
+            return ("user Exist")
+        } else {
+            const userInfo = req.body;
+            var myPlaintesxtPassword = userInfo.password;
+            var salt = bcrypt.genSaltSync(10);
+            var hash = bcrypt.hashSync(myPlaintesxtPassword, salt)
+            userInfo.password = hash; {
+                user.create(userInfo)
+                return ({ "status": "200", "message": "user registered" })
+
+            }
+        }
+    } catch (error) {
+        console.log(error)
+        return ({ error: error })
+    }
+}
+
 module.exports={
-   // userRecord,
+   userRecord,
     userDetails,
     decodeToken,
     fetchData,

@@ -42,7 +42,7 @@ module.exports = () => {
         }
     })
 
-    app.post('/signup', async (req, res) => {
+    app.post('/signUp', async (req, res) => {
         const result = await Users.userRecord(req, res)
         res.send(result)
     })

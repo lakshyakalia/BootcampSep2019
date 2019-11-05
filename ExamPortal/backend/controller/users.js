@@ -5,6 +5,14 @@ const userController = require('./userRecord')
 const bcryptjs = require('bcryptjs')
 const testInfo = require('./testDetails')
 
+const userRecord = async(req,res)=>{
+    let response
+    var hash = bcryptjs.hashSync(req.body.password,8)
+    req.body.password = hash
+    response = await userController.userRecord(req,res)
+    return response
+}
+
 const examDetails = (req,res)=>{
     examController.examDetails(req,res)
 }
@@ -20,12 +28,8 @@ const adminLogin =async(req,res)=>{
     //console.log(result);
     return result;
 }
-// const userDetails = (req,res)=>{
-//     const data =userController.userDetails(req,res)
-//     return data;
-// }
-const userRecord = (req,res)=>{
-    const data =userController.userRecord(req,res)
+const userDetails = (req,res)=>{
+    const data =userController.userDetails(req,res)
     return data;
 }
 
@@ -88,14 +92,21 @@ const adminDetails=(req,res)=>{
 
 
 module.exports = {
-    
-    testDetails,
-   // facultyDel,
-   fetchData,
-    updateUser,
-    adminLogin,
-    userRecord,
     adminDetails,
-    examinerDel
-
+    updateUser,
+    examinerUpd,
+    examinerDel,
+    fetchData,
+    testDetails,
+    removeQuestion,
+    fetchQuestionById,
+    getQuestionDetail,
+    editExam,
+    editQuestion,
+    userDetails,
+    adminDetails,
+    adminLogin,
+    loggedInDetails,
+    userRecord,
+    examDetails
 }
