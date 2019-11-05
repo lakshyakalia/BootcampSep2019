@@ -47,7 +47,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    
+
     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
@@ -86,10 +86,9 @@ $(document).ready(function() {
                 const testD=testDate.slice(0,10);
                 const testd=testDate.slice(11,16)
                 testDate=testD.concat(" "+testd+":00")
-                
+
             }
-            
-    
+
         if ((testName || testCode || testDuration ) == true) {
                 tempExamCode= $('#addExamCode').val()
             let examDetail = {
@@ -98,7 +97,7 @@ $(document).ready(function() {
                 examDuration: $('#addExamDuration').val(),
                 examStartTime: testDate,
                 instructions: $('#addExamInstruction').val(),
-                examinerId: token
+
             }
             $.ajax("http://localhost:3000/exam", {
                 type: "POST",
@@ -110,11 +109,7 @@ $(document).ready(function() {
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
-                    // document.getElementById("addExamName").value=' ';
-                    // document.getElementById("addExamCode").value=' ';
-                    // document.getElementById("addExamDuration").value=' ';
-                    // document.getElementById("addExamTestDate").value=' ';
-                    // document.getElementById("addExamInstruction").value=' ';
+
                 },
                 error: function(error) {
                     console.log("error : " + error)
@@ -182,7 +177,7 @@ $(document).ready(function() {
         } else {
             weightage = true;
         }
-
+        console.log(tempExamCode)
         if ((question || option1 || option2 || option3 || option4 || answer || weightage) == true) {
             let examDetail = {
                 questionText: $('#addtestQuestion').val(),

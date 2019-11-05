@@ -5,9 +5,7 @@ const bcrypt = require('bcryptjs')
     // const bcrypt = require('bcrypt')
 
 async function matchCredentials(req, res) {
-    // console.log('hello')
     const user = await Users.userDetails(req, res)
-
     if (user == null) { return "Do sign up" } else if (user.email == req.body.email) {
         return "matched"
     }

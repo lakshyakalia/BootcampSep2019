@@ -2,7 +2,6 @@ const { questionDetail } = require('../models/question')
 const {  test } = require('../models/candidateAnswer')
 const { examDetail } = require('../models/examDetail')
 
-
 const answerObject = (body,headers,weightage,status)=>{
     weightage = parseInt(weightage)
     let answerDetail = new test({
@@ -22,23 +21,24 @@ const testQuestions = async(req,res)=>{
     let lastQuestionStatus
     let pageNumber = parseInt(req.query.pageNumber)
     let ques = await questionDetail.find({'examCode':req.headers.examcode}).skip(pageNumber).limit(1).select({"questionText":1,"options":1,"examCode":1})
-    let lastQuestion = await questionDetail.find({'examCode':req.headers.examcode}).sort({$natural:-1}).select({"questionText":1})
-    if(lastQuestion[0].questionText === ques[ques.length-1].questionText) lastQuestionStatus = true 
+    let lastQuestion = await questionDetail.find({'examCode':req.headers.examcode}).select({"questionText":1})
+    if(lastQuestion[lastQuestion.length-1].questionText === ques[ques.length-1].questionText) lastQuestionStatus = true 
     else lastQuestionStatus = false
     const time = await examDetail.find({'examCode':req.headers.examcode}).select({examName:1,examStartTime:1,examDuration:1})
     res.status(200).send({
-        "questions":ques,
+        questions: ques,
         lastQuestionStatus: lastQuestionStatus,
         startTime:time[0].examStartTime,
         duration:time[0].examDuration,
         examName:time[0].examName,
-        allQuestions: lastQuestion
+        allQuestions: lastQuestion,
+        pageNumber: pageNumber
     })
 }
 
 const checkExistingRightOption = async (option,qId,studentId,updatedScore)=>{
     let status = await test.findOne({candidateId:studentId},{answers:{$elemMatch:{questionId:qId}}})
-    if(status !== null){
+    if(status.answers.length !== 0){
         if(status.answers[0].correctStatus){
             await test.update({$and:[
                 {answers:{ $elemMatch:{questionId:qId} }},
@@ -86,7 +86,7 @@ const saveCorrectOption = async(req,checkAnswer,existingAnswer)=>{
 
 const checkExistingWrongOption = async(option,qId,studentId,updatedScore)=>{
     let status = await test.findOne({candidateId:studentId},{answers:{$elemMatch:{questionId:qId}}})
-    if(status !== null){
+    if(status.answers.length !== 0){
         if(status.answers[0].correctStatus){
             await test.update({$and:[
                 {answers:{ $elemMatch:{questionId:qId} }},
@@ -144,13 +144,39 @@ const saveCandidateAnswers = async(req,res)=>{
     } 
 }
 
-
 const checkAccessKey = async(req,res)=>{
     const status = await examDetail.find({examCode: req.body.examCode})
     if(status.length != 0){
         return res.status(200).send(status)
     }
     else return res.status(400).send(status)
+}
+
+const saveAllQuestions = async(req,res)=>{
+    const allQuestions = await questionDetail.find({examCode:req.headers.examcode}).select({_id:1})
+    
+    for(let i=0;i<allQuestions.length;i++){
+        let existingAnswer = await test.findOne({ $and:[{candidateId:req.headers.id},{testCode:req.body.code}] })
+        req.body.qId = allQuestions[i]._id
+        req.body.checkedOption = null        
+        if(existingAnswer  === null){
+            let answerDetail = answerObject(req.body,req.headers,0,false)
+            await answerDetail.save()
+        }
+        else{
+            let status = await test.findOne({candidateId:req.headers.id},{answers:{$elemMatch:{questionId:allQuestions[i]._id}}})
+            
+            if(status.answers.length === 0){
+                await test.findOneAndUpdate(
+                    {$and:[{candidateId:req.headers.id},{testCode:req.body.code}]},
+                    {
+                        $push: {answers:{answerSubmitted: req.body.checkedOption, questionId: req.body.qId, correctStatus: false}}
+                    }
+                )
+            }
+        } 
+    }
+    res.send(200).status({"msg":"All questions saved"})  
 }
 
 const questions = async (req, res) => {
@@ -236,5 +262,6 @@ module.exports = {
     removeByExamCode,
     fetchQuestionById,
     editQuestion,
-    removeQuestion
+    removeQuestion,
+    saveAllQuestions
 }
