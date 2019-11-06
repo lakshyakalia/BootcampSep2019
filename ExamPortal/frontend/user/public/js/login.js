@@ -1,19 +1,20 @@
 $(document).on('click', '#loginButton', function() {
-    $('.main').animate({ opacity: 0.4 })
-    $('.mod').fadeIn()
-    $('.spinner').show()
-    timeout = setTimeout(function() {
+        // using setTimeout method
+        // $('.main').animate({ opacity: 0.4 })
+        // $('.mod').fadeIn()
+        // $('.spinner').show()
+        // timeout = setTimeout(function() {
         let email = $('#inputEmail').val()
         let password = $('#inputPassword').val()
         $.ajax('http://localhost:3000/login', {
             type: 'POST',
             dataType: 'JSON',
             // for loader
-            // beforeSend: function() {
-            //     $('body').animate({ opacity: 0.6 })
-            //     $('#myModal').fadeIn()
-            //     $('.spinner').show()
-            // },
+            beforeSend: function() {
+                $('.main').animate({ opacity: 0.6 })
+                $('.mod').fadeIn()
+                $('.spinner').show()
+            },
             data: {
                 'email': email,
                 'password': password
@@ -34,5 +35,5 @@ $(document).on('click', '#loginButton', function() {
             }
 
         })
-    }, 1000)
-})
+    })
+    // })
