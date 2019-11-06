@@ -56,7 +56,7 @@ module.exports = () => {
     //examiner will view exam
     app.get('/exam', (req, res) => {
         const response = Users.viewExamDetail(req, res)
-        res.send(response)
+
     })
 
     //examiner will fetch particular exam detail

@@ -16,7 +16,7 @@ const examDetails = async(req, res) => {
 const viewExamDetail = async(req, res) => {
     try {
         let values = await examDetail.find()
-        return (values)
+        res.status(200).send(values)
     } catch (error) {
         console.log(error)
     }

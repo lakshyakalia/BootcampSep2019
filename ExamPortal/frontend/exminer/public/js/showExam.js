@@ -141,7 +141,7 @@ function editExamDetail(id) {
         dataType: 'json',
         contentType: "application/json",
         headers: {
-            token: localStorage.getItem('token')
+            'token': localStorage.getItem('token')
         },
         success: function(data) {
             //    console.log(data)

@@ -42,15 +42,7 @@ const studentPerformance = async(req, res) => {
 
 }
 
-const viewExamDetail = (req, res) => {
-    //console.log("hello1")
-    examController.viewExamDetail(req, res)
-}
 
-const fetchExamDetail = (req, res) => {
-        examController.fetchExamDetail(req, res)
-    }
-    ///////////////////////
 const adminLogin = async(req, res) => {
 
     const result = await userController.adminLogin(req, res)
@@ -136,7 +128,6 @@ module.exports = {
     fetchQuestionById,
     getQuestionDetail,
     editExam,
-    viewExamDetail,
     editQuestion,
     removeQuestion,
     studPerformance,
