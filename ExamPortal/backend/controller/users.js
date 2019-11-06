@@ -32,12 +32,6 @@ const removeExam = (req,res)=>{
 const editExam = (req, res) => {
     examController.editExam(req, res)
 }
-const removeExam = (req,res)=>{
-    examController.removeExam(req,res)
-}
-const editExam = (req, res) => {
-    examController.editExam(req, res)
-}
 
 const loggedInDetails = async(req, res) => {
     const det = await userController.loggedInDetails(req, res)
@@ -128,5 +122,5 @@ module.exports = {
     userRecord,
     examDetail,
     question,
-    studentPerformance
+    // studentPerformance
 }
