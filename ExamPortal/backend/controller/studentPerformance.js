@@ -8,7 +8,7 @@ const studPerformance = async(req, res) => {
         console.log('_________________')
             // console.log(req.headers.studentid)
         const examId = req.headers.examid
-        const result = await test.find({ "testCode": examId })
+        const result = await test.find({ "testCode": examId }).sort({ "candidateId": '1' })
             // console.log(result)
             // while (i < result.length) {
             //     var studs = []
@@ -19,7 +19,7 @@ const studPerformance = async(req, res) => {
         var studs = []
         while (i < len) {
             const id1 = result[i].candidateId;
-            const idDetails = await user.findById(id1)
+            const idDetails = await user.findById(id1).sort({ "_id": '1' })
                 // console.log(idDetails)
             studs.push(idDetails);
             i++;

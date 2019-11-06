@@ -108,7 +108,7 @@ function studentDetails(a) {
             if (flag == 0) {
                 while (i < data.b.length) {
                     let tr = document.createElement('tr')
-                    tr.innerHTML = "<td>" + data.a[i].name + "</td>" + "<td>" + data.b[i].testCode + "</td>" + "<td>" + data.b[i].totalScore + "</td>" + "<td>" + data.b[i].answers.length + "</td>";
+                    tr.innerHTML = "<td>" + data.a[i].name + "</td>" + "<td>" + data.b[i].testCode + "</td>" + "<td>" + data.b[i].totalScore + "</td>" + "<td>" + data.b[i].answers.length + "</td>" + "<td>" + data.a[i]._id + "</td>" + "<td>" + data.b[i].candidateId + "</td>";
 
                     $("#tcan").append(tr)
                     flag = 1;
