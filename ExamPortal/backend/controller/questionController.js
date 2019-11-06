@@ -1,6 +1,7 @@
 const { questionDetail } = require('../models/question')
 const { test } = require('../models/candidateAnswer')
 const { examDetail } = require('../models/examDetail')
+const {checkExistingRightOption, checkExistingWrongOption,radioOrCheckBoxValue} = require('./questionLogic')
 
 const answerObject = (body,headers,weightage,status,submitStatus)=>{
     weightage = parseInt(weightage)
@@ -22,7 +23,7 @@ const answerObject = (body,headers,weightage,status,submitStatus)=>{
 const testQuestions = async(req, res) => {
     let lastQuestionStatus
     let pageNumber = parseInt(req.query.pageNumber)
-    let ques = await questionDetail.find({ 'examCode': req.headers.examcode }).skip(pageNumber).limit(1).select({ "questionText": 1, "options": 1, "examCode": 1 })
+    let ques = await questionDetail.find({ 'examCode': req.headers.examcode }).skip(pageNumber).limit(1).select({ "questionText": 1, "options": 1, "examCode": 1, "answerType":1 })
     let lastQuestion = await questionDetail.find({ 'examCode': req.headers.examcode }).select({ "questionText": 1 })
     if (lastQuestion[lastQuestion.length - 1].questionText === ques[ques.length - 1].questionText) lastQuestionStatus = true
     else lastQuestionStatus = false
@@ -36,40 +37,6 @@ const testQuestions = async(req, res) => {
         allQuestions: lastQuestion,
         pageNumber: pageNumber
     })
-}
-
-//Check if user have submit the same correct option again and update the database
-const checkExistingRightOption = async(option, qId, studentId, updatedScore) => {
-    let status = await test.findOne({ candidateId: studentId }, { answers: { $elemMatch: { questionId: qId } } })
-    if (status.answers.length !== 0) {
-        if (status.answers[0].correctStatus) {
-            await test.update({
-                $and: [
-                    { answers: { $elemMatch: { questionId: qId } } },
-                    { candidateId: studentId }
-                ]
-            }, {
-                $set: {
-                    "answers.$.answerSubmitted": option,
-                }
-            })
-        } else {
-            await test.update({
-                $and: [
-                    { answers: { $elemMatch: { questionId: qId } } },
-                    { candidateId: studentId }
-                ]
-            }, {
-                $set: {
-                    "answers.$.answerSubmitted": option,
-                    "answers.$.correctStatus": true,
-                    "totalScore": updatedScore
-                }
-            })
-        }
-        return true
-    }
-    return false
 }
 
 //Save Correct Answer to the database when user clicks on Submit Button
@@ -95,40 +62,6 @@ const saveCorrectOption = async(req,checkAnswer,existingAnswer)=>{
     }
 }
 
-//Check if user have submit the wrong correct option again and update the database
-const checkExistingWrongOption = async(option, qId, studentId, updatedScore) => {
-    let status = await test.findOne({ candidateId: studentId }, { answers: { $elemMatch: { questionId: qId } } })
-    if (status.answers.length !== 0) {
-        if (status.answers[0].correctStatus) {
-            await test.update({
-                $and: [
-                    { answers: { $elemMatch: { questionId: qId } } },
-                    { candidateId: studentId }
-                ]
-            }, {
-                $set: {
-                    "answers.$.answerSubmitted": option,
-                    "answers.$.correctStatus": false,
-                    "totalScore": updatedScore
-                }
-            })
-        } else {
-            await test.update({
-                $and: [
-                    { answers: { $elemMatch: { questionId: qId } } },
-                    { candidateId: studentId }
-                ]
-            }, {
-                $set: {
-                    "answers.$.answerSubmitted": option,
-                }
-            })
-        }
-        return true
-    }
-    return false
-}
-
 //Saving Incorrect Option to the database when user click on submit option
 const saveIncorrectOption = async(req,checkAnswer,existingAnswer)=>{
     if(req.body.checkedOption  === undefined) req.body.checkedOption = null
@@ -148,6 +81,7 @@ const saveIncorrectOption = async(req,checkAnswer,existingAnswer)=>{
 }
 
 const saveCandidateAnswers = async(req, res) => {
+    req.body.checkedOption = radioOrCheckBoxValue(req.body)
     let checkAnswer = await questionDetail.findById(req.body.qId).select({ "answer": 1, "weightage": 1 })
     let existingAnswer = await test.findOne({ $and: [{ candidateId: req.headers.id }, { testCode: req.body.code }] })
     if (checkAnswer.answer === req.body.checkedOption) {
