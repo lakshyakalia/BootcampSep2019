@@ -120,7 +120,7 @@ $(document).ready(function() {
                     if(recent.message=="Exam Code already exist")
               {
                 window.alert("Exam Code Already Exist");
-                location.replace("./views/examdetails.html")
+                location.reload()
               }
               else
               {

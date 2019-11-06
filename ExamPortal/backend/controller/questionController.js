@@ -2,7 +2,7 @@ const { questionDetail } = require('../models/question')
 const { test } = require('../models/candidateAnswer')
 const { examDetail } = require('../models/examDetail')
 
-const answerObject = (body, headers, weightage, status) => {
+const answerObject = (body,headers,weightage,status,submitStatus)=>{
     weightage = parseInt(weightage)
     let answerDetail = new test({
         candidateId: headers.id,
@@ -12,7 +12,8 @@ const answerObject = (body, headers, weightage, status) => {
             answerSubmitted: body.checkedOption,
             questionId: body.qId,
             correctStatus: status
-        }]
+        }],
+        submitExam: submitStatus
     })
     return answerDetail
 }
@@ -72,19 +73,24 @@ const checkExistingRightOption = async(option, qId, studentId, updatedScore) => 
 }
 
 //Save Correct Answer to the database when user clicks on Submit Button
-const saveCorrectOption = async(req, checkAnswer, existingAnswer) => {
-    if (existingAnswer === null) {
-        let answerDetail = answerObject(req.body, req.headers, checkAnswer.weightage, true)
-        let status = await answerDetail.save()
-    } else {
-        let existingScore = await test.findOne({ 'testCode': req.body.code }).select({ totalScore: 1 })
-        let updatedScore = existingScore.totalScore + checkAnswer.weightage
-        let existingAnswerStatus = await checkExistingRightOption(req.body.checkedOption, req.body.qId, req.headers.id, updatedScore)
-        if (!existingAnswerStatus) {
-            await test.findOneAndUpdate({ $and: [{ candidateId: req.headers.id }, { testCode: req.body.code }] }, {
-                $push: { answers: { answerSubmitted: req.body.checkedOption, questionId: req.body.qId, correctStatus: true } },
-                $set: { totalScore: updatedScore }
-            }, { new: true })
+const saveCorrectOption = async(req,checkAnswer,existingAnswer)=>{
+    if(existingAnswer === null){
+        let answerDetail = answerObject(req.body, req.headers, checkAnswer.weightage,true,false)
+        await answerDetail.save()
+    }
+    else{
+        let existingScore = await test.findOne({'testCode':req.body.code}).select({totalScore:1})
+        let updatedScore = existingScore.totalScore+checkAnswer.weightage
+        let existingAnswerStatus = await checkExistingRightOption(req.body.checkedOption,req.body.qId,req.headers.id,updatedScore)
+        if(!existingAnswerStatus){
+            await test.findOneAndUpdate(
+                {$and:[{candidateId:req.headers.id},{testCode:req.body.code}]},
+                {   
+                    $push: {answers:{answerSubmitted: req.body.checkedOption,questionId: req.body.qId, correctStatus: true}},
+                    $set:{totalScore:updatedScore}
+                },
+                {new: true}
+            )
         }
     }
 }
@@ -124,10 +130,10 @@ const checkExistingWrongOption = async(option, qId, studentId, updatedScore) => 
 }
 
 //Saving Incorrect Option to the database when user click on submit option
-const saveIncorrectOption = async(req, checkAnswer, existingAnswer) => {
-    if (req.body.checkedOption === undefined) req.body.checkedOption = null
-    if (existingAnswer === null) {
-        let answerDetail = answerObject(req.body, req.headers, 0, false)
+const saveIncorrectOption = async(req,checkAnswer,existingAnswer)=>{
+    if(req.body.checkedOption  === undefined) req.body.checkedOption = null
+    if(existingAnswer === null){
+        let answerDetail = answerObject(req.body,req.headers,0,false,false)
         await answerDetail.save()
     } else {
         let existingScore = await test.findOne({ 'testCode': req.body.code }).select({ totalScore: 1 })
@@ -161,32 +167,42 @@ const checkAccessKey = async(req, res) => {
 }
 
 //Saving all Questions when user clicks on end test button
-const saveAllQuestions = async(req, res) => {
-    const allQuestions = await questionDetail.find({ examCode: req.headers.examcode }).select({ _id: 1 })
-
-    for (let i = 0; i < allQuestions.length; i++) {
-        let existingAnswer = await test.findOne({ $and: [{ candidateId: req.headers.id }, { testCode: req.body.code }] })
+const saveAllQuestions = async(req,res)=>{
+    const allQuestions = await questionDetail.find({examCode:req.headers.examcode}).select({_id:1})
+    for(let i=0;i<allQuestions.length;i++){
+        let existingAnswer = await test.findOne({ $and:[{candidateId:req.headers.id},{testCode:req.body.code}] })
         req.body.qId = allQuestions[i]._id
         req.body.checkedOption = null
-        if (existingAnswer === null) {
-            let answerDetail = answerObject(req.body, req.headers, 0, false)
+        req.body.code = req.headers.examcode    
+        if(existingAnswer  === null){
+            let answerDetail = answerObject(req.body,req.headers,0,false,true)
             await answerDetail.save()
-        } else {
-            let status = await test.findOne({ candidateId: req.headers.id }, { answers: { $elemMatch: { questionId: allQuestions[i]._id } } })
-
-            if (status.answers.length === 0) {
-                await test.findOneAndUpdate({ $and: [{ candidateId: req.headers.id }, { testCode: req.body.code }] }, {
-                    $push: { answers: { answerSubmitted: req.body.checkedOption, questionId: req.body.qId, correctStatus: false } }
-                })
+        }
+        else{
+            let status = await test.findOne({candidateId:req.headers.id},{answers:{$elemMatch:{questionId:allQuestions[i]._id}}})
+            if(status.answers.length === 0){
+                await test.findOneAndUpdate(
+                    {$and:[{candidateId:req.headers.id},{testCode:req.body.code}]},
+                    {
+                        $push: {answers:{answerSubmitted: req.body.checkedOption, questionId: req.body.qId, correctStatus: false,submitExam: true}}
+                    }
+                )
             }
         }
     }
     res.status(200).send({ "msg": "All questions saved" })
 }
 
-const getExamTime = async(req, res) => {
-    const examData = await examDetail.findOne(req.query).select({ examStartTime: 1 })
-    res.status(200).send(examData)
+const getExamTime = async(req,res)=>{
+    const examData = await examDetail.findOne({examCode:req.headers.examcode}).select({examStartTime:1})
+    const submitStatus = await test.findOne({$and :[{candidateId:req.headers.id},{testCode:req.headers.examcode}]}).select({submitExam:1})
+    if(submitStatus === null){
+        res.status(200).send({examData,submitStatus:false})
+    }
+    else{
+        res.status(200).send({examData:examData,submitStatus:submitStatus.submitExam})
+    }
+    
 }
 
 const questions = async(req, res) => {

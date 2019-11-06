@@ -131,13 +131,14 @@ module.exports = () => {
         return response
     })
 
-    app.get('/test/accessKey', async(req, res) => {
-        const response = await Ques.getExamTime(req, res)
+    app.get('/test/accessKey',middleware,async(req,res)=>{
+        const response = await Ques.getExamTime(req,res)
         return response
     })
 
-    app.get('/test/endTest', async(req, res) => {
-        const response = await Ques.saveAllQuestions(req, res)
+    app.post('/test/endTest',middleware,async(req,res)=>{
+        const response = await Ques.saveAllQuestions(req,res)
+        return response
     })
 
     //admin will add examiner
