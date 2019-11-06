@@ -17,6 +17,7 @@ const answerObject = (body,headers,weightage,status)=>{
     return answerDetail
 }
 
+//Show Test Questions to users according to Exam ID
 const testQuestions = async(req,res)=>{
     let lastQuestionStatus
     let pageNumber = parseInt(req.query.pageNumber)
@@ -36,6 +37,7 @@ const testQuestions = async(req,res)=>{
     })
 }
 
+//Check if user have submit the same correct option again and update the database
 const checkExistingRightOption = async (option,qId,studentId,updatedScore)=>{
     let status = await test.findOne({candidateId:studentId},{answers:{$elemMatch:{questionId:qId}}})
     if(status.answers.length !== 0){
@@ -62,6 +64,7 @@ const checkExistingRightOption = async (option,qId,studentId,updatedScore)=>{
     return false
 }
 
+//Save Correct Answer to the database when user clicks on Submit Button
 const saveCorrectOption = async(req,checkAnswer,existingAnswer)=>{
     if(existingAnswer === null){
         let answerDetail = answerObject(req.body, req.headers, checkAnswer.weightage,true)
@@ -84,6 +87,7 @@ const saveCorrectOption = async(req,checkAnswer,existingAnswer)=>{
     }
 }
 
+//Check if user have submit the wrong correct option again and update the database
 const checkExistingWrongOption = async(option,qId,studentId,updatedScore)=>{
     let status = await test.findOne({candidateId:studentId},{answers:{$elemMatch:{questionId:qId}}})
     if(status.answers.length !== 0){
@@ -110,6 +114,7 @@ const checkExistingWrongOption = async(option,qId,studentId,updatedScore)=>{
     return false
 }
 
+//Saving Incorrect Option to the database when user click on submit option
 const saveIncorrectOption = async(req,checkAnswer,existingAnswer)=>{
     if(req.body.checkedOption  === undefined) req.body.checkedOption = null
     if(existingAnswer === null){
@@ -152,6 +157,7 @@ const checkAccessKey = async(req,res)=>{
     else return res.status(400).send(status)
 }
 
+//Saving all Questions when user clicks on end test button
 const saveAllQuestions = async(req,res)=>{
     const allQuestions = await questionDetail.find({examCode:req.headers.examcode}).select({_id:1})
     
