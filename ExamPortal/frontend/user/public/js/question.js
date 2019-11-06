@@ -240,3 +240,18 @@ $(document).on('click', '.circle', function () {
         }
     })
 })
+
+$('#fullScreenModal').modal({backdrop: 'static', keyboard: false})
+
+function exitHandler() {
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+        $('#fullScreenModal').modal("show")
+    }
+}
+
+$(document).ready(function(){
+    document.addEventListener('fullscreenchange', exitHandler);
+    document.addEventListener('webkitfullscreenchange', exitHandler);
+    document.addEventListener('mozfullscreenchange', exitHandler);
+    document.addEventListener('MSFullscreenChange', exitHandler);
+})
