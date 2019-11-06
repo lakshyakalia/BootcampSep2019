@@ -53,16 +53,34 @@ function removeQuestion(id) {
     })
 }
 
-function updateQues(id) {
-
+function updateQues(id,type) {
+    let opt1 = '',opt2= '', opt3= '', opt4 ='', answer =''
+    if(type == 'multipleOption'){
+       opt1 = $('#addtestOption1').val()
+       opt2 = $('#addtestOption2').val()
+       opt3 = $('#addtestOption3').val()
+       opt4 = $('#addtestOption4').val()
+       $.each($("input[name='option']:checked"), function () {
+        if ($(this).val()) {
+            answer += $(this).val() + " "
+        }
+     });
+     answer = answer.trim()
+    }else{
+        opt1 = $("#addtestOption1G").val()
+        opt2 = $("#addtestOption2G").val()
+        opt3 = $("#addtestOption3G").val()
+        opt4 = $("#addtestOption4G").val()
+        answer = $("input[name='option1']:checked").val()
+    }
     let questionDetail = {
         questionText: $('#addtestQuestion').val(),
-        answer: $('#addtestAnswer').val(),
+        answer: answer,
         options: {
-            option1: $('#addtestOption1').val(),
-            option2: $('#addtestOption2').val(),
-            option3: $('#addtestOption3').val(),
-            option4: $('#addtestOption4').val(),
+            option1: opt1,
+            option2: opt2,
+            option3: opt3,
+            option4: opt4,
         },
         weightage: $('#addtestWeightage').val(),
     }
@@ -96,12 +114,28 @@ function editQuestion(id) {
             token: localStorage.getItem('token')
         },
         success: function(data) {
+
             if(data.answerType== "multipleOption"){
-         let editTemplate = $("#edit-question-template").html();
+                let arr = data.answer.split(' ')
+                console.log(arr)
+            let editTemplate = $("#edit-question-template").html();
             $("#display-edit-form").append(Mustache.render(editTemplate, data))
+                let checkBox = $('input[type=checkbox][name=option]')
+                $.each(checkBox,(i,chk)=>{
+                    if( arr.includes($(chk).val())){
+                        $(chk).prop('checked',true)
+                    }
+                })
             }else if( data.answerType=="singleOption"){
                 let editTemplate = $("#edit-single-option").html();
                 $("#display-edit-form").append(Mustache.render(editTemplate, data))
+                let radioBtn = $('input[type=radio][name=option1]')
+               $.each(radioBtn,(i,radio)=>{
+                   if(radio.value == data.answer){
+                       $(radio).prop('checked',true)
+                   }
+               })
+                
             }
         },
         error: function(error) {

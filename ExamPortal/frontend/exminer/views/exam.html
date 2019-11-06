@@ -197,13 +197,12 @@
                 <input maxlength="100" type="text" id="addtestOption4" class="form-control"
                   placeholder="Enter Option4" value="{{options.option4}}"/>
               </div>
-
             </div>
             <div class="form-group">
                     <label for="addtestWeightage">Weightage</label>
                     <input type="text" class="form-control" id="addtestWeightage" aria-describedby="emailHelp" placeholder="Enter Weghtage" value="{{weightage}}">
                 </div>
-                <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id)">Submit</button>
+                <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id,'multipleOption')">Submit</button>
             </form>
         </div>
     </script>
@@ -246,7 +245,7 @@
                         <label for="addtestWeightage">Weightage</label>
                         <input type="text" class="form-control" id="addtestWeightage" aria-describedby="emailHelp" placeholder="Enter Weghtage" value="{{weightage}}">
                     </div>
-                    <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id)">Submit</button>
+                    <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id,'')">Submit</button>
                 </form>
             </div>
     </script>
