@@ -22,6 +22,10 @@ const fetchExamDetail = (req, res) => {
     examController.fetchExamDetail(req, res)
 }
 
+const removeExam = (req, res) => {
+    examController.removeExam(req, res)
+}
+
 const loggedInDetails = async(req, res) => {
     const det = await userController.loggedInDetails(req, res)
     return det
@@ -122,6 +126,7 @@ module.exports = {
     examinerDel,
     fetchData,
     testDetails,
+    removeExam,
     viewExamDetail,
     fetchExamDetail,
     removeQuestion,

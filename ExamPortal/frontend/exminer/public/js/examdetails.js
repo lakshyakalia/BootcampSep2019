@@ -196,6 +196,9 @@ $(document).ready(function() {
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
+                headers: {
+                    'token': localStorage.getItem('token')
+                },
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
                     document.getElementById("addtestQuestion").value = '';

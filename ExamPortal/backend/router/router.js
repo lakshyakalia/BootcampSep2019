@@ -88,7 +88,6 @@ module.exports = () => {
 
     //examiner will write exam questions
     app.post('/exam/question', middleware, (req, res) => {
-        debugger
         Users.question(req, res)
     })
 
