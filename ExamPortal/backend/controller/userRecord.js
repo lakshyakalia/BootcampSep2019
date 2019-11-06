@@ -1,5 +1,5 @@
 const { user } = require('../models/userRecord')
-const {admin}=require('../models/adminLogin')
+const { admin } = require('../models/adminLogin')
 const { SECRET } = require("../config/config")
 const jwt = require('jsonwebtoken');
 // const bcrypt = require('bcrypt')
@@ -9,13 +9,13 @@ function decodeToken(req) {
     const token = req.headers.token
     const decoded = jwt.verify(token, new Buffer(SECRET, 'base64'));
     return decoded;
-  }
+}
 
-const adminDetails = async(req, res) => {
+const adminDetails = async (req, res) => {
     try {
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
-            return ({"message": "user already exist"})
+            return ({ "message": "user already exist" })
         } else {
             const userInfo = req.body;
             var myPlaintesxtPassword = userInfo.password;
@@ -33,14 +33,14 @@ const adminDetails = async(req, res) => {
     }
 }
 
-const loggedInDetails = async(req, res) => {
+const loggedInDetails = async (req, res) => {
     const decoded = decodeToken(req);
     const det = await user.findOne({ "email": decoded.email });
     console.log(det)
     return det;
 }
 
-const userDetails = async(req, res) => {
+const userDetails = async (req, res) => {
     try {
         const query = await user.findOne({ email: req.body.email })
         return query
@@ -50,7 +50,7 @@ const userDetails = async(req, res) => {
 }
 
 
-const examinerUpd = async(req, res) => {
+const examinerUpd = async (req, res) => {
     try {
         // console.log(req.body)
         const body = req.body
@@ -66,43 +66,50 @@ const examinerUpd = async(req, res) => {
 
 }
 
-const fetchData = async(req, res) => {
-    const data = await user.find();
-    return data
+const fetchData = async (req, res) => {
+    const data = await user.find({ 'accountType': 'Examiner' });
+    //console.log(data.length);
+   let arr = [];
+    for (i = 0; i < data.length; i++) {
+       let newObject = {}
+       newObject._id = data[i]._id
+       newObject.email = data[i].email
+        newObject.createdDate = data[i].createdDate.toDateString();
+        newObject.name = data[i].name
+        arr.push(newObject)
+    }
+    return arr
 }
-const updateuser=async(req,res)=>
-{
+
+const updateuser = async (req, res) => {
     const id = req.body.id;
-    const data=await user.findByIdAndUpdate(id,req.body);
+    const data = await user.findByIdAndUpdate(id, req.body);
     return data;
 }
 ///////////////////////////////
 
-const adminLogin = async(req,res)=>{
-        const existUser =await admin.findOne({email:req.body.email});
-       // console.log(existUser);
-        if(existUser)
-        {
-           console.log("inside");
-           console.log(req.body.password);
-          //res.send({"message":"Admin exist"})
-         const pass=await bcrypt.compare(req.body.password,existUser.password);
-         console.log(pass);
-         if(pass)
-         {
-            res.send({"message":"Admin valid"});
-         }
-         else{
-            res.send({"message":"Email or password is not valid"}); 
-         }
+const adminLogin = async (req, res) => {
+    const existUser = await admin.findOne({ email: req.body.email });
+    // console.log(existUser);
+    if (existUser) {
+        console.log("inside");
+        console.log(req.body.password);
+        //res.send({"message":"Admin exist"})
+        const pass = await bcrypt.compare(req.body.password, existUser.password);
+        console.log(pass);
+        if (pass) {
+            res.send({ "message": "Admin valid" });
         }
-        else
-        {
-            res.send({"message":"Email or password is not valid"}); 
+        else {
+            res.send({ "message": "Email or password is not valid" });
         }
-        
-} 
-const userRecord = async(req, res) => {
+    }
+    else {
+        res.send({ "message": "Email or password is not valid" });
+    }
+
+}
+const userRecord = async (req, res) => {
     try {
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
@@ -124,12 +131,14 @@ const userRecord = async(req, res) => {
     }
 }
 
-module.exports={
-   userRecord,
+module.exports = {
+    userRecord,
     userDetails,
     decodeToken,
     fetchData,
     updateuser,
     adminLogin,
-    adminDetails
+    adminDetails,
+    loggedInDetails,
+    examinerUpd
 }

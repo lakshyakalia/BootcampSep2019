@@ -27,7 +27,7 @@ module.exports = () => {
 		res.send(response);
     })
     
-	//admin will view examiner
+	////////////////admin will view examiner
 	app.get('/examiner', async(req, res) => {
 			const result=await Users.fetchData(req,res)
 			res.send(result);

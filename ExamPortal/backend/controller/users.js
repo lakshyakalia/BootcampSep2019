@@ -90,6 +90,10 @@ const adminDetails=(req,res)=>{
     return data;
 }
 
+const question=(req,res)=>{
+    questionDetail.questions(req,res)
+}
+
 
 module.exports = {
     adminDetails,
@@ -108,5 +112,6 @@ module.exports = {
     adminLogin,
     loggedInDetails,
     userRecord,
-    examDetails
+    examDetails,
+    question
 }
