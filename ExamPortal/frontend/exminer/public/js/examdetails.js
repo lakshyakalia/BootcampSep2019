@@ -82,15 +82,15 @@ $(document).ready(function() {
 
         if (testDate == "") {
             alert("Please enter your test date");
-        }  else {
-                const testD=testDate.slice(0,10);
-                const testd=testDate.slice(11,16)
-                testDate=testD.concat(" "+testd+":00")
+        } else {
+            const testD = testDate.slice(0, 10);
+            const testd = testDate.slice(11, 16)
+            testDate = testD.concat(" " + testd + ":00")
 
-            }
+        }
 
-        if ((testName || testCode || testDuration ) == true) {
-                tempExamCode= $('#addExamCode').val()
+        if ((testName || testCode || testDuration) == true) {
+            tempExamCode = $('#addExamCode').val()
             let examDetail = {
                 examName: $('#addExamName').val(),
                 examCode: $('#addExamCode').val(),
@@ -103,7 +103,7 @@ $(document).ready(function() {
                 type: "POST",
                 dataType: "json",
                 headers: {
-                    token: localStorage.getItem('userToken')
+                    'token': localStorage.getItem('token')
                 },
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
@@ -196,6 +196,9 @@ $(document).ready(function() {
                 dataType: "json",
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
+                headers: {
+                    'token': localStorage.getItem('token')
+                },
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
                     document.getElementById("addtestQuestion").value = '';

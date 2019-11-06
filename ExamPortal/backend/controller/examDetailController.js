@@ -3,9 +3,12 @@ const question = require('./questionController')
 
 const examDetails = async(req, res) => {
     try {
+        debugger
         req.body.examinerId = req.headers.id
+        console.log(req.headers.id)
         let examInformation = new examDetail(req.body)
-        await examInformation.save()
+        const p = await examInformation.save()
+        console.log(p)
         res.status(200).send({ msg: 'exam information saved successful' })
     } catch (error) {
         console.log(error)
