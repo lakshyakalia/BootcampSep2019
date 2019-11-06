@@ -17,18 +17,19 @@ function checkTimeForTest(time){
 }
 
 $(document).ready(function(){
-
     $.ajax('http://localhost:3000/test/accessKey',{
         type:'GET',
         dataType:'JSON',
+        headers:{
+            examCode: localStorage.getItem('examCode'),
+            token: localStorage.getItem('token')
+        },
         data:{
             examCode: localStorage.getItem("examCode")
         },
         success: function(data){
             checkTimeForTest(data.examStartTime)
         },
-        error: function(error){
-
-        }
+        error: function(error){ }
     })
 })
