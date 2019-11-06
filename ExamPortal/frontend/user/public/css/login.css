@@ -90,3 +90,9 @@ h1 {
 label {
     font-weight: 400;
 }
+
+.mod {
+    position: absolute;
+    top: 35%;
+    left: 47%;
+}
