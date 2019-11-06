@@ -49,8 +49,9 @@ module.exports = () => {
     })
 
     //examiner will create exam details
-    app.post('/exam', middleware, (req, res) => {
-        Users.examDetail(req, res)
+    app.post('/exam',middleware, async(req, res) => {
+        const checkExamCode=await Users.examDetail(req, res)
+        res.send(checkExamCode)
     })
 
     //examiner will view exam
@@ -157,19 +158,11 @@ module.exports = () => {
         res.send(result);
     })
 
-    //examiner will create test details
-    app.post('/exam', (req, res) => {
-        Users.examDetails(req, res)
-    })
 
     app.patch('/examiner', middleware, async(req, res) => {
         const result = await Users.examinerUpd(req, res)
         res.send(result)
     })
 
-    //examiner will edit test details
-    app.patch('/exam', (req, res) => {
-        res.send({ "data": req.body })
-    })
     return app
 }
