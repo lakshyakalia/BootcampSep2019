@@ -152,7 +152,6 @@ module.exports = () => {
 
     app.patch('/examiner', middleware, async(req, res) => {
         const result = await Users.examinerUpd(req, res)
-        res.send(result)
     })
      // admin update examiner info
      app.patch('/examiner/:id', async(req, res) => {
