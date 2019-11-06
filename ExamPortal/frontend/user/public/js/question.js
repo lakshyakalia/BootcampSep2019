@@ -62,6 +62,12 @@ function loadFullWindow() {
     }
 }
 
+function exitHandler() {
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+        $('#fullScreenModal').modal("show")
+    }
+}
+
 $(window).on('load',function(){
     $('#fullScreenModal').modal('show')
 })
@@ -72,6 +78,11 @@ $(document).on('click','#goFullWindow',function(){
 })
 
 $(document).ready(function () {
+    document.addEventListener('fullscreenchange', exitHandler);
+    document.addEventListener('webkitfullscreenchange', exitHandler);
+    document.addEventListener('mozfullscreenchange', exitHandler);
+    document.addEventListener('MSFullscreenChange', exitHandler);
+
     const tok = localStorage.getItem('token');
     if (tok == null) {
         location.replace("../../index.html")
@@ -242,16 +253,3 @@ $(document).on('click', '.circle', function () {
 })
 
 $('#fullScreenModal').modal({backdrop: 'static', keyboard: false})
-
-function exitHandler() {
-    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-        $('#fullScreenModal').modal("show")
-    }
-}
-
-$(document).ready(function(){
-    document.addEventListener('fullscreenchange', exitHandler);
-    document.addEventListener('webkitfullscreenchange', exitHandler);
-    document.addEventListener('mozfullscreenchange', exitHandler);
-    document.addEventListener('MSFullscreenChange', exitHandler);
-})

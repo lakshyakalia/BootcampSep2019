@@ -29,9 +29,15 @@ function checkTimeForTest(time){
         var presentDate = new Date().getTime()
         let startTime = new Date(time).getTime()
         let presentTime = new Date().getTime()
+        let leftTestTime = startTime-presentTime
+        var hours = Math.floor((leftTestTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((leftTestTime % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((leftTestTime % (1000 * 60)) / 1000);
+        document.getElementById("leftTime").innerHTML = "Time Left - "+hours+":"+minutes+":"+seconds
         if((presentTime>startTime) && (presentDate>=startDate)){
             clearInterval(x)
             $('.startTest').removeAttr("disabled")
+            document.getElementById('leftTime').innerHTML = ""
         }
     },1000)
 
