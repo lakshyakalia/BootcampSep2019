@@ -24,7 +24,7 @@ const questionDetails = new Schema({
 	},
 	modifiedBy:String,
 	examCode: String,
-	examDetail:String,
+	answerType:String,
 })
 
 const questionDetail = mongoose.model('question',questionDetails)

@@ -51,7 +51,6 @@ $(document).ready(function() {
             $(".box").not(targetBox).hide();
             $(targetBox).show();
         });
-
   });
  
   $(document).ready(function() {
@@ -59,7 +58,7 @@ $(document).ready(function() {
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
     function validateForm() {
-        console.log('hello')
+        
         var testName = document.getElementById("addExamName").value;
         var testCode = document.getElementById("addExamCode").value;
         var testDuration = document.getElementById("addExamDuration").value;
@@ -111,12 +110,26 @@ $(document).ready(function() {
                 type: "POST",
                 dataType: "json",
                 headers: {
-                    token: localStorage.getItem('userToken')
+                    token: localStorage.getItem('token')
                 },
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
-                success: function(data, status) {
+                success: function( recent) {
+                    console.log(recent.message);
+                    if(recent.message=="Exam Code already exist")
+              {
+                window.alert("Exam Code Already Exist");
+                location.replace("./views/examdetails.html")
+              }
+              else
+              {
+                 document.getElementById("addExamName").value='';
+                 document.getElementById("addExamCode").value='';
+                 document.getElementById("addExamDuration").value='';
+                 document.getElementById("addExamTestDate").value='';
+                 document.getElementById("addExamInstruction").value='';
+              }
                 },
                 error: function(error) {
                     console.log("error : " + error)
@@ -209,7 +222,7 @@ $(document).ready(function() {
                                         },
                                         weightage: $('#addtestWeightage').val(),
                                         examCode: tempExamCode,
-                                        examDetail:"multipleOption"
+                                        answerType:"multipleOption"
                                     }
                                     console.log(examDetail)
                                     $.ajax("http://localhost:3000/exam/question", {
@@ -289,7 +302,7 @@ $(document).ready(function() {
                         },
                         weightage: $('#addtestWeightage').val(),
                         examCode: tempExamCode,
-                        examDetail:"singleOption"
+                        answerType:"singleOption"
                     } 
                     console.log(examDetail)
                     $.ajax("http://localhost:3000/exam/question", {
@@ -321,4 +334,3 @@ $(document).ready(function() {
    
     
  })
-
