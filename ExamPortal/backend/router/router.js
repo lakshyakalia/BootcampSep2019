@@ -20,13 +20,13 @@ module.exports = () => {
 		const result=await Users.updateUser(req,res);
 		res.send(result);
     })
-    
+
 	//admin will add examiner
 	app.post('/examiner',async (req, res) => {
 		const response = await Users.adminDetails(req,res)
 		res.send(response);
     })
-    
+
 	//admin will view examiner
 	app.get('/examiner', async(req, res) => {
 			const result=await Users.fetchData(req,res)
@@ -57,7 +57,7 @@ module.exports = () => {
     app.post('/exam', (req, res) => {
         Users.examDetail(req, res)
     })
-    
+
     //examiner will view exam
     app.get('/exam', middleware, (req, res) => {
         Users.viewExamDetail(req, res)
@@ -89,7 +89,7 @@ module.exports = () => {
         Users.question(req, res)
     })
 
-    //examiner will views questions 
+    //examiner will views questions
     app.get('/exam/question/:id', middleware, (req, res) => {
         Users.getQuestionDetail(req, res)
     })
@@ -163,10 +163,6 @@ module.exports = () => {
         const result = await Users.examinerUpd(req, res)
         res.send(result)
     })
-    
-	//examiner will edit test details
-	app.patch('/exam', (req, res) => {
-		res.send({ "data": req.body })
-	})
-	return app
+    return app
 }
+

@@ -47,10 +47,12 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+
     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
     function validateForm() {
+        console.log('hello')
         var testName = document.getElementById("addExamName").value;
         var testCode = document.getElementById("addExamCode").value;
         var testDuration = document.getElementById("addExamDuration").value;
@@ -84,10 +86,9 @@ $(document).ready(function() {
                 const testD=testDate.slice(0,10);
                 const testd=testDate.slice(11,16)
                 testDate=testD.concat(" "+testd+":00")
-                
+
             }
-            
-    
+
         if ((testName || testCode || testDuration ) == true) {
                 tempExamCode= $('#addExamCode').val()
             let examDetail = {
@@ -96,7 +97,7 @@ $(document).ready(function() {
                 examDuration: $('#addExamDuration').val(),
                 examStartTime: testDate,
                 instructions: $('#addExamInstruction').val(),
-                
+
             }
             $.ajax("http://localhost:3000/exam", {
                 type: "POST",
@@ -108,7 +109,7 @@ $(document).ready(function() {
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
                 success: function(data, status) {
-                    
+
                 },
                 error: function(error) {
                     console.log("error : " + error)
