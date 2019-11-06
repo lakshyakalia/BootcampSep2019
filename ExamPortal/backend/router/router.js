@@ -125,8 +125,13 @@ module.exports = () => {
         return response
     })
 
-    app.post('/test/assessKey', async(req, res) => {
+    app.post('/test/accessKey', async(req, res) => {
         const response = await Ques.checkAccessKey(req, res)
+        return response
+    })
+
+    app.get('/test/accessKey', async(req, res) => {
+        const response = await Ques.getExamTime(req, res)
         return response
     })
 
