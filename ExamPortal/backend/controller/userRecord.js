@@ -17,6 +17,7 @@ const adminDetails = async (req, res) => {
         if (existUser) {
             return ({ "message": "user already exist" })
         } else {
+            debugger
             const userInfo = req.body;
             var myPlaintesxtPassword = userInfo.password;
             var salt = bcrypt.genSaltSync(10);
@@ -86,7 +87,6 @@ const updateuser = async (req, res) => {
     const data = await user.findByIdAndUpdate(id, req.body);
     return data;
 }
-///////////////////////////////
 
 const adminLogin = async (req, res) => {
     const existUser = await admin.findOne({ email: req.body.email });

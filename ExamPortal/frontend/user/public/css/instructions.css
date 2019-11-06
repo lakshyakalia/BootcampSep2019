@@ -63,3 +63,16 @@ li {
   ul{
       padding-left:4px;
   }
+
+
+  .error-msg{
+      text-align: center;
+      color: red;
+      font-size: 16px;
+      font-weight: bold;
+  }
+
+
+  #leftTime{
+      color: red;
+  }

@@ -49,10 +49,7 @@ function showPreviousTicks() {
 }
 
 function loadFullWindow() {
-    document.fullscreenEnabled =
-        document.fullscreenEnabled ||
-        document.mozFullScreenEnabled ||
-        document.documentElement.webkitRequestFullScreen;
+    document.fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
     if (document.fullscreenEnabled) {
         let element = document.documentElement
         if (element.requestFullscreen) {
@@ -62,6 +59,12 @@ function loadFullWindow() {
         } else if (element.webkitRequestFullScreen) {
             element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
         }
+    }
+}
+
+function exitHandler() {
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+        $('#fullScreenModal').modal("show")
     }
 }
 
@@ -75,6 +78,11 @@ $(document).on('click','#goFullWindow',function(){
 })
 
 $(document).ready(function () {
+    document.addEventListener('fullscreenchange', exitHandler);
+    document.addEventListener('webkitfullscreenchange', exitHandler);
+    document.addEventListener('mozfullscreenchange', exitHandler);
+    document.addEventListener('MSFullscreenChange', exitHandler);
+
     const tok = localStorage.getItem('token');
     if (tok == null) {
         location.replace("../../index.html")
@@ -119,7 +127,6 @@ $(document).on('click', '#submitAnswer', function () {
         },
         success: function (data) {
             $('#' + questionId + ".circle").css('background-color', "green")
-            console.log(data.msg)
         },
         error: function (error) {
             console.log(error)
@@ -184,8 +191,25 @@ $(document).on('click', '#previousQuestion', function () {
 })
 
 $(document).on('click', '#modalEndTest', function () {
-    $(location).attr('href', './endTest.html')
-})
+    $.ajax('http://localhost:3000/test/endTest',{
+        type:'POST',
+        dataType: 'JSON',
+        headers: {
+            examCode: localStorage.getItem('examCode'),
+            token: localStorage.getItem('token')
+        },
+        body:{
+            code: localStorage.getItem("examCode")
+        },
+        success: function(data){
+            localStorage.removeItem('token')
+            $(location).attr('href', './endTest.html')
+        },
+        error: function(error){
+            console.log(error)
+        }
+    })
+})  
 
 $(document).on('click', '#resetRadio', function () {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
@@ -227,3 +251,5 @@ $(document).on('click', '.circle', function () {
         }
     })
 })
+
+$('#fullScreenModal').modal({backdrop: 'static', keyboard: false})
