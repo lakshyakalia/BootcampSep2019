@@ -6,15 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Show Test</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
     <link rel="stylesheet" href="../public/css/exam.css">
     <!-- <link rel="stylesheet" href="../public/css/examdetails.css"> -->
+    <script type="text/javascript" src="../public/js/examiner.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: black;">
+        <img src="../../user/public/assets/cybergrouplogo.png" class="logo">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+
+                <li class="nav-item">
+                    <a class="nav-link" onclick="location.href='./examiner.html'">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="location.href='contactUs.html'">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" onclick="location.href='exam.html'">Test Collections</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="logout()">Logout</button>
+            </form>
+        </div>
+    </nav>
+<!-- confirm dialogue box -->
 
     <div class="container-fluid">
         <div class="row" id="examId">
@@ -41,7 +75,7 @@
         </div>
     </div>
     <!-- append view question template -->
-    <div class="container" id="mainDiv">
+    <div class="container question-div-pos" id="mainDiv">
         <div class="row">
             <div class="col-md-2" id="question-Index"></div>
             <div class="col-md-10" id="question-Display"></div>
@@ -74,7 +108,8 @@
                 <button class="btn btn-outline-primary" id="edit{{index}}" onclick="editExamDetail(this.id)">Edit</button>
             </div>
             <div class="col-md-1">
-                <button class="btn btn-outline-danger" id="delete{{index}}" onclick="deleteExam(this.id)">Delete</button>
+                <button type="button" id="delete{{index}}" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" onclick="setId(this.id)">Delete</button>
+                <!-- <button class="btn btn-outline-danger" id="delete{{index}}" onclick="deleteExam(this.id)">Delete</button> -->
             </div>
         </div>
     </script>
@@ -124,7 +159,8 @@
                 <h6>Answer : {{answer}} </h6>
                 <div class="btn1">
                     <button type="button" class="btn btn-outline-info" id="editQs{{index}}" onclick="editQuestion(this.id)">Edit</button>
-                    <button type="button" class="btn btn-outline-danger" id="delQues{{index}}" onclick="removeQuestion(this.id)">Delete</button>
+                    <button type="button" id="delQues{{index}}" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal1" onclick="setQsId(this.id)">Delete</button>                   
+                    <!-- <button type="button" class="btn btn-outline-danger" id="delQues{{index}}" onclick="removeQuestion(this.id)">Delete</button> -->
                 </div>
             </div>
     </script>
@@ -171,6 +207,47 @@
         </div>
     </script>
     <script src="../public/js/showExam.js"></script>
+    
+<!-- Modal to confirm delete exam -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+          <div class="modal-content confirm-box">
+            <div class="modal-header">
+              <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <h4>You delete this item?</4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-info" data-dismiss="modal">No</button>
+              <button type="button" class="btn btn-outline-success" id="del" onclick="deleteExam(this.id)">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal to confirm delete question -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+          <div class="modal-content confirm-box">
+            <div class="modal-header">
+              <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <h4>You want delete this question?</4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-info" data-dismiss="modal">No</button>
+              <button type="button" class="btn btn-outline-success" id="delQ" onclick="removeQuestion(this.id)">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 
 </html>

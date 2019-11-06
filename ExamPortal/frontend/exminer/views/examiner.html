@@ -11,8 +11,8 @@
     </head>
 
     <body onload="showName()">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <a class="navbar-brand" href="#">Online Test Portal</a>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: black;">
+            <img src="../../user/public/assets/cybergrouplogo.png" class="logo">
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
@@ -21,26 +21,23 @@
                 <ul class="navbar-nav mr-auto ">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" onclick="hideEditDetails()">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" onclick="location.href='contactUs.html'">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Educational Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Test Collections</a>
+                        <a class="nav-link" onclick="location.href='exam.html'">Test Collections</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <div class="dropdown">
-                        <span id="span">Welcome </span>
+                        <span id="span">Welcome &nbsp; </span>
                         <div class="dropdown-content">
                             <button class="btn btn-danger"><a href='#edit' onclick="showEdit()" style="text-decoration: none; color: rgba(255, 255, 255, 1);">Edit</a></button>
                         </div>
                     </div>
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="logout()">Logout</button>
                 </form>
             </div>
         </nav>

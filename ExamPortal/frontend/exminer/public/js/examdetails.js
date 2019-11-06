@@ -1,21 +1,20 @@
-var tempExamCode =''
-$(document).ready(function () {
-    const tok =localStorage.getItem('token');
-    if(tok == null)
-    {
-      location.replace("../../index.html")
+var tempExamCode = ''
+$(document).ready(function() {
+    const tok = localStorage.getItem('token');
+    if (tok == null) {
+        location.replace("../../index.html")
     }
     var navListItems = $('div.setup-panel div a'),
-            allWells = $('.setup-content'),
-            allNextBtn = $('.nextBtn');
-  
+        allWells = $('.setup-content'),
+        allNextBtn = $('.nextBtn');
+
     allWells.hide();
-  
-    navListItems.click(function (e) {
+
+    navListItems.click(function(e) {
         e.preventDefault();
         var $target = $($(this).attr('href')),
-                $item = $(this);
-  
+            $item = $(this);
+
         if (!$item.hasClass('disabled')) {
             navListItems.removeClass('btn-primary').addClass('btn-default');
             $item.addClass('btn-primary');
@@ -24,26 +23,26 @@ $(document).ready(function () {
             $target.find('input:eq(0)').focus();
         }
     });
-  
-    allNextBtn.click(function(){
+
+    allNextBtn.click(function() {
         var curStep = $(this).closest(".setup-content"),
             curStepBtn = curStep.attr("id"),
             nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
             curInputs = curStep.find("input[type='text'],input[type='url']"),
             isValid = true;
-  
+
         $(".form-group").removeClass("has-error");
-        for(var i=0; i<curInputs.length; i++){
-            if (!curInputs[i].validity.valid){
+        for (var i = 0; i < curInputs.length; i++) {
+            if (!curInputs[i].validity.valid) {
                 isValid = false;
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
             }
         }
-  
+
         if (isValid)
             nextStepWizard.removeAttr('disabled').trigger('click');
     });
-  
+
     $('div.setup-panel div a.btn-primary').trigger('click');
    
         $('input[name="colorRadio"]').click(function(){  
@@ -60,6 +59,7 @@ $(document).ready(function () {
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
     function validateForm() {
+        console.log('hello')
         var testName = document.getElementById("addExamName").value;
         var testCode = document.getElementById("addExamCode").value;
         var testDuration = document.getElementById("addExamDuration").value;
@@ -69,22 +69,22 @@ $(document).ready(function () {
         if (testName === "") {
             alert("Please enter test name");
         } else {
-            
-                testName = true;
-            }
+
+            testName = true;
+        }
 
         if (testCode === "") {
             alert("Please enter test code");
-        }  else {
-                testCode = true;
-            }
-    
+        } else {
+            testCode = true;
+        }
+
 
         if (testDuration === "") {
             alert("Please enter test duration");
-        }  else {
-                testDuration = true;
-            }
+        } else {
+            testDuration = true;
+        }
 
 
         if (testDate == "") {
@@ -135,7 +135,7 @@ $(document).ready(function() {
     function validateForm() {
         var question = document.getElementById("addtestQuestion").value;
         
-        var answer = document.getElementById("addtestAnswer").value;
+        
         var weightage = document.getElementById("addtestWeightage").value;
          //console.log(question,answer,weightage)
         
@@ -150,6 +150,7 @@ $(document).ready(function() {
             if ( opt == '' ){
                 return
                 }else if ( opt =="red"){
+                    var answer = document.getElementById("addtestAnswer").value;
                     var option1 = document.getElementById("addtestOption1").value;
                     var option2 = document.getElementById("addtestOption2").value;
                     var option3 = document.getElementById("addtestOption3").value;
@@ -210,6 +211,7 @@ $(document).ready(function() {
                                         examCode: tempExamCode,
                                         examDetail:"multipleOption"
                                     }
+                                    console.log(examDetail)
                                     $.ajax("http://localhost:3000/exam/question", {
                                                         type: "POST",
                                                         dataType: "json",
@@ -236,6 +238,7 @@ $(document).ready(function() {
                     var option2G = document.getElementById("addtestOption2G").value;
                     var option3G = document.getElementById("addtestOption3G").value;
                     var option4G = document.getElementById("addtestOption4G").value;
+                    var answer = $("input[name='option1']:checked").val();
                     
                     if (option1G === "" ) {
                         alert("Please enter 1st option");
@@ -265,7 +268,7 @@ $(document).ready(function() {
                             if (answer === "") {
                                 alert("Please enter answer");
                             }  else {
-                                    answer = true;
+                                      
                                     }
                     
                     
@@ -274,11 +277,10 @@ $(document).ready(function() {
                     }  else {
                             weightage = true;
                             }
-                
-
+                            
                     let examDetail = {
                         questionText: $('#addtestQuestion').val(),
-                        answer: answer,
+                        answer: $('#addtestAnswer1').val(),
                         options :{
                         option1: $('#addtestOption1G').val(),
                         option2: $('#addtestOption2G').val(),
@@ -288,7 +290,7 @@ $(document).ready(function() {
                         weightage: $('#addtestWeightage').val(),
                         examCode: tempExamCode,
                         examDetail:"singleOption"
-                    }
+                    } 
                     console.log(examDetail)
                     $.ajax("http://localhost:3000/exam/question", {
                         type: "POST",

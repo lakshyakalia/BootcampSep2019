@@ -1,3 +1,8 @@
+function logout()
+{
+   localStorage.removeItem("token");
+   window.location.replace("../../user/views/login.html");
+}
 function loadSetupExaminerPage(data){
   $('#performance').empty()
   $.get('./adminSetupExaminer.html',function(template){
@@ -8,15 +13,18 @@ function loadSetupExaminerPage(data){
 
 
 $(document).ready(function () {
-  const tok =localStorage.getItem('token');
-  if(tok == null)
-  {
-    location.replace("../../index.html")
-  }
+  // const tok =localStorage.getItem('token');
+  // if(tok == null)
+  // {
+  //   location.replace("../../index.html")
+  // }
   $.ajax("http://127.0.0.1:3000/examiner", {
     type: "GET",
     dataType: "json",
     contentType: "application/json",
+    headers:{
+      token: localStorage.getItem('token')
+    },
     success: function (recent) {
       display(recent);
       // console.log(recent);

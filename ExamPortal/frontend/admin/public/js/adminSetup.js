@@ -1,11 +1,10 @@
+function logout()
+{
+   localStorage.removeItem("token");
+   window.location.replace("../../user/views/login.html");
+}
 $(document).ready(function(){
-  const token =localStorage.getItem('token');
-  if(token == null)
-  {
-    location.replace("../../index.html")
-  }
-  
-    $("#submit").click(function(e){
+     $("#submit").click(function(e){
         e.preventDefault();
         var email=document.getElementById("email").value;
         var name=document.getElementById("name").value;
@@ -13,15 +12,38 @@ $(document).ready(function(){
         var accountype=document.getElementById("accountype").value;
         var phoneno=document.getElementById("phoneno").value;
         var collegename=document.getElementById("collegename").value;
-
-        console.log(email);
-        console.log(name);
-        console.log(password);
-        console.log(accountype);
-        console.log(phoneno);
-        console.log(collegename);
-       
-      $.ajax("http://127.0.0.1:3000/signup",{
+        var flag=1;
+       // var a=phoneno.toString().length;
+        //console.log(a);
+         if(email==="")
+         {
+           flag=0;
+            window.alert("Email must be added");
+         }
+         else if(name==="")
+         {
+          flag=0;
+          window.alert("Name must be added");
+         }
+         else if(password==="")
+         {
+          flag=0;
+          window.alert("Password must be added");
+         }
+         else if((phoneno.toString().length !=10))
+         {
+          flag=0;
+          window.alert("Phoneno must be valid");
+         }
+         else if(collegename==="")
+         {
+          flag=0;
+          window.alert("College Name must be added");
+         }
+        if(flag==1)
+        {
+          //console.log("hello buddy");
+      $.ajax("http://localhost:3000/examiner",{
         type:"POST",
         dataType:"json",
         contentType:"application/json",
@@ -37,9 +59,19 @@ $(document).ready(function(){
 
                 }
             ),
-            success:function(recent){ 
-              console.log("Data inserted");
-              window.location.replace("adminHome.html")
+            success:function(recent){
+              console.log("..........");
+              console.log(recent.message);
+              if(recent.message=="user already exist")
+              {
+                window.alert("User Already Exist");
+              }
+              else
+              {
+                window.alert("Account Created");
+                location.replace("../views/adminHome.html")
+              }
+              
             },
             error:function()
             {
@@ -47,5 +79,7 @@ $(document).ready(function(){
             }
             
           });
-      });
+        }
+        flag=1;
+       });
   });

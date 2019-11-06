@@ -1,4 +1,3 @@
-
 function showQuestion(id){
     // eid = $('#'+id).parent().parent().attr('id')
     let examCode = $('#'+id).parent().prev().prev().prev().find('p').html()
@@ -29,6 +28,10 @@ function showQuestion(id){
                console.log(error)
             }
         })
+}
+function setQsId(id){
+    
+    $("#delQ").attr('id',id)
 }
 function removeQuestion(id){
     let qsId = $("#"+id).parent().parent().attr('id')
@@ -145,7 +148,9 @@ function editExamDetail(id){
         }
     })
 }
-
+function setId(id){
+    $("#del").attr('id',id)
+}
 function deleteExam(id){
     examObjId =  $('#'+id).parent().parent().attr('id')
     $.ajax("http://localhost:3000/exam/"+examObjId, {
@@ -174,6 +179,9 @@ $(document).ready(()=>{
         type: 'GET',
         dataType: 'json',
         contentType: "application/json",
+        headers:{
+            token:localStorage.getItem('token')
+        },
         success: function(data) {
         let parent = $(".exam-detail")
         // load html template to display exam detail

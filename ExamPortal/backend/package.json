@@ -11,8 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
+    "chokidar": "^3.3.0",
     "circular-json": "^0.5.9",
     "cors": "^2.8.5",
     "express": "^4.17.1",
