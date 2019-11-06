@@ -103,8 +103,12 @@ const checkAccessKey = async(req, res) => {
 //Saving all Questions when user clicks on end test button
 const saveAllQuestions = async(req,res)=>{
     const allQuestions = await questionDetail.find({examCode:req.headers.examcode}).select({_id:1})
+    const savedQuestions = await test.findOne({ $and:[{candidateId:req.headers.id},{testCode:req.headers.examcode}] })
+    if(savedQuestions.answers.length === allQuestions.length){
+        await test.update({$and:[{candidateId:req.headers.id},{testCode:req.headers.examcode}]},{$set:{"submitExam":true}})
+    }
     for(let i=0;i<allQuestions.length;i++){
-        let existingAnswer = await test.findOne({ $and:[{candidateId:req.headers.id},{testCode:req.body.code}] })
+        let existingAnswer = await test.findOne({ $and:[{candidateId:req.headers.id},{testCode:req.headers.examcode}] })
         req.body.qId = allQuestions[i]._id
         req.body.checkedOption = null
         req.body.code = req.headers.examcode    
