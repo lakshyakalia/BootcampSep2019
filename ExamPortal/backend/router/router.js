@@ -5,31 +5,37 @@ const { Ques } = require('../controller')
 const middleware = require("../auth/middleware");
 const jwt = require('jsonwebtoken');
 const { SECRET } = require("../config/config")
-var multer = require('multer')
+const multer = require('multer')
 const path = require('path')
-var reqPath = path.join(__dirname, '../../frontend/exminer/excelFileUpload')
+// var reqPath = path.join(__dirname, '../../frontend/exminer/excelFileUpload')
 
+var storage = multer.memoryStorage()
 var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, reqPath)
-    }
-    // filename : function (req,file,cb){
-    //     cb(null ,)
-    // }
-})
-
-
+    destination: function (req, file, callback) {
+        callback(null, 'upload/')
+    },
+    filename: function (req, file, callback) {
+        callback(null,file.originalname);
+        // Date.now() + '-' + 
+      }
+});
+const upload = multer({storage:storage})
 const createToken = require("../auth/authenticator").checkAuth;
+
 module.exports = () => {
-    // var uploadExcelFile = multer({ dest: 'upload/' }) // fix this part to use common file upload-path
-
-    var uploadExcelFile = multer({ dest: reqPath })
-
-    app.post('/uploadExcel', uploadExcelFile.single('uploadExcelFile'), (req, res) => {
-        console.log("result is : " + req)
-        res.send({ msg: 'excel is uploading' })
-        // Users.quesFromExcel(req, res)
-    })
+ 
+app.post('/uploadExcel', upload.single('excelFile'), (req, res) => {
+    console.log("in route uploadExcel")
+        // console.log("result is : " + req.file)
+        // if(err) {
+        //  res.send("Error uploading file.");
+        // }
+        // res.send("File is uploaded");
+           
+        req.file.filename = './upload/'+req.file.filename
+    console.log(req.file.filename);
+    Users.quesFromExcel(req, res)
+})
 
     app.post('/login', async (req, res) => {
         const result = await createToken(req)

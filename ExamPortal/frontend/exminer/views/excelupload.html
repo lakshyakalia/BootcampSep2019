@@ -11,25 +11,27 @@
     </head>
   <body>
       <form>
-        <input type="file" id="uploadExcelFile" name="uploadExcelFile" />
-        <input type="button" value="Uploadfile" name="submit" onclick="excelUpload(event)">
-        <span id = "status"></span>
+         <!-- enctype="multipart/form-data"
+         action="/api/photo"
+         method="post"> -->
+      <input type="file" id="uploadExcelFile" name="uploadExcelFile" />
+      <input type="button" value="Uploadfile" name="submit" onclick="excelUpload()">
+      <span id = "status"></span>
     </form>
   </body>
   <script>
-      function excelUpload(event){
-            event.preventDefault();
-        
-          $("#status").empty().text("File is uploading...");
-
-        var formData = new FormData();
-        formData.append('excelFile', $('input[type=file]')[0].files[0]);
-        $.ajax('http://localhost:3000/uploadExcel',{
+      function excelUpload(){
+          var path =$("#uploadExcelFile").val()
+          console.log("hello")
+          console.log(path)
+          var formData = new FormData();
+          formData.append('excelFile',path)
+          $.ajax('http://localhost:3000/uploadExcel',{
         type:'POST',
+        dataType:'JSON',
         data:formData,
-        lowerCaseHeaders:true,
-        contentType: false,
-         processData: false,
+        contentType:false,
+        processData:false,
         success: function(data){
             console.log(data.msg)
         },

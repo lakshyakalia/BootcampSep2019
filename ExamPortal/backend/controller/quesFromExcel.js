@@ -1,9 +1,34 @@
 var { questionDetail } = require('../Models/question')
 const excelToJson = require('convert-excel-to-json');
-// const result = excelToJson({
-//     sourceFile: 'questions.xlsx'
-// });
-// console.log(typeof(result))
+
+const quesFromExcel = async (req, res) => {
+    let path = req.file.filename
+    const result = excelToJson({
+        sourceFile: path,
+        columnToKey: {
+            A: 'questionText',
+            B: 'option1',
+            C: 'option2',
+            D: 'option3',
+            E: 'option4',
+            F: 'answer',
+            G: 'weightage'
+
+        }
+
+    })
+   
+    try {
+        var arr = result.Sheet2
+        await questionDetail.insertMany(arr.Sheet2)
+        res.send({ msg: 'saved' })
+    } catch (err) {
+        console.log(err)
+    }
+    // console.log(arr)
+}
+// console.log(result.Sheet2)
+
 // var obj = new Object()
 // for ( i = 1 ; i < result.Sheet2.length; i++ ){
 //     obj.questionText = result.Sheet2[i].A
@@ -16,3 +41,10 @@ const excelToJson = require('convert-excel-to-json');
 //     obj.weightage=result.Sheet2[i].G
 //     console.log(obj)
 // }
+// });
+
+
+
+module.exports = {
+    quesFromExcel
+}
