@@ -191,7 +191,7 @@ $(document).on('click', '#modalEndTest', function () {
             code: localStorage.getItem("examCode")
         },
         success: function(data){
-            // localStorage.removeItem('token')
+            localStorage.removeItem('token')
             $(location).attr('href', './endTest.html')
         },
         error: function(error){

@@ -1,5 +1,26 @@
 $(document).on('click', '.startTest', function() {
-    $(location).attr('href', './question.html')
+    $.ajax('http://localhost:3000/test/accessKey',{
+        type:'GET',
+        dataType:'JSON',
+        headers:{
+            examCode: localStorage.getItem('examCode'),
+            token: localStorage.getItem('token')
+        },
+        data:{
+            examCode: localStorage.getItem("examCode")
+        },
+        success: function(data){
+            if(data.submitStatus){
+                $('.error-msg').text("Test is already Submitted")
+            }
+            else{
+                $(location).attr('href', './question.html')
+            }
+            
+        },
+        error: function(error){ }
+    })
+    
 })
 
 function checkTimeForTest(time){
@@ -28,7 +49,7 @@ $(document).ready(function(){
             examCode: localStorage.getItem("examCode")
         },
         success: function(data){
-            checkTimeForTest(data.examStartTime)
+            checkTimeForTest(data.examData.examStartTime)
         },
         error: function(error){ }
     })

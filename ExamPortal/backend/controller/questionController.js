@@ -186,8 +186,15 @@ const saveAllQuestions = async(req,res)=>{
 }
 
 const getExamTime = async(req,res)=>{
-    const examData = await examDetail.findOne(req.query).select({examStartTime:1})
-    res.status(200).send(examData)
+    const examData = await examDetail.findOne({examCode:req.headers.examcode}).select({examStartTime:1})
+    const submitStatus = await test.findOne({$and :[{candidateId:req.headers.id},{testCode:req.headers.examcode}]}).select({submitExam:1})
+    if(submitStatus === null){
+        res.status(200).send({examData,submitStatus:false})
+    }
+    else{
+        res.status(200).send({examData:examData,submitStatus:submitStatus.submitExam})
+    }
+    
 }
 
 const questions = async (req, res) => {
