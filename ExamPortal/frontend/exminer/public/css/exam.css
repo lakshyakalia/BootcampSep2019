@@ -277,4 +277,5 @@ option {
 }
 .questionIndex:hover{
     background: green;
+    color: #ffff;
 }

@@ -54,7 +54,8 @@ module.exports = () => {
     })
 
     //examiner will create exam details
-    app.post('/exam', (req, res) => {
+    app.post('/exam',middleware, (req, res) => {
+        console.log('create exam')
         Users.examDetail(req, res)
     })
 
