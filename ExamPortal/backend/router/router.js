@@ -49,7 +49,7 @@ module.exports = () => {
     })
 
     //examiner will create exam details
-    app.post('/exam', (req, res) => {
+    app.post('/exam', middleware, (req, res) => {
         Users.examDetail(req, res)
     })
 
