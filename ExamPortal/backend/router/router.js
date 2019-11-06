@@ -10,24 +10,6 @@ const { SECRET } = require("../config/config")
 const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
 
-    // admin update examiner info
-    app.patch('/examiner/:id', async(req, res) => {
-        const result = await Users.updateUser(req, res);
-        res.send(result);
-    })
-
-    //admin will add examiner
-    app.post('/examiner', async(req, res) => {
-        const response = await Users.adminDetails(req, res)
-        res.send(response);
-    })
-
-    //admin will view examiner
-    app.get('/examiner', async(req, res) => {
-        const result = await Users.fetchData(req, res)
-        res.send(result);
-    })
-
     app.post('/login', async(req, res) => {
         const result = await createToken(req)
         if (result.token == "null") {
@@ -49,9 +31,9 @@ module.exports = () => {
     })
 
     //examiner will create exam details
-
-    app.post('/exam', middleware, (req, res) => {
-        Users.examDetail(req, res)
+    app.post('/exam',middleware, async(req, res) => {
+        const checkExamCode=await Users.examDetail(req, res)
+        res.send(checkExamCode)
     })
 
     //examiner will view exam
@@ -141,12 +123,22 @@ module.exports = () => {
         return response
     })
 
+    // //admin will add examiner
+    // app.post('/examiner', middleware, (req, res) => {
+    //     const response = adminDetail.adminDetails(req, res)
+    //     return response;
+    // })
     //admin will add examiner
-    app.post('/examiner', middleware, (req, res) => {
-        const response = adminDetail.adminDetails(req, res)
-        return response;
+    app.post('/examiner', async(req, res) => {
+        const response = await Users.adminDetails(req, res)
+        res.send(response);
     })
 
+    //admin will view examiner
+    app.get('/examiner', async(req, res) => {
+        const result = await Users.fetchData(req, res)
+        res.send(result);
+    })
     //admin will delete examiner using id of examiner
     app.delete('/examiner/:id', (req, res) => {
             const result = Users.examinerDel(req, res)
@@ -162,10 +154,10 @@ module.exports = () => {
         const result = await Users.examinerUpd(req, res)
         res.send(result)
     })
-
-    //examiner will edit test details
-    app.patch('/exam', (req, res) => {
-        res.send({ "data": req.body })
+     // admin update examiner info
+     app.patch('/examiner/:id', async(req, res) => {
+        const result = await Users.updateUser(req, res);
+        res.send(result);
     })
     return app
 }
