@@ -267,3 +267,14 @@ option {
 #modalBody{
     font-weight: 100px;
 }
+.questionIndex{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background: lightblue;
+    text-align: center;
+    margin: 5px;
+}
+.questionIndex:hover{
+    background: green;
+}

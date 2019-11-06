@@ -133,10 +133,10 @@ module.exports = () => {
     })
 
     //admin will add examiner
-    // app.post('/examiner', middleware, (req, res) => {
-    //     const response = adminDetail.adminDetails(req, res)
-    //     return response;
-    // })
+    app.post('/examiner', middleware, (req, res) => {
+        const response = adminDetail.adminDetails(req, res)
+        return response;
+    })
 
     //admin will delete examiner using id of examiner
     app.delete('/examiner/:id', (req, res) => {
@@ -149,12 +149,7 @@ module.exports = () => {
         res.send(result);
     })
 
-	//examiner will create test details
-	app.post('/exam', (req, res) => {
-		 Users.examDetails(req, res)
-    })
-
-    app.patch('/examiner', middleware, async (req, res) => {
+	app.patch('/examiner', middleware, async (req, res) => {
         const result = await Users.examinerUpd(req, res)
         res.send(result)
     })

@@ -24,6 +24,12 @@ const viewExamDetail = (req,res)=>{
 const fetchExamDetail = (req,res)=>{
     examController.fetchExamDetail(req,res)
 }
+const removeExam = (req,res)=>{
+    examController.removeExam(req,res)
+}
+const editExam = (req, res) => {
+    examController.editExam(req, res)
+}
 
 const loggedInDetails = async(req, res) => {
     const det = await userController.loggedInDetails(req, res)
@@ -38,10 +44,6 @@ const adminLogin =async(req,res)=>{
 const userDetails = (req,res)=>{
     const data =userController.userDetails(req,res)
     return data;
-}
-
-const editExam = (req, res) => {
-    examController.editExam(req, res)
 }
 
 const getQuestionDetail = (req, res) => {
@@ -108,6 +110,7 @@ module.exports = {
     fetchExamDetail,
     removeQuestion,
     fetchQuestionById,
+    removeExam,
     getQuestionDetail,
     editExam,
     editQuestion,
