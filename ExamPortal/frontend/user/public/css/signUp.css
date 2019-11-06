@@ -87,4 +87,5 @@ form :nth-child(1) {
 
 .btn {
     margin-top: 20px;
+    font-weight: 100;
 }

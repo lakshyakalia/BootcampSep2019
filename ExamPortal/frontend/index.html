@@ -12,6 +12,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- cybergroup logo on top -->
     <link rel="icon" href="https://www.cygrp.com/wp-content/uploads/2019/06/cybergroup-site-icon.png" type="image/x-icon">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="./public/css/reset.css">
+
+    <link rel="stylesheet" href="./public/css/style.css">
 
 </head>
 
@@ -24,7 +29,6 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ">
-
                 <li class="nav-item">
                     <a class="nav-link" href="https://www.cygrp.com/">About</a>
                 </li>
@@ -32,12 +36,25 @@
         </div>
     </nav>
     <div class="container" style="padding: 20px;">
-        <h1 class="data">Change the way <br>you <span class="color-change">Learn  </span></h1>
+        <section class="cd-intro">
+            <h1 class="cd-headline letters rotate-2">
+                <span>Change the way you</span>
+                <span class="cd-words-wrapper">
+                    <b class="is-visible">Learn</b>
+                    <b>Think</b>
+                    <b>Look</b>
+                </span>
+            </h1>
+        </section>
         <div class="spacing">
-            <button id="signUp" class="btn btn-success my-2 my-sm-0" style="color: white;padding: 14px; font-weight: 100;" type="button" onclick="location.reload();location.href='./user/views/signUp.html'">Sign Up</button>
-            <button id="Login" class="btn btn-success my-2 my-sm-0" style="color: white;padding: 14px 20px; font-weight: 100;" onclick="location.reload();location.href='./user/views/login.html'">Login</button>
+            <button id="signUp" class="btn btn-success my-2 my-sm-0" style="color: white;padding: 14px;" type="button" onclick="location.reload();location.href='./user/views/signUp.html'">Sign Up</button>
+            <button id="Login" class="btn btn-success my-2 my-sm-0" style="color: white;padding: 14px 20px;" type="button" onclick="location.reload();location.href='./user/views/login.html'">Login</button>
         </div>
     </div>
+    <script src="./public/js/jquery-2.1.1.js"></script>
+
+    <script src="./public/js/main.js"></script>
+
 </body>
 
 </html>

@@ -2,33 +2,38 @@ $(document).on('click', '.startTest', function() {
     $(location).attr('href', './question.html')
 })
 
-function checkTimeForTest(time){
-    var x = setInterval(function(){
+function checkTimeForTest(time) {
+    var x = setInterval(function() {
         var startDate = new Date(time).getTime()
         var presentDate = new Date().getTime()
         let startTime = new Date(time).getTime()
         let presentTime = new Date().getTime()
-        if((presentTime>startTime) && (presentDate>=startDate)){
+        if ((presentTime > startTime) && (presentDate >= startDate)) {
             clearInterval(x)
             $('.startTest').removeAttr("disabled")
         }
-    },1000)
+    }, 1000)
 
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
 
-    $.ajax('http://localhost:3000/test/accessKey',{
-        type:'GET',
-        dataType:'JSON',
-        data:{
+    $.ajax('http://localhost:3000/test/accessKey', {
+        type: 'GET',
+        dataType: 'JSON',
+        data: {
             examCode: localStorage.getItem("examCode")
         },
-        success: function(data){
+        success: function(data) {
             checkTimeForTest(data.examStartTime)
         },
-        error: function(error){
+        error: function(error) {
 
         }
     })
 })
+
+function logout() {
+    localStorage.removeItem("token")
+    location.replace("../../index.html")
+}
