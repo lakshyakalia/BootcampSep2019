@@ -4,19 +4,25 @@ $(document).on('click', '#loginButton', function() {
     $.ajax('http://localhost:3000/login', {
         type: 'POST',
         dataType: 'JSON',
+        beforeSend: function() {
+            $('.spinner').show()
+        },
+        complete: function() {
+            $('.spinner').hide()
+        },
         data: {
             'email': email,
             'password': password
         },
         success: function(data) {
             localStorage.setItem('token', data.token)
-         //here i have used accountType to redirect to respective page
+                //here i have used accountType to redirect to respective page
             if (data.accountType == "Examiner")
                 $(location).attr('href', '../../exminer/views/examiner.html')
             else if (data.accountType == "Student")
-                $(location).attr('href',  './accessKey.html')
+                $(location).attr('href', './accessKey.html')
             else {
-               $(location).attr('href', '../../admin/views/adminHome.html')
+                $(location).attr('href', '../../admin/views/adminHome.html')
             }
         },
         error: function(error) {

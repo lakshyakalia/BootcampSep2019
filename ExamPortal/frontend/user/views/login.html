@@ -11,7 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- cybergroup logo on top -->
     <link rel="icon" href="https://www.cygrp.com/wp-content/uploads/2019/06/cybergroup-site-icon.png" type="image/x-icon">
-
+    <link rel="stylesheet" href="../../public/css/loader.css">
 </head>
 
 <body>
@@ -42,6 +42,11 @@
             <form class="was-validated modal-content">
                 <h1>Login</h1>
                 <p>Please fill in the credentials to continue.</p>
+                <div class="spinner">
+                    <div class="cube1"></div>
+                    <div class="cube2"></div>
+                </div>
+
                 <hr>
                 <div class="form-group">
                     <label for="email"><b>Email</b></label>
@@ -55,6 +60,7 @@
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
+
                 <button class="btn btn-success my-2 my-sm-0" style="color: white;" id="loginButton" type="button">Login</button>
             </form>
         </div>
