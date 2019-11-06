@@ -14,6 +14,9 @@ function showQuestion(id) {
             'token': localStorage.getItem('token')
         },
         success: function(data) {
+            if( data.msg == 'No question'){
+                alert("No question added in this exam")
+            }
             $.each(data, (index, item) => {
                 let indexTemplate = $("#index-template").html();
                 item.index = index + 1
@@ -229,6 +232,10 @@ $(document).ready(() => {
             token: localStorage.getItem('token')
         },
         success: function(data) {
+            if( data.msg == 'No Exam'){
+                alert("Exam Doesnot exist in your account")
+                return
+            }
             let parent = $(".exam-detail")
                 // load html template to display exam detail
             $.each(data, (index, values) => {
