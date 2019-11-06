@@ -120,7 +120,7 @@ $(document).ready(function() {
                     if(recent.message=="Exam Code already exist")
               {
                 window.alert("Exam Code Already Exist");
-                location.reload()
+                location.replace("./views/examdetails.html")
               }
               else
               {
@@ -157,70 +157,57 @@ $(document).ready(function() {
             return
         } else {
             
-            var opt = $("input[name='colorRadio']:checked").val();
-           
-            
+            var opt = $("input[name='colorRadio']:checked").val();        
             if ( opt == '' ){
                 return
                 }else if ( opt =="red"){
-                    var answer = document.getElementById("addtestAnswer").value;
+                    var answer=''
+                    //var answer = document.getElementById("addtestAnswer").value;
                     var option1 = document.getElementById("addtestOption1").value;
                     var option2 = document.getElementById("addtestOption2").value;
                     var option3 = document.getElementById("addtestOption3").value;
                     var option4 = document.getElementById("addtestOption4").value;
-
                     if (option1 === "" ) {
                             alert("Please enter 1st option");
                             return
-                        }  else {
-                                option1 = true;
-                            }
+                        }  
                     
-                
                         if (option2 === "" ) {
                             alert("Please enter 2nd option");
-                        }  else {
-                                option2 = true;
-                            }
+                            return
+                        }  
                             if (option3 === "" ) {
                                 alert("Please enter 3rd option");
-                            }  else {
-                                    option3 = true;
-                                }
-                        
+                                return
+                            }                         
                     
                             if (option4 === "" ) {
                                 alert("Please enter  4th option");
-                            }  else {
-                                    option4 = true;
-                                }
-                
-                        if (answer === "") {
-                            alert("Please enter correct option");
-                        }  else {
-                            var check1 = [];
+                                return 
+                            }  
                             $.each($("input[name='option']:checked"), function(){
-                                check1.push($(this).val());
+                                if( $(this).val()){
+                                    answer+=$(this).val()+','
+                                }
                             });
-                            answer = check1.join(", ");
-                            }
-                        
+                        if( answer ==''){
+                            alert('check answer')
+                            return
+                        }
                         if (weightage === "") {
                             alert("Please enter weightage");
-                        }  else {
-                                weightage = true;
-                                }
-                    
-                    let examDetail = {
-                                        questionText: $('#addtestQuestion').val(),
+                        }  
+                        // console.log(question,answer,option1,option2,option3,option4,weightage,answer)
+                                  let examDetail = {
+                                        questionText: question,
                                         answer: answer,
                                         options :{
-                                        option1: $('#addtestOption1').val(),
-                                        option2: $('#addtestOption2').val(),
-                                        option3: $('#addtestOption3').val(),
-                                        option4: $('#addtestOption4').val(),
+                                        option1: option1,
+                                        option2: option2,
+                                        option3: option3,
+                                        option4: option4,
                                         },
-                                        weightage: $('#addtestWeightage').val(),
+                                        weightage: weightage,
                                         examCode: tempExamCode,
                                         answerType:"multipleOption"
                                     }
@@ -228,6 +215,9 @@ $(document).ready(function() {
                                     $.ajax("http://localhost:3000/exam/question", {
                                                         type: "POST",
                                                         dataType: "json",
+                                                        headers: {
+                                                            token: localStorage.getItem('token')
+                                                        },
                                                         contentType: "application/json;charset=utf-8",
                                                         data: JSON.stringify(examDetail),
                                                         contentType: "application/json; charset=utf-8",
@@ -252,6 +242,8 @@ $(document).ready(function() {
                     var option3G = document.getElementById("addtestOption3G").value;
                     var option4G = document.getElementById("addtestOption4G").value;
                     var answer = $("input[name='option1']:checked").val();
+                    
+                    console.log(question,answer,option1G,option2G,option3G,option4G,weightage)  
                     
                     if (option1G === "" ) {
                         alert("Please enter 1st option");
@@ -308,6 +300,9 @@ $(document).ready(function() {
                     $.ajax("http://localhost:3000/exam/question", {
                         type: "POST",
                         dataType: "json",
+                        headers: {
+                            token: localStorage.getItem('token')
+                        },
                         contentType: "application/json;charset=utf-8",
                         data: JSON.stringify(examDetail),
                         contentType: "application/json; charset=utf-8",
@@ -317,7 +312,7 @@ $(document).ready(function() {
                             document.getElementById("addtestOption2G").value='';
                             document.getElementById("addtestOption3G").value='';
                             document.getElementById("addtestOption4G").value='';
-                            document.getElementById("addtestAnswer").value='';
+                            document.getElementById("addtestAnswer1").value='';
                             document.getElementById("addtestWeightage").value='';
                            
                         },

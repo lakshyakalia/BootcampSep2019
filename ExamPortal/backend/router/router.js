@@ -88,7 +88,8 @@ module.exports = () => {
     })
 
     //examiner will write exam questions
-    app.post('/exam/question', middleware, (req, res) => {
+    app.post('/exam/question',middleware, (req, res) => {
+        console.log('multiple value')
         Users.question(req, res)
     })
 
