@@ -3,12 +3,12 @@ $(document).on('click', '.startTest', function() {
 })
 
 function checkTimeForTest(time){
-    
-    
     var x = setInterval(function(){
+        var startDate = new Date(time).getTime()
+        var presentDate = new Date().getTime()
         let startTime = new Date(time).getTime()
         let presentTime = new Date().getTime()
-        if(presentTime>startTime){
+        if((presentTime>startTime) && (presentDate>=startDate)){
             clearInterval(x)
             $('.startTest').removeAttr("disabled")
         }
