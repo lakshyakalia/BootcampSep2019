@@ -67,6 +67,23 @@
             </div>
           </div>
         <!--/Model-->
+        <!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              Are you sure you want to delete
+            </div>
+         
+          <div class="modal-footer">
+              
+                <button type="button" class="btn btn-success deleteButton" id="modelid" onclick="samepage()" >OK</button>
+                <button type="button" class="btn btn-danger" onclick="samepage()">Cancel</button>
+              </div>
+        </div>
+        </div>
+      </div>
+    <!--/Model-->
   <script id="index-template" type="text/html">
   <table class="table table-hover table-dark" style="width:60%;margin-left:18%;margin-top:10%" >
     <thead>
@@ -83,7 +100,7 @@
         <td>{{ email }}</td>
         <td>{{ name }}</td>
         <td>{{ createdDate}}</td>
-        <td><button class="btn btn-outline-danger my-2 my-sm-0 deleteButton" type="submit" id="{{ _id }}">Delete</button></td>
+        <td><button class="btn btn-outline-danger my-2 my-sm-0 " type="submit" id="{{ _id }}" data-toggle="modal" data-target="#exampleModal1" onclick="deleteexaminer(this.id)">Delete</button></td>
       </tr>
       {{ /data }}
       </tbody>
