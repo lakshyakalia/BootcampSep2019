@@ -72,10 +72,10 @@ const fetchData = async (req, res) => {
    let arr = [];
     for (i = 0; i < data.length; i++) {
        let newObject = {}
-       newObject._id = data[i]._id
-       newObject.email = data[i].email
+       newObject._id = data[i]._id;
+       newObject.email = data[i].email;
         newObject.createdDate = data[i].createdDate.toDateString();
-        newObject.name = data[i].name
+        newObject.name = data[i].name;
         arr.push(newObject)
     }
     return arr
