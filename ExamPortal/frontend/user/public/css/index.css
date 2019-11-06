@@ -45,5 +45,20 @@ a:hover {
 
 .data {
     color: white;
+    font-weight: 100;
     font-size: 50px;
 }
+
+#Login {
+    margin-left: 10px;
+}
+
+.spacing {
+    margin-top: 50px;
+}
+
+
+/* .color-change {
+    color: rgba(255, 64, 64, 0.8);
+    font-weight: 500;
+} */
