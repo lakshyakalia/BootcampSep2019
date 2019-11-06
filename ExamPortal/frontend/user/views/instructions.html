@@ -51,15 +51,12 @@
                         <li> You may NOT use a calculator or reference materials during the testing session. Select the Next button to continue.</li>
                 </p>
                 </ul>
+                <p class="error-msg"></p>
             </div>
-            <button type="button" class="btn btn-success startTest">Start Test</button>
+            <button type="button" class="btn btn-success startTest" disabled>Start Test</button>
         </form>
     </div>
-    <script>
-        $(document).on('click', '.startTest', function() {
-            $(location).attr('href', './question.html')
-        })
-    </script>
+    <script src="../public/js/instructions.js"></script>
 </body>
 
 </html>

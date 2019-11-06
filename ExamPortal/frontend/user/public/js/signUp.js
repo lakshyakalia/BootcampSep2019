@@ -54,8 +54,8 @@ $(document).ready(function() {
         if ((fname && lname && email && password && phoneNumber) == true) {
 
             let signUpData = true
-            // alert("Your SignUp has been successful")
-            // $(location).attr('href', '../views/login.html')
+            alert("Your SignUp has been successful")
+            $(location).attr('href', '../views/login.html')
         } else {
             signUpData = false
             alert("Your data is not valid")

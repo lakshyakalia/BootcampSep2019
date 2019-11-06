@@ -10,30 +10,25 @@ const { SECRET } = require("../config/config")
 const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
 
-	app.patch('/examiner',async(req,res)=>{
-		const result =await Users.facultyUpd(req,res)
-		res.send(result)
-	})
-	// admin update examiner info
-	app.patch('/examiner/:id',async(req,res)=>
-	{
-		const result=await Users.updateUser(req,res);
-		res.send(result);
+    // admin update examiner info
+    app.patch('/examiner/:id', async(req, res) => {
+        const result = await Users.updateUser(req, res);
+        res.send(result);
     })
 
-	//admin will add examiner
-	app.post('/examiner',async (req, res) => {
-		const response = await Users.adminDetails(req,res)
-		res.send(response);
+    //admin will add examiner
+    app.post('/examiner', async(req, res) => {
+        const response = await Users.adminDetails(req, res)
+        res.send(response);
     })
 
-	//admin will view examiner
-	app.get('/examiner', async(req, res) => {
-			const result=await Users.fetchData(req,res)
-			res.send(result);
-	})
+    //admin will view examiner
+    app.get('/examiner', async(req, res) => {
+        const result = await Users.fetchData(req, res)
+        res.send(result);
+    })
 
-    app.post('/login', async (req, res) => {
+    app.post('/login', async(req, res) => {
         const result = await createToken(req)
         if (result.token == "null") {
             res.status(400).send(result)
@@ -42,26 +37,27 @@ module.exports = () => {
         }
     })
 
-    app.post('/signUp', async (req, res) => {
+    app.post('/signUp', async(req, res) => {
         const result = await Users.userRecord(req, res)
         res.send(result)
     })
 
     //  for viewing the details of loggedin user
-    app.get('/loggedIn', async (req, res) => {
+    app.get('/loggedIn', async(req, res) => {
         const response = await Users.loggedInDetails(req, res)
         res.send(response)
     })
 
     //examiner will create exam details
-    app.post('/exam',middleware, (req, res) => {
-        console.log('create exam')
+
+    app.post('/exam', middleware, (req, res) => {
         Users.examDetail(req, res)
     })
 
     //examiner will view exam
-    app.get('/exam', middleware, (req, res) => {
-        Users.viewExamDetail(req, res)
+    app.get('/exam', (req, res) => {
+        const response = Users.viewExamDetail(req, res)
+
     })
 
     //examiner will fetch particular exam detail
@@ -80,13 +76,19 @@ module.exports = () => {
     })
 
     //examiner will view performance of candidate
-    app.get('/performance', (req, res) => {
-        const response = Users.studentPerformance(req, res)
-        return response
+    app.get('/performance', middleware, async(req, res) => {
+        debugger
+        const response = await Users.studentPerformance(req, res)
+        res.send(response)
+    })
+
+    app.get('/performance/students', middleware, async(req, res) => {
+        const response = await Users.studPerformance(req, res)
+        console.log(response)
     })
 
     //examiner will write exam questions
-    app.post('/exam/question', (req, res) => {
+    app.post('/exam/question', middleware, (req, res) => {
         Users.question(req, res)
     })
 
@@ -104,7 +106,7 @@ module.exports = () => {
     //examiner will edit questions
     app.patch('/exam/question/:id', middleware, (req, res) => {
         Users.editQuestion(req, res)
-        // res.send({ "data": req.body })
+            // res.send({ "data": req.body })
     })
 
     //examiner will delete question by id
@@ -113,24 +115,30 @@ module.exports = () => {
     })
 
     //candidates will view quesions using accesskey
-    app.get('/test', middleware, async (req, res) => {
+    app.get('/test', middleware, async(req, res) => {
         const response = await Ques.testQuestions(req, res)
         return response
     })
 
     //post answers selected by candidates
-    app.post('/test', middleware, async (req, res) => {
+    app.post('/test', middleware, async(req, res) => {
         const response = await Ques.saveCandidateAnswers(req, res)
         return response
     })
 
-    app.post('/test/assessKey', async (req, res) => {
+    app.post('/test/accessKey', async(req, res) => {
         const response = await Ques.checkAccessKey(req, res)
         return response
     })
 
-    app.get('/test/endTest',async(req,res)=>{
+    app.get('/test/accessKey',middleware,async(req,res)=>{
+        const response = await Ques.getExamTime(req,res)
+        return response
+    })
+
+    app.post('/test/endTest',middleware,async(req,res)=>{
         const response = await Ques.saveAllQuestions(req,res)
+        return response
     })
 
     //admin will add examiner
@@ -141,19 +149,23 @@ module.exports = () => {
 
     //admin will delete examiner using id of examiner
     app.delete('/examiner/:id', (req, res) => {
-        const result = Users.examinerDel(req, res)
-        res.send(result)
-    })
-    //admin will view test created by each examiner using their id
-    app.get('/examiner/:id', middleware, async (req, res) => {
+            const result = Users.examinerDel(req, res)
+            res.send(result)
+        })
+        //admin will view test created by each examiner using their id
+    app.get('/examiner/:id', middleware, async(req, res) => {
         const result = await Users.testDetails(req, res)
         res.send(result);
     })
 
-	app.patch('/examiner', middleware, async (req, res) => {
+    app.patch('/examiner', middleware, async(req, res) => {
         const result = await Users.examinerUpd(req, res)
         res.send(result)
     })
+
+    //examiner will edit test details
+    app.patch('/exam', (req, res) => {
+        res.send({ "data": req.body })
+    })
     return app
 }
-
