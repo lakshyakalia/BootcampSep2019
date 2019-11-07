@@ -26,7 +26,6 @@ a:hover {
 .container-1 button {
     display: block;
     margin: auto;
-    font-weight: 600;
     margin-top: 30px;
 }
 
@@ -138,4 +137,26 @@ select {
     font-size: 24px;
     margin-left: 14%;
     font-weight: 100;
+}
+
+.btn {
+    font-weight: 100;
+}
+
+.a {
+    padding: 8px 30px;
+    color: #000;
+    font-size: 20px;
+    border: 2px solid #000;
+    transition: 0.5s;
+}
+
+.a::before {
+    content: '';
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #000;
+    z-index: -1;
 }
