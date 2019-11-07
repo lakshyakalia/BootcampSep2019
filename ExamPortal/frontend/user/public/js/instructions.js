@@ -55,6 +55,7 @@ $(document).ready(function() {
         },
         success: function(data) {
             checkTimeForTest(data.examData.examStartTime)
+            document.getElementById('username').innerHTML = "Hie "+localStorage.getItem('name')
         },
         error: function(error) {}
     })

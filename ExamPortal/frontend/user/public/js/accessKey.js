@@ -1,7 +1,16 @@
-$(document).ready(function() {
-    // let presentTime = new Date
+$(document).ready(function(){
+    $.ajax('http://localhost:3000/loggedIn',{
+        type: 'GET',
+        dataType: 'JSON',
+        headers:{
+            "token":localStorage.getItem('token')
+        },
+        success: function(data){
+            localStorage.setItem('name',data.name)
+            document.getElementById('username').innerHTML = "Hie, "+data.name
+        }
+    })
 })
-
 $(document).on('click', '#checkAccessKey', function() {
     const tok = localStorage.getItem('token');
 
