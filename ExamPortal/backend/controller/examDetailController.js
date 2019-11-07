@@ -24,8 +24,11 @@ const examDetails = async(req, res) => {
 
 const viewExamDetail = async(req, res) => {
     try {
-        let values = await examDetail.find()
-        res.status(200).send(values)
+        let values = await examDetail.find({examinerId:req.headers.id})
+        if( values.length != 0 ){
+            res.status(200).send(values)
+        }else
+        res.status(404).send({msg:'No Exam'})
     } catch (error) {
         console.log(error)
     }

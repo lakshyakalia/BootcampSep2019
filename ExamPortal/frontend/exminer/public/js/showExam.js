@@ -1,11 +1,9 @@
 function showQuestion(id) {
     // eid = $('#'+id).parent().parent().attr('id')
-    let examCode = $('#' + id).parent().prev().prev().prev().find('p').html()
-
-    let mainId = $('#' + id).parent().parent().parent().parent().attr('id')
-
+        let examCode = $('#' + id).parent().prev().prev().prev().find('p').html()
+        let mainId = $('#' + id).parent().parent().parent().parent().attr('id')
+        $('#' + mainId).hide()
     let url = "http://localhost:3000/exam/question/" + encodeURIComponent(examCode)
-    $('#' + mainId).hide()
     $.ajax(url, {
         type: 'GET',
         dataType: 'json',
@@ -14,10 +12,15 @@ function showQuestion(id) {
             'token': localStorage.getItem('token')
         },
         success: function(data) {
+            if( data.msg == 'No question'){
+                alert("No question added in this exam")
+                return
+            }
             $.each(data, (index, item) => {
                 let indexTemplate = $("#index-template").html();
                 item.index = index + 1
                 $("#question-Index").append(Mustache.render(indexTemplate, item))
+
                 let questionContent = $("#question-template-body").html()
                 item.index = index + 1
                 $("#question-Display").append(Mustache.render(questionContent, item))
@@ -25,7 +28,9 @@ function showQuestion(id) {
             })
         },
         error: function(error) {
-            console.log(error)
+            if( error.responseText =='Not Found'){
+                alert("Please add Question")
+            }
         }
     })
 }
@@ -53,16 +58,34 @@ function removeQuestion(id) {
     })
 }
 
-function updateQues(id) {
-
+function updateQues(id,type) {
+    let opt1 = '',opt2= '', opt3= '', opt4 ='', answer =''
+    if(type == 'multipleOption'){
+       opt1 = $('#addtestOption1').val()
+       opt2 = $('#addtestOption2').val()
+       opt3 = $('#addtestOption3').val()
+       opt4 = $('#addtestOption4').val()
+       $.each($("input[name='option']:checked"), function () {
+        if ($(this).val()) {
+            answer += $(this).val() + " "
+        }
+     });
+     answer = answer.trim()
+    }else{
+        opt1 = $("#addtestOption1G").val()
+        opt2 = $("#addtestOption2G").val()
+        opt3 = $("#addtestOption3G").val()
+        opt4 = $("#addtestOption4G").val()
+        answer = $("input[name='option1']:checked").val()
+    }
     let questionDetail = {
         questionText: $('#addtestQuestion').val(),
-        answer: $('#addtestAnswer').val(),
+        answer: answer,
         options: {
-            option1: $('#addtestOption1').val(),
-            option2: $('#addtestOption2').val(),
-            option3: $('#addtestOption3').val(),
-            option4: $('#addtestOption4').val(),
+            option1: opt1,
+            option2: opt2,
+            option3: opt3,
+            option4: opt4,
         },
         weightage: $('#addtestWeightage').val(),
     }
@@ -96,12 +119,27 @@ function editQuestion(id) {
             token: localStorage.getItem('token')
         },
         success: function(data) {
+
             if(data.answerType== "multipleOption"){
-         let editTemplate = $("#edit-question-template").html();
-            $("#display-edit-form").append(Mustache.render(editTemplate, data))
+                let arr = data.answer.split(' ')
+                let editTemplate = $("#edit-question-template").html();
+                $("#display-edit-form").append(Mustache.render(editTemplate, data))
+                    let checkBox = $('input[type=checkbox][name=option]')
+                    $.each(checkBox,(i,chk)=>{
+                        if( arr.includes($(chk).val())){
+                            $(chk).prop('checked',true)
+                        }
+                    })
             }else if( data.answerType=="singleOption"){
                 let editTemplate = $("#edit-single-option").html();
                 $("#display-edit-form").append(Mustache.render(editTemplate, data))
+                let radioBtn = $('input[type=radio][name=option1]')
+                    $.each(radioBtn,(i,radio)=>{
+                        if(radio.value == data.answer){
+                        $(radio).prop('checked',true)
+                   }
+               })
+                
             }
         },
         error: function(error) {
@@ -195,6 +233,10 @@ $(document).ready(() => {
             token: localStorage.getItem('token')
         },
         success: function(data) {
+            if( data.msg == 'No Exam'){
+                alert("Exam Doesnot exist in your account")
+                return
+            }
             let parent = $(".exam-detail")
                 // load html template to display exam detail
             $.each(data, (index, values) => {

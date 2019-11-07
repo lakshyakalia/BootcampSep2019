@@ -42,14 +42,12 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <!-- <span id="span">Welcome &nbsp; </span> -->
+	            <!-- <span id="span">Welcome &nbsp; </span> -->
 
                 <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="logout()">Logout</button>
             </form>
         </div>
     </nav>
-    <!-- confirm dialogue box -->
-
     <div class="container-fluid">
         <div class="row" id="examId">
             <div class="col-md-12 exam-detail">
@@ -151,10 +149,10 @@
                 <h3>Question-{{index}}</h3>
                 <p>{{questionText}}</p>
                 <ul>
-                    <li>{{options.option1}}</li>
-                    <li>{{options.option2}}</li>
-                    <li>{{options.option3}}</li>
-                    <li>{{options.option4}}</li>
+                    <li>{{option1}}</li>
+                    <li>{{option2}}</li>
+                    <li>{{option3}}</li>
+                    <li>{{option4}}</li>
                 </ul>
                 <h6>Answer : {{answer}} </h6>
                 <div class="btn1">
@@ -177,33 +175,32 @@
                 <label class="control-label">Option1</label>
                 <input type="checkbox" name="option" value="option1" class="form-checkbox" id="addtestAnswer">
                 <input maxlength="100" type="text" id="addtestOption1" class="form-control"
-                  placeholder="Enter Option1"value="{{options.option1}}" />
+                  placeholder="Enter Option1"value="{{option1}}" />
               </div>
               <div class="form-group">
                 <label class="control-label">Option2</label>
                 <input type="checkbox" name="option" value="option2" class="form-checkbox" id="addtestAnswer">
                 <input maxlength="100" type="text" id="addtestOption2" class="form-control"
-                  placeholder="Enter Option2" value="{{options.option2}}" />
+                  placeholder="Enter Option2" value="{{option2}}" />
               </div>
               <div class="form-group">
                 <label class="control-label">Option3</label>
                 <input type="checkbox" name="option" value="option3" class="form-checkbox" id="addtestAnswer">
                 <input maxlength="100" type="text" id="addtestOption3" class="form-control"
-                  placeholder="Enter Option3" value="{{options.option3}}" />
+                  placeholder="Enter Option3" value="{{option3}}" />
               </div>
               <div class="form-group">
                 <label class="control-label">Option4</label>
                 <input type="checkbox" name="option" value="option4" class="form-checkbox" id="addtestAnswer">
                 <input maxlength="100" type="text" id="addtestOption4" class="form-control"
-                  placeholder="Enter Option4" value="{{options.option4}}"/>
+                  placeholder="Enter Option4" value="{{option4}}"/>
               </div>
-
             </div>
             <div class="form-group">
                     <label for="addtestWeightage">Weightage</label>
                     <input type="text" class="form-control" id="addtestWeightage" aria-describedby="emailHelp" placeholder="Enter Weghtage" value="{{weightage}}">
                 </div>
-                <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id)">Submit</button>
+                <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id,'multipleOption')">Submit</button>
             </form>
         </div>
     </script>
@@ -220,25 +217,25 @@
                               <label class="control-label">Option1</label>
                               <input type="radio" name="option1" value="option1" class="form-checkbox" id="addtestAnswer1">
                               <input maxlength="100" type="text" id="addtestOption1G" class="form-control"
-                                placeholder="Enter Option1" value="{{options.option1}}"/>
+                                placeholder="Enter Option1" value="{{option1}}"/>
                             </div>
                             <div class="form-group">
                               <label class="control-label">Option2</label>
                               <input type="radio" name="option1" value="option2" class="form-checkbox" id="addtestAnswer1">
                               <input maxlength="100" type="text" id="addtestOption2G" class="form-control"
-                                placeholder="Enter Option2" value="{{options.option2}}"/>
+                                placeholder="Enter Option2" value="{{option2}}"/>
                             </div>
                             <div class="form-group">
                               <label class="control-label">Option3</label>
                               <input type="radio" name="option1" value="option3" class="form-checkbox" id="addtestAnswer1">
                               <input maxlength="100" type="text" id="addtestOption3G" class="form-control"
-                                placeholder="Enter Option3" value="{{options.option3}}"/>
+                                placeholder="Enter Option3" value="{{option3}}"/>
                             </div>
                             <div class="form-group">
                               <label class="control-label">Option4</label>
                               <input type="radio" name="option1" value="option4" class="form-checkbox" id="addtestAnswer1">
                               <input maxlength="100" type="text" id="addtestOption4G" class="form-control"
-                                placeholder="Enter Option4" value="{{options.option4}}" />
+                                placeholder="Enter Option4" value="{{option4}}" />
                             </div>
                           </div>
               
@@ -246,7 +243,7 @@
                         <label for="addtestWeightage">Weightage</label>
                         <input type="text" class="form-control" id="addtestWeightage" aria-describedby="emailHelp" placeholder="Enter Weghtage" value="{{weightage}}">
                     </div>
-                    <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id)">Submit</button>
+                    <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id,'')">Submit</button>
                 </form>
             </div>
     </script>
@@ -293,5 +290,4 @@
         </div>
     </div>
 </body>
-
 </html>
