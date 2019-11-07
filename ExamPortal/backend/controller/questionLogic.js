@@ -74,7 +74,8 @@ const radioOrCheckBoxValue = (value)=>{
         var joinValue = value.checkedOption.join()
     }
     else{
-        var joinValue = value.checkedOption.join()+","
+        var joinValue = value.checkedOption.join()
+        joinValue  = joinValue.replace(/[ ,.]/g,' ')
     }
     return joinValue
     

@@ -1,8 +1,8 @@
-const { examDetail } = require('./Models/examDetail')
-const { test } = require('./Models/candidateAnswer')
-const { questionDetail } = require('./Models/question')
-const { user } = require('./Models/userRecord')
-const db = require("./connection").db;
+const { examDetail } = require('../backend/Models/examDetail')
+const { test } = require('../backend/Models/candidateAnswer')
+const { questionDetail } = require('../backend/Models/question')
+const { user } = require('../backend/Models/userRecord')
+const db = require("../backend/db").connection;
 const users = [
     {
         email: "charlie@gmail.com",
@@ -91,67 +91,60 @@ const answerDetails = [
 
 const questionDetails = [
     {
-        qText: "The physical devices of a computer ",
-        answer: 3,
-        options:{
-            option1: "Software",
-            option2: "Package",
-            option3: "Hardware",
-            option4: "System Software"
-        },
+        questionText: "The physical devices of a computer ",
+        answer: "option1 option2 option3",
+        option1: "Software",
+        option2: "Package",
+        option3: "Hardware",
+        option4: "System Software",
         weightage: 1,
         createdBy:'himan',
-        examCode: 1199
-        
+        examCode: 1199,
+        answerType:'multipleOption'       
     },
     {
-        qText: " Which of the following is designed to control the operations of a computer?",
-        answer: 2,
-        options:{
-            option1: "Application Software",
-            option2: "System Software",
-            option3: "Utility Software",
-            option4: "User"
-        },
+        questionText: "Which of the following is designed to control the operations of a computer?",
+        answer: "option1 option2",
+        option1: "Application Software",
+        option2: "System Software",
+        option3: "Utility Software",
+        option4: "User",
         weightage: 1,
         createdBy:'himan',
-        examCode: 1199
+        examCode: 1199,
+        answerType:'multipleOption'
     },
     {
-        qText: "Which of the following is not an example of system software?",
-        answer: 4,
-        options:{
-            option1: "Language Translator",
-            option2: "Utility Software",
-            option3: "Communication Software",
-            option4: "Word Processors"
-        },
+        questionText: "Which of the following is not an example of system software?",
+        answer: "option1 option3",
+        option1: "Language Translator",
+        option2: "Utility Software",
+        option3: "Communication Software",
+        option4: "Word Processors",
         weightage: 1,
         createdBy:'himan',
-        examCode: 1199
+        examCode: 1199,
+        answerType:'multipleOption'
     },
     {
-        qText: "What is the full form of RMI?",
-        answer: 4,
-        options:{
-            option1: "Remote Memory Installation",
-            option2: "Remote Memory Invocation",
-            option3: "Remote Method Installation",
-            option4: "Remote Method Invocation"
-        },
+        questionText: "What is the full form of RMI?",
+        answer: "option3 option4",
+        option1: "Remote Memory Installation",
+        option2: "Remote Memory Invocation",
+        option3: "Remote Method Installation",
+        option4: "Remote Method Invocation",
         weightage: 2,
         createdBy:'himan',
-        examCode: 1199
+        examCode: 1199,
+        answerType:'multipleOption'
     },
     {
         qText: "What is Scheduling?",
-        answer: 1,
-        options:{
-            option1: "allowing a job to use the processor",
-            option2: "making proper use of processor",
-            option3: "all of the mentioned",
-            option4: "none of the mentioned"
-        },
+        answer: "option2 option4",
+        option1: "allowing a job to use the processor",
+        option2: "making proper use of processor",
+        option3: "all of the mentioned",
+        option4: "none of the mentioned",
         weightage: 3,
         createdBy:'himan',
         examCode: 1199

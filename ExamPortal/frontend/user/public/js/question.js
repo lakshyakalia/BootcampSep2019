@@ -8,8 +8,11 @@ function loadQuestions(data, startTime, duration, examName) {
     if (data[0].answerType === "singleOption") {
         const html = Mustache.render(questionTemplate, { questions: data[0], types: true })
         op.insertAdjacentHTML("beforeend", html)
-    } else {
-        const html = Mustache.render(questionTemplate, { questions: data[0], types: false })
+    }
+    else{
+        const html = Mustache.render(questionTemplate, { 
+            questions: data[0], types: false
+        })
         op.insertAdjacentHTML("beforeend", html)
     }
     showPreviousTicks()
