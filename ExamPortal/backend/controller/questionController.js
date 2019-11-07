@@ -23,7 +23,7 @@ const answerObject = (body,headers,weightage,status,submitStatus)=>{
 const testQuestions = async(req, res) => {
     let lastQuestionStatus
     let pageNumber = parseInt(req.query.pageNumber)
-    let ques = await questionDetail.find({ 'examCode': req.headers.examcode }).skip(pageNumber).limit(1).select({ "questionText": 1, "options": 1, "examCode": 1, "answerType":1 })
+    let ques = await questionDetail.find({ 'examCode': req.headers.examcode }).skip(pageNumber).limit(1).select({ "questionText": 1, "option1": 1, "option2": 1, "option3": 1, "option4": 1, "examCode": 1, "answerType":1 })
     let lastQuestion = await questionDetail.find({ 'examCode': req.headers.examcode }).select({ "questionText": 1 })
     if (lastQuestion[lastQuestion.length - 1].questionText === ques[ques.length - 1].questionText) lastQuestionStatus = true
     else lastQuestionStatus = false
