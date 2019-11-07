@@ -19,9 +19,17 @@ const quesFromExcel = async (req, res) => {
     })
    
     try {
-        var arr = result.Sheet2
-        await questionDetail.insertMany(arr.Sheet2)
-        res.send({ msg: 'saved' })
+        var arr = result.Sheet2;
+        console.log(arr);
+        questionDetail.insertMany(arr, (err, docs) => {
+            if(err){
+                console.log(['ERROR'],err);
+            }
+            else{
+                console.log('[DOCS]', docs)
+                res.send({ msg: 'saved' });
+            }
+        })
     } catch (err) {
         console.log(err)
     }
