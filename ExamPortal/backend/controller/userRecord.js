@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const sgMail = require('@sendgrid/mail');
 // const bcrypt = require('bcrypt')
 const bcrypt = require('bcryptjs')
+var SENDGRID_API_KEY = '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'
 
 function decodeToken(req) {
     const token = req.headers.token
@@ -25,7 +26,6 @@ const adminDetails = async(req, res) => {
             var hash = bcrypt.hashSync(myPlaintesxtPassword,salt)
             userInfo.password = hash; {
                 user.create(userInfo)
-                SENDGRID_API_KEY = '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'
                 sgMail.setApiKey(SENDGRID_API_KEY);
                 const msg = {
                     to: userInfo.email,
@@ -90,6 +90,7 @@ const updateuser = async(req, res) => {
 }
 
 const adminLogin = async(req, res) => {
+    debugger
     const existUser = await admin.findOne({ email: req.body.email });
     // console.log(existUser);
     if (existUser) {
@@ -110,6 +111,7 @@ const adminLogin = async(req, res) => {
 
 const userRecord = async(req, res) => {
     try {
+        debugger
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
             return ("user Exist")
@@ -120,6 +122,14 @@ const userRecord = async(req, res) => {
             var hash = bcrypt.hashSync(myPlaintesxtPassword, salt)
             userInfo.password = hash; {
                 user.create(userInfo)
+                sgMail.setApiKey(SENDGRID_API_KEY);
+                const msg = {
+                    to: userInfo.email,
+                    from: 'noreply@example.com',
+                    subject: 'You have been successfully registered on CYGRP Exam Portal',
+                    text: "email=" + userInfo.name + '   Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS STUDENT',
+                };
+                sgMail.send(msg);
                 return ({ "status": "200", "message": "user registered" })
 
             }

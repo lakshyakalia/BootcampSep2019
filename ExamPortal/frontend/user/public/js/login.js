@@ -32,6 +32,8 @@ $(document).on('click', '#loginButton', function() {
             },
             error: function(error) {
                 console.log(error)
+                window.alert(error.responseJSON.message)
+                location.reload();
             }
 
         })
