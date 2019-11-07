@@ -1,26 +1,30 @@
-$(document).ready(function(){
+$(document).ready(function() {
     // let presentTime = new Date
 })
 
-$(document).on('click','#checkAccessKey',function(){
-    const tok =localStorage.getItem('token');
+$(document).on('click', '#checkAccessKey', function() {
+    const tok = localStorage.getItem('token');
 
-    if(tok == null)
-    {
-      location.replace("../../index.html")
+    if (tok == null) {
+        location.replace("../../index.html")
     }
-    $.ajax('http://localhost:3000/test/accessKey',{
-        type:'POST',
-        dataType:'JSON',
-        data:{
+    $.ajax('http://localhost:3000/test/accessKey', {
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
             examCode: $(".inputBox").val()
         },
-        success: function(data){
-            localStorage.setItem('examCode',$(".inputBox").val())
+        success: function(data) {
+            localStorage.setItem('examCode', $(".inputBox").val())
             $(location).attr('href', '../views/instructions.html')
         },
-        error: function(error){
+        error: function(error) {
             $('.error-msg').text("Wrong Access key")
         }
     })
 })
+
+function logout() {
+    localStorage.removeItem("token")
+    location.replace("../../index.html")
+}

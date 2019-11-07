@@ -23,6 +23,10 @@ const questionDetails = new Schema({
 	modifiedBy:String,
 	examCode: String,
 	answerType:String,
+	questionImage:{
+		type: String,
+		default: null
+	}
 })
 
 const questionDetail = mongoose.model('question',questionDetails)

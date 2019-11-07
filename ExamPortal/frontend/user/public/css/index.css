@@ -16,6 +16,8 @@ a:hover {
 
 .nav-link {
     color: rgba(255, 255, 255, 0.8);
+    margin-left: 40px;
+    font-weight: 600;
 }
 
 .nav-link:hover {
@@ -29,6 +31,12 @@ a:hover {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     width: 80%;
     font-size: 20px;
+}
+
+.btn {
+    font-size: 16px;
+    font-weight: 200;
+    margin-left: 25%;
 }
 
 .logo {
@@ -45,5 +53,24 @@ a:hover {
 
 .data {
     color: white;
+    font-weight: 100;
     font-size: 50px;
+}
+
+#Login {
+    margin-left: 10px;
+}
+
+.spacing {
+    margin-top: 50px;
+}
+
+
+/* .color-change {
+    color: rgba(255, 64, 64, 0.8);
+    font-weight: 500;
+} */
+
+.cd-intro {
+    color: rgba(255, 255, 255, 1)
 }
