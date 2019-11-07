@@ -182,6 +182,7 @@ a:hover {
     }
 }
 
+<<<<<<< HEAD
 .card-header p {
     font-weight: 100 !important;
     font-size: 30px;
@@ -192,4 +193,8 @@ a:hover {
 .optionBox p {
     font-weight: 400;
     font-size: 24px;
+=======
+.checkBox{
+    margin-left: 10px;
+>>>>>>> upstream/development
 }

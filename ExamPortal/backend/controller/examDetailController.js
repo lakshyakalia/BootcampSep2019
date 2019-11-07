@@ -10,7 +10,6 @@ const examDetails = async(req, res) => {
         }
         else{
         req.body.examinerId = req.headers.id
-        console.log(req.headers.id)
         let examInformation = new examDetail(req.body)
         const p = await examInformation.save()
         console.log(p)

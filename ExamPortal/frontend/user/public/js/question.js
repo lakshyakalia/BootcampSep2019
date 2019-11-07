@@ -1,11 +1,17 @@
 function loadQuestions(data, startTime, duration, examName) {
+    let type
     const questionTemplate = document.querySelector('#question-template').innerHTML
     $('.showTest').text(examName)
     setTimeForTest(startTime, duration)
     $('#options').empty()
     const op = document.querySelector('#options')
-    const html = Mustache.render(questionTemplate, { questions: data[0] })
-    op.insertAdjacentHTML("beforeend", html)
+    if (data[0].answerType === "singleOption") {
+        const html = Mustache.render(questionTemplate, { questions: data[0], types: true })
+        op.insertAdjacentHTML("beforeend", html)
+    } else {
+        const html = Mustache.render(questionTemplate, { questions: data[0], types: false })
+        op.insertAdjacentHTML("beforeend", html)
+    }
     showPreviousTicks()
 }
 
@@ -62,6 +68,12 @@ function loadFullWindow() {
     }
 }
 
+function exitHandler() {
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+        $('#fullScreenModal').modal("show")
+    }
+}
+
 $(window).on('load', function() {
     $('#fullScreenModal').modal('show')
 })
@@ -72,6 +84,11 @@ $(document).on('click', '#goFullWindow', function() {
 })
 
 $(document).ready(function() {
+    document.addEventListener('fullscreenchange', exitHandler);
+    document.addEventListener('webkitfullscreenchange', exitHandler);
+    document.addEventListener('mozfullscreenchange', exitHandler);
+    document.addEventListener('MSFullscreenChange', exitHandler);
+
     const tok = localStorage.getItem('token');
     if (tok == null) {
         location.replace("../../index.html")
@@ -102,7 +119,12 @@ $(document).ready(function() {
 $(document).on('click', '#submitAnswer', function() {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
     let examCode = $(this).parent().parent().parent().parent().children().children().children().children().attr('id')
-    let radioValue = $(`input[name=${questionId}]:checked`).val()
+        // let radioValue = $(`input[name=${questionId}]:checked`).val()
+        // console.log(radioValue)
+    let value = []
+    $.each($(`input[name=${questionId}]:checked`), function() {
+        value.push($(this).val())
+    })
     $.ajax('http://localhost:3000/test', {
         type: 'POST',
         dataType: 'JSON',
@@ -111,7 +133,7 @@ $(document).on('click', '#submitAnswer', function() {
         },
         data: {
             code: examCode,
-            checkedOption: radioValue,
+            checkedOption: value,
             qId: questionId
         },
         success: function(data) {
@@ -240,3 +262,5 @@ $(document).on('click', '.circle', function() {
         }
     })
 })
+
+$('#fullScreenModal').modal({ backdrop: 'static', keyboard: false })

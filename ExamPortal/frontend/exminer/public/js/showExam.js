@@ -96,8 +96,13 @@ function editQuestion(id) {
             token: localStorage.getItem('token')
         },
         success: function(data) {
-            let editTemplate = $("#edit-question-template").html();
+            if(data.answerType== "multipleOption"){
+         let editTemplate = $("#edit-question-template").html();
             $("#display-edit-form").append(Mustache.render(editTemplate, data))
+            }else if( data.answerType=="singleOption"){
+                let editTemplate = $("#edit-single-option").html();
+                $("#display-edit-form").append(Mustache.render(editTemplate, data))
+            }
         },
         error: function(error) {
             console.log(error)

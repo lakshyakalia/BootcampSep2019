@@ -12,7 +12,7 @@ function decodeToken(req) {
     return decoded;
 }
 
-const adminDetails = async (req, res) => {
+const adminDetails = async(req, res) => {
     try {
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
@@ -31,11 +31,11 @@ const adminDetails = async (req, res) => {
                     to: userInfo.email,
                     from: 'noreply@example.com',
                     subject: 'You have been successfully registered on CYGRP Exam Portal',
-                    text: "email="+userInfo.email+'  password='+myPlaintesxtPassword+'  Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS EXAMINER',
+                    text: "email=" + userInfo.email + '  password=' + myPlaintesxtPassword + '  Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS EXAMINER',
                 };
                 sgMail.send(msg);
                 return ({ "status": "200", "message": "user registered" })
-                
+
 
             }
         }
@@ -45,14 +45,14 @@ const adminDetails = async (req, res) => {
     }
 }
 
-const loggedInDetails = async (req, res) => {
+const loggedInDetails = async(req, res) => {
     const decoded = decodeToken(req);
     const det = await user.findOne({ "email": decoded.email });
     console.log(det)
     return det;
 }
 
-const userDetails = async (req, res) => {
+const userDetails = async(req, res) => {
     try {
         const query = await user.findOne({ email: req.body.email })
         return query
@@ -62,7 +62,7 @@ const userDetails = async (req, res) => {
 }
 
 
-const examinerUpd = async (req, res) => {
+const examinerUpd = async(req, res) => {
     try {
         // console.log(req.body)
         const body = req.body
@@ -78,37 +78,36 @@ const examinerUpd = async (req, res) => {
 
 }
 
-const fetchData = async (req, res) => {
+const fetchData = async(req, res) => {
     const data = await user.find();
     return data
 }
-const updateuser = async (req, res) => {
+const updateuser = async(req, res) => {
     const id = req.body.id;
     const data = await user.findByIdAndUpdate(id, req.body);
     return data;
 }
 
-const adminLogin = async (req, res) => {
+const adminLogin = async(req, res) => {
     const existUser = await admin.findOne({ email: req.body.email });
     // console.log(existUser);
     if (existUser) {
-        console.log("inside");
-        console.log(req.body.password);
+        //    console.log("inside");
+        //    console.log(req.body.password);
         //res.send({"message":"Admin exist"})
         const pass = await bcrypt.compare(req.body.password, existUser.password);
-        console.log(pass);
+        //  console.log(pass);
         if (pass) {
             res.send({ "message": "Admin valid" });
-        }
-        else {
+        } else {
             res.send({ "message": "Email or password is not valid" });
         }
-    }
-    else {
+    } else {
         res.send({ "message": "Email or password is not valid" });
     }
 }
-const userRecord = async (req, res) => {
+
+const userRecord = async(req, res) => {
     try {
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
