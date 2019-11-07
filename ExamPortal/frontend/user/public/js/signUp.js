@@ -67,6 +67,11 @@ $(document).ready(function() {
             //    token: localStorage.getItem('userToken')
             // },   
             contentType: "application/json;charset=utf-8",
+            beforeSend: function() {
+                $('.main').animate({ opacity: 0.6 })
+                $('.mod').fadeIn()
+                $('.spinner').show()
+            },
             data: JSON.stringify({
                 "name": name,
                 "email": email,

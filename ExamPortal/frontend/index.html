@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Home</title>
+    <title>Cyber Group - Software & IT Consultants Texas</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -10,6 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- cybergroup logo on top -->
+    <link rel="icon" href="https://www.cygrp.com/wp-content/uploads/2019/06/cybergroup-site-icon.png" type="image/x-icon">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="./public/css/reset.css">
+
+    <link rel="stylesheet" href="./public/css/style.css">
 
 </head>
 
@@ -22,30 +29,32 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ">
-
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Educational Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link" href="https://www.cygrp.com/">About</a>
                 </li>
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-success my-2 my-sm-0" style="color: white;" >Sign Up</button>
-            </form> -->
         </div>
     </nav>
     <div class="container" style="padding: 20px;">
-        <h1 class="data">Change the way <br>you Learn</h1>
-        <button id="signUp" class="btn btn-success my-2 my-sm-0" style="color: white;padding: 20px;" type="button" onclick="location.reload();location.href='./user/views/signUp.html'">Sign Up<a href="signUp.html"></a></button>
-        <button id="Login" class="btn btn-success my-2 my-sm-0" style="color: white;padding: 20px;" onclick="location.reload();location.href='./user/views/login.html'">Login</button>
+        <section class="cd-intro">
+            <h1 class="cd-headline letters rotate-2">
+                <span>Change the way you</span>
+                <span class="cd-words-wrapper">
+                    <b class="is-visible">Learn</b>
+                    <b>Think</b>
+                    <b>Look</b>
+                </span>
+            </h1>
+        </section>
+        <div class="spacing">
+            <button id="signUp" class="btn btn-success my-2 my-sm-0" style="color: white;padding: 14px;" type="button" onclick="location.reload();location.href='./user/views/signUp.html'">Sign Up</button>
+            <button id="Login" class="btn btn-success my-2 my-sm-0" style="color: white;padding: 14px 20px;" type="button" onclick="location.reload();location.href='./user/views/login.html'">Login</button>
+        </div>
     </div>
+    <!-- <script src="./public/js/jquery-2.1.1.js"></script> -->
+
+    <script src="./public/js/main.js"></script>
+
 </body>
 
 </html>

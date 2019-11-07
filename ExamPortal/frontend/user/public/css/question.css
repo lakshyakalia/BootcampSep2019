@@ -1,37 +1,48 @@
-body{
+body {
     background-color: #EBEBEB;
 }
-.username-text{
+
+.username-text {
     margin-right: 10px;
 }
 
-.card, .pagination-card{
-    border-radius: 16px;
-    -webkit-box-shadow: 0px 0px 9px 8px rgba(153,145,153,1);
-    -moz-box-shadow: 0px 0px 9px 8px rgba(153,145,153,1);
-    box-shadow: 0px 0px 9px 8px rgba(153,145,153,1);
-}
-
-.text-font{
-    font-family: 'Open Sans', sans-serif;
+.modal-title {
+    font-weight: 100;
     font-size: 20px;
 }
-.card h3{
+
+.full-button {
+    font-weight: 100;
+}
+
+.card,
+.pagination-card {
+    border-radius: 16px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.text-font {
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 20px;
+}
+
+.card h3 {
     font-size: 30px;
     font-family: 'Roboto', sans-serif;
     text-align: center;
 }
 
-.card p{
+.card p {
     margin-bottom: 0px !important;
 }
 
-.button-group{
+.button-group {
     float: right;
     position: relative;
 }
 
-.endTest{
+.endTest {
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -45,24 +56,24 @@ body{
     outline: none;
 }
 
-.end{
+.end {
     float: right;
     margin-top: 1em;
     margin-right: 10px;
 }
 
-.time{
+.time {
     width: 100%;
     font-size: 20px;
     color: white;
     font-weight: bold;
     padding: 15px 20px;
-    background-color: #F57A52;
+    background-color: rgb(255, 129, 87);
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
 }
 
-.question{
+.question {
     width: 100%;
     font-size: 20px;
     color: white;
@@ -71,7 +82,7 @@ body{
     background-color: green;
 }
 
-.test{
+.test {
     width: 100%;
     font-size: 20px;
     color: white;
@@ -82,60 +93,68 @@ body{
     border-bottom-right-radius: 16px;
 }
 
-.showTime, .showQuestion, .showTest{
+.showTime,
+.showQuestion,
+.showTest {
     float: right;
 }
 
-.form-check{
+.form-check {
     margin-top: 4px;
     padding-left: 0!important;
 }
 
-#options{
+#options {
     padding-bottom: 14px;
 }
 
-.optionBox{
+.optionBox {
     margin-top: 10px;
     margin-left: 4px;
 }
-.optionBox label{
-    display:block;
+
+.optionBox label {
+    display: block;
 }
 
-#showTime{
-    float:right;
+#showTime {
+    float: right;
 }
 
-li{
+li {
     font-weight: 500;
 }
+
 li:hover {
     background-color: black;
     border-radius: 6px;
     transition-duration: 0.8s;
     color: white;
 }
+
 a:hover {
-    color:rgba(255, 255, 255, 0.8);
-}
-.nav-link{
     color: rgba(255, 255, 255, 0.8);
 }
-.nav-link:hover {
-color: rgba(255, 255, 255, 0.5);
-}
-.logo{
-    height: 50px;        
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8);
 }
 
-.img-card img{
+.nav-link:hover {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.logo {
+    height: 50px;
+}
+
+.img-card img {
     width: 300px;
     height: 200px;
     margin: 10px;
 }
 
-.pagination-card{
+.pagination-card {
     height: 325px;
     margin-top: 40px;
     padding: 10px;
@@ -143,7 +162,7 @@ color: rgba(255, 255, 255, 0.5);
     /* text-align: center; */
 }
 
-.circle{
+.circle {
     height: 50px;
     width: 50px;
     background-color: red;
@@ -153,16 +172,29 @@ color: rgba(255, 255, 255, 0.5);
     text-align: center;
 }
 
-.circle p{
+.circle p {
     margin-top: 12px;
 }
 
-@media(max-width: 768px){
-    .card{
+@media(max-width: 768px) {
+    .card {
         margin-top: 15px;
     }
 }
 
+<<<<<<< HEAD
+.card-header p {
+    font-weight: 100 !important;
+    font-size: 30px;
+    /* font-family: 'Roboto', sans-serif; */
+    text-align: center;
+}
+
+.optionBox p {
+    font-weight: 400;
+    font-size: 24px;
+=======
 .checkBox{
     margin-left: 10px;
+>>>>>>> upstream/development
 }
