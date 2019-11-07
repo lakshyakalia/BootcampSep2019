@@ -109,8 +109,15 @@ li {
       }
       .jumbotron
       {
-          
+         padding-top:5%; 
            background-color: white;
            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
            
+
+      }
+      .baner
+      {
+          margin-top:10%;
+          margin-left:18%;
+         
       }
