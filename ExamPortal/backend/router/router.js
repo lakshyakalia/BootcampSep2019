@@ -37,8 +37,8 @@ module.exports = () => {
     })
 
     //examiner will view exam
-    app.get('/exam', (req, res) => {
-        const response = Users.viewExamDetail(req, res)
+    app.get('/exam',middleware, (req, res) => {
+        Users.viewExamDetail(req, res)
 
     })
 
@@ -59,7 +59,6 @@ module.exports = () => {
 
     //examiner will view performance of candidate
     app.get('/performance', middleware, async(req, res) => {
-        debugger
         const response = await Users.studentPerformance(req, res)
         res.send(response)
     })

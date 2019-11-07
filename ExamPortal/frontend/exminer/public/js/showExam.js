@@ -1,11 +1,9 @@
 function showQuestion(id) {
     // eid = $('#'+id).parent().parent().attr('id')
-    let examCode = $('#' + id).parent().prev().prev().prev().find('p').html()
-
-    let mainId = $('#' + id).parent().parent().parent().parent().attr('id')
-
+        let examCode = $('#' + id).parent().prev().prev().prev().find('p').html()
+        let mainId = $('#' + id).parent().parent().parent().parent().attr('id')
+        $('#' + mainId).hide()
     let url = "http://localhost:3000/exam/question/" + encodeURIComponent(examCode)
-    $('#' + mainId).hide()
     $.ajax(url, {
         type: 'GET',
         dataType: 'json',
@@ -16,11 +14,13 @@ function showQuestion(id) {
         success: function(data) {
             if( data.msg == 'No question'){
                 alert("No question added in this exam")
+                return
             }
             $.each(data, (index, item) => {
                 let indexTemplate = $("#index-template").html();
                 item.index = index + 1
                 $("#question-Index").append(Mustache.render(indexTemplate, item))
+
                 let questionContent = $("#question-template-body").html()
                 item.index = index + 1
                 $("#question-Display").append(Mustache.render(questionContent, item))
@@ -28,7 +28,9 @@ function showQuestion(id) {
             })
         },
         error: function(error) {
-            console.log(error)
+            if( error.responseText =='Not Found'){
+                alert("Please add Question")
+            }
         }
     })
 }
@@ -120,22 +122,21 @@ function editQuestion(id) {
 
             if(data.answerType== "multipleOption"){
                 let arr = data.answer.split(' ')
-                console.log(arr)
-            let editTemplate = $("#edit-question-template").html();
-            $("#display-edit-form").append(Mustache.render(editTemplate, data))
-                let checkBox = $('input[type=checkbox][name=option]')
-                $.each(checkBox,(i,chk)=>{
-                    if( arr.includes($(chk).val())){
-                        $(chk).prop('checked',true)
-                    }
-                })
+                let editTemplate = $("#edit-question-template").html();
+                $("#display-edit-form").append(Mustache.render(editTemplate, data))
+                    let checkBox = $('input[type=checkbox][name=option]')
+                    $.each(checkBox,(i,chk)=>{
+                        if( arr.includes($(chk).val())){
+                            $(chk).prop('checked',true)
+                        }
+                    })
             }else if( data.answerType=="singleOption"){
                 let editTemplate = $("#edit-single-option").html();
                 $("#display-edit-form").append(Mustache.render(editTemplate, data))
                 let radioBtn = $('input[type=radio][name=option1]')
-               $.each(radioBtn,(i,radio)=>{
-                   if(radio.value == data.answer){
-                       $(radio).prop('checked',true)
+                    $.each(radioBtn,(i,radio)=>{
+                        if(radio.value == data.answer){
+                        $(radio).prop('checked',true)
                    }
                })
                 

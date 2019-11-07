@@ -218,7 +218,11 @@ const questions = async(req, res) => {
 const getQuestionDetails = async(req, res) => {
     try {
         let values = await questionDetail.find({ examCode: decodeURIComponent(req.params.id) });
-        res.status(200).send(values)
+        console.log(values.length)
+        if( values != 0 )
+            res.status(200).send(values)
+        else
+            res.status(404).send('No question')
     } catch (error) {
         console.log(error)
     }

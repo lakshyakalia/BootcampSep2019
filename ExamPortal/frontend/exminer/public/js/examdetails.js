@@ -198,12 +198,12 @@ $(document).ready(function () {
                 let examDetail = {
                     questionText: question,
                     answer: answer,
-                    options: {
+                    
                         option1: option1,
                         option2: option2,
                         option3: option3,
                         option4: option4,
-                    },
+                    
                     weightage: weightage,
                     examCode: tempExamCode,
                     answerType: "multipleOption"
@@ -271,12 +271,10 @@ $(document).ready(function () {
                 let examDetail = {
                     questionText: question,
                     answer: answer,
-                    options: {
-                        option1:option1G,
-                        option2: option2G,
-                        option3:option3G,
-                        option4: option4G,
-                    },
+                    option1:option1G,
+                    option2: option2G,
+                    option3:option3G,
+                    option4: option4G,
                     weightage: weightage,
                     examCode: tempExamCode,
                     answerType: "singleOption"
