@@ -52,9 +52,9 @@
                 </div>
                 <div class="pagination-card"></div>
                 <div class="end">
-                    <button type="button" class="btn btn-outline-info btn-lg" id="previousQuestion">Previous</button>
-                    <button type="button" class="btn btn-outline-success btn-lg" id="nextQuestion">Next</button>
-                    <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#myModal">End Test</button>
+                    <button type="button" class="btn btn-outline-info" id="previousQuestion">Previous</button>
+                    <button type="button" class="btn btn-outline-success" id="nextQuestion">Next</button>
+                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">End Test</button>
                 </div>
             </div>
         </div>
@@ -95,40 +95,44 @@
                 <div class="col-md-12">
                     <div class="optionBox" id="{{ _id }}">
                         <p id="{{ examCode }}">Ques - {{ questionText }}</p>
+                        {{ #status }}
                         <div class="img-card">
-                            <img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" height="100px" width="100px">
+                            <img src="{{ url }}" height="100px" width="100px">
                         </div>
+                        {{ /status }}
                         {{ #types }}
-                        <label class="form-check-label">
+                            <label class="form-check-label">
                                 <input type="radio" class="form-check-radio" name="{{ _id }}" value="option1">
                                 <span class="text-font">{{ option1 }}</span>
                             </label>
-                        <label class="form-check-label">
+                            <label class="form-check-label">
                                 <input type="radio" class="form-check-radio" name="{{ _id }}" value="option2">
                                 <span class="text-font">{{ option2 }}</span>
                             </label>
-                        <label class="form-check-label">
+                            <label class="form-check-label">
                                 <input type="radio" class="form-check-radio" name="{{ _id }}" value="option3">
                                 <span class="text-font">{{ option3 }}</span>
                             </label>
-                        <label class="form-check-label">
+                            <label class="form-check-label">
                                 <input type="radio" class="form-check-radio" name="{{ _id }}" value="option4">
                                 <span class="text-font">{{ option4 }}</span>
-                            </label> {{ /types }} {{ ^types }}
+                            </label> 
+                        {{ /types }} 
+                        {{ ^types }}
                         <div class="checkBox">
                             <label class="form-check-label checkBox">
                                 <input type="checkbox" class="form-check-input" name="{{ _id }}" value="option1">
                                 <span class="text-font">{{ option1 }}</span>
                             </label>
-                            <label class="form-check-label">
+                            <label class="form-check-label checkBox">
                                 <input type="checkbox" class="form-check-input" name="{{ _id }}" value="option2">
                                 <span class="text-font">{{ option2 }}</span>
                             </label>
-                            <label class="form-check-label">
+                            <label class="form-check-label checkBox">
                                 <input type="checkbox" class="form-check-input" name="{{ _id }}" value="option3">
                                 <span class="text-font">{{ option3 }}</span>
                             </label>
-                            <label class="form-check-label">
+                            <label class="form-check-label checkBox">
                                 <input type="checkbox" class="form-check-input" name="{{ _id }}" value="option4">
                                 <span class="text-font">{{ option4 }}</span>
                             </label>

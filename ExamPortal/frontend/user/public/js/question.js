@@ -1,18 +1,22 @@
 function loadQuestions(data, startTime, duration, examName) {
-    let type
+    let imageURL,imageStatus
     const questionTemplate = document.querySelector('#question-template').innerHTML
     $('.showTest').text(examName)
     setTimeForTest(startTime, duration)
     $('#options').empty()
     const op = document.querySelector('#options')
+    if(data[0].questionImage !== null){
+        imageURL = "../../exminer/public"+data[0].questionImage.substring(2,data[0].questionImage.length)
+        imageStatus = true
+    }
+    else imageStatus = false
+
     if (data[0].answerType === "singleOption") {
-        const html = Mustache.render(questionTemplate, { questions: data[0], types: true })
+        const html = Mustache.render(questionTemplate, { questions: data[0], types: true, url: imageURL, status: imageStatus })
         op.insertAdjacentHTML("beforeend", html)
     }
     else{
-        const html = Mustache.render(questionTemplate, { 
-            questions: data[0], types: false
-        })
+        const html = Mustache.render(questionTemplate, { questions: data[0], types: false, url: imageURL, status: imageStatus })
         op.insertAdjacentHTML("beforeend", html)
     }
     showPreviousTicks()
