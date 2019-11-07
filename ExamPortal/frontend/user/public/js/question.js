@@ -77,7 +77,7 @@ function loadFullWindow() {
 
 function exitHandler() {
     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-        $('#fullScreenModal').modal("show")
+        $('#modalEndTest').trigger("click")
     }
 }
 
