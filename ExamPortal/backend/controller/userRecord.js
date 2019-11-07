@@ -22,7 +22,7 @@ const adminDetails = async(req, res) => {
             const userInfo = req.body;
             var myPlaintesxtPassword = userInfo.password;
             var salt = bcrypt.genSaltSync(10);
-            var hash = bcrypt.hashSync(myPlaintesxtPassword, salt)
+            var hash = bcrypt.hashSync(myPlaintesxtPassword,salt)
             userInfo.password = hash; {
                 user.create(userInfo)
                 SENDGRID_API_KEY = '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'
@@ -54,6 +54,7 @@ const loggedInDetails = async(req, res) => {
 
 const userDetails = async(req, res) => {
     try {
+        debugger
         const query = await user.findOne({ email: req.body.email })
         return query
     } catch (error) {
