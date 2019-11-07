@@ -111,7 +111,7 @@ module.exports = () => {
 
     app.post('/exam/question',upload.single('questionImage'), (req, res) => {
         if( req.file){
-            req.body['questionImage'] = '../assets' + req.file.filename;   
+            req.body['questionImage'] = '../assets/' + req.file.filename;   
         }else{
             req.body['questionImage'] = null
         }
