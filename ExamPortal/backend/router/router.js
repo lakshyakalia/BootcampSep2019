@@ -49,8 +49,9 @@ module.exports = () => {
     })
 
     //examiner will create exam details
-    app.post('/exam', middleware, (req, res) => {
-        Users.examDetail(req, res)
+    app.post('/exam',middleware, async(req, res) => {
+        const checkExamCode=await Users.examDetail(req, res)
+        res.send(checkExamCode)
     })
 
     //examiner will view exam
@@ -130,13 +131,14 @@ module.exports = () => {
         return response
     })
 
-    app.get('/test/accessKey', async(req, res) => {
-        const response = await Ques.getExamTime(req, res)
+    app.get('/test/accessKey',middleware,async(req,res)=>{
+        const response = await Ques.getExamTime(req,res)
         return response
     })
 
-    app.get('/test/endTest', async(req, res) => {
-        const response = await Ques.saveAllQuestions(req, res)
+    app.post('/test/endTest',middleware,async(req,res)=>{
+        const response = await Ques.saveAllQuestions(req,res)
+        return response
     })
 
     //admin will add examiner

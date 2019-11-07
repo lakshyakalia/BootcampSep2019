@@ -15,7 +15,11 @@ const candidateAnswer = new Schema({
         correctStatus: Boolean,
         answerSubmitted: String,
         questionId: String
-    }]
+    }],
+    submitExam: {
+        type: Boolean,
+        default: false
+    }
 })
 
 const test = mongoose.model('candidateAnswer', candidateAnswer)

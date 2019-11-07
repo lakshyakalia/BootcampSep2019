@@ -181,7 +181,7 @@ $(document).on('click', '#previousQuestion', function() {
 
 $(document).on('click', '#modalEndTest', function() {
     $.ajax('http://localhost:3000/test/endTest', {
-        type: 'GET',
+        type: 'POST',
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
@@ -191,6 +191,7 @@ $(document).on('click', '#modalEndTest', function() {
             code: localStorage.getItem("examCode")
         },
         success: function(data) {
+            localStorage.removeItem('token')
             $(location).attr('href', './endTest.html')
         },
         error: function(error) {
