@@ -323,7 +323,6 @@ $(document).ready(function() {
                 }
             }
     
-    
 
   }
    

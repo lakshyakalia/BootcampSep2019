@@ -229,14 +229,14 @@ a:hover {
 .form2 {
     text-align: center;
     margin-top: 0;
-    padding-top: 7px;
+    padding-top: 70px;
 }
 
 .addQuestion {
     margin: auto;
     /* margin-left: 90px; */
     width: 40%;
-    height: 720px;
+    height: 620px;
     font-size: 1.5em;
     padding-left: 10px;
     padding-right: 10px;
@@ -260,4 +260,22 @@ label {
 
 option {
     font-size: 15px;
+}
+.confirm-box{
+    background: white;
+}
+#modalBody{
+    font-weight: 100px;
+}
+.questionIndex{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background: lightblue;
+    text-align: center;
+    margin: 5px;
+}
+.questionIndex:hover{
+    background: green;
+    color: #ffff;
 }

@@ -75,7 +75,7 @@ $(document).ready(function() {
                 "accountType": accountType
             }),
             success: function(data, status) {
-                $(location).attr('href', '../views/login.html')
+                // $(location).attr('href', '../views/login.html')
             },
             error: function(data, error) {
                 //  console.log(error +" "+ "error occurred");
