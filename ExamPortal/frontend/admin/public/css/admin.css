@@ -22,8 +22,10 @@ li {
     }
     #marginfromtop
     {
-       width:40%;
-       margin-top:20%; 
+      
+       margin-top:19%; 
+       margin-left:32%;
+       
     }
     pre{
         font-weight:bold;
@@ -121,3 +123,20 @@ li {
           margin-left:18%;
          
       }
+      #x
+      {
+        height:40%;
+        width:40%;
+       
+       
+      }
+      #xx
+      {
+        height:35%;
+        width:35%;
+        font-size: 20;
+        box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2)
+       
+       
+      }
+     
