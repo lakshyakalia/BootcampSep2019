@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(cors())
 app.options("*",cors())
-
+app.use('../../frontend/assets',express.static('public'))
 
 app.use(router())
 app.listen(PORT,HOST, err=>{
