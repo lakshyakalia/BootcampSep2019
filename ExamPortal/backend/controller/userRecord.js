@@ -89,6 +89,7 @@ const updateuser = async(req, res) => {
 }
 
 const adminLogin = async(req, res) => {
+    debugger
     const existUser = await admin.findOne({ email: req.body.email });
     // console.log(existUser);
     if (existUser) {

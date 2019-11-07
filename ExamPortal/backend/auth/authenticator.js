@@ -17,7 +17,7 @@ async function comparePassword(myPlaintextPassword, req) {
         //i have returned account type here so we can redirect page to admin or student or examiner
         //redirect happens in login page
     const hash = user.password
-    if (bcrypt.hashSync(myPlaintextPassword, hash)) {
+    if (bcrypt.compareSync(myPlaintextPassword, hash)) {
 
         return user.accountType
     } else {
