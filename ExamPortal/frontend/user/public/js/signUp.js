@@ -55,7 +55,7 @@ $(document).ready(function() {
 
             let signUpData = true
             alert("Your SignUp has been successful")
-            $(location).attr('href', '../views/login.html')
+                // $(location).attr('href', '../views/login.html')
         } else {
             signUpData = false
             alert("Your data is not valid")
