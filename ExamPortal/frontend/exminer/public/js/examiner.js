@@ -1,14 +1,11 @@
-$(document).ready(function(){
-    const tok =localStorage.getItem('token');
-    if(tok == null)
-    {
-      location.replace("../../index.html")
+$(document).ready(function() {
+    const tok = localStorage.getItem('token');
+    if (tok == null) {
+        location.replace("../../index.html")
     }
+
 })
-function logout()
-{
-    localStorage.removeItem('token');
-}
+
 function showEdit() {
     $("#showEditDiv").fadeIn("slow");
     $.ajax("http://localhost:3000/loggedIn", {
@@ -39,7 +36,7 @@ function showName() {
 
             console.log(data.name)
             document.getElementById('span').innerHTML = 'Welcome ' + data.name + '! &nbsp; &nbsp; '
-
+            localStorage.setItem("loggedInName", data.name)
         },
         error: function(error) {
             console.log('not working')

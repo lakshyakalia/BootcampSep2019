@@ -1,45 +1,4 @@
 // this page will create dom to display details of students
-var students_details = [{
-        studentId: '1',
-        studentName: 'Rawat',
-        testId: '1011',
-        attempted: '10',
-        correct: '5',
-        unattempted: '0',
-        totalScore: '10',
-        percentage: '80%'
-    },
-    {
-        studentId: '1',
-        studentName: 'Rawat',
-        testId: '1011',
-        attempted: '10',
-        correct: '5',
-        unattempted: '0',
-        totalScore: '10',
-        percentage: '80%'
-    },
-    {
-        studentId: '1',
-        studentName: 'Rawat',
-        testId: '1011',
-        attempted: '10',
-        correct: '5',
-        unattempted: '0',
-        totalScore: '10',
-        percentage: '80%'
-    },
-    {
-        studentId: '2',
-        studentName: 'Rawat',
-        testId: '1011',
-        attempted: '10',
-        correct: '5',
-        unattempted: '0',
-        totalScore: '10',
-        percentage: '80%'
-    }
-]
 
 
 function showStudents() {
@@ -68,7 +27,7 @@ function showStudents() {
                     // let td = document.createElement('td')
                     // console.log(data[i].examCode)
                     //         // create attribute and set id in all fields
-                tr.innerHTML = "<td id='" + data[i].examCode + "'onclick='studentDetails(this)'>" + data[i].examCode + "</td>" + "<td>" + data[i].examName + "</td>";
+                tr.innerHTML = "<td class='cursor' id='" + data[i].examCode + "'onclick='studentDetails(this)'>" + data[i].examCode + "</td>" + "<td class='cursor' id='" + data[i].examCode + "'onclick='studentDetails(this)'>" + data[i].examName + "</td>";
 
                 //tr.append(td)
                 //     // let td1 = document.createElement('td')
@@ -92,6 +51,8 @@ let flag = 0;
 
 function studentDetails(a) {
 
+    // $('#tcan').hide()
+    // window.reload()
     console.log(a.id)
     $.ajax("http://localhost:3000/performance/students", {
         type: 'GET',
@@ -101,20 +62,26 @@ function studentDetails(a) {
             'token': localStorage.getItem('token')
         },
         success: function(data) {
+            $('#tcan').empty()
+            let tr = document.createElement('tr')
+            tr.innerHTML = "<th>" + " Student Name " + "</th>" + "<th>" + " Exam Code " + "</th>" + "<th>" + "Total Score" + "</th>" + "<th>" + "Question Attempted" + "</th>";
+            $("#tcan").append(tr)
+
+
             console.log(data)
             let i = 0;
 
             // console.log(data[0].candidateId)
-            if (flag == 0) {
-                while (i < data.b.length) {
-                    let tr = document.createElement('tr')
-                    tr.innerHTML = "<td>" + data.a[i].name + "</td>" + "<td>" + data.b[i].testCode + "</td>" + "<td>" + data.b[i].totalScore + "</td>" + "<td>" + data.b[i].answers.length + "</td>" + "<td>" + data.a[i]._id + "</td>" + "<td>" + data.b[i].candidateId + "</td>";
-
-                    $("#tcan").append(tr)
-                    flag = 1;
-                    i++;
-                }
+            // if (flag == 0) {
+            while (i < data.b.length) {
+                let tr = document.createElement('tr')
+                tr.innerHTML = "<td>" + data.a[i].name + "</td>" + "<td>" + data.b[i].testCode + "</td>" + "<td>" + data.b[i].totalScore + "</td>" + "<td>" + data.b[i].answers.length + "</td>";
+                $("#tcan").fadeIn()
+                $("#tcan").append(tr)
+                flag = 1;
+                i++;
             }
+            //}
 
             // console.log(data[0].testCode)
             // console.log(data[0].answers.length)
