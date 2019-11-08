@@ -64,6 +64,10 @@ const getQuestionDetail = (req, res) => {
     console.log("hello1 ", req.params.id)
     questionDetail.getQuestionDetails(req, res)
 }
+const addQuestion = (req, res) => {
+    //console.log("hello1 ", req.params.id)
+    examController.addQuestion(req, res)
+}
 
 const fetchQuestionById = (req, res) => {
     questionDetail.fetchQuestionById(req, res)
@@ -113,7 +117,6 @@ const adminDetails = (req, res) => {
 }
 
 
-
 module.exports = {
     adminDetails,
     updateUser,
@@ -137,5 +140,6 @@ module.exports = {
     userRecord,
     examDetail,
     question,
-    studentPerformance
+    studentPerformance,
+    addQuestion
 }

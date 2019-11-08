@@ -15,13 +15,16 @@
 <body>
 
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color: black;">
-        <img src="../assets/cybergrouplogo.png" class="logo">
+       <a href="https://www.cygrp.com/"> <img src="../assets/cybergrouplogo.png" class="logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ">
+                    <li class="nav-item">
+                            <a class="nav-link" href="adminHome.html">Home</a>
+                        </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                 </li>
@@ -37,14 +40,32 @@
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="logout()">Logout</button>
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="button" data-toggle="modal" data-target="#exampleModal">Logout</button>
             </form>
         </div>
     </nav>
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  You have successfully logout
+                </div>
+             
+              <div class="modal-footer">
+                  
+                    <button type="button" class="btn btn-success" onclick="logout()">OK</button>
+                  </div>
+            </div>
+            </div>
+          </div>
+        <!--/Model-->
     <div class="container" id="marginfromtop">
-        <a href="../views/adminSetupExaminer.html" style="color: white;text-decoration: none;"> <button type="button" class="btn btn-primary btn-lg btn-block">  Add Examiner</button></a><br><br>
-        <a href="../views/adminShowExaminer.html" style="color: white;text-decoration: none;"> <button type="button" class="btn btn-success btn-lg btn-block">  Show Examiner</button></a>
+     <a href="../views/adminSetupExaminer.html" style="color: white;text-decoration: none;"> <button type="button" class="btn btn-primary " id="xx">  Add Examiner</button></a>
+       <a href="../views/adminShowExaminer.html" style="color: white;text-decoration: none;">  <button type="button" class="btn btn-success " id="xx">  Show Examiner</button></a>
     </div>
+
+
 </body>
 
 </html>

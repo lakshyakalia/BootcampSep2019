@@ -1,5 +1,5 @@
 var tempExamCode = ''
-$(document).ready(function() {
+$(document).ready(function () {
     const tok = localStorage.getItem('token');
     if (tok == null) {
         location.replace("../../index.html")
@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     allWells.hide();
 
-    navListItems.click(function(e) {
+    navListItems.click(function (e) {
         e.preventDefault();
         var $target = $($(this).attr('href')),
             $item = $(this);
@@ -26,7 +26,7 @@ $(document).ready(function() {
         }
     });
 
-    allNextBtn.click(function() {
+    allNextBtn.click(function () {
         var curStep = $(this).closest(".setup-content"),
             curStepBtn = curStep.attr("id"),
             nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
@@ -124,7 +124,7 @@ $(document).ready(function() {
                         document.getElementById("addExamInstruction").value = '';
                     }
                 },
-                error: function(error) {
+                error: function (error) {
                     console.log("error : " + error)
                 }
             })
@@ -246,6 +246,27 @@ $(document).ready(function() {
                     alert("Please enter 2nd option");
                     return
                 }
+                console.log(examDetail)
+                $.ajax("http://localhost:3000/exam/question", {
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(examDetail),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data, status) {
+                        document.getElementById("addtestQuestion").value = '';
+                        document.getElementById("addtestOption1G").value = '';
+                        document.getElementById("addtestOption2G").value = '';
+                        document.getElementById("addtestOption3G").value = '';
+                        document.getElementById("addtestOption4G").value = '';
+                        document.getElementById("addtestAnswer").value = '';
+                        document.getElementById("addtestWeightage").value = '';
+
+                    },
+                    error: function (error) {
+                        console.log("error : " + error)
+                    }
+                })
             }
             if (option3G === "") {
                 alert("Please enter 3rd option");

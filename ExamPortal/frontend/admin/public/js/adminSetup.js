@@ -1,7 +1,7 @@
 function logout()
 {
    localStorage.removeItem("token");
-   window.location.replace("../../user/views/login.html");
+   window.location.replace("../../index.html");
 }
 $(document).ready(function(){
      $("#submit").click(function(e){
