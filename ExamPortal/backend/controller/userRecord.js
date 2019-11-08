@@ -129,7 +129,7 @@ const userRecord = async(req, res) => {
                     to: userInfo.email,
                     from: 'noreply@example.com',
                     subject: 'You have been successfully registered on CYGRP Exam Portal',
-                    text: "email=" + userInfo.name + '   Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS STUDENT',
+                    text:  userInfo.name + '   Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS STUDENT',
                 };
                 sgMail.send(msg);
                 return ({ "status": "200", "message": "user registered" })
