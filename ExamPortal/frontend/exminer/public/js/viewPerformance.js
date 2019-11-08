@@ -1,5 +1,47 @@
 // this page will create dom to display details of students
+function drawChart(data,total){
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let labels = ['< 40', '40-60', '60-80', '> 80'];
+    let colorHex = ['#FB3640', '#EFCA08', '#43AA8B', '#253D5B'];
 
+            let myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                    data: [30, 10, 40, 20],
+                    backgroundColor: colorHex
+                    }],
+                    labels: labels
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                    position: 'bottom'
+                    },
+                    plugins: {
+                        datalabels: {
+                            color: '#fff',
+                            anchor: 'end',
+                            align: 'center',
+                            // soffset: 10,
+                            // borderWidth: 2,
+                            borderColor: '#fff',
+                            borderRadius: 30,
+                            backgroundColor: (context) => {
+                            return context.dataset.backgroundColor;
+                            },
+                            font: {
+                                weight: 'bold',
+                                size: '10'
+                                },
+                            formatter: (value) => {
+                                return value + ' %';
+                            }
+                        }
+                    }
+                }
+            })
+}
 
 function showStudents() {
     const tok = localStorage.getItem('token');
@@ -86,7 +128,7 @@ function studentDetails(a) {
             // console.log(data[0].testCode)
             // console.log(data[0].answers.length)
             // console.log(data[0].totalScore)
-
+        drawChart(data.b,data.c)
 
         },
         error: function(error) {
