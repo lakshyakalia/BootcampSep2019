@@ -1,8 +1,17 @@
+function deleteexaminer(id)
+{
+  $("#modelid").attr('id',id)
+}
 function logout()
 {
    localStorage.removeItem("token");
    window.location.replace("../../user/views/login.html");
 }
+function samepage()
+{
+  window.location.replace("../views/adminShowExaminer.html");
+}
+
 function loadSetupExaminerPage(data){
   $('#performance').empty()
   $.get('./adminSetupExaminer.html',function(template){
@@ -41,8 +50,6 @@ $(document).ready(function () {
     const performance = document.querySelector("#performance");
     performance.insertAdjacentHTML("beforeend", html)
   }
-
-
   $(document).on('click', '.deleteButton', function () {
     let id = $(this).attr('id')
     console.log(id);

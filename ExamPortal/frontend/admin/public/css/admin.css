@@ -159,13 +159,17 @@ i {
 }
 
 .option-div-flex button {
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 20px;
     box-shadow: none;
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    width: 100%;
+    width: 80px;
 }
 
 .flex-1 {
     flex: 2;
+}
+
+.show-examiner-table {
+    margin-top: 8%;
 }

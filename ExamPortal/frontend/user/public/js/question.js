@@ -224,7 +224,7 @@ $(document).on('click', '#modalEndTest', function() {
             code: localStorage.getItem("examCode")
         },
         success: function(data) {
-            localStorage.removeItem('token')
+            localStorage.clear()
             $(location).attr('href', './endTest.html')
         },
         error: function(error) {
@@ -278,3 +278,7 @@ $(document).on('click', '.circle', function() {
 })
 
 $('#fullScreenModal').modal({ backdrop: 'static', keyboard: false })
+
+$(document).keypress(function(e){
+    return false
+})

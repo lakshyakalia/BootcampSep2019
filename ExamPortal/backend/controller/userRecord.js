@@ -13,7 +13,7 @@ function decodeToken(req) {
     return decoded;
 }
 
-const adminDetails = async(req, res) => {
+const adminDetails = async (req, res) => {
     try {
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
@@ -45,13 +45,13 @@ const adminDetails = async(req, res) => {
     }
 }
 
-const loggedInDetails = async(req, res) => {
+const loggedInDetails = async (req, res) => {
     const decoded = decodeToken(req);
     const det = await user.findOne({ "email": decoded.email });
     return det;
 }
 
-const userDetails = async(req, res) => {
+const userDetails = async (req, res) => {
     try {
         debugger
         const query = await user.findOne({ email: req.body.email })
@@ -62,7 +62,7 @@ const userDetails = async(req, res) => {
 }
 
 
-const examinerUpd = async(req, res) => {
+const examinerUpd = async (req, res) => {
     try {
         const body = req.body
         const myPlaintextPassword = body.password;
@@ -77,9 +77,19 @@ const examinerUpd = async(req, res) => {
 
 }
 
-const fetchData = async(req, res) => {
-    const data = await user.find();
-    return data
+const fetchData = async (req, res) => {
+    const data = await user.find({ 'accountType': 'Examiner' });
+    //console.log(data.length);
+   let arr = [];
+    for (i = 0; i < data.length; i++) {
+       let newObject = {}
+       newObject._id = data[i]._id;
+       newObject.email = data[i].email;
+        newObject.createdDate = data[i].createdDate.toDateString();
+        newObject.name = data[i].name;
+        arr.push(newObject)
+    }
+    return arr
 }
 const updateuser = async(req, res) => {
     const id = req.body.id;
