@@ -7,7 +7,6 @@ const exam = new Schema({
     examName: String,
     examCode: String,
     examinerId: String,
-    instructions: String,
     examDuration: String,
     examStartTime: String,
 })

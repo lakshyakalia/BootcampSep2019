@@ -95,10 +95,22 @@ app.post('/uploadExcel', upload.single('excelFile'), (req, res) => {
         console.log(response)
     })
 
-    //examiner will write exam questions
-    app.post('/exam/question', middleware, (req, res) => {
-        Users.question(req, res)
+   // examiner will write exam questions
+    // app.post('/exam/question',middleware, (req, res) => {
+    //     console.log('multiple value')
+    //     Users.question(req, res)
+    // })
+
+    app.post('/exam/question',upload.single('questionImage'), (req, res) => {
+        if( req.file){
+            req.body['questionImage'] = '../assets/' + req.file.filename;   
+        }else{
+            req.body['questionImage'] = null
+        }
+    
+         Users.question(req, res)
     })
+
 
     //examiner will views questions
     app.get('/exam/question/:id', middleware, (req, res) => {

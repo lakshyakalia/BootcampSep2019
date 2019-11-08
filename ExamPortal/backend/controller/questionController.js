@@ -23,7 +23,7 @@ const answerObject = (body,headers,weightage,status,submitStatus)=>{
 const testQuestions = async(req, res) => {
     let lastQuestionStatus
     let pageNumber = parseInt(req.query.pageNumber)
-    let ques = await questionDetail.find({ 'examCode': req.headers.examcode }).skip(pageNumber).limit(1).select({ "questionText": 1, "options": 1, "examCode": 1, "answerType":1 })
+    let ques = await questionDetail.find({ 'examCode': req.headers.examcode }).skip(pageNumber).limit(1).select({"questionImage":1,"questionText": 1, "option1": 1, "option2": 1, "option3": 1, "option4": 1, "examCode": 1, "answerType":1 })
     let lastQuestion = await questionDetail.find({ 'examCode': req.headers.examcode }).select({ "questionText": 1 })
     if (lastQuestion[lastQuestion.length - 1].questionText === ques[ques.length - 1].questionText) lastQuestionStatus = true
     else lastQuestionStatus = false
@@ -104,8 +104,10 @@ const checkAccessKey = async(req, res) => {
 const saveAllQuestions = async(req,res)=>{
     const allQuestions = await questionDetail.find({examCode:req.headers.examcode}).select({_id:1})
     const savedQuestions = await test.findOne({ $and:[{candidateId:req.headers.id},{testCode:req.headers.examcode}] })
-    if(savedQuestions.answers.length === allQuestions.length){
-        await test.update({$and:[{candidateId:req.headers.id},{testCode:req.headers.examcode}]},{$set:{"submitExam":true}})
+    if(savedQuestions !== null){
+        if(savedQuestions.answers.length === allQuestions.length){
+            await test.update({$and:[{candidateId:req.headers.id},{testCode:req.headers.examcode}]},{$set:{"submitExam":true}})
+        }
     }
     for(let i=0;i<allQuestions.length;i++){
         let existingAnswer = await test.findOne({ $and:[{candidateId:req.headers.id},{testCode:req.headers.examcode}] })
