@@ -44,7 +44,6 @@ const studentPerformance = async(req, res) => {
 
 }
 
-
 const adminLogin = async(req, res) => {
 
     const result = await userController.adminLogin(req, res)

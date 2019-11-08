@@ -46,18 +46,6 @@ module.exports = () => {
         res.send(response)
     })
 
-    //examiner will create exam details
-    app.post('/exam',middleware, async(req, res) => {
-        const checkExamCode=await Users.examDetail(req, res)
-        res.send(checkExamCode)
-    })
-
-    //examiner will view exam
-    app.get('/exam',middleware, (req, res) => {
-        Users.viewExamDetail(req, res)
-
-    })
-
     app.post('/exam/accessKey', middleware,async(req, res) => {
         const response = await Ques.checkAccessKey(req, res)
         return response
@@ -73,6 +61,16 @@ module.exports = () => {
         return response
     })
 
+    //examiner will create exam details
+    app.post('/exam',middleware, (req, res) => {
+         Users.examDetail(req, res)
+    })
+
+    //examiner will view exam
+    app.get('/exam',middleware, (req, res) => {
+        Users.viewExamDetail(req, res)
+
+    })
     //examiner will fetch particular exam detail
     app.get('/exam/:id', middleware, (req, res) => {
         Users.fetchExamDetail(req, res)

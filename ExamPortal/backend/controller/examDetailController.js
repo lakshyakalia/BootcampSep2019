@@ -1,24 +1,23 @@
 const { examDetail } = require('../models/examDetail')
 const question = require('./questionController')
 
-const examDetails = async(req, res) => {
+const examDetails = async (req, res) => {
     try {
+        console.log('save exam ',req.body.examCode)
         const checkExamCode = await examDetail.findOne({ examCode: req.body.examCode })
-        
-        if(checkExamCode){
-            return({"message" : "Exam Code already exist"})
+        console.log('check exam code',checkExamCode)
+        if(checkExamCode != null ){
+            res.status(409).send({message : "Exam Code already exist"})
         }
         else{
-        req.body.examinerId = req.headers.id
-        let examInformation = new examDetail(req.body)
-        const p = await examInformation.save()
-        // console.log(p)
-        res.status(200).send({ msg: 'exam information saved successful' })
-        }    
-    } 
-    catch (error) {
-        console.log(error)
-        res.send({ error })
+            req.body.examinerId = req.headers.id
+            let examInformation = new examDetail(req.body)
+            await examInformation.save()
+            res.status(200).send({ message: 'exam information saved successful' })
+        }
+    }catch (error) {
+        console.log('error ',error)
+        res.status(500).send( error )
     }
 }
 
