@@ -13,7 +13,7 @@ const testDetails= async(req,res)=>{
         }
         
     }
-const examinerDel= async(req,res)=>{
+const examinerDelete= async(req,res)=>{
     try{
         
     const query=await user.findByIdAndDelete(req.body._id)
@@ -27,5 +27,5 @@ const examinerDel= async(req,res)=>{
 }
     module.exports={
         testDetails,
-        examinerDel,
+        examinerDelete,
     }

@@ -1,3 +1,9 @@
+function addQuestion(id)
+{
+    //console.log("hello"+id);
+    localStorage.setItem('addQuestionid',id);
+  $(location).attr('href','../views/addQuestion.html');
+}
 function showQuestion(id) {
     // eid = $('#'+id).parent().parent().attr('id')
         let examCode = $('#' + id).parent().prev().prev().prev().find('p').html()

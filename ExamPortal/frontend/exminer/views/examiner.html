@@ -8,6 +8,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="../public/css/examiner.css">
         <script type="text/javascript" src="../public/js/examiner.js"></script>
+        <script src="https://kit.fontawesome.com/ad350219ae.js" crossorigin="anonymous"></script>
     </head>
 
     <body onload="showName()">
@@ -43,11 +44,43 @@
         </nav>
         <h2 class="container display-4">Choose one of the options Below : </h2>
         <!-- choose options div -->
-        <div class="options-div">
-            <div class="container container-1">
+        <div class="container options-div">
+            <!-- <div class="container container-1">
                 <button type="button" class="btn btn-success" onclick="location.reload();location.href='examdetails.html'">Create Test</button>
                 <button type="button" class="btn btn-primary" onclick="location.reload();location.href='exam.html'">View Tests</button>
                 <button type="button" class="btn btn-danger" onclick="location.reload();location.href='viewPerformance.html'">View Performance of Students</button>
+            </div> -->
+            <div class="option-div-flex">
+                <div class="flex-1">
+                    <i class="far fa-plus-square"></i>
+                    <span>Create an Exam</span>
+                </div>
+                <div class="flex-1">
+                    <button type="button" class="btn btn-outline-success" onclick="location.reload();location.href='examdetails.html'">Create</button>
+                </div>
+
+            </div>
+            <div class="option-div-flex">
+                <div class="flex-1">
+
+                    <i class="fas fa-book-open"> </i>
+                    <span>View an Exam</span>
+                </div>
+                <div class="flex-1">
+
+                    <button type="button" class="btn btn-outline-success" onclick="location.reload();location.href='exam.html'">View</button>
+                </div>
+            </div>
+            <div class="option-div-flex">
+                <div class="flex-1">
+
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>View Performance of Students</span>
+                </div>
+                <div class="flex-1">
+
+                    <button type="button" class="btn btn-outline-success" onclick="location.reload();location.href='viewPerformance.html'">View</button>
+                </div>
             </div>
         </div>
         <!-- Edit details div -->

@@ -105,7 +105,7 @@ $(document).ready(function() {
     }
     $('#nextQuestion').attr('value', 0)
     $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
-    $.ajax('http://localhost:3000/test', {
+    $.ajax('http://localhost:3000/question', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -129,8 +129,6 @@ $(document).ready(function() {
 $(document).on('click', '#submitAnswer', function() {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
     let examCode = $(this).parent().parent().parent().parent().children().children().children().children().attr('id')
-    // let radioValue = $(`input[name=${questionId}]:checked`).val()
-    // console.log(radioValue)
     let value = []
     $.each($(`input[name=${questionId}]:checked`), function() {
         value.push($(this).val())
@@ -138,7 +136,7 @@ $(document).on('click', '#submitAnswer', function() {
     if(value.length === 0){
         return
     }
-    $.ajax('http://localhost:3000/test', {
+    $.ajax('http://localhost:3000/question', {
         type: 'POST',
         dataType: 'JSON',
         headers: {
@@ -164,7 +162,7 @@ $(document).on('click', '#nextQuestion', function() {
     if ($('#nextQuestion').attr('value') != 0) {
         $('#previousQuestion').removeAttr("disabled");
     }
-    $.ajax('http://localhost:3000/test', {
+    $.ajax('http://localhost:3000/question', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -192,7 +190,7 @@ $(document).on('click', '#previousQuestion', function() {
     if (pageNumber == 0) {
         $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
     }
-    $.ajax('http://localhost:3000/test', {
+    $.ajax('http://localhost:3000/question', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -215,7 +213,7 @@ $(document).on('click', '#previousQuestion', function() {
 })
 
 $(document).on('click', '#modalEndTest', function() {
-    $.ajax('http://localhost:3000/test/endTest', {
+    $.ajax('http://localhost:3000/exam/endTest', {
         type: 'POST',
         dataType: 'JSON',
         headers: {
@@ -226,7 +224,7 @@ $(document).on('click', '#modalEndTest', function() {
             code: localStorage.getItem("examCode")
         },
         success: function(data) {
-            localStorage.removeItem('token')
+            localStorage.clear()
             $(location).attr('href', './endTest.html')
         },
         error: function(error) {
@@ -252,7 +250,7 @@ $(document).on('click', "input", function() {
 
 $(document).on('click', '.circle', function() {
     let upcomingPage = parseInt($(this).children().html()) - 1
-    $.ajax('http://localhost:3000/test', {
+    $.ajax('http://localhost:3000/question', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -280,3 +278,7 @@ $(document).on('click', '.circle', function() {
 })
 
 $('#fullScreenModal').modal({ backdrop: 'static', keyboard: false })
+
+$(document).keypress(function(e){
+    return false
+})

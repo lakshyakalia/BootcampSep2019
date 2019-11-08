@@ -58,6 +58,21 @@ module.exports = () => {
 
     })
 
+    app.post('/exam/accessKey', middleware,async(req, res) => {
+        const response = await Ques.checkAccessKey(req, res)
+        return response
+    })
+
+    app.get('/exam/accessKey',middleware,async(req,res)=>{
+        const response = await Ques.getExamTime(req,res)
+        return response
+    })
+
+    app.post('/exam/endTest',middleware,async(req,res)=>{
+        const response = await Ques.saveAllQuestions(req,res)
+        return response
+    })
+
     //examiner will fetch particular exam detail
     app.get('/exam/:id', middleware, (req, res) => {
         Users.fetchExamDetail(req, res)
@@ -128,29 +143,14 @@ module.exports = () => {
     })
 
     //candidates will view quesions using accesskey
-    app.get('/test', middleware, async(req, res) => {
+    app.get('/question', middleware, async(req, res) => {
         const response = await Ques.testQuestions(req, res)
         return response
     })
 
     //post answers selected by candidates
-    app.post('/test', middleware, async(req, res) => {
+    app.post('/question', middleware, async(req, res) => {
         const response = await Ques.saveCandidateAnswers(req, res)
-        return response
-    })
-
-    app.post('/test/accessKey', async(req, res) => {
-        const response = await Ques.checkAccessKey(req, res)
-        return response
-    })
-
-    app.get('/test/accessKey',middleware,async(req,res)=>{
-        const response = await Ques.getExamTime(req,res)
-        return response
-    })
-
-    app.post('/test/endTest',middleware,async(req,res)=>{
-        const response = await Ques.saveAllQuestions(req,res)
         return response
     })
 
@@ -172,7 +172,7 @@ module.exports = () => {
     })
     //admin will delete examiner using id of examiner
     app.delete('/examiner/:id', (req, res) => {
-            const result = Users.examinerDel(req, res)
+            const result = Users.examinerDelete(req, res)
             res.send(result)
         })
         //admin will view test created by each examiner using their id
@@ -182,7 +182,7 @@ module.exports = () => {
     })
 
     app.patch('/examiner', middleware, async(req, res) => {
-        const result = await Users.examinerUpd(req, res)
+        const result = await Users.examinerUpdate(req, res)
     })
      // admin update examiner info
      app.patch('/examiner/:id', async(req, res) => {

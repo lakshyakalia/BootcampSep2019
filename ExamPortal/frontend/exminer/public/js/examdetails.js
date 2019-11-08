@@ -242,6 +242,27 @@ $(document).ready(function () {
                     alert("Please enter 2nd option");
                     return
                 }
+                console.log(examDetail)
+                $.ajax("http://localhost:3000/exam/question", {
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(examDetail),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data, status) {
+                        document.getElementById("addtestQuestion").value = '';
+                        document.getElementById("addtestOption1G").value = '';
+                        document.getElementById("addtestOption2G").value = '';
+                        document.getElementById("addtestOption3G").value = '';
+                        document.getElementById("addtestOption4G").value = '';
+                        document.getElementById("addtestAnswer").value = '';
+                        document.getElementById("addtestWeightage").value = '';
+
+                    },
+                    error: function (error) {
+                        console.log("error : " + error)
+                    }
+                })
             }
             if (option3G === "") {
                 alert("Please enter 3rd option");
