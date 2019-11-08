@@ -25,7 +25,6 @@ const questionDetails = new Schema({
 	answerType:String,
 	questionImage:{
 		type: String,
-		
 	}
 })
 

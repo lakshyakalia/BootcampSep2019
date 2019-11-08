@@ -44,27 +44,24 @@ $(document).ready(function() {
     });
 
     $('div.setup-panel div a.btn-primary').trigger('click');
-   
-        $('input[name="colorRadio"]').click(function(){  
+        $('input[name="colorRadio"]').click(function(){
             var inputValue = $(this).attr("value");
             var targetBox = $("." + inputValue);
             $(".box").not(targetBox).hide();
             $(targetBox).show();
         });
   });
- 
+
   $(document).ready(function() {
     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
     function validateForm() {
-        
         var testName = document.getElementById("addExamName").value;
         var testCode = document.getElementById("addExamCode").value;
         var testDuration = document.getElementById("addExamDuration").value;
         var testDate = document.getElementById("addExamTestDate").value;
         var testInstruction = document.getElementById("addExamInstruction").value;
-        
         if (testName === "") {
             alert("Please enter test name");
         } else {
@@ -92,10 +89,8 @@ $(document).ready(function() {
                 const testD=testDate.slice(0,10);
                 const testd=testDate.slice(11,16)
                 testDate=testD.concat(" "+testd+":00")
-                
             }
-            
-    
+
         if ((testName || testCode || testDuration ) == true) {
                 tempExamCode= $('#addExamCode').val()
             let examDetail = {
@@ -104,7 +99,6 @@ $(document).ready(function() {
                 examDuration: $('#addExamDuration').val(),
                 examStartTime: testDate,
                 instructions: $('#addExamInstruction').val(),
-                
             }
             $.ajax("http://localhost:3000/exam", {
                 type: "POST",
@@ -147,18 +141,18 @@ $(document).ready(function() {
 
     function validateForm() {
         var question = document.getElementById("addtestQuestion").value;
-        
+
         var weightage = document.getElementById("addtestWeightage").value;
          //console.log(question,answer,weightage)
-        
+
         if ( question=== "") {
             alert("Please enter question");
             return
         }
-        
+
         else {
-            
-            var opt = $("input[name='colorRadio']:checked").val();        
+
+            var opt = $("input[name='colorRadio']:checked").val();
             if ( opt == '' ){
                 return
                 }else if ( opt =="red"){
@@ -173,21 +167,19 @@ $(document).ready(function() {
                     if (option1 === "" ) {
                             alert("Please enter 1st option");
                             return
-                        }  
-                    
+                        }
                         if (option2 === "" ) {
                             alert("Please enter 2nd option");
                             return
-                        }  
+                        }
                             if (option3 === "" ) {
                                 alert("Please enter 3rd option");
                                 return
-                            }                         
-                    
+                            }
                             if (option4 === "" ) {
                                 alert("Please enter  4th option");
-                                return 
-                            }  
+                                return
+                            }
                             $.each($("input[name='option']:checked"), function(){
                                 if( $(this).val()){
                                     answer+=$(this).val()+','
@@ -199,7 +191,7 @@ $(document).ready(function() {
                         }
                         if (weightage === "") {
                             alert("Please enter weightage");
-                        }  
+                        }
                         var formData = new FormData();
                         formData.values('questionImage')
 
@@ -225,14 +217,13 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function (data, status) {
-                
                 document.getElementById("addtestQuestion").value='';
-                                                            document.getElementById("addtestOption1").value='';
-                                                            document.getElementById("addtestOption2").value='';
-                                                            document.getElementById("addtestOption3").value='';
-                                                            document.getElementById("addtestOption4").value='';
-                                                            document.getElementById("addtestAnswer").value='';
-                                                            document.getElementById("addtestWeightage").value='';
+                document.getElementById("addtestOption1").value='';
+                document.getElementById("addtestOption2").value='';
+                document.getElementById("addtestOption3").value='';
+                document.getElementById("addtestOption4").value='';
+                document.getElementById("addtestAnswer").value='';
+                document.getElementById("addtestWeightage").value='';
             },
             error: function (error) {
                 console.log(error + " " + "error occurred");
@@ -245,38 +236,33 @@ $(document).ready(function() {
                     var option3G = document.getElementById("addtestOption3G").value;
                     var option4G = document.getElementById("addtestOption4G").value;
                     var answer = $("input[name='option1']:checked").val();
-                    
-                    //console.log(question,answer,option1G,option2G,option3G,option4G,weightage)  
-                    
+                    //console.log(question,answer,option1G,option2G,option3G,option4G,weightage)
                     if (option1G === "" ) {
                         alert("Please enter 1st option");
                         return
-                    }  
+                    }
                     if (option2G === "" ) {
                         alert("Please enter 2nd option");
                         return
-                    } 
+                    }
                         }
                         if (option3G === "" ) {
                             alert("Please enter 3rd option");
                             return
-                        } 
-                
+                        }
                         if (option4G === "" ) {
                             alert("Please enter  4th option");
                             return
-                        }  
+                        }
                             }
                             if (answer === "") {
                                 alert("Please enter answer");
                                 return
-                            } 
-                    
-                    
+                            }
                     if (weightage === "") {
                         alert("Please enter weightage");
                         return
-                    }  
+                    }
                     console.log(answer)
                     var formData = new FormData();
                         formData.values('questionImage')
@@ -293,7 +279,6 @@ $(document).ready(function() {
                                     formData.append('examCode',tempExamCode);
                                     formData.append('answerType',"singleOption");
                                     formData.append('questionImage', $('input[type=file]')[1].files[0]);
-                            
                                     $.ajax("http://localhost:3000/exam/question", {
                                         type: "POST",
                                         data: formData,
@@ -304,14 +289,13 @@ $(document).ready(function() {
                                         contentType: false,
                                         processData: false,
                                         success: function (data, status) {
-                                           
                                             document.getElementById("addtestQuestion").value='';
-                            document.getElementById("addtestOption1G").value='';
-                            document.getElementById("addtestOption2G").value='';
-                            document.getElementById("addtestOption3G").value='';
-                            document.getElementById("addtestOption4G").value='';
-                            document.getElementById("addtestAnswer1").value='';
-                            document.getElementById("addtestWeightage").value='';
+                                            document.getElementById("addtestOption1G").value='';
+                                            document.getElementById("addtestOption2G").value='';
+                                            document.getElementById("addtestOption3G").value='';
+                                            document.getElementById("addtestOption4G").value='';
+                                            document.getElementById("addtestAnswer1").value='';
+                                            document.getElementById("addtestWeightage").value='';
                                         },
                                         error: function (error) {
                                             console.log(error + " " + "error occurred");
@@ -319,9 +303,3 @@ $(document).ready(function() {
                                     });
                 }
             })
-    
-    
-
-  
-   
-    

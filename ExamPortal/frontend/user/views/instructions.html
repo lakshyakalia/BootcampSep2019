@@ -9,6 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- cybergroup logo on top -->
+    <link rel="icon" href="https://www.cygrp.com/wp-content/uploads/2019/06/cybergroup-site-icon.png" type="image/x-icon">
+
 </head>
 
 <body>
@@ -18,28 +21,22 @@
             <ul class="navbar-nav mr-auto ">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Educational Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link" href="https://www.cygrp.com/">About</a>
                 </li>
             </ul>
         </div>
+        <p style="color: white;margin-top: 15px; margin-right: 15px" id="username"></p>
+        <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="logout()">Logout</button>
+
     </nav>
     <br><br>
     <div class="container flex">
         <form>
             <div class="inner-box">
-                <b>INSTRUCTIONS :
-                </b>
+                <span class="instruction-text">INSTRUCTIONS :</span>
+
                 <p class="instructions">This test consists of two sections: <br>
-                    <ul>
+                    <ul class="instruct">
 
                         <li> a multiple-choice question section and a constructed-response assignment section. Each question in the first section is a multiple-choice question with four answer choices. Read each question and answer choice carefully and choose
                             the ONE best answer.</li>
@@ -52,6 +49,7 @@
                 </p>
                 </ul>
                 <p class="error-msg"></p>
+                <p id="leftTime">Time Left</p>
             </div>
             <button type="button" class="btn btn-success startTest" disabled>Start Test</button>
         </form>

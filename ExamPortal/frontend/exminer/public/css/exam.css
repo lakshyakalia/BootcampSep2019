@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #DAE0E6;
+    background-color: #ebebeb;
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
 }
 
@@ -73,6 +73,7 @@ h5 {
     font-weight: 500;
     vertical-align: middle;
     padding: 20px;
+    padding-left: 0;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.8);
@@ -229,14 +230,14 @@ a:hover {
 .form2 {
     text-align: center;
     margin-top: 0;
-    padding-top: 7px;
+    padding-top: 70px;
 }
 
 .addQuestion {
     margin: auto;
     /* margin-left: 90px; */
     width: 40%;
-    height: 720px;
+    height: 620px;
     font-size: 1.5em;
     padding-left: 10px;
     padding-right: 10px;
@@ -244,9 +245,6 @@ a:hover {
     border-top-style: solid;
     border-top-color: orange;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 label {
@@ -261,9 +259,19 @@ label {
 option {
     font-size: 15px;
 }
-.confirm-box{
+
+.confirm-box {
     background: white;
 }
-#modalBody{
-    font-weight: 100px;
+
+#modalBody {
+    font-weight: 100;
+}
+
+.col-md-3,
+.col-md-2,
+.col-md-1 {
+    padding-left: 0;
+    width: 10%;
+    padding-top: 10px;
 }
