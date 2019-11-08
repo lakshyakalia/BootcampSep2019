@@ -32,7 +32,7 @@ function checkTimeForTest(time) {
         var hours = Math.floor((leftTestTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((leftTestTime % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((leftTestTime % (1000 * 60)) / 1000);
-        document.getElementById("leftTime").innerHTML = "Time Left - " + hours + ":" + minutes + ":" + seconds
+        document.getElementById("leftTime").innerHTML = "Time to Start Exam - " + hours + "h " + minutes + "m " + seconds+"s"
         if ((presentTime > startTime) && (presentDate >= startDate)) {
             clearInterval(x)
             $('.startTest').removeAttr("disabled")
