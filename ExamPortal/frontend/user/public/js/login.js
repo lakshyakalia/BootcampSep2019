@@ -11,7 +11,7 @@ $(document).on('click', '#loginButton', function() {
             dataType: 'JSON',
             // for loader
             beforeSend: function() {
-                $('.main').animate({ opacity: 0.1 })
+                $('.main').animate({ opacity: 0.4 })
                 $('.mod').fadeIn()
                 $('.spinner').show()
             },
