@@ -8,7 +8,6 @@ const { SECRET } = require("../config/config")
 const multer = require('multer')
 const path = require('path')
 // var reqPath = path.join(__dirname, '../../frontend/exminer/excelFileUpload')
-
 var storage = multer.memoryStorage()
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
