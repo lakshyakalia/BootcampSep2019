@@ -61,7 +61,7 @@ $(document).ready(function () {
         var testCode = document.getElementById("addExamCode").value;
         var testDuration = document.getElementById("addExamDuration").value;
         var testDate = document.getElementById("addExamTestDate").value;
-        var testInstruction = document.getElementById("addExamInstruction").value;
+        // var testInstruction = document.getElementById("addExamInstruction").value;
         if (testName === "") {
             alert("Please enter test name");
         } else {
@@ -98,7 +98,7 @@ $(document).ready(function () {
                 examCode: $('#addExamCode').val(),
                 examDuration: $('#addExamDuration').val(),
                 examStartTime: testDate,
-                instructions: $('#addExamInstruction').val(),
+                // instructions: $('#addExamInstruction').val(),
             }
             $.ajax("http://localhost:3000/exam", {
                 type: "POST",
@@ -120,7 +120,6 @@ $(document).ready(function () {
                         document.getElementById("addExamCode").value = '';
                         document.getElementById("addExamDuration").value = '';
                         document.getElementById("addExamTestDate").value = '';
-                        document.getElementById("addExamInstruction").value = '';
                     }
                 },
                 error: function (error) {

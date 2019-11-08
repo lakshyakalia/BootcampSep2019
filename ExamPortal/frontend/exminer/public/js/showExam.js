@@ -64,6 +64,8 @@ function removeQuestion(id) {
 
 function updateQues(id,type) {
     let opt1 = '',opt2= '', opt3= '', opt4 ='', answer =''
+    let questionText= $('#addtestQuestion').val()
+    let weightage = $('#addtestWeightage').val()
     if(type == 'multipleOption'){
        opt1 = $('#addtestOption1').val()
        opt2 = $('#addtestOption2').val()
@@ -82,25 +84,30 @@ function updateQues(id,type) {
         opt4 = $("#addtestOption4G").val()
         answer = $("input[name='option1']:checked").val()
     }
-    let questionDetail = {
-        questionText: $('#addtestQuestion').val(),
-        answer: answer,
-        options: {
-            option1: opt1,
-            option2: opt2,
-            option3: opt3,
-            option4: opt4,
-        },
-        weightage: $('#addtestWeightage').val(),
-    }
+    var formData = new FormData();
+            formData.values('questionImage')
+
+            var formData = new FormData();
+            formData.append('questionText', questionText);
+            formData.append('answer', answer);
+            formData.append('option1', opt1);
+            formData.append('option2', opt2);
+            formData.append('option3', opt3);
+            formData.append('option4', opt4);
+            formData.append('weightage', weightage);
+            formData.append('answerType', "multipleOption");
+            formData.append('questionImage', $('input[type=file]')[0].files[0]);
+            console.log("image is " + formData.values('questionImage'));
+            // return
     $.ajax("http://localhost:3000/exam/question/" + id, {
         type: 'PATCH',
         dataType: 'json',
-        contentType: "application/json",
+        contentType: false,
+        processData: false,
         headers: {
             token: localStorage.getItem('token')
         },
-        data: JSON.stringify(questionDetail),
+        data: formData,
         success: function(data) {
             location.reload(true)
         },
@@ -225,10 +232,6 @@ function deleteExam(id) {
 }
 
 $(document).ready(() => {
-    const tok = localStorage.getItem('token');
-    if (tok == null) {
-        location.replace("../../index.html")
-    }
     $.ajax("http://localhost:3000/exam", {
         type: 'GET',
         dataType: 'json',

@@ -180,20 +180,7 @@ const fetchQuestionById = async(req, res) => {
 
 const editQuestion = async(req, res) => {
     try {
-        await questionDetail.findByIdAndUpdate({ _id: req.params.id }, {
-            $set: {
-                "questionText": req.body.questionText,
-                "answer": req.body.answer,
-                "options": {
-                    "option1": req.body.options.option1,
-                    "option2": req.body.options.option2,
-                    "option3": req.body.options.option3,
-                    "option4": req.body.options.option4
-                },
-                "answer": req.body.answer,
-                "weightage": req.body.weightage
-            }
-        })
+        await questionDetail.findByIdAndUpdate({ _id: req.params.id },req.body)
         res.status(200).send({ msg: 'question updated' })
     } catch (error) {
         res.status(404).send(error)

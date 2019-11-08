@@ -113,9 +113,13 @@ module.exports = () => {
     })
 
     //examiner will edit questions
-    app.patch('/exam/question/:id', middleware, (req, res) => {
+    app.patch('/exam/question/:id',upload.single('questionImage'), middleware, (req, res) => {
+        if( req.file){
+            req.body['questionImage'] = '../assets/'+req.file.filename
+        }else{
+            req.body['questionImage'] = null
+        }
         Users.editQuestion(req, res)
-            // res.send({ "data": req.body })
     })
 
     //examiner will delete question by id
