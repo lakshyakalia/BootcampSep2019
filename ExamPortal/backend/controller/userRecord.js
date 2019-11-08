@@ -48,7 +48,6 @@ const adminDetails = async(req, res) => {
 const loggedInDetails = async(req, res) => {
     const decoded = decodeToken(req);
     const det = await user.findOne({ "email": decoded.email });
-    console.log(det)
     return det;
 }
 
@@ -65,7 +64,6 @@ const userDetails = async(req, res) => {
 
 const examinerUpd = async(req, res) => {
     try {
-        // console.log(req.body)
         const body = req.body
         const myPlaintextPassword = body.password;
         var salt = bcrypt.genSaltSync(10);
@@ -90,15 +88,9 @@ const updateuser = async(req, res) => {
 }
 
 const adminLogin = async(req, res) => {
-    debugger
     const existUser = await admin.findOne({ email: req.body.email });
-    // console.log(existUser);
     if (existUser) {
-        //    console.log("inside");
-        //    console.log(req.body.password);
-        //res.send({"message":"Admin exist"})
         const pass = await bcrypt.compare(req.body.password, existUser.password);
-        //  console.log(pass);
         if (pass) {
             res.send({ "message": "Admin valid" });
         } else {

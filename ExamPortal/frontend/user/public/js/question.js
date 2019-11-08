@@ -1,18 +1,22 @@
 function loadQuestions(data, startTime, duration, examName) {
-    let type
+    let imageURL,imageStatus
     const questionTemplate = document.querySelector('#question-template').innerHTML
     $('.showTest').text(examName)
     setTimeForTest(startTime, duration)
     $('#options').empty()
     const op = document.querySelector('#options')
+    if(data[0].questionImage !== null){
+        imageURL = "../../exminer/public"+data[0].questionImage.substring(2,data[0].questionImage.length)
+        imageStatus = true
+    }
+    else imageStatus = false
+
     if (data[0].answerType === "singleOption") {
-        const html = Mustache.render(questionTemplate, { questions: data[0], types: true })
+        const html = Mustache.render(questionTemplate, { questions: data[0], types: true, url: imageURL, status: imageStatus })
         op.insertAdjacentHTML("beforeend", html)
     }
     else{
-        const html = Mustache.render(questionTemplate, { 
-            questions: data[0], types: false
-        })
+        const html = Mustache.render(questionTemplate, { questions: data[0], types: false, url: imageURL, status: imageStatus })
         op.insertAdjacentHTML("beforeend", html)
     }
     showPreviousTicks()
@@ -31,7 +35,7 @@ function loadPaginaton(questions) {
 
 function setTimeForTest(time, duration) {
     let testStartTime = new Date(time).getTime()
-    let testEndTime = new Date(testStartTime + duration * 600000).getTime()
+    let testEndTime = new Date(testStartTime + duration * 60000).getTime()
     var x = setInterval(function() {
         let testPresentTime = new Date().getTime()
         let leftTestTime = testEndTime - testPresentTime
@@ -39,7 +43,7 @@ function setTimeForTest(time, duration) {
         var minutes = Math.floor((leftTestTime % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((leftTestTime % (1000 * 60)) / 1000);
         document.getElementById("showTime").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
-        if (leftTestTime < 0) {
+        if (leftTestTime < 0){
             clearInterval(x);
             $(location).attr('href', './endTest.html')
             localStorage.clear()
@@ -73,7 +77,7 @@ function loadFullWindow() {
 
 function exitHandler() {
     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-        $('#fullScreenModal').modal("show")
+        $('#modalEndTest').trigger("click")
     }
 }
 
