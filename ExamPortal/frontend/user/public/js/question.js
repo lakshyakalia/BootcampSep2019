@@ -35,7 +35,7 @@ function loadPaginaton(questions) {
 
 function setTimeForTest(time, duration) {
     let testStartTime = new Date(time).getTime()
-    let testEndTime = new Date(testStartTime + duration * 600000).getTime()
+    let testEndTime = new Date(testStartTime + duration * 60000).getTime()
     var x = setInterval(function() {
         let testPresentTime = new Date().getTime()
         let leftTestTime = testEndTime - testPresentTime
@@ -43,7 +43,7 @@ function setTimeForTest(time, duration) {
         var minutes = Math.floor((leftTestTime % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((leftTestTime % (1000 * 60)) / 1000);
         document.getElementById("showTime").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
-        if (leftTestTime < 0) {
+        if (leftTestTime < 0){
             clearInterval(x);
             $(location).attr('href', './endTest.html')
             localStorage.clear()
