@@ -55,7 +55,6 @@ $(document).ready(function() {
   $(document).ready(function() {
     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
-
     function validateForm() {
         var testName = document.getElementById("addExamName").value;
         var testCode = document.getElementById("addExamCode").value;
