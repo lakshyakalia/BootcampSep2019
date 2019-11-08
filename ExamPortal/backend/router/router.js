@@ -169,7 +169,7 @@ module.exports = () => {
     })
     //admin will delete examiner using id of examiner
     app.delete('/examiner/:id', (req, res) => {
-            const result = Users.examinerDel(req, res)
+            const result = Users.examinerDelete(req, res)
             res.send(result)
         })
         //admin will view test created by each examiner using their id
@@ -179,7 +179,7 @@ module.exports = () => {
     })
 
     app.patch('/examiner', middleware, async(req, res) => {
-        const result = await Users.examinerUpd(req, res)
+        const result = await Users.examinerUpdate(req, res)
     })
      // admin update examiner info
      app.patch('/examiner/:id', async(req, res) => {

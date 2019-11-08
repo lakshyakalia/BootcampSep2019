@@ -62,7 +62,7 @@ const userDetails = async (req, res) => {
 }
 
 
-const examinerUpd = async (req, res) => {
+const examinerUpdate = async (req, res) => {
     try {
         const body = req.body
         const myPlaintextPassword = body.password;
@@ -151,5 +151,5 @@ module.exports = {
     adminLogin,
     adminDetails,
     loggedInDetails,
-    examinerUpd
+    examinerUpdate
 }
