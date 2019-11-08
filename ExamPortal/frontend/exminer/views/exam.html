@@ -148,6 +148,9 @@
             <div class="col-md-12 question-div" id="{{_id}}">
                 <h3>Question-{{index}}</h3>
                 <p>{{questionText}}</p>
+                    {{#status}}
+                        <img src="{{questionImage}}"/>
+                    {{/status}}
                 <ul>
                     <li>{{option1}}</li>
                     <li>{{option2}}</li>

@@ -52,7 +52,7 @@ const saveCorrectOption = async(req,checkAnswer,existingAnswer)=>{
         if(!existingAnswerStatus){
             await test.findOneAndUpdate(
                 {$and:[{candidateId:req.headers.id},{testCode:req.body.code}]},
-                {
+                {   
                     $push: {answers:{answerSubmitted: req.body.checkedOption,questionId: req.body.qId, correctStatus: true}},
                     $set:{totalScore:updatedScore}
                 },
@@ -113,7 +113,7 @@ const saveAllQuestions = async(req,res)=>{
         let existingAnswer = await test.findOne({ $and:[{candidateId:req.headers.id},{testCode:req.headers.examcode}] })
         req.body.qId = allQuestions[i]._id
         req.body.checkedOption = null
-        req.body.code = req.headers.examcode
+        req.body.code = req.headers.examcode    
         if(existingAnswer  === null){
             let answerDetail = answerObject(req.body,req.headers,0,false,true)
             await answerDetail.save()
@@ -142,7 +142,7 @@ const getExamTime = async(req,res)=>{
     else{
         res.status(200).send({examData:examData,submitStatus:submitStatus.submitExam})
     }
-
+    
 }
 
 const questions = async(req, res) => {
@@ -162,8 +162,8 @@ const getQuestionDetails = async(req, res) => {
         if( values != 0 )
             res.status(200).send(values)
         else
-            res.status(404).send('No question')
-    } catch (error) {
+            res.status(404).send('Not Found')
+            } catch (error) {
         console.log(error)
     }
 }

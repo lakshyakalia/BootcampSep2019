@@ -20,7 +20,11 @@ function showQuestion(id) {
                 let indexTemplate = $("#index-template").html();
                 item.index = index + 1
                 $("#question-Index").append(Mustache.render(indexTemplate, item))
-
+                if( item.questionImage != null ){
+                    item.status = true
+                }else{
+                    item.status = false
+                }
                 let questionContent = $("#question-template-body").html()
                 item.index = index + 1
                 $("#question-Display").append(Mustache.render(questionContent, item))
