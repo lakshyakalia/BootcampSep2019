@@ -2,8 +2,10 @@ const { user } = require('../models/userRecord')
 const { admin } = require('../models/adminLogin')
 const { SECRET } = require("../config/config")
 const jwt = require('jsonwebtoken');
+const sgMail = require('@sendgrid/mail');
 // const bcrypt = require('bcrypt')
 const bcrypt = require('bcryptjs')
+var SENDGRID_API_KEY = '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'
 
 function decodeToken(req) {
     const token = req.headers.token
@@ -21,10 +23,19 @@ const adminDetails = async (req, res) => {
             const userInfo = req.body;
             var myPlaintesxtPassword = userInfo.password;
             var salt = bcrypt.genSaltSync(10);
-            var hash = bcrypt.hashSync(myPlaintesxtPassword, salt)
+            var hash = bcrypt.hashSync(myPlaintesxtPassword,salt)
             userInfo.password = hash; {
                 user.create(userInfo)
+                sgMail.setApiKey(SENDGRID_API_KEY);
+                const msg = {
+                    to: userInfo.email,
+                    from: 'noreply@example.com',
+                    subject: 'You have been successfully registered on CYGRP Exam Portal',
+                    text: "email=" + userInfo.email + '  password=' + myPlaintesxtPassword + '  Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS EXAMINER',
+                };
+                sgMail.send(msg);
                 return ({ "status": "200", "message": "user registered" })
+
 
             }
         }
@@ -37,12 +48,12 @@ const adminDetails = async (req, res) => {
 const loggedInDetails = async (req, res) => {
     const decoded = decodeToken(req);
     const det = await user.findOne({ "email": decoded.email });
-    console.log(det)
     return det;
 }
 
 const userDetails = async (req, res) => {
     try {
+        debugger
         const query = await user.findOne({ email: req.body.email })
         return query
     } catch (error) {
@@ -53,7 +64,6 @@ const userDetails = async (req, res) => {
 
 const examinerUpd = async (req, res) => {
     try {
-        // console.log(req.body)
         const body = req.body
         const myPlaintextPassword = body.password;
         var salt = bcrypt.genSaltSync(10);
@@ -81,36 +91,29 @@ const fetchData = async (req, res) => {
     }
     return arr
 }
-
-const updateuser = async (req, res) => {
+const updateuser = async(req, res) => {
     const id = req.body.id;
     const data = await user.findByIdAndUpdate(id, req.body);
     return data;
 }
 
-const adminLogin = async (req, res) => {
+const adminLogin = async(req, res) => {
     const existUser = await admin.findOne({ email: req.body.email });
-    // console.log(existUser);
     if (existUser) {
-        console.log("inside");
-        console.log(req.body.password);
-        //res.send({"message":"Admin exist"})
         const pass = await bcrypt.compare(req.body.password, existUser.password);
-        console.log(pass);
         if (pass) {
             res.send({ "message": "Admin valid" });
-        }
-        else {
+        } else {
             res.send({ "message": "Email or password is not valid" });
         }
-    }
-    else {
+    } else {
         res.send({ "message": "Email or password is not valid" });
     }
-
 }
-const userRecord = async (req, res) => {
+
+const userRecord = async(req, res) => {
     try {
+        debugger
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
             return ("user Exist")
@@ -121,6 +124,14 @@ const userRecord = async (req, res) => {
             var hash = bcrypt.hashSync(myPlaintesxtPassword, salt)
             userInfo.password = hash; {
                 user.create(userInfo)
+                sgMail.setApiKey(SENDGRID_API_KEY);
+                const msg = {
+                    to: userInfo.email,
+                    from: 'noreply@example.com',
+                    subject: 'You have been successfully registered on CYGRP Exam Portal',
+                    text: "email=" + userInfo.name + '   Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS STUDENT',
+                };
+                sgMail.send(msg);
                 return ({ "status": "200", "message": "user registered" })
 
             }

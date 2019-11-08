@@ -52,10 +52,8 @@ $(document).ready(function() {
         }
 
         if ((fname && lname && email && password && phoneNumber) == true) {
-
             let signUpData = true
             alert("Your SignUp has been successful")
-            $(location).attr('href', '../views/login.html')
         } else {
             signUpData = false
             alert("Your data is not valid")
@@ -63,10 +61,12 @@ $(document).ready(function() {
         $.ajax("http://localhost:3000/signUp", {
             type: "POST",
             dataType: "json",
-            // headers: {
-            //    token: localStorage.getItem('userToken')
-            // },   
             contentType: "application/json;charset=utf-8",
+            beforeSend: function() {
+                $('.main').animate({ opacity: 0.6 })
+                $('.mod').fadeIn()
+                $('.spinner').show()
+            },
             data: JSON.stringify({
                 "name": name,
                 "email": email,
@@ -75,10 +75,10 @@ $(document).ready(function() {
                 "accountType": accountType
             }),
             success: function(data, status) {
-                // $(location).attr('href', '../views/login.html')
+                $(location).attr('href', '../views/login.html')
             },
             error: function(data, error) {
-                //  console.log(error +" "+ "error occurred");
+                 console.log(error +" "+ "error occurred");
             }
         })
     })

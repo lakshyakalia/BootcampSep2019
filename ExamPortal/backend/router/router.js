@@ -5,43 +5,26 @@ const { Ques } = require('../controller')
 const middleware = require("../auth/middleware");
 const jwt = require('jsonwebtoken');
 const { SECRET } = require("../config/config")
+const path = require('path')
+var multer = require('multer')
+
+
+//path for folder to save image and rename image
+const reqPath = path.join(__dirname, '../../frontend/exminer/assets');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null,reqPath)
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
+var upload = multer({ storage: storage })
+// var upload = multer({ dest: 'upload/'});
 
 
 const createToken = require("../auth/authenticator").checkAuth;
 module.exports = () => {
-
-	app.patch('/examiner',async(req,res)=>{
-		const result =await Users.facultyUpd(req,res)
-		res.send(result)
-	})
-	// admin update examiner info
-	app.patch('/examiner/:id',async(req,res)=>
-	{
-		const result=await Users.updateUser(req,res);
-		res.send(result);
-    })
-
-    
-    
-	
-    
-	////////////////admin will view examiner
-	app.get('/examiner', async(req, res) => {
-			const result=await Users.fetchData(req,res)
-			res.send(result);
-	})
-   
-    //admin will add examiner
-    app.post('/examiner', async(req, res) => {
-        const response = await Users.adminDetails(req, res)
-        res.send(response);
-    })
-
-    //admin will view examiner
-    app.get('/examiner', async(req, res) => {
-        const result = await Users.fetchData(req, res)
-        res.send(result);
-    })
 
     app.post('/login', async(req, res) => {
         const result = await createToken(req)
@@ -75,6 +58,21 @@ module.exports = () => {
 
     })
 
+    app.post('/exam/accessKey', middleware,async(req, res) => {
+        const response = await Ques.checkAccessKey(req, res)
+        return response
+    })
+
+    app.get('/exam/accessKey',middleware,async(req,res)=>{
+        const response = await Ques.getExamTime(req,res)
+        return response
+    })
+
+    app.post('/exam/endTest',middleware,async(req,res)=>{
+        const response = await Ques.saveAllQuestions(req,res)
+        return response
+    })
+
     //examiner will fetch particular exam detail
     app.get('/exam/:id', middleware, (req, res) => {
         Users.fetchExamDetail(req, res)
@@ -102,17 +100,23 @@ module.exports = () => {
         console.log(response)
     })
 
-    //examiner will write exam questions
-    app.post('/exam/question', middleware, (req, res) => {
-        Users.question(req, res)
-    })
-    // examiner will add exam question
-    app.get('/exam/addQuestion/:examCode',(req,res)=>{
-       // console.log(req.query);
-      Users.addQuestion(req,res)
-      //  console.log(req.params.examCode);
+   // examiner will write exam questions
+    // app.post('/exam/question',middleware, (req, res) => {
+    //     console.log('multiple value')
+    //     Users.question(req, res)
+    // })
+
+    app.post('/exam/question',upload.single('questionImage'), (req, res) => {
+        if( req.file){
+            req.body['questionImage'] = '../assets/' + req.file.filename;   
+        }else{
+            req.body['questionImage'] = null
+        }
     
+         Users.question(req, res)
     })
+
+
     //examiner will views questions
     app.get('/exam/question/:id', middleware, (req, res) => {
         Users.getQuestionDetail(req, res)
@@ -136,38 +140,33 @@ module.exports = () => {
     })
 
     //candidates will view quesions using accesskey
-    app.get('/test', middleware, async(req, res) => {
+    app.get('/question', middleware, async(req, res) => {
         const response = await Ques.testQuestions(req, res)
         return response
     })
 
     //post answers selected by candidates
-    app.post('/test', middleware, async(req, res) => {
+    app.post('/question', middleware, async(req, res) => {
         const response = await Ques.saveCandidateAnswers(req, res)
         return response
     })
 
-    app.post('/test/accessKey', async(req, res) => {
-        const response = await Ques.checkAccessKey(req, res)
-        return response
-    })
-
-    app.get('/test/accessKey',middleware,async(req,res)=>{
-        const response = await Ques.getExamTime(req,res)
-        return response
-    })
-
-    app.post('/test/endTest',middleware,async(req,res)=>{
-        const response = await Ques.saveAllQuestions(req,res)
-        return response
-    })
-
-    //admin will add examiner
+    // //admin will add examiner
     // app.post('/examiner', middleware, (req, res) => {
     //     const response = adminDetail.adminDetails(req, res)
     //     return response;
     // })
+    //admin will add examiner
+    app.post('/examiner', async(req, res) => {
+        const response = await Users.adminDetails(req, res)
+        res.send(response);
+    })
 
+    //admin will view examiner
+    app.get('/examiner', async(req, res) => {
+        const result = await Users.fetchData(req, res)
+        res.send(result);
+    })
     //admin will delete examiner using id of examiner
     app.delete('/examiner/:id', (req, res) => {
             const result = Users.examinerDel(req, res)
@@ -179,11 +178,13 @@ module.exports = () => {
         res.send(result);
     })
 
-
     app.patch('/examiner', middleware, async(req, res) => {
         const result = await Users.examinerUpd(req, res)
-        res.send(result)
     })
-
+     // admin update examiner info
+     app.patch('/examiner/:id', async(req, res) => {
+        const result = await Users.updateUser(req, res);
+        res.send(result);
+    })
     return app
 }

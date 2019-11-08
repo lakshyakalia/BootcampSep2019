@@ -6,10 +6,8 @@ const bcryptjs = require('bcryptjs')
 const testInfo = require('./testDetails')
 
 const userRecord = async(req, res) => {
-    let response
-    var hash = bcryptjs.hashSync(req.body.password, 8)
-    req.body.password = hash
-    response = await userController.userRecord(req, res)
+
+    const response = await userController.userRecord(req, res)
     return response
 }
 
