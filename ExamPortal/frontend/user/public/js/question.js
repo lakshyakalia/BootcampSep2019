@@ -1,18 +1,22 @@
 function loadQuestions(data, startTime, duration, examName) {
-    let type
+    let imageURL,imageStatus
     const questionTemplate = document.querySelector('#question-template').innerHTML
     $('.showTest').text(examName)
     setTimeForTest(startTime, duration)
     $('#options').empty()
     const op = document.querySelector('#options')
+    if(data[0].questionImage !== null){
+        imageURL = "../../exminer/public"+data[0].questionImage.substring(2,data[0].questionImage.length)
+        imageStatus = true
+    }
+    else imageStatus = false
+
     if (data[0].answerType === "singleOption") {
-        const html = Mustache.render(questionTemplate, { questions: data[0], types: true })
+        const html = Mustache.render(questionTemplate, { questions: data[0], types: true, url: imageURL, status: imageStatus })
         op.insertAdjacentHTML("beforeend", html)
     }
     else{
-        const html = Mustache.render(questionTemplate, { 
-            questions: data[0], types: false
-        })
+        const html = Mustache.render(questionTemplate, { questions: data[0], types: false, url: imageURL, status: imageStatus })
         op.insertAdjacentHTML("beforeend", html)
     }
     showPreviousTicks()
@@ -31,7 +35,7 @@ function loadPaginaton(questions) {
 
 function setTimeForTest(time, duration) {
     let testStartTime = new Date(time).getTime()
-    let testEndTime = new Date(testStartTime + duration * 600000).getTime()
+    let testEndTime = new Date(testStartTime + duration * 60000).getTime()
     var x = setInterval(function() {
         let testPresentTime = new Date().getTime()
         let leftTestTime = testEndTime - testPresentTime
@@ -39,7 +43,7 @@ function setTimeForTest(time, duration) {
         var minutes = Math.floor((leftTestTime % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((leftTestTime % (1000 * 60)) / 1000);
         document.getElementById("showTime").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
-        if (leftTestTime < 0) {
+        if (leftTestTime < 0){
             clearInterval(x);
             $(location).attr('href', './endTest.html')
             localStorage.clear()
@@ -51,8 +55,11 @@ function showPreviousTicks() {
     let keys = Object.keys(localStorage)
     for (let i = 0; i < keys.length; i++) {
         if (keys[i].length > 20) {
-            let value = localStorage.getItem(keys[i])
-            $(`input[name=${keys[i]}][value=${value}]`).prop('checked', true)
+            let values = localStorage.getItem(keys[i])
+            values = values.split(',')
+            for(j=0; j<values.length;j++){
+                $(`input[name=${keys[i]}][value=${values[j]}]`).prop('checked', true)
+            }
         }
     }
 }
@@ -73,7 +80,7 @@ function loadFullWindow() {
 
 function exitHandler() {
     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-        $('#fullScreenModal').modal("show")
+        $('#modalEndTest').trigger("click")
     }
 }
 
@@ -122,12 +129,15 @@ $(document).ready(function() {
 $(document).on('click', '#submitAnswer', function() {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
     let examCode = $(this).parent().parent().parent().parent().children().children().children().children().attr('id')
-        // let radioValue = $(`input[name=${questionId}]:checked`).val()
-        // console.log(radioValue)
+    // let radioValue = $(`input[name=${questionId}]:checked`).val()
+    // console.log(radioValue)
     let value = []
     $.each($(`input[name=${questionId}]:checked`), function() {
         value.push($(this).val())
     })
+    if(value.length === 0){
+        return
+    }
     $.ajax('http://localhost:3000/test', {
         type: 'POST',
         dataType: 'JSON',
@@ -230,10 +240,13 @@ $(document).on('click', '#resetRadio', function() {
     $(`input[name=${questionId}]:checked`).prop("checked", false)
 })
 
-$(document).on('click', "input[type='radio']", function() {
+$(document).on('click', "input", function() {
     let questionId = $(this)[0].name
-    let answer = $(this)[0].value
-    localStorage.setItem(questionId, answer)
+    let value = []
+    $.each($(`input[name=${questionId}]:checked`), function() {
+        value.push($(this).val())
+    })
+    localStorage.setItem(questionId, value)
     $('#' + questionId + ".circle").css('background-color', "blue")
 })
 

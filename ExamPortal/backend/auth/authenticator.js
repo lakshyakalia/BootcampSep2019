@@ -17,10 +17,8 @@ async function comparePassword(myPlaintextPassword, req) {
         //redirect happens in login page
     const hash = user.password
     if (bcrypt.compareSync(myPlaintextPassword, hash)) {
-
         return user.accountType
     } else {
-        console.log('0')
         return "0"
     }
 }
@@ -38,7 +36,6 @@ async function checkAuth(req) {
     const data = await matchCredentials(req);
     if (data == "matched") {
         const valuePass = await comparePassword(req.body.password, req)
-        console.log(valuePass)
         if (valuePass == "Examiner" || valuePass == "Student" || valuePass == "Admin") {
             const token = await generateToken(req);
             return ({

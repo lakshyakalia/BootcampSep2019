@@ -182,19 +182,20 @@ a:hover {
     }
 }
 
-<<<<<<< HEAD
 .card-header p {
     font-weight: 100 !important;
     font-size: 30px;
-    /* font-family: 'Roboto', sans-serif; */
     text-align: center;
 }
 
 .optionBox p {
     font-weight: 400;
     font-size: 24px;
-=======
+}
 .checkBox{
     margin-left: 10px;
->>>>>>> upstream/development
+}
+
+.form-check-input{
+    margin-top: 10.3px !important;
 }
