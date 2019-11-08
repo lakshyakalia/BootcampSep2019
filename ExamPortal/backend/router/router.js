@@ -115,7 +115,7 @@ module.exports = () => {
     //examiner will edit questions
     app.patch('/exam/question/:id',upload.single('questionImage'), middleware, (req, res) => {
         if( req.file){
-            req.body['questionImage'] = '../assets/'+req.file.filename
+            req.body['questionImage'] = '../public/assets/'+req.file.filename
         }else{
             req.body['questionImage'] = null
         }
