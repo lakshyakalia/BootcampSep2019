@@ -8,7 +8,13 @@ Assuming you have these things installed in your device
   - MongoDb
  
 This is online exam-portal which will be used to replace the manual hiring system in college hirings 
+### Setup
+* Npm install 
+* Npm start
 
+### Installation
+Git clone
+Install the dependencies and start the project 
 ### Tech
 
 
@@ -20,9 +26,6 @@ This is online exam-portal which will be used to replace the manual hiring syste
 * [jQuery] - Used to in frontend script
 * [SendGrid]- Used to send e-mail to faculty and student
 
-### Installation
-
-Install the dependencies and start the
 ### contributors
 * Ashish Rawat
 * Ashish Chopra
@@ -31,4 +34,34 @@ Install the dependencies and start the
 * Chandan
 * Lakshay Kalia
 * Garima Sharma
+* Himanshu Chauhan
+### Copyright
+© Cybergroup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
