@@ -55,8 +55,11 @@ function showPreviousTicks() {
     let keys = Object.keys(localStorage)
     for (let i = 0; i < keys.length; i++) {
         if (keys[i].length > 20) {
-            let value = localStorage.getItem(keys[i])
-            $(`input[name=${keys[i]}][value=${value}]`).prop('checked', true)
+            let values = localStorage.getItem(keys[i])
+            values = values.split(',')
+            for(j=0; j<values.length;j++){
+                $(`input[name=${keys[i]}][value=${values[j]}]`).prop('checked', true)
+            }
         }
     }
 }
@@ -126,12 +129,15 @@ $(document).ready(function() {
 $(document).on('click', '#submitAnswer', function() {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
     let examCode = $(this).parent().parent().parent().parent().children().children().children().children().attr('id')
-        // let radioValue = $(`input[name=${questionId}]:checked`).val()
-        // console.log(radioValue)
+    // let radioValue = $(`input[name=${questionId}]:checked`).val()
+    // console.log(radioValue)
     let value = []
     $.each($(`input[name=${questionId}]:checked`), function() {
         value.push($(this).val())
     })
+    if(value.length === 0){
+        return
+    }
     $.ajax('http://localhost:3000/test', {
         type: 'POST',
         dataType: 'JSON',
@@ -234,10 +240,13 @@ $(document).on('click', '#resetRadio', function() {
     $(`input[name=${questionId}]:checked`).prop("checked", false)
 })
 
-$(document).on('click', "input[type='radio']", function() {
+$(document).on('click', "input", function() {
     let questionId = $(this)[0].name
-    let answer = $(this)[0].value
-    localStorage.setItem(questionId, answer)
+    let value = []
+    $.each($(`input[name=${questionId}]:checked`), function() {
+        value.push($(this).val())
+    })
+    localStorage.setItem(questionId, value)
     $('#' + questionId + ".circle").css('background-color', "blue")
 })
 
