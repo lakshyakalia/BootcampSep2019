@@ -175,6 +175,8 @@ select {
     border-top: 2px solid black;
     align-items: center;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .option-div-flex:hover {
@@ -194,5 +196,22 @@ i {
 }
 
 .option-div-flex span {
-    font-size: 16px;
+    font-size: 18px;
+    width: 100%;
+    display: block;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin-top: 30px;
+    font-weight: 300;
+}
+
+.option-div-flex button {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    box-shadow: none;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    width: 100%;
+}
+
+.flex-1 {
+    flex: 2;
 }
