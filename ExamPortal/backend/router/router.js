@@ -106,7 +106,13 @@ module.exports = () => {
     app.post('/exam/question', middleware, (req, res) => {
         Users.question(req, res)
     })
-
+    // examiner will add exam question
+    app.get('/exam/addQuestion/:examCode',(req,res)=>{
+       // console.log(req.query);
+      Users.addQuestion(req,res)
+      //  console.log(req.params.examCode);
+    
+    })
     //examiner will views questions
     app.get('/exam/question/:id', middleware, (req, res) => {
         Users.getQuestionDetail(req, res)

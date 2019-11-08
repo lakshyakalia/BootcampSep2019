@@ -15,8 +15,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
     <link rel="stylesheet" href="../public/css/exam.css">
-    <!-- <link rel="stylesheet" href="../public/css/examdetails.css"> -->
-    <script type="text/javascript" src="../public/js/examiner.js"></script>
+    <link rel="stylesheet" href="../public/css/examdetails.css">
+    <script type="text/javascript" src="../public/js/sh.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
 </head>
 
@@ -55,7 +55,7 @@
             <div class="col-md-12 exam-detail">
                 <h2>Exam Details</h2>
                 <div class="row heading">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <h5>Exam NAME</h5>
                     </div>
                     <div class="col-md-2">
@@ -67,6 +67,7 @@
                     <div class="col-md-2">
                         <h5>Exam Date </h5>
                     </div>
+                    <div class="col-md-1"></div>
                     <div class="col-md-1"></div>
                     <div class="col-md-1"></div>
                     <div class="col-md-1"></div>
@@ -89,7 +90,7 @@
     <!-- display exam detail template -->
     <script id="display-exam-detail" type="text/html">
         <div class="row content" id="{{_id}}">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <p>{{examName}}</p>
             </div>
             <div class="col-md-2">
@@ -100,6 +101,9 @@
             </div>
             <div class="col-md-2">
                 <p>{{examStartTime}}</p>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-outline-success" id="{{_id}}"  onclick="addQuestion(this.id)">Add</button>
             </div>
             <div class="col-md-1">
                 <button class="btn btn-outline-info" id="view{{index}}" onclick="showQuestion(this.id)">View</button>
@@ -142,9 +146,9 @@
         </div>
     </script>
     <!-- display question template -->
-    <script id="index-template" type="text/html">
+    <!-- <script id="index-template" type="text/html"></script>
         <a href="#{{_id}}">Question-{{index}}</a>
-    </script>
+    </script> -->
     <script id="question-template-body" type="text/html">
         <div class="row">
             <div class="col-md-12 question-div" id="{{_id}}">

@@ -65,10 +65,21 @@ const fetchExamDetail = async(req, res) => {
         res.status(404).send(error)
     }
 }
+const addQuestion = async(req, res) => {
+    try {
+        // console.log(req.query)
+        let values = await examDetail.findById(req.query.examinerId);
+        console.log(values);
+        res.status(200).send(values)
+    } catch (error) {
+        console.log(error)
+    }
+}
 module.exports = {
     examDetails,
     viewExamDetail,
     removeExam,
     fetchExamDetail,
-    editExam
+    editExam,
+    addQuestion
 }

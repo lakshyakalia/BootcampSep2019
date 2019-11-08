@@ -1,5 +1,5 @@
 var tempExamCode = ''
-$(document).ready(function() {
+$(document).ready(function () {
     const tok = localStorage.getItem('token');
     if (tok == null) {
         location.replace("../../index.html")
@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     allWells.hide();
 
-    navListItems.click(function(e) {
+    navListItems.click(function (e) {
         e.preventDefault();
         var $target = $($(this).attr('href')),
             $item = $(this);
@@ -24,7 +24,7 @@ $(document).ready(function() {
         }
     });
 
-    allNextBtn.click(function() {
+    allNextBtn.click(function () {
         var curStep = $(this).closest(".setup-content"),
             curStepBtn = curStep.attr("id"),
             nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
@@ -44,27 +44,27 @@ $(document).ready(function() {
     });
 
     $('div.setup-panel div a.btn-primary').trigger('click');
-   
-        $('input[name="colorRadio"]').click(function(){  
-            var inputValue = $(this).attr("value");
-            var targetBox = $("." + inputValue);
-            $(".box").not(targetBox).hide();
-            $(targetBox).show();
-        });
-  });
- 
-  $(document).ready(function() {
+
+    $('input[name="colorRadio"]').click(function () {
+        var inputValue = $(this).attr("value");
+        var targetBox = $("." + inputValue);
+        $(".box").not(targetBox).hide();
+        $(targetBox).show();
+    });
+});
+
+$(document).ready(function () {
     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
     function validateForm() {
-        
+
         var testName = document.getElementById("addExamName").value;
         var testCode = document.getElementById("addExamCode").value;
         var testDuration = document.getElementById("addExamDuration").value;
         var testDate = document.getElementById("addExamTestDate").value;
         var testInstruction = document.getElementById("addExamInstruction").value;
-        
+
         if (testName === "") {
             alert("Please enter test name");
         } else {
@@ -88,23 +88,23 @@ $(document).ready(function() {
 
         if (testDate == "") {
             alert("Please enter your test date");
-        }  else {
-                const testD=testDate.slice(0,10);
-                const testd=testDate.slice(11,16)
-                testDate=testD.concat(" "+testd+":00")
-                
-            }
-            
-    
-        if ((testName || testCode || testDuration ) == true) {
-                tempExamCode= $('#addExamCode').val()
+        } else {
+            const testD = testDate.slice(0, 10);
+            const testd = testDate.slice(11, 16)
+            testDate = testD.concat(" " + testd + ":00")
+
+        }
+
+
+        if ((testName || testCode || testDuration) == true) {
+            tempExamCode = $('#addExamCode').val()
             let examDetail = {
                 examName: $('#addExamName').val(),
                 examCode: $('#addExamCode').val(),
                 examDuration: $('#addExamDuration').val(),
                 examStartTime: testDate,
                 instructions: $('#addExamInstruction').val(),
-                
+
             }
             $.ajax("http://localhost:3000/exam", {
                 type: "POST",
@@ -115,23 +115,21 @@ $(document).ready(function() {
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(examDetail),
                 contentType: "application/json; charset=utf-8",
-                success: function( recent) {
+                success: function (recent) {
                     console.log(recent.message);
-                    if(recent.message=="Exam Code already exist")
-              {
-                window.alert("Exam Code Already Exist");
-                location.reload()
-              }
-              else
-              {
-                 document.getElementById("addExamName").value='';
-                 document.getElementById("addExamCode").value='';
-                 document.getElementById("addExamDuration").value='';
-                 document.getElementById("addExamTestDate").value='';
-                 document.getElementById("addExamInstruction").value='';
-              }
+                    if (recent.message == "Exam Code already exist") {
+                        window.alert("Exam Code Already Exist");
+                        location.reload()
+                    }
+                    else {
+                        document.getElementById("addExamName").value = '';
+                        document.getElementById("addExamCode").value = '';
+                        document.getElementById("addExamDuration").value = '';
+                        document.getElementById("addExamTestDate").value = '';
+                        document.getElementById("addExamInstruction").value = '';
+                    }
                 },
-                error: function(error) {
+                error: function (error) {
                     console.log("error : " + error)
                 }
             })
@@ -141,196 +139,196 @@ $(document).ready(function() {
     }
 })
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('.loader').hide()
     document.getElementById('submitBtn').addEventListener('click', validateForm)
 
     function validateForm() {
         var question = document.getElementById("addtestQuestion").value;
-        
-        
+
+
         var weightage = document.getElementById("addtestWeightage").value;
-         //console.log(question,answer,weightage)
-        
-        if ( question=== "") {
+        //console.log(question,answer,weightage)
+
+        if (question === "") {
             alert("Please enter question");
             return
         } else {
-            
+
             var opt = $("input[name='colorRadio']:checked").val();
-           
-            
-            if ( opt == '' ){
+
+
+            if (opt == '') {
                 return
-                }else if ( opt =="red"){
-                    var answer = document.getElementById("addtestAnswer").value;
-                    var option1 = document.getElementById("addtestOption1").value;
-                    var option2 = document.getElementById("addtestOption2").value;
-                    var option3 = document.getElementById("addtestOption3").value;
-                    var option4 = document.getElementById("addtestOption4").value;
+            } else if (opt == "red") {
+                var answer = document.getElementById("addtestAnswer").value;
+                var option1 = document.getElementById("addtestOption1").value;
+                var option2 = document.getElementById("addtestOption2").value;
+                var option3 = document.getElementById("addtestOption3").value;
+                var option4 = document.getElementById("addtestOption4").value;
 
-                    if (option1 === "" ) {
-                            alert("Please enter 1st option");
-                            return
-                        }  else {
-                                option1 = true;
-                            }
-                    
-                
-                        if (option2 === "" ) {
-                            alert("Please enter 2nd option");
-                        }  else {
-                                option2 = true;
-                            }
-                            if (option3 === "" ) {
-                                alert("Please enter 3rd option");
-                            }  else {
-                                    option3 = true;
-                                }
-                        
-                    
-                            if (option4 === "" ) {
-                                alert("Please enter  4th option");
-                            }  else {
-                                    option4 = true;
-                                }
-                
-                        if (answer === "") {
-                            alert("Please enter correct option");
-                        }  else {
-                            var check1 = [];
-                            $.each($("input[name='option']:checked"), function(){
-                                check1.push($(this).val());
-                            });
-                            answer = check1.join(", ");
-                            }
-                        
-                        if (weightage === "") {
-                            alert("Please enter weightage");
-                        }  else {
-                                weightage = true;
-                                }
-                    
-                    let examDetail = {
-                                        questionText: $('#addtestQuestion').val(),
-                                        answer: answer,
-                                        options :{
-                                        option1: $('#addtestOption1').val(),
-                                        option2: $('#addtestOption2').val(),
-                                        option3: $('#addtestOption3').val(),
-                                        option4: $('#addtestOption4').val(),
-                                        },
-                                        weightage: $('#addtestWeightage').val(),
-                                        examCode: tempExamCode,
-                                        answerType:"multipleOption"
-                                    }
-                                    console.log(examDetail)
-                                    $.ajax("http://localhost:3000/exam/question", {
-                                                        type: "POST",
-                                                        dataType: "json",
-                                                        contentType: "application/json;charset=utf-8",
-                                                        data: JSON.stringify(examDetail),
-                                                        contentType: "application/json; charset=utf-8",
-                                                        success: function(data, status) {
-                                                            document.getElementById("addtestQuestion").value='';
-                                                            document.getElementById("addtestOption1").value='';
-                                                            document.getElementById("addtestOption2").value='';
-                                                            document.getElementById("addtestOption3").value='';
-                                                            document.getElementById("addtestOption4").value='';
-                                                            document.getElementById("addtestAnswer").value='';
-                                                            document.getElementById("addtestWeightage").value='';
-                                                           
-                                                        },
-                                                        error: function(error) {
-                                                            console.log("error : " + error)
-                                                        }
-                                                    })
+                if (option1 === "") {
+                    alert("Please enter 1st option");
+                    return
+                } else {
+                    option1 = true;
+                }
 
-                }else if( opt == "green"){
-                    var option1G = document.getElementById("addtestOption1G").value;
-                    var option2G = document.getElementById("addtestOption2G").value;
-                    var option3G = document.getElementById("addtestOption3G").value;
-                    var option4G = document.getElementById("addtestOption4G").value;
-                    var answer = $("input[name='option1']:checked").val();
-                    
-                    if (option1G === "" ) {
-                        alert("Please enter 1st option");
-                        return
-                    }  else {
-                            option1G = true;
-                        }
-                
-            
-                    if (option2G === "" ) {
-                        alert("Please enter 2nd option");
-                    }  else {
-                            option2G = true;
-                        }
-                        if (option3G === "" ) {
-                            alert("Please enter 3rd option");
-                        }  else {
-                                option3G = true;
-                            }
-                    
-                
-                        if (option4G === "" ) {
-                            alert("Please enter  4th option");
-                        }  else {
-                                option4G = true;
-                            }
-                            if (answer === "") {
-                                alert("Please enter answer");
-                            }  else {
-                                      
-                                    }
-                    
-                    
-                    if (weightage === "") {
-                        alert("Please enter weightage");
-                    }  else {
-                            weightage = true;
-                            }
-                            
-                    let examDetail = {
-                        questionText: $('#addtestQuestion').val(),
-                        answer: $('#addtestAnswer1').val(),
-                        options :{
+
+                if (option2 === "") {
+                    alert("Please enter 2nd option");
+                } else {
+                    option2 = true;
+                }
+                if (option3 === "") {
+                    alert("Please enter 3rd option");
+                } else {
+                    option3 = true;
+                }
+
+
+                if (option4 === "") {
+                    alert("Please enter  4th option");
+                } else {
+                    option4 = true;
+                }
+
+                if (answer === "") {
+                    alert("Please enter correct option");
+                } else {
+                    var check1 = [];
+                    $.each($("input[name='option']:checked"), function () {
+                        check1.push($(this).val());
+                    });
+                    answer = check1.join(", ");
+                }
+
+                if (weightage === "") {
+                    alert("Please enter weightage");
+                } else {
+                    weightage = true;
+                }
+
+                let examDetail = {
+                    questionText: $('#addtestQuestion').val(),
+                    answer: answer,
+                    options: {
+                        option1: $('#addtestOption1').val(),
+                        option2: $('#addtestOption2').val(),
+                        option3: $('#addtestOption3').val(),
+                        option4: $('#addtestOption4').val(),
+                    },
+                    weightage: $('#addtestWeightage').val(),
+                    examCode: tempExamCode,
+                    answerType: "multipleOption"
+                }
+                console.log(examDetail)
+                $.ajax("http://localhost:3000/exam/question", {
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(examDetail),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data, status) {
+                        document.getElementById("addtestQuestion").value = '';
+                        document.getElementById("addtestOption1").value = '';
+                        document.getElementById("addtestOption2").value = '';
+                        document.getElementById("addtestOption3").value = '';
+                        document.getElementById("addtestOption4").value = '';
+                        document.getElementById("addtestAnswer").value = '';
+                        document.getElementById("addtestWeightage").value = '';
+
+                    },
+                    error: function (error) {
+                        console.log("error : " + error)
+                    }
+                })
+
+            } else if (opt == "green") {
+                var option1G = document.getElementById("addtestOption1G").value;
+                var option2G = document.getElementById("addtestOption2G").value;
+                var option3G = document.getElementById("addtestOption3G").value;
+                var option4G = document.getElementById("addtestOption4G").value;
+                var answer = $("input[name='option1']:checked").val();
+
+                if (option1G === "") {
+                    alert("Please enter 1st option");
+                    return
+                } else {
+                    option1G = true;
+                }
+
+
+                if (option2G === "") {
+                    alert("Please enter 2nd option");
+                } else {
+                    option2G = true;
+                }
+                if (option3G === "") {
+                    alert("Please enter 3rd option");
+                } else {
+                    option3G = true;
+                }
+
+
+                if (option4G === "") {
+                    alert("Please enter  4th option");
+                } else {
+                    option4G = true;
+                }
+                if (answer === "") {
+                    alert("Please enter answer");
+                } else {
+
+                }
+
+
+                if (weightage === "") {
+                    alert("Please enter weightage");
+                } else {
+                    weightage = true;
+                }
+
+                let examDetail = {
+                    questionText: $('#addtestQuestion').val(),
+                    answer: $('#addtestAnswer1').val(),
+                    options: {
                         option1: $('#addtestOption1G').val(),
                         option2: $('#addtestOption2G').val(),
                         option3: $('#addtestOption3G').val(),
                         option4: $('#addtestOption4G').val(),
-                        },
-                        weightage: $('#addtestWeightage').val(),
-                        examCode: tempExamCode,
-                        answerType:"singleOption"
-                    } 
-                    console.log(examDetail)
-                    $.ajax("http://localhost:3000/exam/question", {
-                        type: "POST",
-                        dataType: "json",
-                        contentType: "application/json;charset=utf-8",
-                        data: JSON.stringify(examDetail),
-                        contentType: "application/json; charset=utf-8",
-                        success: function(data, status) {
-                            document.getElementById("addtestQuestion").value='';
-                            document.getElementById("addtestOption1G").value='';
-                            document.getElementById("addtestOption2G").value='';
-                            document.getElementById("addtestOption3G").value='';
-                            document.getElementById("addtestOption4G").value='';
-                            document.getElementById("addtestAnswer").value='';
-                            document.getElementById("addtestWeightage").value='';
-                           
-                        },
-                        error: function(error) {
-                            console.log("error : " + error)
-                        }
-                    })
+                    },
+                    weightage: $('#addtestWeightage').val(),
+                    examCode: tempExamCode,
+                    answerType: "singleOption"
                 }
+                console.log(examDetail)
+                $.ajax("http://localhost:3000/exam/question", {
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(examDetail),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data, status) {
+                        document.getElementById("addtestQuestion").value = '';
+                        document.getElementById("addtestOption1G").value = '';
+                        document.getElementById("addtestOption2G").value = '';
+                        document.getElementById("addtestOption3G").value = '';
+                        document.getElementById("addtestOption4G").value = '';
+                        document.getElementById("addtestAnswer").value = '';
+                        document.getElementById("addtestWeightage").value = '';
+
+                    },
+                    error: function (error) {
+                        console.log("error : " + error)
+                    }
+                })
             }
-    
+        }
 
 
-  }
-   
-    
- })
+
+    }
+
+
+})

@@ -1,3 +1,9 @@
+function addQuestion(id)
+{
+    //console.log("hello"+id);
+    localStorage.setItem('addQuestionid',id);
+  $(location).attr('href','../views/addQuestion.html');
+}
 function showQuestion(id) {
     // eid = $('#'+id).parent().parent().attr('id')
     let examCode = $('#' + id).parent().prev().prev().prev().find('p').html()
@@ -178,10 +184,6 @@ function deleteExam(id) {
 }
 
 $(document).ready(() => {
-    const tok = localStorage.getItem('token');
-    if (tok == null) {
-        location.replace("../../index.html")
-    }
     $.ajax("http://localhost:3000/exam", {
         type: 'GET',
         dataType: 'json',

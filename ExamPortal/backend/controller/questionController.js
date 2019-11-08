@@ -218,11 +218,14 @@ const questions = async(req, res) => {
 const getQuestionDetails = async(req, res) => {
     try {
         let values = await questionDetail.find({ examCode: decodeURIComponent(req.params.id) });
+        console.log(values);
         res.status(200).send(values)
+
     } catch (error) {
         console.log(error)
     }
 }
+
 
 const fetchQuestionById = async(req, res) => {
     try {
