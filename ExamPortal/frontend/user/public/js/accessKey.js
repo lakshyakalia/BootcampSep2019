@@ -17,7 +17,7 @@ $(document).on('click', '#checkAccessKey', function() {
     if (tok == null) {
         location.replace("../../index.html")
     }
-    $.ajax('http://localhost:3000/test/accessKey', {
+    $.ajax('http://localhost:3000/exam/accessKey', {
         type: 'POST',
         dataType: 'JSON',
         data: {

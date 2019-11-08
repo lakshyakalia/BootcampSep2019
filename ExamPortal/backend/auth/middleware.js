@@ -7,7 +7,6 @@ module.exports = isAuthenticated = (req, res, next) => {
         if (err) {
             res.send({ "message": "session expired" })
         } else {
-            debugger
             req.headers.role = decoded.claim;
             req.headers.id = decoded.id
             next()

@@ -58,6 +58,21 @@ module.exports = () => {
 
     })
 
+    app.post('/exam/accessKey', middleware,async(req, res) => {
+        const response = await Ques.checkAccessKey(req, res)
+        return response
+    })
+
+    app.get('/exam/accessKey',middleware,async(req,res)=>{
+        const response = await Ques.getExamTime(req,res)
+        return response
+    })
+
+    app.post('/exam/endTest',middleware,async(req,res)=>{
+        const response = await Ques.saveAllQuestions(req,res)
+        return response
+    })
+
     //examiner will fetch particular exam detail
     app.get('/exam/:id', middleware, (req, res) => {
         Users.fetchExamDetail(req, res)
@@ -125,29 +140,14 @@ module.exports = () => {
     })
 
     //candidates will view quesions using accesskey
-    app.get('/test', middleware, async(req, res) => {
+    app.get('/question', middleware, async(req, res) => {
         const response = await Ques.testQuestions(req, res)
         return response
     })
 
     //post answers selected by candidates
-    app.post('/test', middleware, async(req, res) => {
+    app.post('/question', middleware, async(req, res) => {
         const response = await Ques.saveCandidateAnswers(req, res)
-        return response
-    })
-
-    app.post('/test/accessKey', async(req, res) => {
-        const response = await Ques.checkAccessKey(req, res)
-        return response
-    })
-
-    app.get('/test/accessKey',middleware,async(req,res)=>{
-        const response = await Ques.getExamTime(req,res)
-        return response
-    })
-
-    app.post('/test/endTest',middleware,async(req,res)=>{
-        const response = await Ques.saveAllQuestions(req,res)
         return response
     })
 

@@ -1,5 +1,5 @@
 $(document).on('click', '.startTest', function() {
-    $.ajax('http://localhost:3000/test/accessKey', {
+    $.ajax('http://localhost:3000/exam/accessKey', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -17,7 +17,7 @@ $(document).on('click', '.startTest', function() {
             }
 
         },
-        error: function(error) {}
+        error: function(error) { console.log(error)}
     })
 
 })
@@ -43,7 +43,7 @@ function checkTimeForTest(time) {
 }
 
 $(document).ready(function() {
-    $.ajax('http://localhost:3000/test/accessKey', {
+    $.ajax('http://localhost:3000/exam/accessKey', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -57,7 +57,7 @@ $(document).ready(function() {
             checkTimeForTest(data.examData.examStartTime)
             document.getElementById('username').innerHTML = "Hie "+localStorage.getItem('name')
         },
-        error: function(error) {}
+        error: function(error) { console.log("error : ",error)}
     })
 })
 
