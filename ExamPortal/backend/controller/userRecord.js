@@ -24,6 +24,8 @@ const adminDetails = async (req, res) => {
             var myPlaintesxtPassword = userInfo.password;
             var salt = bcrypt.genSaltSync(10);
             var hash = bcrypt.hashSync(myPlaintesxtPassword,salt)
+            var rol='Examiner'
+            userInfo.accountType= rol
             userInfo.password = hash; {
                 user.create(userInfo)
                 sgMail.setApiKey(SENDGRID_API_KEY);
@@ -122,6 +124,8 @@ const userRecord = async(req, res) => {
             var myPlaintesxtPassword = userInfo.password;
             var salt = bcrypt.genSaltSync(10);
             var hash = bcrypt.hashSync(myPlaintesxtPassword, salt)
+            var role='Student'
+            userInfo.accountType=role
             userInfo.password = hash; {
                 user.create(userInfo)
                 sgMail.setApiKey(SENDGRID_API_KEY);
@@ -129,7 +133,7 @@ const userRecord = async(req, res) => {
                     to: userInfo.email,
                     from: 'noreply@example.com',
                     subject: 'You have been successfully registered on CYGRP Exam Portal',
-                    text: "email=" + userInfo.name + '   Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS STUDENT',
+                    text:  userInfo.name + '   Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS STUDENT',
                 };
                 sgMail.send(msg);
                 return ({ "status": "200", "message": "user registered" })

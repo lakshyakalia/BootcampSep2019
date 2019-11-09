@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    var flag= false
     $("#signUpSubmit").click((event) => {
         event.preventDefault()
         fname = $("#firstName").val()
@@ -47,11 +48,12 @@ $(document).ready(function() {
                 alert("Please enter a valid 10 digit mobile number");
 
             } else {
-                phoneNumber = true;
+                flag = true
+                phoneNumber = $("#phoneNumber").val() ;
             }
         }
 
-        if ((fname && lname && email && password && phoneNumber) == true) {
+        if ((fname && lname && email && password && flag) == true) {
             let signUpData = true
             alert("Your SignUp has been successful")
         } else {
@@ -72,7 +74,7 @@ $(document).ready(function() {
                 "email": email,
                 "phoneNumber": phoneNumber,
                 "password": password,
-                "accountType": accountType
+                "accountType": "Student"
             }),
             success: function(data, status) {
                 $(location).attr('href', '../views/login.html')
