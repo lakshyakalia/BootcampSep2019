@@ -10,7 +10,7 @@ var multer = require('multer')
 
 
 //path for folder to save image and rename image
-const reqPath = path.join(__dirname, '../../frontend/exminer/assets');
+const reqPath = path.join(__dirname, '../../frontend/exminer/public/assets');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null,reqPath)
@@ -94,7 +94,6 @@ module.exports = () => {
 
     app.get('/performance/students', middleware, async(req, res) => {
         const response = await Users.studPerformance(req, res)
-        console.log(response)
     })
 
    // examiner will write exam questions
@@ -105,7 +104,7 @@ module.exports = () => {
 
     app.post('/exam/question',upload.single('questionImage'), (req, res) => {
         if( req.file){
-            req.body['questionImage'] = '../assets/' + req.file.filename;   
+            req.body['questionImage'] = '../public/assets/' + req.file.filename;   
         }else{
             req.body['questionImage'] = null
         }

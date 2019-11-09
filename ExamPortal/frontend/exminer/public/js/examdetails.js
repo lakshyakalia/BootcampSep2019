@@ -56,7 +56,8 @@ $(document).ready(function () {
 //     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
-    function validateForm() {
+    function validateForm(){
+        console.log('create exam')
         var testName = document.getElementById("addExamName").value;
         var testCode = document.getElementById("addExamCode").value;
         var testDuration = document.getElementById("addExamDuration").value;

@@ -3,9 +3,8 @@ const question = require('./questionController')
 
 const examDetails = async (req, res) => {
     try {
-        console.log('save exam ',req.body.examCode)
+        
         const checkExamCode = await examDetail.findOne({ examCode: req.body.examCode })
-        console.log('check exam code',checkExamCode)
         if(checkExamCode != null ){
             res.status(409).send({message : "Exam Code already exist"})
         }
@@ -27,7 +26,7 @@ const viewExamDetail = async(req, res) => {
         if( values.length != 0 ){
             res.status(200).send(values)
         }else
-        res.status(404).send({msg:'No Exam'})
+        res.status(404).send('No Exam')
     } catch (error) {
         console.log(error)
     }
