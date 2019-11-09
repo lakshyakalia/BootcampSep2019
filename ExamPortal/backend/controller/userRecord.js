@@ -42,7 +42,6 @@ const adminDetails = async (req, res) => {
             }
         }
     } catch (error) {
-        console.log(error)
         return ({ error: error })
     }
 }
@@ -55,7 +54,6 @@ const loggedInDetails = async (req, res) => {
 
 const userDetails = async (req, res) => {
     try {
-        debugger
         const query = await user.findOne({ email: req.body.email })
         return query
     } catch (error) {
@@ -81,7 +79,6 @@ const examinerUpdate = async (req, res) => {
 
 const fetchData = async (req, res) => {
     const data = await user.find({ 'accountType': 'Examiner' });
-    //console.log(data.length);
    let arr = [];
     for (i = 0; i < data.length; i++) {
        let newObject = {}
@@ -115,7 +112,6 @@ const adminLogin = async(req, res) => {
 
 const userRecord = async(req, res) => {
     try {
-        debugger
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
             return ("user Exist")
@@ -141,7 +137,6 @@ const userRecord = async(req, res) => {
             }
         }
     } catch (error) {
-        console.log(error)
         return ({ error: error })
     }
 }

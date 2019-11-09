@@ -96,12 +96,6 @@ module.exports = () => {
         const response = await Users.studPerformance(req, res)
     })
 
-   // examiner will write exam questions
-    // app.post('/exam/question',middleware, (req, res) => {
-    //     console.log('multiple value')
-    //     Users.question(req, res)
-    // })
-
     app.post('/exam/question',upload.single('questionImage'), (req, res) => {
         if( req.file){
             req.body['questionImage'] = '../public/assets/' + req.file.filename;   
