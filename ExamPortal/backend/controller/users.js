@@ -7,7 +7,7 @@ const testInfo = require('./testDetails')
 
 const userRecord = async(req, res) => {
 
-    const response = await userController.userRecord(req, res)
+  const response = await userController.userRecord(req, res)
     return response
 }
 
@@ -44,7 +44,6 @@ const studentPerformance = async(req, res) => {
 
 }
 
-
 const adminLogin = async(req, res) => {
 
     const result = await userController.adminLogin(req, res)
@@ -61,7 +60,6 @@ const editExam = (req, res) => {
 }
 
 const getQuestionDetail = (req, res) => {
-    console.log("hello1 ", req.params.id)
     questionDetail.getQuestionDetails(req, res)
 }
 const addQuestion = (req, res) => {
@@ -90,8 +88,8 @@ const testDetails = (req, res) => {
     return result;
 }
 
-const examinerDel = (req, res) => {
-    const result = testInfo.examinerDel(req, res)
+const examinerDelete = (req, res) => {
+    const result = testInfo.examinerDelete(req, res)
     return result
 }
 const fetchData = (req, res) => {
@@ -99,8 +97,8 @@ const fetchData = (req, res) => {
     return result
 }
 
-const examinerUpd = (req, res) => {
-    const result = userController.examinerUpd(req, res)
+const examinerUpdate = (req, res) => {
+    const result = userController.examinerUpdate(req, res)
     return result
 }
 const studPerformance = async(req, res) => {
@@ -120,8 +118,8 @@ const adminDetails = (req, res) => {
 module.exports = {
     adminDetails,
     updateUser,
-    examinerUpd,
-    examinerDel,
+    examinerUpdate,
+    examinerDelete,
     fetchData,
     testDetails,
     removeExam,

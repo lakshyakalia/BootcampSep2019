@@ -222,11 +222,6 @@ a:hover {
     color: blue;
 }
 
-
-/* .navbar-ligh .navbar-nav .nav-link {
-    color: white;
-    } */
-
 .form2 {
     text-align: center;
     margin-top: 0;
@@ -274,4 +269,8 @@ option {
     padding-left: 0;
     width: 10%;
     padding-top: 10px;
+}
+.form2 input[type="file"],.form1 input[type="file"]{
+    height: 30px;
+    font-size: 20px;
 }

@@ -111,3 +111,8 @@
        .btn {
            font-weight: 100;
        }
+       .chart-wrapper {
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+        }
