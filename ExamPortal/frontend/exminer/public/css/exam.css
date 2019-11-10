@@ -45,7 +45,6 @@ a:hover {
 
 h2 {
     font-size: 3.5rem;
-    margin-left: 7%;
     font-weight: 300;
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
 }
@@ -270,7 +269,9 @@ option {
     width: 10%;
     padding-top: 10px;
 }
-.form2 input[type="file"],.form1 input[type="file"]{
+
+.form2 input[type="file"],
+.form1 input[type="file"] {
     height: 30px;
     font-size: 20px;
 }
