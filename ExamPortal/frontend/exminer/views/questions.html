@@ -44,15 +44,15 @@
 <!-- append view question template -->
     <div class="container question-div-pos" id="mainDiv">
         <div class="row qrow">
-            <div class="col-md-2" id="question-Index"></div>
             <div class="col-md-10" id="question-Display"></div>
+            <div class="col-md-2" id="question-Index"></div>
         </div>
     </div>
     <!-- append edit question template -->
     <div class="container-fluid" id="display-edit-form"></div>
      <!-- display question template -->
     <script id="index-template" type="text/html">
-        <a href="#{{_id}}" class="questionIndex">{{index}}</a>
+        <span class="qustion-index"><a href="#{{_id}}" >{{index}}</a></span>
     </script>
     <script id="question-template-body" type="text/html">
         <div class="row">
