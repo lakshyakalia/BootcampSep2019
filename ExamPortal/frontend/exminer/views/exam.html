@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
 </head>
 
-<body>
+<body onload="showName()">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: black;">
         <img src="../../user/public/assets/cybergrouplogo.png" class="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,7 @@
                     <a class="nav-link" onclick="location.href='exam.html'">Test Collections</a>
                 </li>
             </ul>
+            <span id="span">Welcome</span>
             <form class="form-inline my-2 my-lg-0">
                 <!-- <span id="span">Welcome &nbsp; </span> -->
                 <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="logout()">Logout</button>

@@ -55,7 +55,7 @@ h5 {
 }
 
 .exam-detail {
-    margin-top: 4%;
+    margin-top: 0;
     padding: 50px;
 }
 
@@ -267,7 +267,12 @@ option {
 .col-md-1 {
     padding-left: 0;
     width: 10%;
-    padding-top: 10px;
+    padding-top: 6px;
+}
+
+.col-md-2 p {
+    margin-bottom: 0px;
+    margin-top: 6px;
 }
 
 .form2 input[type="file"],
