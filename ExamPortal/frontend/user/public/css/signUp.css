@@ -97,3 +97,9 @@ form :nth-child(1) {
     margin-top: 20px;
     font-weight: 100;
 }
+
+.mod {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+}
