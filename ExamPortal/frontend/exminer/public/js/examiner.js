@@ -91,5 +91,6 @@ function hideEditDetails() {
 
 function logout() {
     localStorage.removeItem("token")
+    localStorage.clear()
     location.replace("../../index.html")
 }
