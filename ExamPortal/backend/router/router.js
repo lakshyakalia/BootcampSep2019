@@ -12,15 +12,15 @@ var multer = require('multer')
 //path for folder to save image and rename image
 const reqPath = path.join(__dirname, '../../frontend/exminer/public/assets');
 var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null,reqPath)
+    destination: function(req, file, cb) {
+        cb(null, reqPath)
     },
-    filename: function (req, file, cb) {
+    filename: function(req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname)
     }
 })
 var upload = multer({ storage: storage })
-// var upload = multer({ dest: 'upload/'});
+    // var upload = multer({ dest: 'upload/'});
 
 
 const createToken = require("../auth/authenticator").checkAuth;
@@ -46,32 +46,32 @@ module.exports = () => {
         res.send(response)
     })
 
-    app.post('/exam/accessKey', middleware,async(req, res) => {
+    app.post('/exam/accessKey', middleware, async(req, res) => {
         const response = await Ques.checkAccessKey(req, res)
         return response
     })
 
-    app.get('/exam/accessKey',middleware,async(req,res)=>{
-        const response = await Ques.getExamTime(req,res)
+    app.get('/exam/accessKey', middleware, async(req, res) => {
+        const response = await Ques.getExamTime(req, res)
         return response
     })
 
-    app.post('/exam/endTest',middleware,async(req,res)=>{
-        const response = await Ques.saveAllQuestions(req,res)
+    app.post('/exam/endTest', middleware, async(req, res) => {
+        const response = await Ques.saveAllQuestions(req, res)
         return response
     })
 
     //examiner will create exam details
-    app.post('/exam',middleware, (req, res) => {
-         Users.examDetail(req, res)
+    app.post('/exam', middleware, (req, res) => {
+        Users.examDetail(req, res)
     })
 
     //examiner will view exam
-    app.get('/exam',middleware, (req, res) => {
-        Users.viewExamDetail(req, res)
+    app.get('/exam', middleware, (req, res) => {
+            Users.viewExamDetail(req, res)
 
-    })
-    //examiner will fetch particular exam detail
+        })
+        //examiner will fetch particular exam detail
     app.get('/exam/:id', middleware, (req, res) => {
         Users.fetchExamDetail(req, res)
     })
@@ -96,14 +96,14 @@ module.exports = () => {
         const response = await Users.studPerformance(req, res)
     })
 
-    app.post('/exam/question',upload.single('questionImage'), (req, res) => {
-        if( req.file){
-            req.body['questionImage'] = '../public/assets/' + req.file.filename;   
-        }else{
+    app.post('/exam/question', upload.single('questionImage'), (req, res) => {
+        if (req.file) {
+            req.body['questionImage'] = '../public/assets/' + req.file.filename;
+        } else {
             req.body['questionImage'] = null
         }
-    
-         Users.question(req, res)
+
+        Users.question(req, res)
     })
 
 
@@ -119,10 +119,10 @@ module.exports = () => {
     })
 
     //examiner will edit questions
-    app.patch('/exam/question/:id',upload.single('questionImage'), middleware, (req, res) => {
-        if( req.file){
-            req.body['questionImage'] = '../public/assets/'+req.file.filename
-        }else{
+    app.patch('/exam/question/:id', upload.single('questionImage'), middleware, (req, res) => {
+        if (req.file) {
+            req.body['questionImage'] = '../public/assets/' + req.file.filename
+        } else {
             req.body['questionImage'] = null
         }
         Users.editQuestion(req, res)
@@ -158,10 +158,10 @@ module.exports = () => {
 
     //admin will view examiner
     app.get('/examiner', async(req, res) => {
-        const result = await Users.fetchData(req, res)
-        res.send(result);
-    })
-    //admin will delete examiner using id of examiner
+            const result = await Users.fetchData(req, res)
+            res.send(result);
+        })
+        //admin will delete examiner using id of examiner
     app.delete('/examiner/:id', (req, res) => {
             const result = Users.examinerDelete(req, res)
             res.send(result)
@@ -173,10 +173,11 @@ module.exports = () => {
     })
 
     app.patch('/examiner', middleware, async(req, res) => {
-        const result = await Users.examinerUpdate(req, res)
-    })
-     // admin update examiner info
-     app.patch('/examiner/:id', async(req, res) => {
+            const result = await Users.examinerUpdate(req, res)
+            res.send(result)
+        })
+        // admin update examiner info
+    app.patch('/examiner/:id', async(req, res) => {
         const result = await Users.updateUser(req, res);
         res.send(result);
     })
