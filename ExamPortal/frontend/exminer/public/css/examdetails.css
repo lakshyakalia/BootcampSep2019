@@ -140,6 +140,10 @@ label {
     color: rgba(255, 255, 255, 0.8);
 }
 
+::placeholder {
+    color: rgba(255, 255, 255, 0.4)
+}
+
 #addExamTestDate {
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.18);
@@ -148,4 +152,8 @@ label {
     font-size: 12px;
     font-family: monospace;
     color: rgba(0, 0, 0, 0.6);
+}
+
+.btn {
+    font-weight: 300;
 }
