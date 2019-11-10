@@ -109,7 +109,11 @@ function studentDetails(a) {
                 flag = 1;
                 i++;
             }
-        drawChart(data.b,data.c)
+        if( data.b[0].totalScore)
+            drawChart(data.b,data.c)
+            else{
+                $("#wrapper").hide()
+            }
         },
         error: function(error) {
             console.log('error')
