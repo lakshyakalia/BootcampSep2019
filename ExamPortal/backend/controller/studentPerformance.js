@@ -2,14 +2,20 @@
 const { test } = require('../Models/candidateAnswer')
 const { user } = require('../Models/userRecord')
 const { examDetail } = require('../Models/examDetail')
+const { questionDetail } = require('../models/question')
 const studPerformance = async(req, res) => {
     try {
-        debugger
+        // debugger
         console.log('_________________')
             // console.log(req.headers.studentid)
+         
         const examId = req.headers.examid
+
+        let sum = await questionDetail.aggregate([{$match:{examCode:examId}},
+            {$group:{_id:null,total:{$sum:"$weightage"}}}])
+            console.log(sum[0].total)
         const result = await test.find({ "testCode": examId }).sort({ "candidateId": '1' })
-            // console.log(result)
+            console.log(result)
             // while (i < result.length) {
             //     var studs = []
             //     studs.push(result[i].candidateId)
@@ -26,11 +32,11 @@ const studPerformance = async(req, res) => {
         }
         // const sortedStud = studs.sort({ '_id': '1' })
         // studs.sort()
-        // console.log(studs)
+        console.log(studs)
         //console.log(id)
         //console.log(result)
         //   return idDetails
-        res.send({ a: studs, b: result })
+        res.send({ a: studs, b: result, c:sum[0].total})
             //let testRecord = await test.find()({ "candidateId": '1' })
 
     } catch (error) {

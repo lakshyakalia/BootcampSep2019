@@ -10,7 +10,7 @@ var multer = require('multer')
 
 
 //path for folder to save image and rename image
-const reqPath = path.join(__dirname, '../../frontend/exminer/assets');
+const reqPath = path.join(__dirname, '../../frontend/exminer/public/assets');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null,reqPath)
@@ -46,18 +46,6 @@ module.exports = () => {
         res.send(response)
     })
 
-    //examiner will create exam details
-    app.post('/exam',middleware, async(req, res) => {
-        const checkExamCode=await Users.examDetail(req, res)
-        res.send(checkExamCode)
-    })
-
-    //examiner will view exam
-    app.get('/exam', (req, res) => {
-        const response = Users.viewExamDetail(req, res)
-
-    })
-
     app.post('/exam/accessKey', middleware,async(req, res) => {
         const response = await Ques.checkAccessKey(req, res)
         return response
@@ -73,6 +61,16 @@ module.exports = () => {
         return response
     })
 
+    //examiner will create exam details
+    app.post('/exam',middleware, (req, res) => {
+         Users.examDetail(req, res)
+    })
+
+    //examiner will view exam
+    app.get('/exam',middleware, (req, res) => {
+        Users.viewExamDetail(req, res)
+
+    })
     //examiner will fetch particular exam detail
     app.get('/exam/:id', middleware, (req, res) => {
         Users.fetchExamDetail(req, res)
@@ -90,25 +88,17 @@ module.exports = () => {
 
     //examiner will view performance of candidate
     app.get('/performance', middleware, async(req, res) => {
-        debugger
         const response = await Users.studentPerformance(req, res)
         res.send(response)
     })
 
     app.get('/performance/students', middleware, async(req, res) => {
         const response = await Users.studPerformance(req, res)
-        console.log(response)
     })
-
-   // examiner will write exam questions
-    // app.post('/exam/question',middleware, (req, res) => {
-    //     console.log('multiple value')
-    //     Users.question(req, res)
-    // })
 
     app.post('/exam/question',upload.single('questionImage'), (req, res) => {
         if( req.file){
-            req.body['questionImage'] = '../assets/' + req.file.filename;   
+            req.body['questionImage'] = '../public/assets/' + req.file.filename;   
         }else{
             req.body['questionImage'] = null
         }
@@ -129,9 +119,13 @@ module.exports = () => {
     })
 
     //examiner will edit questions
-    app.patch('/exam/question/:id', middleware, (req, res) => {
+    app.patch('/exam/question/:id',upload.single('questionImage'), middleware, (req, res) => {
+        if( req.file){
+            req.body['questionImage'] = '../public/assets/'+req.file.filename
+        }else{
+            req.body['questionImage'] = null
+        }
         Users.editQuestion(req, res)
-            // res.send({ "data": req.body })
     })
 
     //examiner will delete question by id

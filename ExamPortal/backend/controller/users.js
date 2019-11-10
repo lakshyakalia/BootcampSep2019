@@ -7,7 +7,7 @@ const testInfo = require('./testDetails')
 
 const userRecord = async(req, res) => {
 
-    const response = await userController.userRecord(req, res)
+  const response = await userController.userRecord(req, res)
     return response
 }
 
@@ -44,7 +44,6 @@ const studentPerformance = async(req, res) => {
 
 }
 
-
 const adminLogin = async(req, res) => {
 
     const result = await userController.adminLogin(req, res)
@@ -61,7 +60,6 @@ const editExam = (req, res) => {
 }
 
 const getQuestionDetail = (req, res) => {
-    console.log("hello1 ", req.params.id)
     questionDetail.getQuestionDetails(req, res)
 }
 const addQuestion = (req, res) => {
