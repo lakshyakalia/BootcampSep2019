@@ -139,3 +139,13 @@ label {
 #span {
     color: rgba(255, 255, 255, 0.8);
 }
+
+#addExamTestDate {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+    padding: 6px;
+    font-size: 12px;
+    font-family: monospace;
+    color: rgba(0, 0, 0, 0.6);
+}
