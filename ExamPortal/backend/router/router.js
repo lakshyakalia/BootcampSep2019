@@ -87,12 +87,12 @@ module.exports = () => {
     })
 
     //examiner will view performance of candidate
-    app.get('/performance', middleware, async(req, res) => {
+    app.get('/examiner/exams', middleware, async(req, res) => {
         const response = await Users.studentPerformance(req, res)
         res.send(response)
     })
 
-    app.get('/performance/students', middleware, async(req, res) => {
+    app.get('/examiner/exams/students', middleware, async(req, res) => {
         const response = await Users.studPerformance(req, res)
     })
 
