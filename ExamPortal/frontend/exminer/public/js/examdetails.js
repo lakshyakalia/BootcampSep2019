@@ -1,4 +1,5 @@
 var tempExamCode = ''
+var tempExamCode1 = ''
 $(document).ready(function() {
     const tok = localStorage.getItem('token');
     if (tok == null) {
@@ -57,7 +58,9 @@ $(document).ready(function() {
     document.getElementById('btnSave').addEventListener('click', validateForm)
     function validateForm() {
         var testName = document.getElementById("addExamName").value;
+        console.log("testname is " + testName)
         var testCode = document.getElementById("addExamCode").value;
+        console.log("testcode is " + testCode)
         var testDuration = document.getElementById("addExamDuration").value;
         var testDate = document.getElementById("addExamTestDate").value;
         var testInstruction = document.getElementById("addExamInstruction").value;
@@ -117,6 +120,7 @@ $(document).ready(function() {
               }
               else
               {
+                
                  document.getElementById("addExamName").value='';
                  document.getElementById("addExamCode").value='';
                  document.getElementById("addExamDuration").value='';
@@ -125,6 +129,7 @@ $(document).ready(function() {
               }
                 },
                 error: function(error) {
+                    console.log("This is error number you are expecting")
                     console.log("error : " + error)
                 }
             })
@@ -262,7 +267,7 @@ $(document).ready(function() {
                         alert("Please enter weightage");
                         return
                     }
-                    console.log(answer)
+                   // console.log(answer)
                     var formData = new FormData();
                         formData.values('questionImage')
 
@@ -302,3 +307,35 @@ $(document).ready(function() {
                                     });
                 }
             })
+
+
+            function excelUpload(event){
+                console.log("in frontend request")
+                event.preventDefault();
+            
+            //   $("#status").empty().text("File is uploading...");
+            tempExamCode1= $('#addExamCode').val()
+            console.log("exam code is "+tempExamCode1)
+            var formData = new FormData();
+             //formData.append('examCode',tempExamCode1)   
+            //  console.log("my exam codse is" +examCode)
+            formData.append('excelFile', $('input[type=file]')[0].files[0]);
+            $.ajax('http://localhost:3000/exam/questions/uploadExcel',{
+            type:'POST',
+            data:formData,
+            headers: {
+                token: localStorage.getItem('token')
+            },
+            lowerCaseHeaders:true,
+            contentType: false,
+             processData: false,
+            success: function(data){
+                console.log(data.msg)
+            },
+            error: function(error){
+                console.log(error + " " + error)
+            }
+        })
+          }
+
+

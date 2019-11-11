@@ -3,8 +3,9 @@ const excelToJson = require('convert-excel-to-json');
 
 const quesFromExcel = async (req, res) => {
     let path = req.file.filename
+    console.log("path is " +path)
     const result = excelToJson({
-        sourceFile: path,
+        sourceFile: 'upload/'+path,
         columnToKey: {
             A: 'questionText',
             B: 'option1',
@@ -12,15 +13,18 @@ const quesFromExcel = async (req, res) => {
             D: 'option3',
             E: 'option4',
             F: 'answer',
-            G: 'weightage'
-
+            G: 'weightage',
+            H: 'questionImage',
+            // E: 'examCode'
         }
 
     })
    
     try {
         var arr = result.Sheet2;
-        console.log(arr);
+        //questionDetail.insert('examCode',FormData.examCode)
+        //const status = await examDetail.find({ examCode: req.body.examCode })
+        console.log("data from excel file is" +arr);
         questionDetail.insertMany(arr, (err, docs) => {
             if(err){
                 console.log(['ERROR'],err);
@@ -33,23 +37,9 @@ const quesFromExcel = async (req, res) => {
     } catch (err) {
         console.log(err)
     }
-    // console.log(arr)
+    
 }
-// console.log(result.Sheet2)
 
-// var obj = new Object()
-// for ( i = 1 ; i < result.Sheet2.length; i++ ){
-//     obj.questionText = result.Sheet2[i].A
-//     obj.options = new Object()
-//     obj.options.option1 =result.Sheet2[i].B
-//     obj.options.option2=result.Sheet2[i].C
-//     obj.options.option3=result.Sheet2[i].D
-//     obj.options.option4=result.Sheet2[i].E
-//     obj.answer=result.Sheet2[i].F  
-//     obj.weightage=result.Sheet2[i].G
-//     console.log(obj)
-// }
-// });
 
 
 

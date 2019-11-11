@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css">
         <script src="https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
     </head>
     <body>
         <!-- MultiStep Form -->
@@ -44,7 +45,7 @@
               </div>
               <div class="form-group">
                 <label class="control-label">Exam Code</label>
-                <input maxlength="100" type="text" class="form-control" placeholder="Enter Test Code" id="addExamCode"/>
+                <input maxlength="100" type="text" class="form-control" placeholder="Enter Test Code" id="addExamCode">
               </div>
               <div class="form-group">
                 <label class="control-label">Exam Duration(in minutes)</label>
@@ -68,15 +69,18 @@
                 <!-- <h3> Step 2</h3> -->
                 <div class="file-field">
                       <div class="btn btn-primary btn-sm float-left">
-                        <span>Choose file</span>
-                        <input type="file">
+                        <form>
+                          <input type="file" id="uploadExcelFile" name="uploadExcelFile" />
+                          <input type="button" value="Uploadfile" name="submit" onclick="excelUpload(event)">
+                          <span id = "status"></span>
+                      </form>
                       </div>
-                      <div class="file-path-wrapper float-right">
+                      <!-- ><div class="file-path-wrapper float-right">
                         <input class="file-path validate" type="text" placeholder="Upload your file" style="margin-left: 40px;">
-                      </div>
+                      </div -->
                     </div>
-                    <button class="btn btn-success btn-lg pull-right" type="button" style="margin-top: 80px;">Submit </button>
-                    &nbsp;&nbsp;&nbsp;
+                    <!-- <button class="btn btn-success btn-lg pull-right" id="" type="button" style="margin-top: 80px;">Submit </button>
+                    &nbsp;&nbsp; -->
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" style="margin-top: 80px;" >Next</button>
               </div>
             </div>

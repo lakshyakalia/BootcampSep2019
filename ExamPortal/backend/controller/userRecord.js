@@ -103,7 +103,7 @@ const adminLogin = async(req, res) => {
 
 const userRecord = async(req, res) => {
     try {
-        debugger
+        // debugger
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
             return ("user Exist")

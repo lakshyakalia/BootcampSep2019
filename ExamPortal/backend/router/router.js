@@ -20,21 +20,11 @@ var storage = multer.diskStorage({
 });
 const upload = multer({storage:storage})
 const createToken = require("../auth/authenticator").checkAuth;
+console.log("Helloo nhello")
 
 module.exports = () => {
  
-app.post('/uploadExcel', upload.single('excelFile'), (req, res) => {
-    console.log("in route uploadExcel")
-        // console.log("result is : " + req.file)
-        // if(err) {
-        //  res.send("Error uploading file.");
-        // }
-        // res.send("File is uploaded");
-           
-        req.file.filename = './upload/'+req.file.filename
-    console.log(req.file.filename);
-    Users.quesFromExcel(req, res)
-})
+
 
     app.post('/login', async(req, res) => {
         const result = await createToken(req)
@@ -54,6 +44,19 @@ app.post('/uploadExcel', upload.single('excelFile'), (req, res) => {
     app.get('/loggedIn', async(req, res) => {
         const response = await Users.loggedInDetails(req, res)
         res.send(response)
+    })
+    // For uploading questions directly from excel file
+    app.post('/exam/questions/uploadExcel', upload.single('excelFile'), (req, res) => {
+        console.log("in route uploadExcel")
+            // console.log("result is : " + req.file)
+            // if(err) {
+            //  res.send("Error uploading file.");
+            // }
+            // res.send("File is uploaded");
+               
+        //     req.file.filename = './upload/'+req.file.filename
+        // console.log(req.file.filename);
+        Users.quesFromExcel(req, res)
     })
 
     //examiner will create exam details
