@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var flag= false
+    var flag = false
     $("#signUpSubmit").click((event) => {
         event.preventDefault()
         fname = $("#firstName").val()
@@ -49,13 +49,12 @@ $(document).ready(function() {
 
             } else {
                 flag = true
-                phoneNumber = $("#phoneNumber").val() ;
+                phoneNumber = $("#phoneNumber").val();
             }
         }
 
         if ((fname && lname && email && password && flag) == true) {
             let signUpData = true
-            alert("Your SignUp has been successful")
         } else {
             signUpData = false
             alert("Your data is not valid")
@@ -77,10 +76,12 @@ $(document).ready(function() {
                 "accountType": "Student"
             }),
             success: function(data, status) {
+                alert("Your SignUp has been successful")
+
                 $(location).attr('href', '../views/login.html')
             },
             error: function(data, error) {
-                 console.log(error +" "+ "error occurred");
+                console.log(error + " " + "error occurred");
             }
         })
     })

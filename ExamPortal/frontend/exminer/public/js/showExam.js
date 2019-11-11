@@ -1,12 +1,12 @@
-function addQuestion(id)
-{
-    localStorage.setItem('addQuestionid',id);
-  $(location).attr('href','../views/addQuestion.html');
+function addQuestion(id) {
+    localStorage.setItem('addQuestionid', id);
+    $(location).attr('href', '../views/addQuestion.html');
 }
+
 function showQuestion(id) {
-        let examCode = $('#' + id).parent().prev().prev().prev().prev().find('p').html()
-        localStorage.setItem('examCode',examCode)
-      $(location).attr('href','../views/questions.html')
+    let examCode = $('#' + id).parent().prev().prev().prev().prev().find('p').html()
+    localStorage.setItem('examCode', examCode)
+    $(location).attr('href', '../views/questions.html')
 }
 
 function updateExam(examObjId) {
@@ -81,33 +81,36 @@ function deleteExam(id) {
 }
 
 $(document).ready(() => {
-    $.ajax("http://localhost:3000/exam", {
-        type: 'GET',
-        dataType: 'json',
-        contentType: "application/json",
-        headers: {
-            token: localStorage.getItem('token')
-        },
-        success: function(data) {
-            if( data.msg == 'No Exam'){
-                alert("Exam Doesnot exist in your account")
-                return
+        $.ajax("http://localhost:3000/exam", {
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            headers: {
+                token: localStorage.getItem('token')
+            },
+            success: function(data) {
+                if (data.msg == 'No Exam') {
+                    alert("Exam Doesnot exist in your account")
+                    return
+                }
+                let parent = $(".exam-detail")
+                    // load html template to display exam detail
+                $.each(data, (index, values) => {
+                    let html = $('#display-exam-detail').html()
+                    values.index = index
+                    parent.append(Mustache.render(html, values))
+                })
+            },
+            error: function(error) {
+                console.log(error.responseText)
+                if (error.responseText == 'No Exam') {
+                    alert('No Exam created')
+                    $(location).attr('href', '../views/examiner.html')
+                }
+                console.log(error)
             }
-            let parent = $(".exam-detail")
-                // load html template to display exam detail
-            $.each(data, (index, values) => {
-                let html = $('#display-exam-detail').html()
-                values.index = index
-                parent.append(Mustache.render(html, values))
-            })
-        },
-        error: function(error) {
-            console.log(error.responseText)
-            if(error.responseText=='No Exam'){
-                alert('No Exam created')
-                $(location).attr('href','../views/examiner.html')
-            }
-            console.log(error)
-        }
+        })
     })
-})
+    // function showName(){
+    //     document.getElementById('span').innerHTML="Welcome "+ localStorage.getItem()
+    // }

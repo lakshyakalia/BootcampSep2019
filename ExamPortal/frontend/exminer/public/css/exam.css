@@ -45,7 +45,6 @@ a:hover {
 
 h2 {
     font-size: 3.5rem;
-    margin-left: 7%;
     font-weight: 300;
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
 }
@@ -56,7 +55,7 @@ h5 {
 }
 
 .exam-detail {
-    margin-top: 4%;
+    margin-top: 0;
     padding: 50px;
 }
 
@@ -268,9 +267,16 @@ option {
 .col-md-1 {
     padding-left: 0;
     width: 10%;
-    padding-top: 10px;
+    padding-top: 6px;
 }
-.form2 input[type="file"],.form1 input[type="file"]{
+
+.col-md-2 p {
+    margin-bottom: 0px;
+    margin-top: 6px;
+}
+
+.form2 input[type="file"],
+.form1 input[type="file"] {
     height: 30px;
     font-size: 20px;
 }

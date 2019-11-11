@@ -1,16 +1,17 @@
 var tempExamCode = ''
-$(document).ready(function () {
+$(document).ready(function() {
     const tok = localStorage.getItem('token');
     if (tok == null) {
         location.replace("../../index.html")
     }
+    document.getElementById('span').innerHTML = "Welcome " + localStorage.getItem('loggedInName') + "! &nbsp;&nbsp;"
     var navListItems = $('div.setup-panel div a'),
         allWells = $('.setup-content'),
         allNextBtn = $('.nextBtn');
 
     allWells.hide();
 
-    navListItems.click(function (e) {
+    navListItems.click(function(e) {
         e.preventDefault();
         var $target = $($(this).attr('href')),
             $item = $(this);
@@ -24,7 +25,7 @@ $(document).ready(function () {
         }
     });
 
-    allNextBtn.click(function () {
+    allNextBtn.click(function() {
         var curStep = $(this).closest(".setup-content"),
             curStepBtn = curStep.attr("id"),
             nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
@@ -44,7 +45,7 @@ $(document).ready(function () {
     });
 
     $('div.setup-panel div a.btn-primary').trigger('click');
-    $('input[name="colorRadio"]').click(function () {
+    $('input[name="colorRadio"]').click(function() {
         var inputValue = $(this).attr("value");
         var targetBox = $("." + inputValue);
         $(".box").not(targetBox).hide();
@@ -52,7 +53,7 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
+$(document).ready(function() {
     //     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
 
@@ -87,27 +88,26 @@ $(document).ready(function () {
             contentType: "application/json;charset=utf-8",
             data: JSON.stringify(examDetail),
             contentType: "application/json; charset=utf-8",
-            success: function (recent) {
+            success: function(recent) {
                 console.log(recent.message);
                 if (recent.message == "Exam Code already exist") {
                     window.alert("Exam Code Already Exist");
                     //location.replace("./views/examdetails.html")
-                }
-                else {
+                } else {
                     document.getElementById("addExamName").value = '';
                     document.getElementById("addExamCode").value = '';
                     document.getElementById("addExamDuration").value = '';
                     document.getElementById("addExamTestDate").value = '';
                 }
             },
-            error: function (error) {
+            error: function(error) {
                 console.log("error : " + error)
             }
         })
     }
 })
 
-$(document).ready(function () {
+$(document).ready(function() {
     // $('.loader').hide()
     document.getElementById('submitBtn').addEventListener('click', validateForm)
 
@@ -124,7 +124,12 @@ $(document).ready(function () {
             alert("select answer type")
             return
         }
-        let option1 = '', option2 = '', option3 = '', option4 = '', answer = '', answerType = ''
+        let option1 = '',
+            option2 = '',
+            option3 = '',
+            option4 = '',
+            answer = '',
+            answerType = ''
 
         if (option == "red") {
             option1 = $("#addtestOption1").val();
@@ -132,7 +137,7 @@ $(document).ready(function () {
             option3 = $("#addtestOption3").val();
             option4 = $("#addtestOption4").val();
             answerType = "multipleOption"
-            $.each($("input[type=checkbox][name=option]:checked"), function () {
+            $.each($("input[type=checkbox][name=option]:checked"), function() {
                 if ($(this).val()) {
                     answer += $(this).val() + ' '
                 }
@@ -179,7 +184,7 @@ $(document).ready(function () {
             },
             contentType: false,
             processData: false,
-            success: function (data, status) {
+            success: function(data, status) {
                 document.getElementById("addtestQuestion").value = '';
                 // ("#addtestAnswer").value = '';
                 if (answerType == "multipleOption") {
@@ -198,13 +203,13 @@ $(document).ready(function () {
                     document.getElementById("addtestOption2G").value = '';
                     document.getElementById("addtestOption3G").value = '';
                     document.getElementById("addtestOption4G").value = '';
-                    if($('input[type=radio][name=option1]:checked').val()){
-                        $('input[type=radio][name=option1]').prop('checked',false)
+                    if ($('input[type=radio][name=option1]:checked').val()) {
+                        $('input[type=radio][name=option1]').prop('checked', false)
                     }
                 }
                 document.getElementById("addtestWeightage").value = '';
             },
-            error: function (error) {
+            error: function(error) {
                 console.log(error + " " + "error occurred");
             }
         });

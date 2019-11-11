@@ -12,8 +12,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../public/css/exam.css">
     <script type="text/javascript" src="../public/js/examiner.js"></script>
+    <link rel="icon" href="https://www.cygrp.com/wp-content/uploads/2019/06/cybergroup-site-icon.png" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: black;">
         <img src="../../user/public/assets/cybergrouplogo.png" class="logo">
@@ -36,12 +38,12 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-	            <!-- <span id="span">Welcome &nbsp; </span> -->
+                <!-- <span id="span">Welcome &nbsp; </span> -->
                 <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="logout()">Logout</button>
             </form>
         </div>
     </nav>
-<!-- append view question template -->
+    <!-- append view question template -->
     <div class="container question-div-pos" id="mainDiv">
         <div class="row qrow">
             <div class="col-md-2" id="question-Index"></div>
@@ -50,7 +52,7 @@
     </div>
     <!-- append edit question template -->
     <div class="container-fluid" id="display-edit-form"></div>
-     <!-- display question template -->
+    <!-- display question template -->
     <script id="index-template" type="text/html">
         <a href="#{{_id}}" class="questionIndex">{{index}}</a>
     </script>
@@ -59,9 +61,8 @@
             <div class="col-md-12 question-div" id="{{_id}}">
                 <h3>Question-{{index}}</h3>
                 <p>{{questionText}}</p>
-                    {{#status}}
-                        <img src="{{questionImage}}"/>
-                    {{/status}}
+                {{#status}}
+                <img src="{{questionImage}}" /> {{/status}}
                 <ul>
                     <li>{{option1}}</li>
                     <li>{{option2}}</li>
@@ -86,35 +87,31 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Image</label>
-                <input type="file" name="filename" accept="image/gif, image/jpeg, image/png" id="myImage">
-              </div>
+                    <input type="file" name="filename" accept="image/gif, image/jpeg, image/png" id="myImage">
+                </div>
                 <div class="red box" id="redbox">
-              <div class="form-group">
-                <label class="control-label">Option1</label>
-                <input type="checkbox" name="option" value="option1" class="form-checkbox" id="addtestAnswer">
-                <input maxlength="100" type="text" id="addtestOption1" class="form-control"
-                  placeholder="Enter Option1"value="{{option1}}" />
-              </div>
-              <div class="form-group">
-                <label class="control-label">Option2</label>
-                <input type="checkbox" name="option" value="option2" class="form-checkbox" id="addtestAnswer">
-                <input maxlength="100" type="text" id="addtestOption2" class="form-control"
-                  placeholder="Enter Option2" value="{{option2}}" />
-              </div>
-              <div class="form-group">
-                <label class="control-label">Option3</label>
-                <input type="checkbox" name="option" value="option3" class="form-checkbox" id="addtestAnswer">
-                <input maxlength="100" type="text" id="addtestOption3" class="form-control"
-                  placeholder="Enter Option3" value="{{option3}}" />
-              </div>
-              <div class="form-group">
-                <label class="control-label">Option4</label>
-                <input type="checkbox" name="option" value="option4" class="form-checkbox" id="addtestAnswer">
-                <input maxlength="100" type="text" id="addtestOption4" class="form-control"
-                  placeholder="Enter Option4" value="{{option4}}"/>
-              </div>
-            </div>
-            <div class="form-group">
+                    <div class="form-group">
+                        <label class="control-label">Option1</label>
+                        <input type="checkbox" name="option" value="option1" class="form-checkbox" id="addtestAnswer">
+                        <input maxlength="100" type="text" id="addtestOption1" class="form-control" placeholder="Enter Option1" value="{{option1}}" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option2</label>
+                        <input type="checkbox" name="option" value="option2" class="form-checkbox" id="addtestAnswer">
+                        <input maxlength="100" type="text" id="addtestOption2" class="form-control" placeholder="Enter Option2" value="{{option2}}" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option3</label>
+                        <input type="checkbox" name="option" value="option3" class="form-checkbox" id="addtestAnswer">
+                        <input maxlength="100" type="text" id="addtestOption3" class="form-control" placeholder="Enter Option3" value="{{option3}}" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option4</label>
+                        <input type="checkbox" name="option" value="option4" class="form-checkbox" id="addtestAnswer">
+                        <input maxlength="100" type="text" id="addtestOption4" class="form-control" placeholder="Enter Option4" value="{{option4}}" />
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="addtestWeightage">Weightage</label>
                     <input type="text" class="form-control" id="addtestWeightage" aria-describedby="emailHelp" placeholder="Enter Weghtage" value="{{weightage}}">
                 </div>
@@ -125,49 +122,45 @@
     <!-- edit question for single option -->
     <script id="edit-single-option" type="text/html">
         <div class="form2">
-                <form class="addQuestion">
-                    <div class="form-group">
-                        <label for="addtestQuestion">Question</label>
-                        <input type="text" class="form-control" id="addtestQuestion" aria-describedby="emailHelp" placeholder="Enter Question" value="{{questionText}}">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Image</label>
-                    <input type="file" name="filename" accept="image/gif, image/jpeg, image/png" id="myImage">
-                  </div>
-                    <div class="green box" id="greenbox">
-                            <div class="form-group">
-                              <label class="control-label">Option1</label>
-                              <input type="radio" name="option1" value="option1" class="form-checkbox" id="addtestAnswer1">
-                              <input maxlength="100" type="text" id="addtestOption1G" class="form-control"
-                                placeholder="Enter Option1" value="{{option1}}"/>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label">Option2</label>
-                              <input type="radio" name="option1" value="option2" class="form-checkbox" id="addtestAnswer1">
-                              <input maxlength="100" type="text" id="addtestOption2G" class="form-control"
-                                placeholder="Enter Option2" value="{{option2}}"/>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label">Option3</label>
-                              <input type="radio" name="option1" value="option3" class="form-checkbox" id="addtestAnswer1">
-                              <input maxlength="100" type="text" id="addtestOption3G" class="form-control"
-                                placeholder="Enter Option3" value="{{option3}}"/>
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label">Option4</label>
-                              <input type="radio" name="option1" value="option4" class="form-checkbox" id="addtestAnswer1">
-                              <input maxlength="100" type="text" id="addtestOption4G" class="form-control"
-                                placeholder="Enter Option4" value="{{option4}}" />
-                            </div>
-                          </div>
-              
+            <form class="addQuestion">
                 <div class="form-group">
-                        <label for="addtestWeightage">Weightage</label>
-                        <input type="text" class="form-control" id="addtestWeightage" aria-describedby="emailHelp" placeholder="Enter Weghtage" value="{{weightage}}">
+                    <label for="addtestQuestion">Question</label>
+                    <input type="text" class="form-control" id="addtestQuestion" aria-describedby="emailHelp" placeholder="Enter Question" value="{{questionText}}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Image</label>
+                    <input type="file" name="filename" accept="image/gif, image/jpeg, image/png" id="myImage">
+                </div>
+                <div class="green box" id="greenbox">
+                    <div class="form-group">
+                        <label class="control-label">Option1</label>
+                        <input type="radio" name="option1" value="option1" class="form-checkbox" id="addtestAnswer1">
+                        <input maxlength="100" type="text" id="addtestOption1G" class="form-control" placeholder="Enter Option1" value="{{option1}}" />
                     </div>
-                    <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id,'')">Submit</button>
-                </form>
-            </div>
+                    <div class="form-group">
+                        <label class="control-label">Option2</label>
+                        <input type="radio" name="option1" value="option2" class="form-checkbox" id="addtestAnswer1">
+                        <input maxlength="100" type="text" id="addtestOption2G" class="form-control" placeholder="Enter Option2" value="{{option2}}" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option3</label>
+                        <input type="radio" name="option1" value="option3" class="form-checkbox" id="addtestAnswer1">
+                        <input maxlength="100" type="text" id="addtestOption3G" class="form-control" placeholder="Enter Option3" value="{{option3}}" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option4</label>
+                        <input type="radio" name="option1" value="option4" class="form-checkbox" id="addtestAnswer1">
+                        <input maxlength="100" type="text" id="addtestOption4G" class="form-control" placeholder="Enter Option4" value="{{option4}}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="addtestWeightage">Weightage</label>
+                    <input type="text" class="form-control" id="addtestWeightage" aria-describedby="emailHelp" placeholder="Enter Weghtage" value="{{weightage}}">
+                </div>
+                <button type="button" class="btn btn-primary" id="{{_id}}" onclick="updateQues(this.id,'')">Submit</button>
+            </form>
+        </div>
     </script>
     <script src="../public/js/question.js"></script>
     <!-- Modal to confirm delete question -->
@@ -191,4 +184,5 @@
         </div>
     </div>
 </body>
+
 </html>
