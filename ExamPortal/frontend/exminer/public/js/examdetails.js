@@ -228,7 +228,7 @@ function excelUpload(event){
 tempExamCode1= $('#addExamCode').val()
 console.log("exam code is "+tempExamCode1)
 var formData = new FormData();
- //formData.append('examCode',tempExamCode1)   
+ formData.append('examCode',tempExamCode1)   
 //  console.log("my exam codse is" +examCode)
 formData.append('excelFile', $('input[type=file]')[0].files[0]);
 $.ajax('http://localhost:3000/exam/questions/uploadExcel',{

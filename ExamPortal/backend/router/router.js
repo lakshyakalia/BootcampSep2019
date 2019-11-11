@@ -56,6 +56,7 @@ module.exports = () => {
                
         //     req.file.filename = './upload/'+req.file.filename
         // console.log(req.file.filename);
+        console.log("code in back ",req.body.examCode)
         Users.quesFromExcel(req, res)
     })
 

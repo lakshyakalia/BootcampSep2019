@@ -15,23 +15,27 @@ const quesFromExcel = async (req, res) => {
             F: 'answer',
             G: 'weightage',
             H: 'questionImage',
-            // E: 'examCode'
         }
 
     })
-   
+   // console.log(result)
+          let i;  
     try {
-        var arr = result.Sheet2;
-        //questionDetail.insert('examCode',FormData.examCode)
-        //const status = await examDetail.find({ examCode: req.body.examCode })
-        console.log("data from excel file is" +arr);
-        questionDetail.insertMany(arr, (err, docs) => {
+         var arr = result.Sheet2 
+        for(i = 0;i<arr.length;i++){
+            arr[i].examCode = req.body.examCode
+
+        }
+        console.log(result)
+        // questionDetail.insertMany(arr,(err, docs) => {
+            questionDetail.insertMany(result.Sheet2,(err, docs) => {
             if(err){
-                console.log(['ERROR'],err);
+                // console.log(['ERROR'],err);
+                res.status(404).send({msg: 'File uploading failed'})
             }
             else{
-                console.log('[DOCS]', docs)
-                res.send({ msg: 'saved' });
+                // console.log('[DOCS]', docs)
+                res.status(200).send({ msg: 'Data from excel file saved' });
             }
         })
     } catch (err) {
