@@ -13,7 +13,7 @@ function decodeToken(req) {
     return decoded;
 }
 
-const adminDetails = async(req, res) => {
+const adminDetails = async (req, res) => {
     try {
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
@@ -24,6 +24,8 @@ const adminDetails = async(req, res) => {
             var myPlaintesxtPassword = userInfo.password;
             var salt = bcrypt.genSaltSync(10);
             var hash = bcrypt.hashSync(myPlaintesxtPassword,salt)
+            var rol='Examiner'
+            userInfo.accountType= rol
             userInfo.password = hash; {
                 user.create(userInfo)
                 sgMail.setApiKey(SENDGRID_API_KEY);
@@ -40,20 +42,18 @@ const adminDetails = async(req, res) => {
             }
         }
     } catch (error) {
-        console.log(error)
         return ({ error: error })
     }
 }
 
-const loggedInDetails = async(req, res) => {
+const loggedInDetails = async (req, res) => {
     const decoded = decodeToken(req);
     const det = await user.findOne({ "email": decoded.email });
     return det;
 }
 
-const userDetails = async(req, res) => {
+const userDetails = async (req, res) => {
     try {
-        debugger
         const query = await user.findOne({ email: req.body.email })
         return query
     } catch (error) {
@@ -62,7 +62,7 @@ const userDetails = async(req, res) => {
 }
 
 
-const examinerUpd = async(req, res) => {
+const examinerUpdate = async (req, res) => {
     try {
         const body = req.body
         const myPlaintextPassword = body.password;
@@ -77,9 +77,18 @@ const examinerUpd = async(req, res) => {
 
 }
 
-const fetchData = async(req, res) => {
-    const data = await user.find();
-    return data
+const fetchData = async (req, res) => {
+    const data = await user.find({ 'accountType': 'Examiner' });
+   let arr = [];
+    for (i = 0; i < data.length; i++) {
+       let newObject = {}
+       newObject._id = data[i]._id;
+       newObject.email = data[i].email;
+        newObject.createdDate = data[i].createdDate.toDateString();
+        newObject.name = data[i].name;
+        arr.push(newObject)
+    }
+    return arr
 }
 const updateuser = async(req, res) => {
     const id = req.body.id;
@@ -103,7 +112,6 @@ const adminLogin = async(req, res) => {
 
 const userRecord = async(req, res) => {
     try {
-        // debugger
         const existUser = await user.findOne({ email: req.body.email });
         if (existUser) {
             return ("user Exist")
@@ -112,6 +120,8 @@ const userRecord = async(req, res) => {
             var myPlaintesxtPassword = userInfo.password;
             var salt = bcrypt.genSaltSync(10);
             var hash = bcrypt.hashSync(myPlaintesxtPassword, salt)
+            var role='Student'
+            userInfo.accountType=role
             userInfo.password = hash; {
                 user.create(userInfo)
                 sgMail.setApiKey(SENDGRID_API_KEY);
@@ -119,7 +129,7 @@ const userRecord = async(req, res) => {
                     to: userInfo.email,
                     from: 'noreply@example.com',
                     subject: 'You have been successfully registered on CYGRP Exam Portal',
-                    text: "email=" + userInfo.name + '   Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS STUDENT',
+                    text:  userInfo.name + '   Congrats ! YOU HAVE BEEN REGISTRED ON CYBERGROUP EXAM_PORTAL AS STUDENT',
                 };
                 sgMail.send(msg);
                 return ({ "status": "200", "message": "user registered" })
@@ -127,7 +137,6 @@ const userRecord = async(req, res) => {
             }
         }
     } catch (error) {
-        console.log(error)
         return ({ error: error })
     }
 }
@@ -141,5 +150,5 @@ module.exports = {
     adminLogin,
     adminDetails,
     loggedInDetails,
-    examinerUpd
+    examinerUpdate
 }

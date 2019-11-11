@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../public/css/question.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://www.cygrp.com/wp-content/uploads/2019/06/cybergroup-site-icon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -43,7 +45,7 @@
             <div class="col-md-4 col-sm-12">
                 <div class="card">
                     <div class="time">
-                        <p>Time <span id="showTime"></span></p>
+                        <p>Time left<span id="showTime"></span></p>
                     </div>
                     <div class="test">
                         <p>Test Name <span class="showTest"></span></p>
@@ -98,26 +100,23 @@
                         <div class="img-card">
                             <img src="{{ url }}" height="100px" width="100px">
                         </div>
-                        {{ /status }}
-                        {{ #types }}
-                            <label class="form-check-label">
+                        {{ /status }} {{ #types }}
+                        <label class="form-check-label">
                                 <input type="radio" class="form-check-radio" name="{{ _id }}" value="option1">
                                 <span class="text-font">{{ option1 }}</span>
                             </label>
-                            <label class="form-check-label">
+                        <label class="form-check-label">
                                 <input type="radio" class="form-check-radio" name="{{ _id }}" value="option2">
                                 <span class="text-font">{{ option2 }}</span>
                             </label>
-                            <label class="form-check-label">
+                        <label class="form-check-label">
                                 <input type="radio" class="form-check-radio" name="{{ _id }}" value="option3">
                                 <span class="text-font">{{ option3 }}</span>
                             </label>
-                            <label class="form-check-label">
+                        <label class="form-check-label">
                                 <input type="radio" class="form-check-radio" name="{{ _id }}" value="option4">
                                 <span class="text-font">{{ option4 }}</span>
-                            </label> 
-                        {{ /types }} 
-                        {{ ^types }}
+                            </label> {{ /types }} {{ ^types }}
                         <div class="checkBox">
                             <label class="form-check-label checkBox">
                                 <input type="checkbox" class="form-check-input" name="{{ _id }}" value="option1">

@@ -135,6 +135,7 @@ const saveAllQuestions = async(req,res)=>{
 
 const getExamTime = async(req,res)=>{
     const examData = await examDetail.findOne({examCode:req.headers.examcode}).select({examStartTime:1})
+    // console.log(examData)
     const submitStatus = await test.findOne({$and :[{candidateId:req.headers.id},{testCode:req.headers.examcode}]}).select({submitExam:1})
     if(submitStatus === null){
         res.status(200).send({examData,submitStatus:false})
@@ -157,12 +158,16 @@ const questions = async(req, res) => {
 
 const getQuestionDetails = async(req, res) => {
     try {
-        let values = await questionDetail.find({ examCode: decodeURIComponent(req.params.id) });
-        res.status(200).send(values)
-    } catch (error) {
+        let values = await questionDetail.find({ examCode: decodeURIComponent(req.params.id) })
+        if( values != 0 )
+            res.status(200).send(values)
+        else
+            res.status(404).send('Not Found')
+            } catch (error) {
         console.log(error)
     }
 }
+
 
 const fetchQuestionById = async(req, res) => {
     try {
@@ -176,20 +181,7 @@ const fetchQuestionById = async(req, res) => {
 
 const editQuestion = async(req, res) => {
     try {
-        await questionDetail.findByIdAndUpdate({ _id: req.params.id }, {
-            $set: {
-                "questionText": req.body.questionText,
-                "answer": req.body.answer,
-                "options": {
-                    "option1": req.body.options.option1,
-                    "option2": req.body.options.option2,
-                    "option3": req.body.options.option3,
-                    "option4": req.body.options.option4
-                },
-                "answer": req.body.answer,
-                "weightage": req.body.weightage
-            }
-        })
+        await questionDetail.findByIdAndUpdate({ _id: req.params.id },req.body)
         res.status(200).send({ msg: 'question updated' })
     } catch (error) {
         res.status(404).send(error)

@@ -1,5 +1,5 @@
 $(document).on('click', '.startTest', function() {
-    $.ajax('http://localhost:3000/test/accessKey', {
+    $.ajax('http://localhost:3000/exam/accessKey', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -17,7 +17,7 @@ $(document).on('click', '.startTest', function() {
             }
 
         },
-        error: function(error) {}
+        error: function(error) { console.log(error)}
     })
 
 })
@@ -32,7 +32,7 @@ function checkTimeForTest(time) {
         var hours = Math.floor((leftTestTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((leftTestTime % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((leftTestTime % (1000 * 60)) / 1000);
-        document.getElementById("leftTime").innerHTML = "Time Left - " + hours + ":" + minutes + ":" + seconds
+        document.getElementById("leftTime").innerHTML = "Time to Start Exam - " + hours + "h " + minutes + "m " + seconds+"s"
         if ((presentTime > startTime) && (presentDate >= startDate)) {
             clearInterval(x)
             $('.startTest').removeAttr("disabled")
@@ -43,7 +43,7 @@ function checkTimeForTest(time) {
 }
 
 $(document).ready(function() {
-    $.ajax('http://localhost:3000/test/accessKey', {
+    $.ajax('http://localhost:3000/exam/accessKey', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -57,7 +57,7 @@ $(document).ready(function() {
             checkTimeForTest(data.examData.examStartTime)
             document.getElementById('username').innerHTML = "Hie "+localStorage.getItem('name')
         },
-        error: function(error) {}
+        error: function(error) { console.log("error : ",error)}
     })
 })
 

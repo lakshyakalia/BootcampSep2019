@@ -59,19 +59,32 @@ module.exports = () => {
         Users.quesFromExcel(req, res)
     })
 
+    app.post('/exam/accessKey', middleware, async(req, res) => {
+        const response = await Ques.checkAccessKey(req, res)
+        return response
+    })
+
+    app.get('/exam/accessKey', middleware, async(req, res) => {
+        const response = await Ques.getExamTime(req, res)
+        return response
+    })
+
+    app.post('/exam/endTest', middleware, async(req, res) => {
+        const response = await Ques.saveAllQuestions(req, res)
+        return response
+    })
+
     //examiner will create exam details
-    app.post('/exam',middleware, async(req, res) => {
-        const checkExamCode=await Users.examDetail(req, res)
-        res.send(checkExamCode)
+    app.post('/exam', middleware, (req, res) => {
+        Users.examDetail(req, res)
     })
 
     //examiner will view exam
-    app.get('/exam', (req, res) => {
-        const response = Users.viewExamDetail(req, res)
+    app.get('/exam', middleware, (req, res) => {
+            Users.viewExamDetail(req, res)
 
-    })
-
-    //examiner will fetch particular exam detail
+        })
+        //examiner will fetch particular exam detail
     app.get('/exam/:id', middleware, (req, res) => {
         Users.fetchExamDetail(req, res)
     })
@@ -87,31 +100,23 @@ module.exports = () => {
     })
 
     //examiner will view performance of candidate
-    app.get('/performance', middleware, async(req, res) => {
-        debugger
+    app.get('/examiner/exams', middleware, async(req, res) => {
         const response = await Users.studentPerformance(req, res)
         res.send(response)
     })
 
-    app.get('/performance/students', middleware, async(req, res) => {
+    app.get('/examiner/exams/students', middleware, async(req, res) => {
         const response = await Users.studPerformance(req, res)
-        console.log(response)
     })
 
-   // examiner will write exam questions
-    // app.post('/exam/question',middleware, (req, res) => {
-    //     console.log('multiple value')
-    //     Users.question(req, res)
-    // })
-
-    app.post('/exam/question',upload.single('questionImage'), (req, res) => {
-        if( req.file){
-            req.body['questionImage'] = '../assets/' + req.file.filename;   
-        }else{
+    app.post('/exam/question', upload.single('questionImage'), (req, res) => {
+        if (req.file) {
+            req.body['questionImage'] = '../public/assets/' + req.file.filename;
+        } else {
             req.body['questionImage'] = null
         }
-    
-         Users.question(req, res)
+
+        Users.question(req, res)
     })
 
 
@@ -127,9 +132,13 @@ module.exports = () => {
     })
 
     //examiner will edit questions
-    app.patch('/exam/question/:id', middleware, (req, res) => {
+    app.patch('/exam/question/:id', upload.single('questionImage'), middleware, (req, res) => {
+        if (req.file) {
+            req.body['questionImage'] = '../public/assets/' + req.file.filename
+        } else {
+            req.body['questionImage'] = null
+        }
         Users.editQuestion(req, res)
-            // res.send({ "data": req.body })
     })
 
     //examiner will delete question by id
@@ -138,29 +147,14 @@ module.exports = () => {
     })
 
     //candidates will view quesions using accesskey
-    app.get('/test', middleware, async(req, res) => {
+    app.get('/question', middleware, async(req, res) => {
         const response = await Ques.testQuestions(req, res)
         return response
     })
 
     //post answers selected by candidates
-    app.post('/test', middleware, async(req, res) => {
+    app.post('/question', middleware, async(req, res) => {
         const response = await Ques.saveCandidateAnswers(req, res)
-        return response
-    })
-
-    app.post('/test/accessKey', async(req, res) => {
-        const response = await Ques.checkAccessKey(req, res)
-        return response
-    })
-
-    app.get('/test/accessKey',middleware,async(req,res)=>{
-        const response = await Ques.getExamTime(req,res)
-        return response
-    })
-
-    app.post('/test/endTest',middleware,async(req,res)=>{
-        const response = await Ques.saveAllQuestions(req,res)
         return response
     })
 
@@ -177,12 +171,12 @@ module.exports = () => {
 
     //admin will view examiner
     app.get('/examiner', async(req, res) => {
-        const result = await Users.fetchData(req, res)
-        res.send(result);
-    })
-    //admin will delete examiner using id of examiner
+            const result = await Users.fetchData(req, res)
+            res.send(result);
+        })
+        //admin will delete examiner using id of examiner
     app.delete('/examiner/:id', (req, res) => {
-            const result = Users.examinerDel(req, res)
+            const result = Users.examinerDelete(req, res)
             res.send(result)
         })
         //admin will view test created by each examiner using their id
@@ -192,10 +186,11 @@ module.exports = () => {
     })
 
     app.patch('/examiner', middleware, async(req, res) => {
-        const result = await Users.examinerUpd(req, res)
-    })
-     // admin update examiner info
-     app.patch('/examiner/:id', async(req, res) => {
+            const result = await Users.examinerUpdate(req, res)
+            res.send(result)
+        })
+        // admin update examiner info
+    app.patch('/examiner/:id', async(req, res) => {
         const result = await Users.updateUser(req, res);
         res.send(result);
     })

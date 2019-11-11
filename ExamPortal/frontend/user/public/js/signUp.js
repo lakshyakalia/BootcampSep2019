@@ -50,14 +50,6 @@ $(document).ready(function () {
         }
         name = firstName + " " + lastName;
         console.log("name is "+name)
-
-        // if ((fname && lname && email && password && flag) == true) {
-        //     let signUpData = true
-        //     alert("Your SignUp has been successful")
-        // } else {
-        //     signUpData = false
-        //     alert("Your data is not valid")
-        // }
         $.ajax("http://localhost:3000/signUp", {
             type: "POST",
             dataType: "json",
@@ -75,6 +67,7 @@ $(document).ready(function () {
                 "accountType": accountType
             }),
             success: function (data, status) {
+                alert("Your SignUp has been successful")
                 $(location).attr('href', '../views/login.html')
             },
             error: function (data, error) {

@@ -3,31 +3,29 @@ const question = require('./questionController')
 
 const examDetails = async(req, res) => {
     try {
+
         const checkExamCode = await examDetail.findOne({ examCode: req.body.examCode })
-        
-        if(checkExamCode){
-            return({"message" : "Exam Code already exist"})
+        if (checkExamCode != null) {
+            res.status(409).send({ message: "Exam Code already exist" })
+        } else {
+            req.body.examinerId = req.headers.id
+            let examInformation = new examDetail(req.body)
+            await examInformation.save()
+            res.status(200).send({ message: 'exam information saved successful' })
         }
-        else{
-        req.body.examinerId = req.headers.id
-        console.log(req.headers.id)
-        console.log('------------Inside exam controller-------')
-        let examInformation = new examDetail(req.body)
-        const p = await examInformation.save()
-        // console.log(p)
-        res.status(200).send({ msg: 'exam information saved successful' })
-        }    
-    } 
-    catch (error) {
-        console.log(error)
-        res.send({ error })
+    } catch (error) {
+        console.log('error ', error)
+        res.status(500).send(error)
     }
 }
 
 const viewExamDetail = async(req, res) => {
     try {
-        let values = await examDetail.find()
-        res.status(200).send(values)
+        let values = await examDetail.find({ examinerId: req.headers.id })
+        if (values.length != 0) {
+            res.status(200).send(values)
+        } else
+            res.status(404).send('No Exam')
     } catch (error) {
         console.log(error)
     }
@@ -66,10 +64,21 @@ const fetchExamDetail = async(req, res) => {
         res.status(404).send(error)
     }
 }
+const addQuestion = async(req, res) => {
+    try {
+        // console.log(req.query)
+        let values = await examDetail.findById(req.query.examinerId);
+        console.log(values);
+        res.status(200).send(values)
+    } catch (error) {
+        console.log(error)
+    }
+}
 module.exports = {
     examDetails,
     viewExamDetail,
     removeExam,
     fetchExamDetail,
-    editExam
+    editExam,
+    addQuestion
 }
