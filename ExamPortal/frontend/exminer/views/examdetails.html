@@ -12,6 +12,8 @@
     <script type="text/javascript" src="../public/js/examDetails.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css">
     <script src="https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js"></script>
+    <link rel="icon" href="https://www.cygrp.com/wp-content/uploads/2019/06/cybergroup-site-icon.png" type="image/x-icon">
+    <script src="../public/js/examiner.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 
@@ -86,7 +88,7 @@
                             <label class="control-label">Test Instruction</label>
                             <textarea required="required" class="form-control" placeholder="Enter Test Instruction" id="addExamInstruction"></textarea>
                         </div>
-                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="btnSave">Next</button>
+                        <button class="btn btn-primary nextBtn pull-right" type="button" id="btnSave">Next</button>
                     </div>
                 </div>
             </div>
@@ -103,8 +105,8 @@
                                 <input class="file-path validate" type="text" placeholder="Upload your file" style="margin-left: 40px;">
                             </div>
                         </div>
-                        <button class="btn btn-success btn-lg pull-right" type="button" style="margin-top: 80px;">Submit </button> &nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" style="margin-top: 80px;">Next</button>
+                        <button class="btn btn-success pull-right" type="button" style="margin-top: 80px;">Submit </button> &nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-primary nextBtn pull-right" type="button" style="margin-top: 80px;">Next</button>
                     </div>
                 </div>
             </div>
@@ -177,9 +179,10 @@
                             <label class="control-label">Weightage</label>
                             <input maxlength="100" type="text" id="addtestWeightage" class="form-control" placeholder="Enter Weightage" />
                         </div>
-                        <button class="btn btn-success btn-lg pull-right " type="button" id="submitBtn">Submit  Question</button>
+                        <button class="btn btn-success pull-right " type="button" id="submitBtn">Submit  Question</button>
 
                     </div>
+                    <button class="btn btn-success pull-right " type="button" onclick="submitAllBtn()">Submit All Question</button>
                 </div>
 
             </div>

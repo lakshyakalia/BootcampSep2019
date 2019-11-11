@@ -34,7 +34,6 @@ function showName() {
         },
         success: function(data) {
 
-            console.log(data.name)
             document.getElementById('span').innerHTML = 'Welcome ' + data.name + '! &nbsp; &nbsp; '
             localStorage.setItem("loggedInName", data.name)
         },
@@ -46,7 +45,6 @@ function showName() {
 }
 
 function changeInputFields(data) {
-    console.log(data.collegeName)
     document.getElementById('loggedInEmail').value = data.email;
     document.getElementById('loggedInName').value = data.name;
     document.getElementById('loggedInPhone').value = data.phoneNumber;
@@ -74,8 +72,6 @@ function editDetails() {
             "password": pass
         }),
         success: function(data) {
-
-            // console.log('updated')
             window.alert('User Details Updated !')
             hideEditDetails()
             showName()
@@ -95,5 +91,6 @@ function hideEditDetails() {
 
 function logout() {
     localStorage.removeItem("token")
+    localStorage.clear()
     location.replace("../../index.html")
 }
