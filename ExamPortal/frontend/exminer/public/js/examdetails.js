@@ -218,12 +218,13 @@ $(document).ready(function() {
 })
 
 function submitAllBtn() {
-    console.log('lololol')
-        // location.replace("./examiner.html")
-}
-
-function submitAllBtn() {
 
     location.replace("./examiner.html")
 
+function logout()
+{
+    localStorage.removeItem("token");
+    localStorage.removeItem("examCode")
+    localStorage.clear()
+    window.location.replace("../../index.html");
 }
