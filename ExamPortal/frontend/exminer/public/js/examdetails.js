@@ -216,3 +216,14 @@ $(document).ready(function() {
 
     }
 })
+
+function submitAllBtn() {
+    console.log('lololol')
+        // location.replace("./examiner.html")
+}
+
+function submitAllBtn() {
+
+    location.replace("./examiner.html")
+
+}
