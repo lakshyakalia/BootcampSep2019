@@ -1,6 +1,6 @@
 var tempExamCode = ''
 var tempExamCode1 = ''
-$(document).ready(function() {
+$(document).ready(function () {
     const tok = localStorage.getItem('token');
     if (tok == null) {
         location.replace("../../index.html")
@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     allWells.hide();
 
-    navListItems.click(function(e) {
+    navListItems.click(function (e) {
         e.preventDefault();
         var $target = $($(this).attr('href')),
             $item = $(this);
@@ -26,7 +26,7 @@ $(document).ready(function() {
         }
     });
 
-    allNextBtn.click(function() {
+    allNextBtn.click(function () {
         var curStep = $(this).closest(".setup-content"),
             curStepBtn = curStep.attr("id"),
             nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
@@ -46,7 +46,7 @@ $(document).ready(function() {
     });
 
     $('div.setup-panel div a.btn-primary').trigger('click');
-    $('input[name="colorRadio"]').click(function() {
+    $('input[name="colorRadio"]').click(function () {
         var inputValue = $(this).attr("value");
         var targetBox = $("." + inputValue);
         $(".box").not(targetBox).hide();
@@ -54,7 +54,7 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     //     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
     function validateForm() {
@@ -90,7 +90,7 @@ $(document).ready(function() {
             contentType: "application/json;charset=utf-8",
             data: JSON.stringify(examDetail),
             contentType: "application/json; charset=utf-8",
-            success: function(recent) {
+            success: function (recent) {
                 console.log(recent.message);
                 if (recent.message == "Exam Code already exist") {
                     window.alert("Exam Code Already Exist");
@@ -102,14 +102,14 @@ $(document).ready(function() {
                     document.getElementById("addExamTestDate").value = '';
                 }
             },
-            error: function(error) {
+            error: function (error) {
                 console.log("error : " + error)
             }
         })
     }
 })
 
-$(document).ready(function() {
+$(document).ready(function () {
     // $('.loader').hide()
     document.getElementById('submitBtn').addEventListener('click', validateForm)
 
@@ -139,7 +139,7 @@ $(document).ready(function() {
             option3 = $("#addtestOption3").val();
             option4 = $("#addtestOption4").val();
             answerType = "multipleOption"
-            $.each($("input[type=checkbox][name=option]:checked"), function() {
+            $.each($("input[type=checkbox][name=option]:checked"), function () {
                 if ($(this).val()) {
                     answer += $(this).val() + ' '
                 }
@@ -186,7 +186,7 @@ $(document).ready(function() {
             },
             contentType: false,
             processData: false,
-            success: function(data, status) {
+            success: function (data, status) {
                 document.getElementById("addtestQuestion").value = '';
                 // ("#addtestAnswer").value = '';
                 if (answerType == "multipleOption") {
@@ -211,7 +211,7 @@ $(document).ready(function() {
                 }
                 document.getElementById("addtestWeightage").value = '';
             },
-            error: function(error) {
+            error: function (error) {
                 console.log(error + " " + "error occurred");
             }
         });
@@ -219,32 +219,30 @@ $(document).ready(function() {
     }
 })
 
-
-function excelUpload(event){
-    console.log("in frontend request")
+//this uploads excel file
+function excelUpload(event) {
+    // console.log("in frontend request")
     event.preventDefault();
 
-//   $("#status").empty().text("File is uploading...");
-tempExamCode1= $('#addExamCode').val()
-console.log("exam code is "+tempExamCode1)
-var formData = new FormData();
- formData.append('examCode',tempExamCode1)   
-//  console.log("my exam codse is" +examCode)
-formData.append('excelFile', $('input[type=file]')[0].files[0]);
-$.ajax('http://localhost:3000/exam/questions/uploadExcel',{
-type:'POST',
-data:formData,
-headers: {
-    token: localStorage.getItem('token')
-},
-lowerCaseHeaders:true,
-contentType: false,
- processData: false,
-success: function(data){
-    console.log(data.msg)
-},
-error: function(error){
-    console.log(error + " " + error)
-}
-})
+    //   $("#status").empty().text("File is uploading...");
+    tempExamCode1 = $('#addExamCode').val()
+    var formData = new FormData();
+    formData.append('examCode', tempExamCode1)
+    formData.append('excelFile', $('input[type=file]')[0].files[0])
+    $.ajax('http://localhost:3000/exam/questions/uploadExcel', {
+        type: 'POST',
+        data: formData,
+        headers: {
+            token: localStorage.getItem('token')
+        },
+        lowerCaseHeaders: true,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            console.log(data.msg)
+        },
+        error: function (error) {
+            console.log(error + " " + error)
+        }
+    })
 }
