@@ -1,9 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Examportal.Custom_Models;
+using Examportal.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Bcrypt = BCrypt.Net;
 
 namespace Examportal.Controllers
 {
@@ -11,37 +19,49 @@ namespace Examportal.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IConfiguration _config;
+
+        public LoginController(IConfiguration config)
         {
-            return new string[] { "value1", "value2" };
-        }
-            
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
+            _config = config;
         }
 
-        //POST api/values
+        ExamportalContext db = new ExamportalContext();
+
         [HttpPost]
-        public void Post([FromBody] UserLoginCustomModel value)
+        public IActionResult Post([FromBody] UserLoginCustomModel value)
         {
-            String a = "hello";
+            var loginData = db.Users.FirstOrDefault(s => s.Email == value.Email);
+            var loginStatus = Bcrypt.BCrypt.Verify(value.Password, loginData.Password);
+            if (loginStatus)
+            {
+                String token = GenerateJSONToken(value);
+                return Ok(new { token = token, accountType = loginData.AccountType });
+            }
+            else
+            {
+                return BadRequest();
+            }
+
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        private string GenerateJSONToken(UserLoginCustomModel user)
         {
-        }
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var claims = new[] {
+                new Claim("Email", user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+              _config["Jwt:Issuer"],
+              claims,
+              expires: DateTime.Now.AddMinutes(120),
+              signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
