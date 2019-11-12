@@ -111,14 +111,13 @@ module.exports = () => {
     })
 
 
-    //examiner will views questions
+    //examiner will view questions
     app.get('/exam/question/:id', middleware, (req, res) => {
         Users.getQuestionDetail(req, res)
     })
 
     //get particular question using its ID
     app.get('/exam/question/byid/:id', middleware, (req, res) => {
-        // console.log(req.params.id)
         Users.fetchQuestionById(req, res)
     })
 

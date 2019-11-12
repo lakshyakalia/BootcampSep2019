@@ -60,13 +60,13 @@ const fetchExamDetail = async(req, res) => {
         let obj = await examDetail.findById({ _id: req.params.id })
         res.status(200).send(obj)
     } catch (error) {
-        console.log(error)
+       
         res.status(404).send(error)
     }
 }
 const addQuestion = async(req, res) => {
     try {
-        // console.log(req.query)
+       
         let values = await examDetail.findById(req.query.examinerId);
         console.log(values);
         res.status(200).send(values)

@@ -52,7 +52,6 @@ const studentPerformance = async(req, res) => {
 const adminLogin = async(req, res) => {
 
     const result = await userController.adminLogin(req, res)
-        //console.log(result);
     return result;
 }
 const userDetails = (req, res) => {
@@ -68,7 +67,7 @@ const getQuestionDetail = (req, res) => {
     questionDetail.getQuestionDetails(req, res)
 }
 const addQuestion = (req, res) => {
-    //console.log("hello1 ", req.params.id)
+    
     examController.addQuestion(req, res)
 }
 
@@ -82,11 +81,7 @@ const editQuestion = (req, res) => {
 const removeQuestion = (req, res) => {
         questionDetail.removeQuestion(req, res)
     }
-    // const userDetails = (req, res) => {
-    //     // console.log('hello world')
-    //     const data = userController.userDetails(req, res)
-    //     return data;
-    // }
+   
 
 const testDetails = (req, res) => {
     const result = testInfo.testDetails(req, res)

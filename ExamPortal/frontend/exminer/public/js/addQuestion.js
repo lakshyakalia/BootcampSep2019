@@ -50,10 +50,6 @@ $(document).ready(function() {
     });
 
 
-    ////////////////////
-
-    // const examCode=localStorage.getItem('addQuestionid');
-    // console.log(examCode);
     $.ajax("http://localhost:3000/exam/addQuestion/examCode", {
             type: 'GET',
             dataType: 'json',
@@ -65,9 +61,7 @@ $(document).ready(function() {
                 examinerId: localStorage.getItem('addQuestionid')
             },
             success: function(data) {
-                // window.location.replace('../views/addQuestion.html');
                 console.log(data);
-                // display(data);
             },
             error: function(error) {
                 console.log(error)
@@ -75,7 +69,7 @@ $(document).ready(function() {
 
 
         })
-        ///////////////
+        
 });
 
 function logout() {
