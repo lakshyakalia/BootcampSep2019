@@ -9,7 +9,7 @@ namespace Examportal.Controllers
 {
     [Route("/login")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class LoginController : ControllerBase
     {
         // GET api/values
         [HttpGet]
