@@ -1,3 +1,7 @@
+var tempExamCode = ''
+tempExamCode = localStorage.getItem('addQuestionid')
+console.log(tempExamCode)
+localStorage.removeItem('addQuestionid')
 $(document).ready(function() {
 
     var navListItems = $('div.setup-panel div a'),
@@ -48,47 +52,117 @@ $(document).ready(function() {
         $(".box").not(targetBox).hide();
         $(targetBox).show();
     });
+    $("#submitBtn").click(function(){
+        
+        var question = document.getElementById("addtestQuestion").value;
+        var weightage = document.getElementById("addtestWeightage").value;
+        if (question === "") {
+            alert("Please enter question");
+            return
+        }
+        var option = $("input[type=radio][name=colorRadio]:checked").val();
+        if (option == undefined || option === '') {
+            alert("select answer type")
+            return
+        }
+        let option1 = '',
+            option2 = '',
+            option3 = '',
+            option4 = '',
+            answer = '',
+            answerType = ''
 
-
-    $.ajax("http://localhost:45728/exam/addQuestion/examCode", {
-            type: 'GET',
-            dataType: 'json',
-            contentType: "application/json;charset=utf-8",
-            headers: {
-                'token': localStorage.getItem('token')
-            },
-            data: {
-                examinerId: localStorage.getItem('addQuestionid')
-            },
-            success: function(data) {
-                console.log(data);
-            },
-            error: function(error) {
-                console.log(error)
+        if (option == "red") {
+            option1 = $("#addtestOption1").val();
+            option2 = $("#addtestOption2").val();
+            option3 = $("#addtestOption3").val();
+            option4 = $("#addtestOption4").val();
+            answerType = "multipleOption"
+            $.each($("input[type=checkbox][name=option]:checked"), function () {
+                if ($(this).val()) {
+                    answer += $(this).val() + ' '
+                }
+            })
+            answer = answer.trim()
+            if (option1 === "" || option2 === "" || option3 === "" || option4 === "" || answer == ''|| answer===undefined) {
+                alert("Please fill all options and tick answers");
+                return
             }
 
+        } else if (option == "green") {
+            option1 = $("#addtestOption1G").val();
+            option2 = $("#addtestOption2G").val();
+            option3 = $("#addtestOption3G").val();
+            option4 = $("#addtestOption4G").val();
+            answerType = "singleOption"
+            answer = $("input[type=radio][name=option1]:checked").val();
+            console.log('single op ',answer)
+            if (option1 === "" || option2 === "" || option3 === "" || option4 === "" || answer == ''||answer == undefined) {
+                alert("Please fill all options and select answer");
+                return
+            }
+        }
+        if (weightage === "") {
+            alert("Please enter weightage");
+            return
+        }
+        var formData = new FormData();
 
-        })
-        
+        formData.append('questionText', question);
+        formData.append('answer', answer);
+        formData.append('option1', option1);
+        formData.append('option2', option2);
+        formData.append('option3', option3);
+        formData.append('option4', option4);
+        formData.append('weightage', weightage);
+        console.log(tempExamCode)
+        formData.append('examCode', tempExamCode);
+        console.log(formData.values('examCode'))
+        formData.append('answerType', answerType);
+        formData.append('questionImage', $('input[type=file]')[0].files[0]);
+        $.ajax("http://localhost:45728/exam/question", {
+            type: "POST",
+            data: formData,
+            dataType: "json",
+            headers: {
+                token: localStorage.getItem('token')
+            },
+            contentType: false,
+            processData: false,
+            success: function (data, status) {
+                document.getElementById("addtestQuestion").value = '';
+                // ("#addtestAnswer").value = '';
+                if (answerType == "multipleOption") {
+                    document.getElementById("addtestOption1").value = '';
+                    document.getElementById("addtestOption2").value = '';
+                    document.getElementById("addtestOption3").value = '';
+                    document.getElementById("addtestOption4").value = '';
+                    let checkBox = $('input[type=checkbox][name=option]')
+                    $.each(checkBox, (i, chk) => {
+                        if ($(chk).val()) {
+                            $(chk).prop('checked', false)
+                        }
+                    })
+                } else {
+                    document.getElementById("addtestOption1G").value = '';
+                    document.getElementById("addtestOption2G").value = '';
+                    document.getElementById("addtestOption3G").value = '';
+                    document.getElementById("addtestOption4G").value = '';
+                    if ($('input[type=radio][name=option1]:checked').val()) {
+                        $('input[type=radio][name=option1]').prop('checked', false)
+                    }
+                }
+                document.getElementById("addtestWeightage").value = '';
+            },
+            error: function (error) {
+                console.log(error + " " + "error occurred");
+            }
+        });
+    })
 });
 
 function logout() {
     localStorage.clear()
     location.replace("../../index.html")
-
-}
-
-function showName() {
-    document.getElementById('span').innerHTML = 'Welcome ' + localStorage.getItem('loggedInName') + '! &nbsp; &nbsp; '
-}
-
-function display(data) {
-    //console.log(data);
-    const displaytemplate = document.querySelector('#index-template').innerHTML
-    const html = Mustache.render(displaytemplate, { data: data })
-        //console.log(displaytemplate);
-    const performance = document.querySelector("#performance");
-    //console.log(performance)
-    performance.insertAdjacentHTML("beforeend", html)
 
 }

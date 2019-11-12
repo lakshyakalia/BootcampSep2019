@@ -69,7 +69,6 @@ module.exports = () => {
 
     //examiner will view exam
     app.get('/exam', middleware, (req, res) => {
-         console.log('get exams ')
             Users.viewExamDetail(req, res)
 
         })
