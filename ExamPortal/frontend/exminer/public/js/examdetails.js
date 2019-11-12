@@ -248,3 +248,9 @@ function excelUpload(event) {
         }
     })
 }
+
+function submitAllBtn() {
+
+    location.replace("./examiner.html")
+
+}
