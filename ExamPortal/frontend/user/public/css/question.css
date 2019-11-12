@@ -65,10 +65,10 @@ body {
 .time {
     width: 100%;
     font-size: 20px;
-    color: white;
+    color: black;
     font-weight: bold;
     padding: 15px 20px;
-    background-color: rgb(255, 129, 87);
+    background-color: #FFFFFF;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
 }
@@ -85,10 +85,10 @@ body {
 .test {
     width: 100%;
     font-size: 20px;
-    color: white;
+    color: black;
     font-weight: bold;
     padding: 15px 20px;
-    background-color: #2BF7F7;
+    background-color: #EBEBEB;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
 }
@@ -148,10 +148,15 @@ a:hover {
     height: 50px;
 }
 
+.img-card{
+    text-align: center;
+}
+
 .img-card img {
     width: 300px;
     height: 200px;
     margin: 10px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .pagination-card {
@@ -165,11 +170,16 @@ a:hover {
 .circle {
     height: 50px;
     width: 50px;
-    background-color: red;
+    background-color: #EBEBEB;
     border-radius: 30px;
     display: inline-block;
     cursor: pointer;
     text-align: center;
+    margin-right: 10px;
+}
+
+.circle:hover{
+    box-shadow: 0px 0px 7px 3px rgba(222,213,222,1);
 }
 
 .circle p {
@@ -192,10 +202,11 @@ a:hover {
     font-weight: 400;
     font-size: 24px;
 }
-.checkBox{
+
+.checkBox {
     margin-left: 10px;
 }
 
-.form-check-input{
+.form-check-input {
     margin-top: 10.3px !important;
 }

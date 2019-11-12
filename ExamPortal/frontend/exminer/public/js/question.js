@@ -34,7 +34,6 @@ function updateQues(id,type) {
             formData.append('weightage', weightage);
             formData.append('answerType', "multipleOption");
             formData.append('questionImage', $('input[type=file]')[0].files[0]);
-            console.log("image is " + formData.values('questionImage'));
             // return
     $.ajax("http://localhost:3000/exam/question/" + id, {
         type: 'PATCH',
@@ -57,7 +56,6 @@ function updateQues(id,type) {
 function editQuestion(id) {
     let qid = $("#" + id).parent().parent().attr('id')
     let pid = $("#" + qid).parent().parent().parent().parent().attr('id')
-    console.log(qid)
     $('#' + pid).hide()
     $.ajax("http://localhost:3000/exam/question/byid/" + qid, {
         type: 'GET',
@@ -97,7 +95,6 @@ function editQuestion(id) {
 }
 $(document).ready(function(){
     let examCode = localStorage.getItem('examCode')
-    console.log(examCode)
     let url = "http://localhost:3000/exam/question/" + encodeURIComponent(examCode)
     $.ajax(url, {
         type: 'GET',
