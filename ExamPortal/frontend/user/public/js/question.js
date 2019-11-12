@@ -1,21 +1,19 @@
 function loadQuestions(data, startTime, duration, examName) {
-    let imageURL,imageStatus
+    let imageURL, imageStatus
     const questionTemplate = document.querySelector('#question-template').innerHTML
     $('.showTest').text(examName)
     setTimeForTest(startTime, duration)
     $('#options').empty()
     const op = document.querySelector('#options')
-    if(data[0].questionImage !== null){
-        imageURL = "../../exminer/public"+data[0].questionImage.substring(2,data[0].questionImage.length)
+    if (data[0].questionImage !== null) {
+        imageURL = "../../exminer/public" + data[0].questionImage.substring(2, data[0].questionImage.length)
         imageStatus = true
-    }
-    else imageStatus = false
+    } else imageStatus = false
 
     if (data[0].answerType === "singleOption") {
         const html = Mustache.render(questionTemplate, { questions: data[0], types: true, url: imageURL, status: imageStatus })
         op.insertAdjacentHTML("beforeend", html)
-    }
-    else{
+    } else {
         const html = Mustache.render(questionTemplate, { questions: data[0], types: false, url: imageURL, status: imageStatus })
         op.insertAdjacentHTML("beforeend", html)
     }
@@ -43,7 +41,7 @@ function setTimeForTest(time, duration) {
         var minutes = Math.floor((leftTestTime % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((leftTestTime % (1000 * 60)) / 1000);
         document.getElementById("showTime").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
-        if (leftTestTime < 0){
+        if (leftTestTime < 0) {
             clearInterval(x);
             $(location).attr('href', './endTest.html')
             localStorage.clear()
@@ -57,7 +55,7 @@ function showPreviousTicks() {
         if (keys[i].length > 20) {
             let values = localStorage.getItem(keys[i])
             values = values.split(',')
-            for(j=0; j<values.length;j++){
+            for (j = 0; j < values.length; j++) {
                 $(`input[name=${keys[i]}][value=${values[j]}]`).prop('checked', true)
             }
         }
@@ -105,6 +103,7 @@ $(document).ready(function() {
     }
     $('#nextQuestion').attr('value', 0)
     $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
+    
     $.ajax('http://localhost:3000/question', {
         type: 'GET',
         dataType: 'JSON',
@@ -119,6 +118,10 @@ $(document).ready(function() {
             data.duration = parseInt(data.duration)
             loadQuestions(data.questions, data.startTime, data.duration, data.examName)
             loadPaginaton(data.allQuestions)
+            if (data.lastQuestionStatus === true) {
+                $('#nextQuestion').attr('disabled', true)
+            }
+            
         },
         error: function(err) {
             console.log(err)
@@ -133,7 +136,7 @@ $(document).on('click', '#submitAnswer', function() {
     $.each($(`input[name=${questionId}]:checked`), function() {
         value.push($(this).val())
     })
-    if(value.length === 0){
+    if (value.length === 0) {
         return
     }
     $.ajax('http://localhost:3000/question', {
@@ -245,7 +248,8 @@ $(document).on('click', "input", function() {
         value.push($(this).val())
     })
     localStorage.setItem(questionId, value)
-    $('#' + questionId + ".circle").css('background-color', "blue")
+    $('#' + questionId + ".circle").css('background-color', "green")
+    $('#' + questionId + ".circle").css('color', "white")
 })
 
 $(document).on('click', '.circle', function() {
@@ -279,6 +283,6 @@ $(document).on('click', '.circle', function() {
 
 $('#fullScreenModal').modal({ backdrop: 'static', keyboard: false })
 
-$(document).keypress(function(e){
+$(document).keypress(function(e) {
     return false
 })

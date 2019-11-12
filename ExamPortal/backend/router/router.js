@@ -5,26 +5,26 @@ const { Ques } = require('../controller')
 const middleware = require("../auth/middleware");
 const jwt = require('jsonwebtoken');
 const { SECRET } = require("../config/config")
+const multer = require('multer')
 const path = require('path')
-var multer = require('multer')
-
-
-//path for folder to save image and rename image
-const reqPath = path.join(__dirname, '../../frontend/exminer/public/assets');
+// var reqPath = path.join(__dirname, '../../frontend/exminer/excelFileUpload')
+var storage = multer.memoryStorage()
 var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, reqPath)
+    destination: function (req, file, callback) {
+        callback(null, 'upload/')
     },
-    filename: function(req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname)
-    }
-})
-var upload = multer({ storage: storage })
-    // var upload = multer({ dest: 'upload/'});
-
-
+    filename: function (req, file, callback) {
+        callback(null,file.originalname);
+        // Date.now() + '-' + 
+      }
+});
+const upload = multer({storage:storage})
 const createToken = require("../auth/authenticator").checkAuth;
+
+
 module.exports = () => {
+ 
+
 
     app.post('/login', async(req, res) => {
         const result = await createToken(req)
@@ -44,6 +44,10 @@ module.exports = () => {
     app.get('/loggedIn', async(req, res) => {
         const response = await Users.loggedInDetails(req, res)
         res.send(response)
+    })
+    // For uploading questions directly from excel file
+    app.post('/exam/questions/uploadExcel', upload.single('excelFile'), (req, res) => {
+        Users.quesFromExcel(req, res)
     })
 
     app.post('/exam/accessKey', middleware, async(req, res) => {
