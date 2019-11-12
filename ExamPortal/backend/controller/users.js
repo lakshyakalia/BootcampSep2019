@@ -34,7 +34,7 @@ const question = (req, res) => {
     questionDetail.questions(req, res)
 }
 const quesFromExcel = (req, res) => {
-    console.log("in users.js")
+    
      questionFromExcel.quesFromExcel(req, res)
 }
 

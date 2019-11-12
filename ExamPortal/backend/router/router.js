@@ -20,7 +20,7 @@ var storage = multer.diskStorage({
 });
 const upload = multer({storage:storage})
 const createToken = require("../auth/authenticator").checkAuth;
-console.log("Helloo nhello")
+
 
 module.exports = () => {
  
@@ -47,16 +47,6 @@ module.exports = () => {
     })
     // For uploading questions directly from excel file
     app.post('/exam/questions/uploadExcel', upload.single('excelFile'), (req, res) => {
-        console.log("in route uploadExcel")
-            // console.log("result is : " + req.file)
-            // if(err) {
-            //  res.send("Error uploading file.");
-            // }
-            // res.send("File is uploaded");
-               
-        //     req.file.filename = './upload/'+req.file.filename
-        // console.log(req.file.filename);
-        console.log("code in back ",req.body.examCode)
         Users.quesFromExcel(req, res)
     })
 

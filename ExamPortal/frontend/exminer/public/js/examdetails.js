@@ -221,13 +221,12 @@ $(document).ready(function () {
 
 //this uploads excel file
 function excelUpload(event) {
-    // console.log("in frontend request")
+ 
     event.preventDefault();
-
-    //   $("#status").empty().text("File is uploading...");
     tempExamCode1 = $('#addExamCode').val()
     var formData = new FormData();
     formData.append('examCode', tempExamCode1)
+    console.log("exam code is " +formData.values('examCode'))
     formData.append('excelFile', $('input[type=file]')[0].files[0])
     $.ajax('http://localhost:3000/exam/questions/uploadExcel', {
         type: 'POST',
@@ -239,7 +238,10 @@ function excelUpload(event) {
         contentType: false,
         processData: false,
         success: function (data) {
+            alert("You have successfully uploaded the questions through excel file")
             console.log(data.msg)
+            $(location).attr('href', './exam.html')
+            
         },
         error: function (error) {
             console.log(error + " " + error)

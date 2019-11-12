@@ -3,7 +3,6 @@ const excelToJson = require('convert-excel-to-json');
 
 const quesFromExcel = async (req, res) => {
     let path = req.file.filename
-    console.log("path is " +path)
     const result = excelToJson({
         sourceFile: 'upload/'+path,
         columnToKey: {
@@ -15,26 +14,25 @@ const quesFromExcel = async (req, res) => {
             F: 'answer',
             G: 'weightage',
             H: 'questionImage',
+            I: 'answerType'
         }
 
     })
-   // console.log(result)
+    console.log('exam code is '+req.body.examCode)
           let i;  
     try {
-         var arr = result.Sheet2 
-        for(i = 0;i<arr.length;i++){
-            arr[i].examCode = req.body.examCode
+        //  var arr = result.Sheet2 
+        for(i = 0;i<result.Sheet2.length;i++){
+            // arr[i].examCode = req.body.examCode
+           result.Sheet2[i].examCode = req.body.examCode
 
         }
-        console.log(result)
-        // questionDetail.insertMany(arr,(err, docs) => {
+         console.log('arr is'+result)
             questionDetail.insertMany(result.Sheet2,(err, docs) => {
             if(err){
-                // console.log(['ERROR'],err);
                 res.status(404).send({msg: 'File uploading failed'})
             }
             else{
-                // console.log('[DOCS]', docs)
                 res.status(200).send({ msg: 'Data from excel file saved' });
             }
         })
