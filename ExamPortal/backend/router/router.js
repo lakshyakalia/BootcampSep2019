@@ -118,7 +118,6 @@ module.exports = () => {
 
     //get particular question using its ID
     app.get('/exam/question/byid/:id', middleware, (req, res) => {
-        // console.log(req.params.id)
         Users.fetchQuestionById(req, res)
     })
 

@@ -55,14 +55,10 @@ $(document).ready(function () {
     //     $('.loader').hide()
     document.getElementById('btnSave').addEventListener('click', validateForm)
     function validateForm() {
-        console.log('create exam')
         var testName = document.getElementById("addExamName").value;
-        console.log("testname is " + testName)
         var testCode = document.getElementById("addExamCode").value;
-        console.log("testcode is " + testCode)
         var testDuration = document.getElementById("addExamDuration").value;
         var testDate = document.getElementById("addExamTestDate").value;
-        // var testInstruction = document.getElementById("addExamInstruction").value;
         if (testName === '' || testCode == '' || testDuration == '' || testDate == '') {
             alert("Please fill all the fields")
             return
@@ -70,7 +66,6 @@ $(document).ready(function () {
         const testD = testDate.slice(0, 10);
         const testd = testDate.slice(11, 16)
         testDate = testD.concat(" " + testd + ":00")
-        console.log(testDate)
         tempExamCode = testCode
         let examDetail = {
             examName: testName,
@@ -88,7 +83,6 @@ $(document).ready(function () {
             data: JSON.stringify(examDetail),
             contentType: "application/json; charset=utf-8",
             success: function (recent) {
-                console.log(recent.message);
                 if (recent.message == "Exam Code already exist") {
                     window.alert("Exam Code Already Exist");
                     //location.replace("./views/examdetails.html")
@@ -107,7 +101,6 @@ $(document).ready(function () {
 })
 
 $(document).ready(function () {
-    // $('.loader').hide()
     document.getElementById('submitBtn').addEventListener('click', validateForm)
 
     function validateForm() {
@@ -118,7 +111,6 @@ $(document).ready(function () {
             return
         }
         var option = $("input[type=radio][name=colorRadio]:checked").val();
-        console.log('options ', option)
         if (option == undefined) {
             alert("select answer type")
             return
@@ -223,7 +215,6 @@ function excelUpload(event) {
     //tempExamCode1 = $('#addExamCode').val()
     var formData = new FormData();
     formData.append('examCode', tempExamCode)
-    console.log("exam code is " +formData.values('examCode'))
     formData.append('excelFile', $('input[type=file]')[0].files[0])
     $.ajax('http://localhost:3000/exam/questions/uploadExcel', {
         type: 'POST',
@@ -236,7 +227,6 @@ function excelUpload(event) {
         processData: false,
         success: function (data) {
             alert("You have successfully uploaded the questions through excel file")
-            console.log(data.msg)
             $(location).attr('href', './exam.html')
             
         },

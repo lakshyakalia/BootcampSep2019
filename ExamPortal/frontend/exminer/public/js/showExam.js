@@ -36,7 +36,6 @@ function updateExam(examObjId) {
 
 function editExamDetail(id) {
     let examObjId = $('#' + id).parent().parent().attr('id')
-        // console.log('examid ',examId)
     let mainId = $('#' + id).parent().parent().parent().parent().attr('id')
     $('#' + mainId).hide()
     $.ajax("http://localhost:3000/exam/" + examObjId, {
@@ -47,8 +46,6 @@ function editExamDetail(id) {
             'token': localStorage.getItem('token')
         },
         success: function(data) {
-            //    console.log(data)
-            // console.log(data.instructions)
             let editForm = $("#edit-exam-detail").html()
             $("#display-form").append(Mustache.render(editForm, data))
         },
@@ -64,7 +61,6 @@ function setId(id) {
 
 function deleteExam(id) {
     examObjId = $('#' + id).parent().parent().attr('id')
-    // console.log(examObjId)
     $.ajax("http://localhost:3000/exam/" + examObjId, {
         type: 'DELETE',
         dataType: 'json',
@@ -103,15 +99,11 @@ $(document).ready(() => {
                 })
             },
             error: function(error) {
-                console.log(error.responseText)
                 if (error.responseText == 'No Exam') {
                     alert('No Exam created')
                     $(location).attr('href', '../views/examiner.html')
                 }
-                console.log(error)
+            
             }
         })
     })
-    // function showName(){
-    //     document.getElementById('span').innerHTML="Welcome "+ localStorage.getItem()
-    // }

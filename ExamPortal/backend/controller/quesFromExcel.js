@@ -21,13 +21,13 @@ const quesFromExcel = async (req, res) => {
     console.log('exam code is '+req.body.examCode)
           let i;  
     try {
-        //  var arr = result.Sheet2 
+        
         for(i = 0;i<result.Sheet2.length;i++){
-            // arr[i].examCode = req.body.examCode
+           
            result.Sheet2[i].examCode = req.body.examCode
 
         }
-         console.log('arr is'+result)
+        
             questionDetail.insertMany(result.Sheet2,(err, docs) => {
             if(err){
                 res.status(404).send({msg: 'File uploading failed'})
