@@ -111,7 +111,7 @@ module.exports = () => {
     })
 
 
-    //examiner will views questions
+    //examiner will view questions
     app.get('/exam/question/:id', middleware, (req, res) => {
         Users.getQuestionDetail(req, res)
     })

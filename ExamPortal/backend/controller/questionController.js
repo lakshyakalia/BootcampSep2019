@@ -157,6 +157,7 @@ const questions = async(req, res) => {
 }
 
 const getQuestionDetails = async(req, res) => {
+    // console.log(req.params.id)
     try {
         let values = await questionDetail.find({ examCode: decodeURIComponent(req.params.id) })
         if( values != 0 )

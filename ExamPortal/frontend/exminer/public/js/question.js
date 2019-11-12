@@ -127,10 +127,10 @@ $(document).ready(function(){
             })
         },
         error: function(error) {
-            if( error.responseText =='Not Found'){
-                alert("This exam has no Questions")
-                $(location).attr('href','../views/exam.html')
-            }
+            // if( error.responseText =='Not Found'){
+            //     alert("This exam has no Questions")
+            //     $(location).attr('href','../views/exam.html')
+            //}
         }
     })
 })

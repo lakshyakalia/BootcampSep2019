@@ -64,6 +64,7 @@ function setId(id) {
 
 function deleteExam(id) {
     examObjId = $('#' + id).parent().parent().attr('id')
+    // console.log(examObjId)
     $.ajax("http://localhost:3000/exam/" + examObjId, {
         type: 'DELETE',
         dataType: 'json',

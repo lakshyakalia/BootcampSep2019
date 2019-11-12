@@ -1,10 +1,7 @@
 var tempExamCode = ''
-var tempExamCode1 = ''
+
 $(document).ready(function () {
-    const tok = localStorage.getItem('token');
-    if (tok == null) {
-        location.replace("../../index.html")
-    }
+   
     document.getElementById('span').innerHTML = "Welcome " + localStorage.getItem('loggedInName') + "! &nbsp;&nbsp;"
     var navListItems = $('div.setup-panel div a'),
         allWells = $('.setup-content'),
@@ -223,9 +220,9 @@ $(document).ready(function () {
 function excelUpload(event) {
  
     event.preventDefault();
-    tempExamCode1 = $('#addExamCode').val()
+    //tempExamCode1 = $('#addExamCode').val()
     var formData = new FormData();
-    formData.append('examCode', tempExamCode1)
+    formData.append('examCode', tempExamCode)
     console.log("exam code is " +formData.values('examCode'))
     formData.append('excelFile', $('input[type=file]')[0].files[0])
     $.ajax('http://localhost:3000/exam/questions/uploadExcel', {
