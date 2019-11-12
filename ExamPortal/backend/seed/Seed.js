@@ -179,7 +179,7 @@ const examDetails = [
         "instructions": "no instructions",
         "examDuration": "240",
         "examStartTime": "2019-11-08 10:13:00"
-    }
+    },
 {
         "examName": "chemistry",
         "examCode": "0000",
@@ -187,7 +187,7 @@ const examDetails = [
         "examStartTime": "2019-11-06 15:10:00",
         "instructions": "no instructions",
         "examinerId": "5dc0ff27b29b8218244aa6c4"
-    }
+    },
 {
         "examName": "Check Box",
         "examCode": "1234",
@@ -195,7 +195,7 @@ const examDetails = [
         "examStartTime": "2019-11-06 19:10:00",
         "instructions": "no insttructions",
         "examinerId": "5dc0ff27b29b8218244aa6c4"
-    }
+    },
 {
         "examName": "Data Structure",
         "examCode": "9876",
