@@ -1,6 +1,5 @@
-const mongoose  = require('mongoose')
-
-// delete mongoose.connection.models['question'];
+const mongoose  = require('mongoose');
+delete mongoose.connection.models['question'];
 const Schema = mongoose.Schema
 
 const questionDetails = new Schema({

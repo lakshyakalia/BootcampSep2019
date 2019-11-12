@@ -55,11 +55,11 @@
                 </div>
                 <div class="stepwizard-step">
                     <a href="#step-2" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                    <p>Step 3</p>
+                    <p>Upload from excel file</p>
                 </div>
                 <div class="stepwizard-step">
                     <a href="#step-3" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                    <p>Add Questions</p>
+                    <p>Add Questions Manually</p>
                 </div>
             </div>
         </div>
@@ -97,15 +97,16 @@
                     <div class="col-md-12">
                         <!-- <h3> Step 2</h3> -->
                         <div class="file-field">
-                            <div class="btn btn-primary btn-sm float-left">
+                            <!-- <div class="btn btn-primary btn-sm float-left">
                                 <span>Choose file</span>
                                 <input type="file">
-                            </div>
-                            <div class="file-path-wrapper float-right">
-                                <input class="file-path validate" type="text" placeholder="Upload your file" style="margin-left: 40px;">
-                            </div>
+                            </div> -->
+                            <form>
+                                    <input type="file" id="uploadExcelFile" name="uploadExcelFile" />
+                                    <input type="button" value="UploadExcelfile" name="submit" onclick="excelUpload(event)">
+                                    <span id = "status"></span>
+                                </form>
                         </div>
-                        <button class="btn btn-success pull-right" type="button" style="margin-top: 80px;">Submit </button> &nbsp;&nbsp;&nbsp;
                         <button class="btn btn-primary nextBtn pull-right" type="button" style="margin-top: 80px;">Next</button>
                     </div>
                 </div>

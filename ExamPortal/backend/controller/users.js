@@ -4,6 +4,7 @@ const studentPerformanceController = require('./studentPerformance')
 const userController = require('./userRecord')
 const bcryptjs = require('bcryptjs')
 const testInfo = require('./testDetails')
+const questionFromExcel = require('./quesFromExcel')
 
 const userRecord = async(req, res) => {
 
@@ -31,6 +32,10 @@ const loggedInDetails = async(req, res) => {
 
 const question = (req, res) => {
     questionDetail.questions(req, res)
+}
+const quesFromExcel = (req, res) => {
+    
+     questionFromExcel.quesFromExcel(req, res)
 }
 
 const examDetail = (req, res) => {
@@ -130,7 +135,7 @@ module.exports = {
     getQuestionDetail,
     editExam,
     editQuestion,
-    removeQuestion,
+    quesFromExcel,
     studPerformance,
     userDetails,
     adminLogin,

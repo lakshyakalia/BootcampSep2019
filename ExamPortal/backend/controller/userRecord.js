@@ -19,7 +19,6 @@ const adminDetails = async (req, res) => {
         if (existUser) {
             return ({ "message": "user already exist" })
         } else {
-            debugger
             const userInfo = req.body;
             var myPlaintesxtPassword = userInfo.password;
             var salt = bcrypt.genSaltSync(10);
