@@ -1,4 +1,24 @@
-
+function removeQuestion(id){
+    let qsId = $("#"+id).parent().parent().attr('id')
+    console.log(qsId)
+    $.ajax("http://localhost:3000/exam/question/"+qsId, {
+        type: 'DELETE',
+        dataType: 'json',
+        contentType: "application/json",
+        headers:{
+            token:localStorage.getItem('token')
+        },
+        success: function(data) {
+            location.reload(true)
+            },
+        error: function(error) {
+           console.log(error)
+            }
+        }) 
+}
+function setQsId(id){
+    $("#del").attr('id', id)
+}
 function updateQues(id,type) {
     let opt1 = '',opt2= '', opt3= '', opt4 ='', answer =''
     let questionText= $('#addtestQuestion').val()
