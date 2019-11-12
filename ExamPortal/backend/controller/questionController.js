@@ -135,7 +135,6 @@ const saveAllQuestions = async(req,res)=>{
 
 const getExamTime = async(req,res)=>{
     const examData = await examDetail.findOne({examCode:req.headers.examcode}).select({examStartTime:1})
-    // console.log(examData)
     const submitStatus = await test.findOne({$and :[{candidateId:req.headers.id},{testCode:req.headers.examcode}]}).select({submitExam:1})
     if(submitStatus === null){
         res.status(200).send({examData,submitStatus:false})
@@ -157,6 +156,7 @@ const questions = async(req, res) => {
 }
 
 const getQuestionDetails = async(req, res) => {
+    
     try {
         let values = await questionDetail.find({ examCode: decodeURIComponent(req.params.id) })
         if( values != 0 )
@@ -164,7 +164,7 @@ const getQuestionDetails = async(req, res) => {
         else
             res.status(404).send('Not Found')
             } catch (error) {
-        console.log(error)
+        
     }
 }
 

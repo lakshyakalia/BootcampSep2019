@@ -90,12 +90,12 @@ module.exports = () => {
         Users.removeExam(req, res)
     })
 
-    //examiner will view performance of candidate
+    //examiner will view exams he has created
     app.get('/examiner/exams', middleware, async(req, res) => {
-        const response = await Users.studentPerformance(req, res)
-        res.send(response)
-    })
-
+            const response = await Users.studentPerformance(req, res)
+            res.send(response)
+        })
+        // examiner will view details of all the students who gave that particular exam
     app.get('/examiner/exams/students', middleware, async(req, res) => {
         const response = await Users.studPerformance(req, res)
     })
@@ -111,14 +111,13 @@ module.exports = () => {
     })
 
 
-    //examiner will views questions
+    //examiner will view questions
     app.get('/exam/question/:id', middleware, (req, res) => {
         Users.getQuestionDetail(req, res)
     })
 
     //get particular question using its ID
     app.get('/exam/question/byid/:id', middleware, (req, res) => {
-        // console.log(req.params.id)
         Users.fetchQuestionById(req, res)
     })
 
