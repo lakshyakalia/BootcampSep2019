@@ -238,7 +238,7 @@ a:hover {
     margin: auto;
     /* margin-left: 90px; */
     width: 40%;
-    height: 620px;
+    height: 680px;
     font-size: 1.5em;
     padding-left: 10px;
     padding-right: 10px;
@@ -246,6 +246,7 @@ a:hover {
     border-top-style: solid;
     border-top-color: orange;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    background: white;
 }
 
 label {
@@ -284,6 +285,6 @@ option {
 
 .form2 input[type="file"],
 .form1 input[type="file"] {
-    height: 30px;
-    font-size: 20px;
+    height: 25px;
+    font-size: 15px;
 }

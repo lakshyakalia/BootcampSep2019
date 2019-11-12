@@ -17,7 +17,7 @@ function updateExam(examObjId) {
         examStartTime: $('#addExamDate').val(),
         instructions: $('#addExamInstruction').val()
     }
-    $.ajax("http://localhost:3000/exam/" + examObjId, {
+    $.ajax("http://localhost:45728/exam/" + examObjId, {
         type: 'PATCH',
         dataType: 'json',
         contentType: "application/json",
@@ -36,10 +36,9 @@ function updateExam(examObjId) {
 
 function editExamDetail(id) {
     let examObjId = $('#' + id).parent().parent().attr('id')
-        // console.log('examid ',examId)
     let mainId = $('#' + id).parent().parent().parent().parent().attr('id')
     $('#' + mainId).hide()
-    $.ajax("http://localhost:3000/exam/" + examObjId, {
+    $.ajax("http://localhost:45728/exam/" + examObjId, {
         type: 'GET',
         dataType: 'json',
         contentType: "application/json",
@@ -47,8 +46,6 @@ function editExamDetail(id) {
             'token': localStorage.getItem('token')
         },
         success: function(data) {
-            //    console.log(data)
-            // console.log(data.instructions)
             let editForm = $("#edit-exam-detail").html()
             $("#display-form").append(Mustache.render(editForm, data))
         },
@@ -64,7 +61,7 @@ function setId(id) {
 
 function deleteExam(id) {
     examObjId = $('#' + id).parent().parent().attr('id')
-    $.ajax("http://localhost:3000/exam/" + examObjId, {
+    $.ajax("http://localhost:45728/exam/" + examObjId, {
         type: 'DELETE',
         dataType: 'json',
         contentType: "application/json",
@@ -81,7 +78,8 @@ function deleteExam(id) {
 }
 
 $(document).ready(() => {
-        $.ajax("http://localhost:3000/exam", {
+    console.log('hellooo')
+        $.ajax("http://localhost:45728/exam", {
             type: 'GET',
             dataType: 'json',
             contentType: "application/json",
@@ -93,6 +91,7 @@ $(document).ready(() => {
                     alert("Exam Doesnot exist in your account")
                     return
                 }
+                console.log(data)
                 let parent = $(".exam-detail")
                     // load html template to display exam detail
                 $.each(data, (index, values) => {
@@ -102,15 +101,12 @@ $(document).ready(() => {
                 })
             },
             error: function(error) {
-                console.log(error.responseText)
+                console.log(error)
                 if (error.responseText == 'No Exam') {
                     alert('No Exam created')
                     $(location).attr('href', '../views/examiner.html')
                 }
-                console.log(error)
+            
             }
         })
     })
-    // function showName(){
-    //     document.getElementById('span').innerHTML="Welcome "+ localStorage.getItem()
-    // }

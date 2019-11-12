@@ -6,7 +6,7 @@ $(document).on('click', '#loginButton', function() {
         // timeout = setTimeout(function() {
         let email = $('#inputEmail').val()
         let password = $('#inputPassword').val()
-        $.ajax('http://localhost:3000/login', {
+        $.ajax('http://localhost:45728/login', {
             type: 'POST',
             dataType: 'JSON',
             // for loader

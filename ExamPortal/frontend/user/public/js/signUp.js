@@ -1,89 +1,77 @@
-$(document).ready(function() {
-    var flag = false
-    $("#signUpSubmit").click((event) => {
-        event.preventDefault()
-        fname = $("#firstName").val()
-        lname = $("#lastName").val()
-        name = fname + " " + lname
-        email = $("#inputEmail").val()
-        phoneNumber = $("#phoneNumber").val()
-
-        password = $("#inputPassword").val()
-
+$(document).ready(function () {
+    $("#signUpSubmit").click(function validate() {
+        var firstName = $("#firstName").val()
+        var lastName = $("#lastName").val()
+        Email = $("#inputEmail").val()
+        var PhoneNumber = $("#phoneNumber").val()
+        var Password = $("#inputPassword").val()
         confirmPassword = $("#cnfPassword").val()
+        var accountType = "Student"
 
-        accountType = $("#accountType").val()
 
-        if (password != confirmPassword)
-            return alert("Confirm Password does not match")
-        if (fname === "") {
+        if (firstName == "") {
             return alert("Please enter First Name")
-        } else {
-            fname = true
-            var regex = /^[a-zA-Z\s]+$/;
-            if (regex.test(fname) === false) {
-                $("#firstName").innerHTML = ""
-                alert("Please enter a valid first name");
-            } else {
-                fname = true;
-            }
         }
-        if (lname === "") {
-            alert("Please enter your last name");
-        } else {
-            lname = true
-            var regex = /^[a-zA-Z\s]+$/;
-            if (regex.test(lname) === false) {
-                alert("Please enter a valid last name");
-            } else {
-                lname = true;
-            }
-        }
-        if (phoneNumber == "") {
-            alert("Please enter your mobile number");
-        } else {
-
-            var regex = /^[1-9]\d{9}$/;
-            if (regex.test(phoneNumber) === false) {
-                alert("Please enter a valid 10 digit mobile number");
-
-            } else {
-                flag = true
-                phoneNumber = $("#phoneNumber").val();
-            }
+        var regex = /^[a-zA-Z ]{2,30}$/
+        if (regex.test(firstName) === false) {
+            return alert("Please enter a valid first name");
         }
 
-        if ((fname && lname && email && password && flag) == true) {
-            let signUpData = true
-        } else {
-            signUpData = false
-            alert("Your data is not valid")
+        if (lastName === "") {
+            return alert("Please enter your last name");
         }
-        $.ajax("http://localhost:3000/signUp", {
+
+        var regex = /^[a-zA-Z ]{2,30}$/
+        if (regex.test(lastName) === false) {
+            return alert("Please enter a valid last name");
+        }
+
+        if(Email == ""){
+            return alert("Please enter your emailId")
+        }
+
+        
+        if (PhoneNumber == "") {
+            return alert("Please enter your mobile number");
+        }
+        var regex = /^\d{10}$/
+        if (regex.test(PhoneNumber) === false) {
+            return alert("Please enter a valid 10 digit mobile number")
+        }
+        if(Password == ""){
+            return alert("Password cannot be empty")
+        }
+        if(Password.length < 6 ){
+            return alert("Please enter a minimum of 6 digits password")
+        }
+
+        if (Password != confirmPassword) {
+            return alert("Confirm Password does not match")
+        }
+        name = firstName + " " + lastName;
+        $.ajax("http://localhost:45728/signUp", {
             type: "POST",
             dataType: "json",
             contentType: "application/json;charset=utf-8",
-            beforeSend: function() {
+            beforeSend: function () {
                 $('.main').animate({ opacity: 0.6 })
                 $('.mod').fadeIn()
                 $('.spinner').show()
             },
             data: JSON.stringify({
                 "name": name,
-                "email": email,
-                "phoneNumber": phoneNumber,
-                "password": password,
-                "accountType": "Student"
+                "email": Email,
+                "phoneNumber": PhoneNumber,
+                "password": Password,
+                "accountType": accountType
             }),
-            success: function(data, status) {
+            success: function (data, status) {
                 alert("Your SignUp has been successful")
-
                 $(location).attr('href', '../views/login.html')
             },
-            error: function(data, error) {
+            error: function (data, error) {
                 console.log(error + " " + "error occurred");
             }
         })
     })
-
 })

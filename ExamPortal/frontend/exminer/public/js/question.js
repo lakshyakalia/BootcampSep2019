@@ -1,7 +1,8 @@
 function removeQuestion(id){
+    console.log(id)
     let qsId = $("#"+id).parent().parent().attr('id')
     console.log(qsId)
-    $.ajax("http://localhost:3000/exam/question/"+qsId, {
+    $.ajax("http://localhost:45728/exam/question/"+qsId, {
         type: 'DELETE',
         dataType: 'json',
         contentType: "application/json",
@@ -17,7 +18,8 @@ function removeQuestion(id){
         }) 
 }
 function setQsId(id){
-    $("#del").attr('id', id)
+    console.log(id)
+    $("#delQ").attr('id', id)
 }
 function updateQues(id,type) {
     let opt1 = '',opt2= '', opt3= '', opt4 ='', answer =''
@@ -54,9 +56,8 @@ function updateQues(id,type) {
             formData.append('weightage', weightage);
             formData.append('answerType', "multipleOption");
             formData.append('questionImage', $('input[type=file]')[0].files[0]);
-            console.log("image is " + formData.values('questionImage'));
             // return
-    $.ajax("http://localhost:3000/exam/question/" + id, {
+    $.ajax("http://localhost:45728/exam/question/" + id, {
         type: 'PATCH',
         dataType: 'json',
         contentType: false,
@@ -77,9 +78,8 @@ function updateQues(id,type) {
 function editQuestion(id) {
     let qid = $("#" + id).parent().parent().attr('id')
     let pid = $("#" + qid).parent().parent().parent().parent().attr('id')
-    console.log(qid)
     $('#' + pid).hide()
-    $.ajax("http://localhost:3000/exam/question/byid/" + qid, {
+    $.ajax("http://localhost:45728/exam/question/byid/" + qid, {
         type: 'GET',
         dataType: 'json',
         contentType: "application/json",
@@ -117,8 +117,7 @@ function editQuestion(id) {
 }
 $(document).ready(function(){
     let examCode = localStorage.getItem('examCode')
-    console.log(examCode)
-    let url = "http://localhost:3000/exam/question/" + encodeURIComponent(examCode)
+    let url = "http://localhost:45728/exam/question/" + encodeURIComponent(examCode)
     $.ajax(url, {
         type: 'GET',
         dataType: 'json',
