@@ -103,6 +103,7 @@ $(document).ready(function() {
     }
     $('#nextQuestion').attr('value', 0)
     $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
+    
     $.ajax('http://localhost:3000/question', {
         type: 'GET',
         dataType: 'JSON',
@@ -117,6 +118,10 @@ $(document).ready(function() {
             data.duration = parseInt(data.duration)
             loadQuestions(data.questions, data.startTime, data.duration, data.examName)
             loadPaginaton(data.allQuestions)
+            if (data.lastQuestionStatus === true) {
+                $('#nextQuestion').attr('disabled', true)
+            }
+            
         },
         error: function(err) {
             console.log(err)
