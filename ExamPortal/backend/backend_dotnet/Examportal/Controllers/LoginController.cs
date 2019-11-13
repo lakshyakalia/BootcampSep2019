@@ -40,7 +40,7 @@ namespace Examportal.Controllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest(new { message = "Invalid Credentials" });
             }
 
         }

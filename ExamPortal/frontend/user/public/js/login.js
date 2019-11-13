@@ -25,8 +25,10 @@ $(document).on('click', '#loginButton', function() {
                     $(location).attr('href', '../../admin/views/adminHome.html')
                 }
             },
-            error: function(error) {
-                window.alert(error.responseJSON.message)
+            error: function(data) {
+                $('.spinner').hide()
+                console.log(data)
+                window.alert(data.responseJSON.message)
                 location.reload();
             }
 
