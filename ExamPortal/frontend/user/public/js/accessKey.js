@@ -17,17 +17,20 @@ $(document).on('click', '#checkAccessKey', function() {
     if (tok == null) {
         location.replace("../../index.html")
     }
-    $.ajax('http://localhost:3000/exam/accessKey', {
+    $.ajax('http://localhost:45728/exam/accessKey', {
         type: 'POST',
         dataType: 'JSON',
-        data: {
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify({
             examCode: $(".inputBox").val()
-        },
+        }),
         success: function(data) {
+            console.log('success')
             localStorage.setItem('examCode', $(".inputBox").val())
             $(location).attr('href', '../views/instructions.html')
         },
         error: function(error) {
+            console.log('error')
             $('.error-msg').text("Wrong Access key")
         }
     })

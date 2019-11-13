@@ -73,7 +73,7 @@ $(document).ready(function () {
             examDuration: testDuration,
             examStartTime: testDate
         }
-        $.ajax("http://localhost:3000/exam", {
+        $.ajax("http://localhost:45728/exam", {
             type: "POST",
             dataType: "json",
             headers: {
@@ -104,6 +104,7 @@ $(document).ready(function () {
     document.getElementById('submitBtn').addEventListener('click', validateForm)
 
     function validateForm() {
+        // console.log("hello")
         var question = document.getElementById("addtestQuestion").value;
         var weightage = document.getElementById("addtestWeightage").value;
         if (question === "") {
@@ -111,7 +112,7 @@ $(document).ready(function () {
             return
         }
         var option = $("input[type=radio][name=colorRadio]:checked").val();
-        if (option == undefined) {
+        if (option == undefined || option === '') {
             alert("select answer type")
             return
         }
@@ -134,10 +135,11 @@ $(document).ready(function () {
                 }
             })
             answer = answer.trim()
-            if (option1 === "" || option2 === "" || option3 === "" || option4 === "" || answer == '') {
+            if (option1 === "" || option2 === "" || option3 === "" || option4 === "" || answer == ''|| answer===undefined) {
                 alert("Please fill all options and tick answers");
                 return
             }
+
         } else if (option == "green") {
             option1 = $("#addtestOption1G").val();
             option2 = $("#addtestOption2G").val();
@@ -145,7 +147,7 @@ $(document).ready(function () {
             option4 = $("#addtestOption4G").val();
             answerType = "singleOption"
             answer = $("input[type=radio][name=option1]:checked").val();
-            if (option1 === "" || option2 === "" || option3 === "" || option4 === "" || answer == '') {
+            if (option1 === "" || option2 === "" || option3 === "" || option4 === "" || answer == ''||answer == undefined) {
                 alert("Please fill all options and select answer");
                 return
             }
@@ -166,7 +168,7 @@ $(document).ready(function () {
         formData.append('examCode', tempExamCode);
         formData.append('answerType', answerType);
         formData.append('questionImage', $('input[type=file]')[1].files[0]);
-        $.ajax("http://localhost:3000/exam/question", {
+        $.ajax("http://localhost:45728/exam/question", {
             type: "POST",
             data: formData,
             dataType: "json",
@@ -216,7 +218,7 @@ function excelUpload(event) {
     var formData = new FormData();
     formData.append('examCode', tempExamCode)
     formData.append('excelFile', $('input[type=file]')[0].files[0])
-    $.ajax('http://localhost:3000/exam/questions/uploadExcel', {
+    $.ajax('http://localhost:45728/exam/questions/uploadExcel', {
         type: 'POST',
         data: formData,
         headers: {

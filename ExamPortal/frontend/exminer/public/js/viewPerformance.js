@@ -63,7 +63,7 @@ function showStudents() {
         location.replace("../../index.html")
     }
 
-    $.ajax("http://localhost:3000/examiner/exams", {
+    $.ajax("http://localhost:45728/examiner/exams", {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -91,7 +91,7 @@ function logout() {
 let flag = 0;
 
 function studentDetails(a) {
-    $.ajax("http://localhost:3000/examiner/exams/students", {
+    $.ajax("http://localhost:45728/examiner/exams/students", {
         type: 'GET',
         dataType: 'JSON',
         headers: {

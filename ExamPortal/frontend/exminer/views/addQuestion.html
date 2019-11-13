@@ -9,7 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../public/css/examDetails.css">
-    <script type="text/javascript" src="../public/js/addQuestion.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css">
     <script src="https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -17,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
 </head>
 
-<body onload="showName()">
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: black;">
         <img src="../../user/public/assets/cybergrouplogo.png" class="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -141,8 +140,6 @@
                                 <input maxlength="100" type="text" id="addtestOption4G" class="form-control" placeholder="Enter Option4" />
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <label class="control-label">Weightage</label>
                             <input maxlength="100" type="text" id="addtestWeightage" class="form-control" placeholder="Enter Weightage" />
@@ -153,10 +150,9 @@
                 </div>
 
             </div>
-    </div>
+      </div>
     </div>
     </form>
-
 </body>
-
+   <script src="/exminer/public/js/addQuestion.js"></script>
 </html>

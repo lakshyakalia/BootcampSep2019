@@ -39,3 +39,17 @@ C:\Users\himanshu.chauhan\Desktop\dotnet\Examportal\obj\Debug\netcoreapp2.1\Exam
 C:\Users\himanshu.chauhan\Desktop\dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.dll
 C:\Users\himanshu.chauhan\Desktop\dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.pdb
 C:\Users\himanshu.chauhan\Desktop\dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.csprojAssemblyReference.cache
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.csproj.CoreCompileInputs.cache
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.RazorAssemblyInfo.cache
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.RazorAssemblyInfo.cs
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.AssemblyInfoInputs.cache
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.AssemblyInfo.cs
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.dll
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.pdb
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\bin\Debug\netcoreapp2.1\Examportal.deps.json
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\bin\Debug\netcoreapp2.1\Examportal.runtimeconfig.json
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\bin\Debug\netcoreapp2.1\Examportal.runtimeconfig.dev.json
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\bin\Debug\netcoreapp2.1\Examportal.dll
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\bin\Debug\netcoreapp2.1\Examportal.pdb
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.RazorTargetAssemblyInfo.cache
+C:\Users\himanshu.chauhan\Desktop\BootcampSep2019\ExamPortal\backend\backend_dotnet\Examportal\obj\Debug\netcoreapp2.1\Examportal.csprojAssemblyReference.cache

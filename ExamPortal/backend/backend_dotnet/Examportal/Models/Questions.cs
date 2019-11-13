@@ -5,6 +5,11 @@ namespace Examportal.Models
 {
     public partial class Questions
     {
+        public Questions()
+        {
+            CandidateAnswer = new HashSet<CandidateAnswer>();
+        }
+
         public int QuestionId { get; set; }
         public string QuestionText { get; set; }
         public string Answer { get; set; }
@@ -22,5 +27,6 @@ namespace Examportal.Models
         public string ModifiedBy { get; set; }
 
         public ExamDetails ExamCodeNavigation { get; set; }
+        public ICollection<CandidateAnswer> CandidateAnswer { get; set; }
     }
 }

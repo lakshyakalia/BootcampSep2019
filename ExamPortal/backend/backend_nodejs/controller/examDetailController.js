@@ -21,6 +21,7 @@ const examDetails = async(req, res) => {
 
 const viewExamDetail = async(req, res) => {
     try {
+        console.log('get exams ')
         let values = await examDetail.find({ examinerId: req.headers.id })
         if (values.length != 0) {
             res.status(200).send(values)
