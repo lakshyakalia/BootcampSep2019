@@ -104,12 +104,13 @@ $(document).ready(function() {
     $('#nextQuestion').attr('value', 0)
     $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
     
-    $.ajax('http://localhost:3000/question', {
+    $.ajax('http://localhost:45728/question', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         data: {
             pageNumber: $('#nextQuestion').attr('value')
