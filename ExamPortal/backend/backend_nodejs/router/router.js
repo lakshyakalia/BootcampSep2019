@@ -19,6 +19,14 @@ var storage = multer.diskStorage({
       }
 });
 const upload = multer({storage:storage})
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
+var upload = multer({ limits: {fileSize: 2000000 },storage: storage })
+// var upload = multer({ dest: 'upload/'});
+
+
 const createToken = require("../auth/authenticator").checkAuth;
 
 module.exports = () => {
