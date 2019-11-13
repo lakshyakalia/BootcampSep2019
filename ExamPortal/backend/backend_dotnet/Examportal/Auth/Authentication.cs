@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,7 +12,8 @@ namespace Examportal.Auth
 {
     public class Authentication
     {
-        private static string key = "ThisismySecretKey";
+        private static readonly string key = "ThisismySecretKey";
+        
         private static TokenValidationParameters GetValidationParameters()
         {
             return new TokenValidationParameters()
@@ -19,12 +21,12 @@ namespace Examportal.Auth
                 ValidateLifetime = true, // Because there is expiration in the generated token
                 ValidateAudience = false, // Because there is no audiance in the generated token
                 ValidateIssuer = true,   // Because there is issuer in the generated token
-                ValidIssuer = "Sample",
+                ValidIssuer = "",
                 ValidAudience = "Sample",
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
             };
         }
-        public static bool validateToken(string token)
+        public static bool ValidateToken(string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var validationParameters = GetValidationParameters();

@@ -68,8 +68,8 @@ namespace Examportal
                 app.UseHsts();
             }
             app.UseCors(MyAllowSpecificOrigins);
-            app.UseAuthentication();
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

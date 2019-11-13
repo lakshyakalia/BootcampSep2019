@@ -7,6 +7,7 @@ using Examportal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Examportal.Auth;
 
 namespace Examportal.Controllers
 {
@@ -17,7 +18,7 @@ namespace Examportal.Controllers
 
         [Route("/exam/accessKey")]
         [HttpPost]
-        public IActionResult checkAccessKey([FromBody] ExamDetails value)
+        public IActionResult CheckAccessKey([FromBody] ExamDetails value)
         {
             var existingExam = db.ExamDetails.FirstOrDefault(s=> s.ExamCode == value.ExamCode);
             if(existingExam != null)
@@ -33,10 +34,13 @@ namespace Examportal.Controllers
 
         [Route("exam/accessKey")]
         [HttpGet]
-        public IActionResult getExamTime()
+        [Authorize]
+        public IActionResult GetExamTime()
         {
-            string examcode = HttpContext.Request.Query["examCode"];
-
+            Boolean tokenStatus;
+            string token = HttpContext.Request.Headers["token"];
+            string examcode = HttpContext.Request.Headers["examCode"];
+            tokenStatus = Authentication.ValidateToken(token);
             return Ok(true);
         }
     }

@@ -50,9 +50,6 @@ $(document).ready(function() {
             examCode: localStorage.getItem('examCode'),
             token: localStorage.getItem('token')
         },
-        data: {
-            examCode: localStorage.getItem("examCode")
-        },
         success: function(data) {
             checkTimeForTest(data.examData.examStartTime)
             document.getElementById('username').innerHTML = "Hie "+localStorage.getItem('name')
