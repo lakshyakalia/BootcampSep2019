@@ -21,18 +21,32 @@ namespace Examportal.Controllers
         
         [Route("/exam")]
         [HttpPost]
-        public IActionResult<ExamDetails> saveExam([FromBody] ExamDetails examDetails)
+        public IActionResult saveExam([FromBody] ExamDetails examDetails)
         {
             try
             {
-
-                return Ok();
+                db.ExamDetails.Add(examDetails);
+                db.SaveChanges();
+                return Ok( new { msg="exam details saved",
+                    status=200
+                    });
             }
             catch(Exception e)
             {
-                
+                return BadRequest(new { error = e });
             }
-            return BadRequest();
+        }
+        [Route("/exam")]
+        [HttpGet]
+        public ExamDetails viewExamDeatils()
+        {
+            try
+            {
+                return db.ExamDetails.Find();
+            }catch(Exception e)
+            {
+                return e;
+            }
         }
     }
 }
