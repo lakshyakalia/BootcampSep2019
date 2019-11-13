@@ -78,7 +78,7 @@ function loadFullWindow() {
 
 function exitHandler() {
     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-        $('#modalEndTest').trigger("click")
+        // $('#modalEndTest').trigger("click")
     }
 }
 
@@ -107,6 +107,7 @@ $(document).ready(function() {
     $.ajax('http://localhost:45728/question', {
         type: 'GET',
         dataType: 'JSON',
+        contentType: "application/json;charset=utf-8",
         headers: {
             examCode: localStorage.getItem('examCode'),
             token: localStorage.getItem('token'),
@@ -166,12 +167,13 @@ $(document).on('click', '#nextQuestion', function() {
     if ($('#nextQuestion').attr('value') != 0) {
         $('#previousQuestion').removeAttr("disabled");
     }
-    $.ajax('http://localhost:3000/question', {
+    $.ajax('http://localhost:/question', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         data: {
             pageNumber: $('#nextQuestion').attr('value')
@@ -194,12 +196,13 @@ $(document).on('click', '#previousQuestion', function() {
     if (pageNumber == 0) {
         $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
     }
-    $.ajax('http://localhost:3000/question', {
+    $.ajax('http://localhost:45728/question', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         data: {
             pageNumber: pageNumber
@@ -255,12 +258,13 @@ $(document).on('click', "input", function() {
 
 $(document).on('click', '.circle', function() {
     let upcomingPage = parseInt($(this).children().html()) - 1
-    $.ajax('http://localhost:3000/question', {
+    $.ajax('http://localhost:45728/question', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         data: {
             pageNumber: upcomingPage
