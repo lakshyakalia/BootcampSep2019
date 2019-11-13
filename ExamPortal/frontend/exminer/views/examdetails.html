@@ -81,13 +81,13 @@
                             <input maxlength="100" type="text" class="form-control" placeholder="Enter Test Duration" id="addExamDuration" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Test Date</label>
+                            <label class="control-label">Exam Date</label>
                             <input type="datetime-local" name="bdaytime" id="addExamTestDate">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="control-label">Test Instruction</label>
                             <textarea required="required" class="form-control" placeholder="Enter Test Instruction" id="addExamInstruction"></textarea>
-                        </div>
+                        </div> -->
                         <button class="btn btn-primary nextBtn pull-right" type="button" id="btnSave">Next</button>
                     </div>
                 </div>
@@ -101,11 +101,11 @@
                                 <span>Choose file</span>
                                 <input type="file">
                             </div> -->
-                            <form>
+                            <!-- <form> -->
                                     <input type="file" id="uploadExcelFile" name="uploadExcelFile" />
                                     <input type="button" value="UploadExcelfile" name="submit" onclick="excelUpload(event)">
                                     <span id = "status"></span>
-                                </form>
+                                <!-- </form> -->
                         </div>
                         <button class="btn btn-primary nextBtn pull-right" type="button" style="margin-top: 80px;">Next</button>
                     </div>
@@ -183,13 +183,33 @@
                         <button class="btn btn-success pull-right " type="button" id="submitBtn">Submit  Question</button>
 
                     </div>
-                    <button class="btn btn-success pull-right " type="button" onclick="submitAllBtn()">Submit All Question</button>
+                    <button class="btn btn-success pull-right " type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="submitAllBtn()" id="submitBtn">Submit All Question</button>
                 </div>
 
             </div>
     </div>
     </div>
     </form>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 </body>
 
