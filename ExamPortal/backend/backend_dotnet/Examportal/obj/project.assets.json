@@ -12045,23 +12045,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\himanshu.chauhan\\.nuget\\packages\\": {},
+    "C:\\Users\\ashish.rawat\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\himanshu.chauhan\\Desktop\\dotnet\\Examportal\\Examportal.csproj",
+      "projectUniqueName": "E:\\BootcampSep2019\\ExamPortal\\backend\\backend_dotnet\\Examportal\\Examportal.csproj",
       "projectName": "Examportal",
-      "projectPath": "C:\\Users\\himanshu.chauhan\\Desktop\\dotnet\\Examportal\\Examportal.csproj",
-      "packagesPath": "C:\\Users\\himanshu.chauhan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\himanshu.chauhan\\Desktop\\dotnet\\Examportal\\obj\\",
+      "projectPath": "E:\\BootcampSep2019\\ExamPortal\\backend\\backend_dotnet\\Examportal\\Examportal.csproj",
+      "packagesPath": "C:\\Users\\ashish.rawat\\.nuget\\packages\\",
+      "outputPath": "E:\\BootcampSep2019\\ExamPortal\\backend\\backend_dotnet\\Examportal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\himanshu.chauhan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ashish.rawat\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
