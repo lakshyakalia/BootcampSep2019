@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 function showEdit() {
     $("#showEditDiv").fadeIn("slow");
-    $.ajax("http://localhost:3000/loggedIn", {
+    $.ajax("http://localhost:45728/loggedIn", {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -26,7 +26,7 @@ function showEdit() {
 }
 
 function showName() {
-    $.ajax("http://localhost:3000/loggedIn", {
+    $.ajax("http://localhost:45728/loggedIn", {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -58,7 +58,7 @@ function editDetails() {
     var phone = document.getElementById('loggedInPhone').value
     var college = document.getElementById('loggedInCollege').value
     var pass = document.getElementById('loggedInPassword').value
-    $.ajax("http://localhost:3000/examiner", {
+    $.ajax("http://localhost:45728/examiner", {
         type: 'PATCH',
         dataType: 'JSON',
         headers: {

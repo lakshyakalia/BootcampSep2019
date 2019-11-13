@@ -21,11 +21,8 @@ var storage = multer.diskStorage({
 const upload = multer({storage:storage})
 const createToken = require("../auth/authenticator").checkAuth;
 
-
 module.exports = () => {
  
-
-
     app.post('/login', async(req, res) => {
         const result = await createToken(req)
         if (result.token == "null") {
