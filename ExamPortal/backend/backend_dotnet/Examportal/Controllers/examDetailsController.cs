@@ -6,6 +6,7 @@ using Examportal.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Primitives;
 
 namespace Examportal.Controllers
 {
@@ -38,15 +39,13 @@ namespace Examportal.Controllers
         }
         [Route("/exam")]
         [HttpGet]
-        public ExamDetails viewExamDeatils()
+        public IEnumerable<ExamDetails> viewExamDeatils()
         {
-            try
-            {
-                return db.ExamDetails.Find();
-            }catch(Exception e)
-            {
-                return e;
-            }
+            //StringValues email;
+            //Request.Headers.TryGetValue("Email", out email);
+            //yield return db.ExamDetails.Find(email);
+
+            return db.ExamDetails.ToList();
         }
     }
 }
