@@ -18,7 +18,7 @@ var storage = multer.diskStorage({
       }
 });
 const reqPath = path.join(__dirname, '../../../frontend/exminer/public/assets');
-var storage1 = multer.diskStorage({
+const storage1 = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, reqPath)
     },
@@ -27,7 +27,7 @@ var storage1 = multer.diskStorage({
     }
 })
 const upload = multer({storage:storage})
-var upload1 = multer({ limits: {fileSize: 2000000 },storage: storage1 })
+var upload1 = multer({ limits: {fileSize: 2000000 },storage1: storage1 })
 // var upload = multer({ dest: 'upload/'});
 
 
@@ -109,7 +109,7 @@ module.exports = () => {
         const response = await Users.studPerformance(req, res)
     })
 
-    app.post('/exam/question', upload1.single('questionImage'), (req, res) => {
+    app.post('/exam/question', upload.single('questionImage'), (req, res) => {
         if (req.file) {
             req.body['questionImage'] = '../public/assets/' + req.file.filename;
         } else {
@@ -131,12 +131,14 @@ module.exports = () => {
     })
 
     //examiner will edit questions
-    app.patch('/exam/question/:id', upload.single('questionImage'), middleware, (req, res) => {
+    app.patch('/exam/question/:id', upload1.single('questionImage'), middleware, (req, res) => {
+        console.log('edit pic',req.file)
         if (req.file) {
             req.body['questionImage'] = '../public/assets/' + req.file.filename
         } else {
             req.body['questionImage'] = null
         }
+        console.log(req.file)
         Users.editQuestion(req, res)
     })
 
