@@ -162,7 +162,6 @@ $(document).ready(function() {
     })
 });
 function excelUpload(event) {
-
     event.preventDefault();
     //tempExamCode1 = $('#addExamCode').val()
     var formData = new FormData();
@@ -181,7 +180,6 @@ function excelUpload(event) {
         success: function (data) {
             alert("You have successfully uploaded the questions through excel file")
             $(location).attr('href', './exam.html')
-
         },
         error: function (error) {
             console.log(error + " " + error)
