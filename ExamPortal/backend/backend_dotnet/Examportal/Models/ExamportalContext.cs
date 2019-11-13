@@ -59,6 +59,8 @@ namespace Examportal.Models
                     .HasColumnName("createdDate")
                     .HasColumnType("date");
 
+                entity.Property(e => e.Id).HasColumnName("_id");
+
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("modifiedBy")
                     .HasMaxLength(20)
@@ -67,8 +69,6 @@ namespace Examportal.Models
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnName("modifiedDate")
                     .HasColumnType("date");
-
-                entity.Property(e => e.QuestionId).HasColumnName("questionId");
 
                 entity.Property(e => e.SubmitExam).HasColumnName("submitExam");
 
@@ -83,12 +83,12 @@ namespace Examportal.Models
                     .WithOne(p => p.CandidateAnswer)
                     .HasForeignKey<CandidateAnswer>(d => d.Email)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__candidate__email__04E4BC85");
+                    .HasConstraintName("FK__candidate__email__49C3F6B7");
 
-                entity.HasOne(d => d.Question)
+                entity.HasOne(d => d.IdNavigation)
                     .WithMany(p => p.CandidateAnswer)
-                    .HasForeignKey(d => d.QuestionId)
-                    .HasConstraintName("FK__candidate__quest__03F0984C");
+                    .HasForeignKey(d => d.Id)
+                    .HasConstraintName("FK__candidateAn___id__48CFD27E");
             });
 
             modelBuilder.Entity<ExamDetails>(entity =>
@@ -144,16 +144,14 @@ namespace Examportal.Models
                 entity.HasOne(d => d.EmailNavigation)
                     .WithMany(p => p.ExamDetails)
                     .HasForeignKey(d => d.Email)
-                    .HasConstraintName("FK__examDetai__email__6B24EA82");
+                    .HasConstraintName("FK__examDetai__email__3A81B327");
             });
 
             modelBuilder.Entity<Questions>(entity =>
             {
-                entity.HasKey(e => e.QuestionId);
-
                 entity.ToTable("questions");
 
-                entity.Property(e => e.QuestionId).HasColumnName("questionId");
+                entity.Property(e => e.Id).HasColumnName("_id");
 
                 entity.Property(e => e.Answer)
                     .HasColumnName("answer")
@@ -223,7 +221,7 @@ namespace Examportal.Models
                 entity.HasOne(d => d.ExamCodeNavigation)
                     .WithMany(p => p.Questions)
                     .HasForeignKey(d => d.ExamCode)
-                    .HasConstraintName("FK__questions__examC__7B5B524B");
+                    .HasConstraintName("FK__questions__examC__3D5E1FD2");
             });
 
             modelBuilder.Entity<Users>(entity =>
@@ -233,7 +231,7 @@ namespace Examportal.Models
                 entity.ToTable("users");
 
                 entity.HasIndex(e => e.PhoneNumber)
-                    .HasName("UQ__users__4849DA0175A5ACF1")
+                    .HasName("UQ__users__4849DA0119E6354A")
                     .IsUnique();
 
                 entity.Property(e => e.Email)

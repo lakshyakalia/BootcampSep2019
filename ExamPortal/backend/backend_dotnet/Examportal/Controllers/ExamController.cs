@@ -25,7 +25,6 @@ namespace Examportal.Controllers
             {
                 return BadRequest();
             }
-
         }
         
         [Authorize]

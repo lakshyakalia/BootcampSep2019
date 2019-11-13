@@ -19,17 +19,18 @@ namespace Examportal.Controllers
         public IActionResult TestQuestions()
         {
             Boolean lastQuesStatus;
-           
+            int i;
             string examcode = HttpContext.Request.Headers["examCode"].ToString();
             int pageNum = Int32.Parse(HttpContext.Request.Query["pageNumber"]);
-            var ques = db.Questions.Where(s => s.ExamCode == examcode).Skip(pageNum).Take(1).Select(a=> new {a.AnswerType,a.Option1,a.Option2,a.Option3,a.Option4,a.QuestionId,a.QuestionImage,a.QuestionText }).ToList();
-            var lastQuestion = db.Questions.Where(s => s.ExamCode == examcode).OrderByDescending(key => key.QuestionId).Select(a=> new { a.QuestionId,a.QuestionText}).ToList();
-            var c = lastQuestion[0].QuestionText;
-            var b = ques[0].QuestionText;
+            var ques = db.Questions.Where(s => s.ExamCode == examcode).Skip(pageNum).Take(1).Select(a=> new {a.AnswerType,a.Option1,a.Option2,a.Option3,a.Option4,a.Id,a.QuestionImage,a.QuestionText }).ToList();
+
+            var lastQuestion = db.Questions.Where(s => s.ExamCode == examcode).OrderByDescending(key => key.Id).Select(a=> new { a.Id,a.QuestionText}).ToList();
+
             if (lastQuestion[0].QuestionText == ques[0].QuestionText) lastQuesStatus = true;
             else lastQuesStatus = false;
             var time = db.ExamDetails.Where(s => s.ExamCode == examcode).ToList();
-            
+
+
             return Ok(new
             {
                 allQuestions = lastQuestion,
@@ -40,7 +41,15 @@ namespace Examportal.Controllers
                 questions = ques,
                 pageNumber = pageNum
             });
+            return Ok();
+        }
 
+        [Authorize]
+        [Route("/question")]
+        [HttpPost]
+        public IActionResult SaveCandidateAnswers([FromBody] string value)
+        {
+            return Ok();
         }
 
     }
