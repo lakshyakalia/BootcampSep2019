@@ -49,7 +49,7 @@ $(document).ready(function () {
             return alert("Confirm Password does not match")
         }
         name = firstName + " " + lastName;
-        $.ajax("http://localhost:3000/signUp", {
+        $.ajax("http://localhost:45728/signUp", {
             type: "POST",
             dataType: "json",
             contentType: "application/json;charset=utf-8",
@@ -69,8 +69,10 @@ $(document).ready(function () {
                 alert("Your SignUp has been successful")
                 $(location).attr('href', '../views/login.html')
             },
-            error: function (data, error) {
-                console.log(error + " " + "error occurred");
+            error: function (error) {
+                $('.spinner').hide()
+                alert("User already Existed")
+                console.log(error);
             }
         })
     })

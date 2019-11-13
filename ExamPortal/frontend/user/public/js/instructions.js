@@ -43,7 +43,7 @@ function checkTimeForTest(time) {
 }
 
 $(document).ready(function() {
-    $.ajax('http://localhost:3000/exam/accessKey', {
+    $.ajax('http://localhost:45728/exam/accessKey', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
