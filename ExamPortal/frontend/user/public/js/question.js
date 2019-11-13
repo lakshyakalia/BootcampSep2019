@@ -167,9 +167,10 @@ $(document).on('click', '#nextQuestion', function() {
     if ($('#nextQuestion').attr('value') != 0) {
         $('#previousQuestion').removeAttr("disabled");
     }
-    $.ajax('http://localhost:/question', {
+    $.ajax('http://localhost:45728/question', {
         type: 'GET',
         dataType: 'JSON',
+        contentType: "application/json;charset=utf-8",
         headers: {
             examCode: localStorage.getItem('examCode'),
             token: localStorage.getItem('token'),
@@ -179,7 +180,8 @@ $(document).on('click', '#nextQuestion', function() {
             pageNumber: $('#nextQuestion').attr('value')
         },
         success: function(data) {
-            loadQuestions(data.questions, data.startTime, data.duration)
+            data.duration = parseInt(data.duration)
+            loadQuestions(data.questions, data.startTime, data.duration, data.examName)
             if (data.lastQuestionStatus === true) {
                 $('#nextQuestion').attr('disabled', true)
             }
