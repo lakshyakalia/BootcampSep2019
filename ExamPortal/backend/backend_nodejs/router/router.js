@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const { SECRET } = require("../config/config")
 const multer = require('multer')
 const path = require('path')
-// var reqPath = path.join(__dirname, '../../frontend/exminer/excelFileUpload')
+//const reqPath = path.join(__dirname, '../../frontend/exminer/public/assets');
 var storage = multer.memoryStorage()
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -15,15 +15,19 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, callback) {
         callback(null,file.originalname);
-        // Date.now() + '-' + 
       }
 });
-const upload = multer({storage:storage})
-    filename: function (req, file, cb) {
+const reqPath = path.join(__dirname, '../../../frontend/exminer/public/assets');
+var storage1 = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, reqPath)
+    },
+    filename: function(req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname)
     }
 })
-var upload = multer({ limits: {fileSize: 2000000 },storage: storage })
+const upload = multer({storage:storage})
+var upload1 = multer({ limits: {fileSize: 2000000 },storage: storage1 })
 // var upload = multer({ dest: 'upload/'});
 
 
@@ -105,7 +109,7 @@ module.exports = () => {
         const response = await Users.studPerformance(req, res)
     })
 
-    app.post('/exam/question', upload.single('questionImage'), (req, res) => {
+    app.post('/exam/question', upload1.single('questionImage'), (req, res) => {
         if (req.file) {
             req.body['questionImage'] = '../public/assets/' + req.file.filename;
         } else {
