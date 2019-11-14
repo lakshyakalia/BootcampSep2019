@@ -78,7 +78,6 @@ function deleteExam(id) {
 }
 
 $(document).ready(() => {
-    console.log('hellooo')
         $.ajax("http://localhost:45728/exam", {
             type: 'GET',
             dataType: 'json',
@@ -91,7 +90,6 @@ $(document).ready(() => {
                     alert("Exam Doesnot exist in your account")
                     return
                 }
-                console.log(data)
                 let parent = $(".exam-detail")
                     // load html template to display exam detail
                 $.each(data, (index, values) => {
@@ -101,7 +99,6 @@ $(document).ready(() => {
                 })
             },
             error: function(error) {
-                console.log(error)
                 if (error.responseText == 'No Exam') {
                     alert('No Exam created')
                     $(location).attr('href', '../views/examiner.html')
