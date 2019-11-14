@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Examportal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,19 +25,21 @@ namespace Examportal.Controllers
             {
                 return BadRequest();
             }
-
         }
-
+        
         [Authorize]
         [Route("exam/accessKey")]
-        [HttpGet]
+        [HttpGet]        
         public IActionResult GetExamTime()
         {
-            Boolean tokenStatus;
-            string token = HttpContext.Request.Headers["token"];
+            Authentication auth = new Authentication();
+            var header = auth.getAllClaims(HttpContext);
             string examcode = HttpContext.Request.Headers["examCode"];
-            tokenStatus = Authentication.ValidateToken(token);
-            return Ok(true);
+
+            var examData = db.ExamDetails.FirstOrDefault(s => s.ExamCode == examcode);
+                
+            return Ok(new { examData = examData,submitStatus = false});
+            
         }
     }
 }

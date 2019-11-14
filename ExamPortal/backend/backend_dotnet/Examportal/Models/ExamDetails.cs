@@ -10,6 +10,7 @@ namespace Examportal.Models
             Questions = new HashSet<Questions>();
         }
 
+        public int Id { get; set; }
         public string ExamName { get; set; }
         public string ExamCode { get; set; }
         public string Email { get; set; }
