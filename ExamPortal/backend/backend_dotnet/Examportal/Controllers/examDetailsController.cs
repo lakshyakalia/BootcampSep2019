@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Examportal.Auth;
 using Examportal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -37,12 +39,22 @@ namespace Examportal.Controllers
                 return BadRequest(new { error = e });
             }
         }
-        [Route("/exam")]
+        [Authorize]
         [HttpGet]
+        [Route("/exam")]
         public IEnumerable<ExamDetails> viewExamDeatils()
         {
-            //StringValues email;
-            //Request.Headers.TryGetValue("Email", out email);
+            Dictionary<string, string> email = new Dictionary<string, string>();
+
+            Authentication auth = new Authentication();
+            email = auth.getAllClaims(HttpContext);
+            String userEmail = "";
+            foreach(KeyValuePair<string,string>em in email)
+            {
+                userEmail = em.Value;
+                break;
+            }
+            //request.headers.trygetvalue("email", out email);
             //yield return db.ExamDetails.Find(email);
 
             return db.ExamDetails.ToList();

@@ -77,7 +77,8 @@ $(document).ready(function () {
             type: "POST",
             dataType: "json",
             headers: {
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                Authorization: "Bearer "+localStorage.getItem('token')
             },
             contentType: "application/json;charset=utf-8",
             data: JSON.stringify(examDetail),
@@ -173,7 +174,8 @@ $(document).ready(function () {
             data: formData,
             dataType: "json",
             headers: {
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                Authorization: "Bearer "+localStorage.getItem('token')
             },
             contentType: false,
             processData: false,
@@ -222,7 +224,8 @@ function excelUpload(event) {
         type: 'POST',
         data: formData,
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         lowerCaseHeaders: true,
         contentType: false,

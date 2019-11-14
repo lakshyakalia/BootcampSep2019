@@ -13032,11 +13032,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\Birdendra\\API_project\\API_project\\API_project.csproj",
+      "projectUniqueName": "C:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\birendra\\API_project\\API_project\\API_project.csproj",
       "projectName": "API_project",
-      "projectPath": "C:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\Birdendra\\API_project\\API_project\\API_project.csproj",
+      "projectPath": "C:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\birendra\\API_project\\API_project\\API_project.csproj",
       "packagesPath": "C:\\Users\\birendra.bhujel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\Birdendra\\API_project\\API_project\\obj\\",
+      "outputPath": "C:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\birendra\\API_project\\API_project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

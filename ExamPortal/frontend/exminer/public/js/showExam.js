@@ -22,7 +22,8 @@ function updateExam(examObjId) {
         dataType: 'json',
         contentType: "application/json",
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         data: JSON.stringify(examDetail),
         success: function(data) {
@@ -43,7 +44,8 @@ function editExamDetail(id) {
         dataType: 'json',
         contentType: "application/json",
         headers: {
-            'token': localStorage.getItem('token')
+            'token': localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
             let editForm = $("#edit-exam-detail").html()
@@ -66,7 +68,8 @@ function deleteExam(id) {
         dataType: 'json',
         contentType: "application/json",
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
             location.reload(true)
@@ -83,7 +86,8 @@ $(document).ready(() => {
             dataType: 'json',
             contentType: "application/json",
             headers: {
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                Authorization: "Bearer "+localStorage.getItem('token')
             },
             success: function(data) {
                 if (data.msg == 'No Exam') {

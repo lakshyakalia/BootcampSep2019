@@ -83,7 +83,8 @@ function editQuestion(id) {
         dataType: 'json',
         contentType: "application/json",
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
 
@@ -122,7 +123,8 @@ $(document).ready(function(){
         dataType: 'json',
         contentType: "application/json;charset=utf-8",
         headers: {
-            'token': localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
             if( data.msg == 'No question'){
