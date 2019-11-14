@@ -10,7 +10,7 @@ namespace Examportal.Models
             CandidateAnswer = new HashSet<CandidateAnswer>();
         }
 
-        public int QuestionId { get; set; }
+        public int Id { get; set; }
         public string QuestionText { get; set; }
         public string Answer { get; set; }
         public string AnswerType { get; set; }
@@ -28,5 +28,6 @@ namespace Examportal.Models
 
         public ExamDetails ExamCodeNavigation { get; set; }
         public ICollection<CandidateAnswer> CandidateAnswer { get; set; }
+        public string Content { get; internal set; }
     }
 }

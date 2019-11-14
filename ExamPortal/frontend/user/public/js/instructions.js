@@ -1,10 +1,11 @@
 $(document).on('click', '.startTest', function() {
-    $.ajax('http://localhost:3000/exam/accessKey', {
+    $.ajax('http://localhost:45728/exam/accessKey', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         data: {
             examCode: localStorage.getItem("examCode")
@@ -48,13 +49,18 @@ $(document).ready(function() {
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
             checkTimeForTest(data.examData.examStartTime)
             document.getElementById('username').innerHTML = "Hie "+localStorage.getItem('name')
         },
-        error: function(error) { console.log("error : ",error)}
+        error: function(error) {
+            if(error.status === 401){
+                location.replace('../../index.html')
+            }
+        }
     })
 })
 
