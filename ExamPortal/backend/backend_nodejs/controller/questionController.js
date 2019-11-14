@@ -83,7 +83,7 @@ const saveIncorrectOption = async(req,checkAnswer,existingAnswer)=>{
 const saveCandidateAnswers = async(req, res) => {
     req.body.checkedOption = radioOrCheckBoxValue(req.body)
     let checkAnswer = await questionDetail.findById(req.body.qId).select({ "answer": 1, "weightage": 1 })
-    let existingAnswer = await test.findOne({ $and: [{ candidateId: req.headers.id }, { testCode: req.body.code }] })
+  let existingAnswer = await test.findOne({ $and: [{ candidateId: req.headers.id }, { testCode: req.body.code }] })
     if (checkAnswer.answer === req.body.checkedOption) {
         await saveCorrectOption(req, checkAnswer, existingAnswer)
         res.status(200).send({ "msg": "Saved Successfully" })

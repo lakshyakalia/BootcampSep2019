@@ -33,15 +33,11 @@ namespace Examportal.Models
         {
             modelBuilder.Entity<CandidateAnswer>(entity =>
             {
-                entity.HasKey(e => e.Email);
+                entity.HasKey(e => e.CandidateId);
 
                 entity.ToTable("candidateAnswer");
 
-                entity.Property(e => e.Email)
-                    .HasColumnName("email")
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .ValueGeneratedNever();
+                entity.Property(e => e.CandidateId).HasColumnName("candidateId");
 
                 entity.Property(e => e.CompletionTime)
                     .HasColumnName("completionTime")
@@ -58,6 +54,11 @@ namespace Examportal.Models
                 entity.Property(e => e.CreatedDate)
                     .HasColumnName("createdDate")
                     .HasColumnType("date");
+
+                entity.Property(e => e.Email)
+                    .HasColumnName("email")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Id).HasColumnName("_id");
 
@@ -80,15 +81,14 @@ namespace Examportal.Models
                 entity.Property(e => e.TotalScore).HasColumnName("totalScore");
 
                 entity.HasOne(d => d.EmailNavigation)
-                    .WithOne(p => p.CandidateAnswer)
-                    .HasForeignKey<CandidateAnswer>(d => d.Email)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__candidate__email__6D0D32F4");
+                    .WithMany(p => p.CandidateAnswer)
+                    .HasForeignKey(d => d.Email)
+                    .HasConstraintName("FK__candidate__email__73BA3083");
 
                 entity.HasOne(d => d.IdNavigation)
                     .WithMany(p => p.CandidateAnswer)
                     .HasForeignKey(d => d.Id)
-                    .HasConstraintName("FK__candidateAn___id__6C190EBB");
+                    .HasConstraintName("FK__candidateAn___id__72C60C4A");
             });
 
             modelBuilder.Entity<ExamDetails>(entity =>

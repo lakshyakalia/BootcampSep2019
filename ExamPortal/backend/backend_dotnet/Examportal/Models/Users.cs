@@ -7,6 +7,7 @@ namespace Examportal.Models
     {
         public Users()
         {
+            CandidateAnswer = new HashSet<CandidateAnswer>();
             ExamDetails = new HashSet<ExamDetails>();
         }
 
@@ -21,7 +22,7 @@ namespace Examportal.Models
         public DateTime? ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
 
-        public CandidateAnswer CandidateAnswer { get; set; }
+        public ICollection<CandidateAnswer> CandidateAnswer { get; set; }
         public ICollection<ExamDetails> ExamDetails { get; set; }
     }
 }

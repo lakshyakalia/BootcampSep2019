@@ -42,5 +42,13 @@ namespace Examportal.Controllers
             return Ok(new { examData = examData,submitStatus = false});
             
         }
+
+        [Authorize]
+        [Route("endTest")]
+        [HttpPost]
+        public IActionResult SaveAllQuestions()
+        {
+            return Ok();
+        }
     }
 }

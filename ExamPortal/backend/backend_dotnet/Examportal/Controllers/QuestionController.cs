@@ -59,17 +59,17 @@ namespace Examportal.Controllers
 
             string joinValue = qh.radioOrCheckBoxValue(value);
             var checkAnswer = db.Questions.Where(s => s.Id == Int32.Parse(value.QId)).Select(a=> new {a.Answer,a.Weightage }).FirstOrDefault();
-            var existingAnswer = db.CandidateAnswer.Where(s=> s.Email == email["Email"] && s.TestCode == value.Code).ToList();
-
-            if(checkAnswer.Answer == joinValue)
+            var existingAnswer = db.CandidateAnswer.Where(s=> s.Email == email["Email"] && s.TestCode == value.Code).FirstOrDefault();
+            //&& s.Id == Convert.ToInt16(value.QId)
+            if (checkAnswer.Answer == joinValue)
             {
-                qh.SaveCorrectOption(checkAnswer,existingAnswer);
+                qh.SaveCorrectOption(checkAnswer,existingAnswer,email["Email"],value,joinValue);
             }
             else
             {
-                qh.SaveIncorrectOption(checkAnswer, existingAnswer);
+                qh.SaveIncorrectOption(checkAnswer, existingAnswer,email["Email"],value,joinValue);
             }
-            return Ok();
+            return Ok(true);
         }
 
     }

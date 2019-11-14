@@ -228,12 +228,13 @@ $(document).on('click', '#previousQuestion', function() {
 })
 
 $(document).on('click', '#modalEndTest', function() {
-    $.ajax('http://localhost:3000/exam/endTest', {
+    $.ajax('http://localhost:45728/exam/endTest', {
         type: 'POST',
         dataType: 'JSON',
         headers: {
             examCode: localStorage.getItem('examCode'),
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         body: {
             code: localStorage.getItem("examCode")

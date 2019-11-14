@@ -5,6 +5,7 @@ namespace Examportal.Models
 {
     public partial class CandidateAnswer
     {
+        public int CandidateId { get; set; }
         public string Email { get; set; }
         public int? TotalScore { get; set; }
         public string TestCode { get; set; }
