@@ -8,11 +8,12 @@ using Examportal.Auth;
 namespace Examportal.Controllers
 {
     [ApiController]
+    [Route("/exam")]
     public class ExamController : ControllerBase
     {
         ExamportalContext db = new ExamportalContext();
 
-        [Route("/exam/accessKey")]
+        [Route("accessKey")]
         [HttpPost]
         public IActionResult CheckAccessKey([FromBody] ExamDetails value)
         {
@@ -28,7 +29,7 @@ namespace Examportal.Controllers
         }
         
         [Authorize]
-        [Route("exam/accessKey")]
+        [Route("accessKey")]
         [HttpGet]        
         public IActionResult GetExamTime()
         {
