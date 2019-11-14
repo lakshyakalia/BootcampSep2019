@@ -12,6 +12,7 @@ using System.Text;
 
 namespace Examportal.Controllers
 {
+    
     [ApiController]
     public class ExamController : ControllerBase
     {
