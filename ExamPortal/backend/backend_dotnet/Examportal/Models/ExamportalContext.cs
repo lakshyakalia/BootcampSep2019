@@ -83,12 +83,12 @@ namespace Examportal.Models
                     .WithOne(p => p.CandidateAnswer)
                     .HasForeignKey<CandidateAnswer>(d => d.Email)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__candidate__email__49C3F6B7");
+                    .HasConstraintName("FK__candidate__email__6D0D32F4");
 
                 entity.HasOne(d => d.IdNavigation)
                     .WithMany(p => p.CandidateAnswer)
                     .HasForeignKey(d => d.Id)
-                    .HasConstraintName("FK__candidateAn___id__48CFD27E");
+                    .HasConstraintName("FK__candidateAn___id__6C190EBB");
             });
 
             modelBuilder.Entity<ExamDetails>(entity =>
@@ -132,6 +132,10 @@ namespace Examportal.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Id)
+                    .HasColumnName("_id")
+                    .ValueGeneratedOnAdd();
+
                 entity.Property(e => e.ModifiedBy)
                     .HasColumnName("modifiedBy")
                     .HasMaxLength(20)
@@ -144,7 +148,7 @@ namespace Examportal.Models
                 entity.HasOne(d => d.EmailNavigation)
                     .WithMany(p => p.ExamDetails)
                     .HasForeignKey(d => d.Email)
-                    .HasConstraintName("FK__examDetai__email__3A81B327");
+                    .HasConstraintName("FK__examDetai__email__66603565");
             });
 
             modelBuilder.Entity<Questions>(entity =>
@@ -221,7 +225,7 @@ namespace Examportal.Models
                 entity.HasOne(d => d.ExamCodeNavigation)
                     .WithMany(p => p.Questions)
                     .HasForeignKey(d => d.ExamCode)
-                    .HasConstraintName("FK__questions__examC__3D5E1FD2");
+                    .HasConstraintName("FK__questions__examC__693CA210");
             });
 
             modelBuilder.Entity<Users>(entity =>
@@ -231,7 +235,7 @@ namespace Examportal.Models
                 entity.ToTable("users");
 
                 entity.HasIndex(e => e.PhoneNumber)
-                    .HasName("UQ__users__4849DA0119E6354A")
+                    .HasName("UQ__users__4849DA013426D3A4")
                     .IsUnique();
 
                 entity.Property(e => e.Email)

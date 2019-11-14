@@ -1,5 +1,3 @@
-
-
 function loadQuestions(data, startTime, duration, examName) {
     let imageURL, imageStatus
     const questionTemplate = document.querySelector('#question-template').innerHTML
@@ -23,7 +21,6 @@ function loadQuestions(data, startTime, duration, examName) {
 }
 
 function loadPaginaton(questions) {
-    console.log(questions)
     const paginationTemplate = document.querySelector('#pagination-template').innerHTML
     const op = document.querySelector('.pagination-card')
     for (i = 0; i < questions.length; i++) {
@@ -122,7 +119,6 @@ $(document).ready(function() {
         success: function(data) {
             data.duration = parseInt(data.duration)
             loadQuestions(data.questions, data.startTime, data.duration, data.examName)
-            console.log(data.allQuestions)
             loadPaginaton(data.allQuestions)
             if (data.lastQuestionStatus === true) {
                 $('#nextQuestion').attr('disabled', true)
@@ -139,33 +135,32 @@ $(document).on('click', '#submitAnswer', function() {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
     let examCode = $(this).parent().parent().parent().parent().children().children().children().children().attr('id')
     let value = []
-    console.log(questionId,examCode)
-    // $.each($(`input[name=${questionId}]:checked`), function() {
-    //     value.push($(this).val())
-    // })
+    $.each($(`input[name=${questionId}]:checked`), function() {
+        value.push($(this).val())
+    })
     if (value.length === 0) {
         return
     }
-    // $.ajax('http://localhost:45728/question', {
-    //     type: 'POST',
-    //     dataType: 'JSON',
-    //     contentType: "application/json;charset=utf-8",
-    //     headers: {
-    //         token: localStorage.getItem('token'),
-    //         Authorization: "Bearer "+localStorage.getItem('token')
-    //     },
-    //     data: {
-    //         code: examCode,
-    //         checkedOption: value,
-    //         qId: questionId
-    //     },
-    //     success: function(data) {
-    //         $('#' + questionId + ".circle").css('background-color', "green")
-    //     },
-    //     error: function(error) {
-    //         console.log(error)
-    //     }
-    // })
+    $.ajax('http://localhost:45728/question', {
+        type: 'POST',
+        dataType: 'JSON',
+        contentType: "application/json;charset=utf-8",
+        headers: {
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
+        },
+        data: {
+            code: examCode,
+            checkedOption: value,
+            qId: questionId
+        },
+        success: function(data) {
+            $('#' + questionId + ".circle").css('background-color', "green")
+        },
+        error: function(error) {
+            console.log(error)
+        }
+    })
 })
 
 $(document).on('click', '#nextQuestion', function() {
