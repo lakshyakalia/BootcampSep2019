@@ -1,3 +1,17 @@
+function deleteexaminer(id)
+{
+  $("#modelid").attr('id',id)
+}
+function logout()
+{
+   localStorage.removeItem("token");
+   window.location.replace("../../user/views/login.html");
+}
+function samepage()
+{
+  window.location.replace("../views/adminShowExaminer.html");
+}
+
 function loadSetupExaminerPage(data){
   $('#performance').empty()
   $.get('./adminSetupExaminer.html',function(template){
@@ -8,11 +22,11 @@ function loadSetupExaminerPage(data){
 
 
 $(document).ready(function () {
-  const tok =localStorage.getItem('token');
-  if(tok == null)
-  {
-    location.replace("../../index.html")
-  }
+  // const tok =localStorage.getItem('token');
+  // if(tok == null)
+  // {
+  //   location.replace("../../index.html")
+  // }
   $.ajax("http://127.0.0.1:3000/examiner", {
     type: "GET",
     dataType: "json",
@@ -36,8 +50,6 @@ $(document).ready(function () {
     const performance = document.querySelector("#performance");
     performance.insertAdjacentHTML("beforeend", html)
   }
-
-
   $(document).on('click', '.deleteButton', function () {
     let id = $(this).attr('id')
     console.log(id);

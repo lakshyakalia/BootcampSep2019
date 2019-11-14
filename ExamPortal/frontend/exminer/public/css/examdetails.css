@@ -1,5 +1,6 @@
 body {
     margin-top: 40px;
+    background-color: #ebebeb;
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -95,6 +96,15 @@ a:hover {
     width: 100%;
 }
 
+.form-test {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+label {
+    font-weight: 100;
+}
+
 .stepwizard-row:before {
     top: 14px;
     bottom: 0;
@@ -120,4 +130,30 @@ a:hover {
     font-size: 12px;
     line-height: 1.428571429;
     border-radius: 15px;
+}
+
+.box {
+    display: none;
+}
+
+#span {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.4)
+}
+
+#addExamTestDate {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+    padding: 6px;
+    font-size: 12px;
+    font-family: monospace;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.btn {
+    font-weight: 300;
 }

@@ -11,9 +11,14 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
         <link rel="stylesheet" href="../public/css/viewPerformance.css">
+        <script type="text/javascript" src="../public/js/examiner.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+        <link rel="icon" href="https://www.cygrp.com/wp-content/uploads/2019/06/cybergroup-site-icon.png" type="image/x-icon">
+
     </head>
 
-    <body onload="showStudents()">
+    <body onload="showStudents(),showName()">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: black;">
             <img src="../../user/public/assets/cybergrouplogo.png" class="logo">
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,30 +39,44 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
+                    <span id="span">Welcome &nbsp; </span>
 
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="button" onclick="logout()">Logout</button>
                 </form>
             </div>
         </nav>
         <div class="main">
-            <h2 class="container display-4">Performance of Students : </h2>
-            <table class="container table table-dark performance-table" id="tbdy">
+            <h2 class="container display-4 performance-text">Performance of Students : </h2>
+            <table class="container table table-light table-striped performance-table" id="tbdy">
+                <thead>
 
-                <tr id="details">
-                    <td class="table-student-id" id="student-id">Student Id</td>
-                    <td class="table-student-name" id="student-name">Student Name</td>
-                    <td class="table-test-id" id="test-id">Test Id</td>
-                    <td class="table-attempted" id="attempted">Attempted</td>
-                    <td class="table-correct" id="correct">Correct</td>
-                    <td class="table-unattempted" id="unattempted">Unattempted</td>
-                    <td class="table-total-score" id="total-score">Total Score</td>
-                </tr>
+                    <th>Exam Code</th>
+                    <th>Exam Name</th>
+
+                </thead>
+
             </table>
+            <!-- <center> -->
+            <!-- </center> -->
+        </div>
+        <div>
+            <table class="container table performance-table-1 student-detail-table" id="tcan">
 
+            </table>
+        </div>
+        <div class="container d-flex flex-column justify-content-center align-items-center">
+            <div class="wrapper" id="wrapper">
+                <div class="container d-flex flex-column justify-content-center align-items-center">
+                    <div class="title text-center mb-5">
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="../public/js/viewPerformance.js"></script>
     </body>
-
 </head>
 
 </html>
