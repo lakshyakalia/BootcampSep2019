@@ -27,7 +27,7 @@ $(document).ready(function () {
   // {
   //   location.replace("../../index.html")
   // }
-  $.ajax("http://127.0.0.1:3000/examiner", {
+  $.ajax("http://localhost:45728/examiner", {
     type: "GET",
     dataType: "json",
     contentType: "application/json",
@@ -53,7 +53,7 @@ $(document).ready(function () {
   $(document).on('click', '.deleteButton', function () {
     let id = $(this).attr('id')
     console.log(id);
-    $.ajax("http://127.0.0.1:3000/examiner/:id", {
+    $.ajax("http://localhost:45728/examiner/:id", {
       type: "DELETE",
       dataType: "json",
       contentType: "application/json",
