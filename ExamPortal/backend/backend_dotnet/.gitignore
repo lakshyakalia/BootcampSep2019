@@ -1,4 +1,4 @@
-.vs/
+*.vs/
 *.swp
 *.*~
 project.lock.json
