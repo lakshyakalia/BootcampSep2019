@@ -21,9 +21,9 @@ namespace Examportal.Controllers
             _config = config;
         }
         ExamportalContext db = new ExamportalContext();
-        [Authorize]
-        [Route("/exam")]
-        [HttpPost]
+        
+        [Authorize,HttpPost, Route("/exam")]
+        
         public IActionResult saveExam([FromBody] ExamDetails examDetails)
         {
             try
@@ -49,9 +49,8 @@ namespace Examportal.Controllers
                 return BadRequest(new { error = e });
             }
         }
-        [Authorize]
-        [HttpGet]
-        [Route("/exam")]
+        
+        [Authorize,HttpGet,Route("/exam")]
         public IActionResult viewExamDeatils()
         {
             try
@@ -73,9 +72,8 @@ namespace Examportal.Controllers
                 return BadRequest(new { error = e });
             }
         }
-        [Authorize]
-        [HttpGet]
-        [Route("/exam/{id}")]
+        
+        [Authorize, HttpGet,Route("/exam/{id}")]
         public IActionResult examDetailForUpdate(int id )
         {
             try
@@ -93,9 +91,9 @@ namespace Examportal.Controllers
                 return BadRequest(new { error = e });
             }
         }
-        [Authorize]
-        [HttpPatch]
-        [Route("/exam/{id}")]
+        
+        
+        [Authorize, HttpPatch,Route("/exam/{id}")]
         public IActionResult editExamDeatils(int id , [FromBody] ExamDetails val )
         {
             try
@@ -119,9 +117,8 @@ namespace Examportal.Controllers
                 return BadRequest(new { error = e });
             }
         }
-        [Authorize]
-        [HttpDelete]
-        [Route("/exam/{id}")]
+        
+        [Authorize, HttpDelete,Route("/exam/{id}")]
         public IActionResult removeExamDetails(int id)
         {
             try

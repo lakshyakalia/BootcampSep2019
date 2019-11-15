@@ -159,9 +159,9 @@ $(document).ready(function () {
         }
         var formData = new FormData();
 
-        formData.append('questionText', question);
-        formData.append('answer', answer);
-        formData.append('option1', option1);
+        formData.append('questionText',question);
+        formData.append('answer',answer);
+        formData.append('option1',option1);
         formData.append('option2', option2);
         formData.append('option3', option3);
         formData.append('option4', option4);
@@ -169,10 +169,11 @@ $(document).ready(function () {
         formData.append('examCode', tempExamCode);
         formData.append('answerType', answerType);
         formData.append('questionImage', $('input[type=file]')[1].files[0]);
+        
         $.ajax("http://localhost:45728/exam/question", {
             type: "POST",
             data: formData,
-            dataType: "json",
+            dataType: "JSON",
             headers: {
                 token: localStorage.getItem('token'),
                 Authorization: "Bearer "+localStorage.getItem('token')
