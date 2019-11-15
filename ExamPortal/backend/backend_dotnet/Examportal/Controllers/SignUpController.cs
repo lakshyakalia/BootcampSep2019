@@ -23,6 +23,7 @@ namespace Examportal.Controllers
             if(data == null)
             {
                 value.CreatedBy = "admin";
+                value.AccountType = "Admin";
                 value.CreatedDate = DateTime.Now;
                 value.Password = Bcrypt.BCrypt.HashPassword(value.Password);
                 db.Users.Add(value);

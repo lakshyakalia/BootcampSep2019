@@ -288,5 +288,10 @@ namespace Examportal.Models
                     .IsUnicode(false);
             });
         }
+
+        internal void submitChanges()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
