@@ -1,0 +1,286 @@
+a:link,
+a:visited {
+	background-color: rgb(44, 41, 41);
+	color: white;
+	padding: 14px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-button {
+	border-color: #4CAF50;
+	color: green;
+}
+
+.search-button:hover {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.btn {
+	border: none;
+	color: white;
+	padding: 14px 28px;
+	font-size: 16px;
+	cursor: pointer;
+	left: 250px;
+	align: center;
+}
+
+.button {
+	padding-left: 80px;
+}
+
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.info {
+	background-color: rgb(17, 70, 114);
+}
+
+
+/* Blue */
+
+.info:hover {
+	background: #0b7dda;
+}
+
+.header-home-tag {
+	font-size: 13px;
+}
+
+.header-link-tag {
+	font-size: 13px;
+}
+
+.header-disabled-tag {
+	font-size: 13px;
+}
+
+.header-dropdown-tag {
+	font-size: 13px;
+}
+
+.head {
+	background-color: rgb(44, 41, 41);
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	padding: 0px;
+	max-width: 100%;
+}
+
+.welcome-message {
+	display: inline;
+	position: relative;
+	margin-left: 80px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 40px;
+}
+
+.search-container button {
+	float: right;
+	padding: 6px 10px;
+	margin-top: 8px;
+	margin-right: 16px;
+	background: rgb(44, 41, 41);
+	font-size: 13px;
+	border: none;
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-container {
+	float: right;
+}
+
+.search-container button:hover {
+	background: #ccc;
+}
+
+.banner {
+	max-width: 100%;
+	background-color: rgb(197, 194, 194);
+	height: 250px;
+}
+
+.banner-content {
+	max-width: 80%;
+	padding-left: 80px;
+	justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
+}
+
+.container {
+	align-content: center;
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	max-width: 100%;
+}
+
+.container div {
+	max-width: 100%;
+}
+
+.first-column,
+.second-column,
+.third-column {
+	width: 30%;
+    height: 50%;
+    text-align: center;
+}
+
+p {
+	max-width: 100%;
+	font-size: 13px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+	overflow: hidden;
+	background-color: #333;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+	float: left;
+	font-size: 16px;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.dropdown {
+	float: left;
+	overflow: hidden;
+}
+
+.dropdown .dropbtn {
+	cursor: pointer;
+	font-size: 16px;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 14px 16px;
+	background-color: inherit;
+	font-family: inherit;
+	margin: 0;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn,
+.dropbtn:focus {
+	background-color: rgb(88, 82, 82);
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.show {
+	display: block;
+}
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: right;
+    outline: none;
+    font-size: 15px;
+    display:none;
+    float: right;
+}
+.active,
+.collapsible:hover {
+    background-color: #555;
+}
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+.navbar2{
+    display: none;
+}
+
+@media only screen and (max-width:768px) {
+	.collapsible {
+        float: right;
+        display: block;
+		background-color: #777;
+		color: white;
+		cursor: pointer;
+		padding: 18px;
+		width: 100%;
+		border: none;
+		text-align: right;
+		outline: none;
+		font-size: 15px;
+	}
+	.active,
+	.collapsible:hover {
+		background-color: #555;
+	}
+	.content {
+		padding: 0 18px;
+		display: none;
+		overflow: hidden;
+		background-color: #f1f1f1;
+    }
+    .navbar{
+        display: none;
+    }
+    .navbar2{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .nav,
+    .hom,
+    .dis{
+        width: 400px;
+    }
+    .dropdown{
+        display: none;
+    }
+    .container{
+        display: table-cell;
+
+    }
+    .first-column,
+.second-column,
+.third-column {
+	width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+
+}

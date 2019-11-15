@@ -1,0 +1,20 @@
+body
+{
+   margin-top:11%;
+   background-color: #e6ffff;
+}
+h1{
+   
+    color:blue;
+    text-align: center;
+}
+input
+{
+    height:100px;
+    width:98px;
+    border:none;
+    font-size:40px;
+    color:red;
+    padding:0px;
+    margin:0px;
+}
