@@ -59,9 +59,6 @@ namespace Examportal.Controllers
                 //db.SaveChanges();
                 var file = HttpContext.Request.Form.Files[0];
                 String fileName = file.FileName;
-                String path = "c:/Users/birendra.bhujel/Desktop/BootcampSep2019/ExamPortal/frontend/exminer/public/assets";
-                System.IO.Directory.CreateDirectory(path);
-                System.IO.Path.Combine(path, fileName);
                 return Ok();
             }catch(Exception e)
             {
