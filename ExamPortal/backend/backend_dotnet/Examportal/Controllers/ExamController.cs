@@ -4,22 +4,27 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Examportal.Auth;
-using Microsoft.AspNetCore.Mvc.Filters;
+using Examportal.Custom_Models;
+using System.Collections.Generic;
+using Examportal.Handlers;
 using System;
 
 namespace Examportal.Controllers
 {
     [ApiController]
+    [Route("/exam")]
     public class ExamController : ControllerBase
     {
         ExamportalContext db = new ExamportalContext();
 
-        [Route("/exam/accessKey")]
+        [Route("accessKey")]
         [HttpPost]
         public IActionResult CheckAccessKey([FromBody] ExamDetails value)
         {
-            var existingExam = db.ExamDetails.FirstOrDefault(s=> s.ExamCode == value.ExamCode);
-            if(existingExam != null)
+
+            QuestionHandler qh = new QuestionHandler();
+            var existingExam = qh.CheckAccessKey(value);
+            if (existingExam != null)
             {
                 return Ok(true);
             }
@@ -29,8 +34,8 @@ namespace Examportal.Controllers
             }
         }
         
-        //[Authorize]
-        [Route("exam/accessKey")]
+        [Authorize]
+        [Route("accessKey")]
         [HttpGet]        
         public IActionResult GetExamTime()
         {
@@ -58,12 +63,27 @@ namespace Examportal.Controllers
                 //db.Questions.Add(obj);
                 //db.SaveChanges();
                 var file = HttpContext.Request.Form.Files[0];
-                String fileName = file.FileName;
                 return Ok();
             }catch(Exception e)
             {
                 return BadRequest(new { error = e });
             }
         }
+
+        //[Authorize]
+        [Route("endTest")]
+        [HttpPost]
+        public IActionResult SaveAllQuestions([FromBody] SubmitAnswerCustomModel value)
+        {
+            Dictionary<string, string> email = new Dictionary<string, string>();
+            Authentication auth = new Authentication();
+            QuestionHandler qh = new QuestionHandler();
+
+            email = auth.getAllClaims(HttpContext);
+            qh.submitAllQuestions(value,email);
+            
+            return Ok();
+        }
     }
+    
 }
