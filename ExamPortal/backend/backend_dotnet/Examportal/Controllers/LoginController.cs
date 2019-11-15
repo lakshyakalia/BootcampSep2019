@@ -26,7 +26,7 @@ namespace Examportal.Controllers
             _config = config;
         }
 
-        ExamportalContext db = new ExamportalContext();
+            ExamportalContext db = new ExamportalContext();
 
         [Route("/login")]
         [HttpPost]

@@ -55,26 +55,29 @@ function changeInputFields(data) {
     document.getElementById('loggedInCollege').value = data.collegeName;
 
 }
-
 function editDetails() {
     var email = document.getElementById('loggedInEmail').value
     var name = document.getElementById('loggedInName').value
     var phone = document.getElementById('loggedInPhone').value
     var college = document.getElementById('loggedInCollege').value
     var pass = document.getElementById('loggedInPassword').value
+
     $.ajax("http://localhost:45728/examiner", {
         type: 'PATCH',
-        dataType: 'JSON',
+        dataType: 'JSON',   
         headers: {
             "token": localStorage.getItem('token'),
+             'Authorization': 'Bearer '+localStorage.getItem('token')
+
         },
-        data: ({
+        data: JSON.stringify({
             "email": email,
             "name": name,
             "phoneNumber": phone,
             "collegeName": college,
             "password": pass
         }),
+        
         success: function(data) {
             window.alert('User Details Updated !')
             hideEditDetails()

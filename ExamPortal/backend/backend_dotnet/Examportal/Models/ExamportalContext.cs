@@ -136,10 +136,10 @@ namespace Examportal.Models
                     .HasColumnName("_id")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.ModifiedBy)
-                    .HasColumnName("modifiedBy")
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
+               // entity.Property(e => e.ModifiedBy)
+                //    .HasColumnName("modifiedBy")
+                  //  .HasMaxLength(20)
+                   // .IsUnicode(false);
 
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnName("modifiedDate")
