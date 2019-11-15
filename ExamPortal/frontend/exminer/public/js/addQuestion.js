@@ -125,7 +125,8 @@ $(document).ready(function() {
             data: formData,
             dataType: "json",
             headers: {
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                Authorization: "Bearer "+localStorage.getItem('token')
             },
             contentType: false,
             processData: false,
@@ -160,33 +161,6 @@ $(document).ready(function() {
         });
     })
 });
-function excelUpload(event) {
- 
-    event.preventDefault();
-    //tempExamCode1 = $('#addExamCode').val()
-    var formData = new FormData();
-    formData.append('examCode', tempExamCode)
-    console.log(tempExamCode)
-    formData.append('excelFile', $('input[type=file]')[0].files[0])
-    $.ajax('http://localhost:45728/exam/questions/uploadExcel', {
-        type: 'POST',
-        data: formData,
-        headers: {
-            token: localStorage.getItem('token')
-        },
-        lowerCaseHeaders: true,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            alert("You have successfully uploaded the questions through excel file")
-            $(location).attr('href', './exam.html')
-            
-        },
-        error: function (error) {
-            console.log(error + " " + error)
-        }
-    })
-}
 
 function logout() {
     localStorage.clear()
