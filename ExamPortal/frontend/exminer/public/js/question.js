@@ -1,5 +1,4 @@
 function removeQuestion(id){
-    console.log(id)
     let qsId = $("#"+id).parent().parent().attr('id')
     console.log(qsId)
     $.ajax("http://localhost:45728/exam/question/"+qsId, {
@@ -79,12 +78,13 @@ function editQuestion(id) {
     let qid = $("#" + id).parent().parent().attr('id')
     let pid = $("#" + qid).parent().parent().parent().parent().attr('id')
     $('#' + pid).hide()
-    $.ajax("http://localhost:45728/exam/question/byid/" + qid, {
+    $.ajax("http://localhost:45728/exam/question/" + qid, {
         type: 'GET',
         dataType: 'json',
         contentType: "application/json",
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
 
@@ -117,13 +117,14 @@ function editQuestion(id) {
 }
 $(document).ready(function(){
     let examCode = localStorage.getItem('examCode')
-    let url = "http://localhost:45728/exam/question/" + encodeURIComponent(examCode)
+    let url = "http://localhost:45728/exam/"+ encodeURIComponent(examCode)+"/question"
     $.ajax(url, {
         type: 'GET',
         dataType: 'json',
         contentType: "application/json;charset=utf-8",
         headers: {
-            'token': localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
             if( data.msg == 'No question'){

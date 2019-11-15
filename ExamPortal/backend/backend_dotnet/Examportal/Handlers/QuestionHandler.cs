@@ -39,6 +39,10 @@ namespace Examportal.Handlers
                 db.CandidateResult.Add(resultDetails);
                 db.SaveChanges();
             }
+            else
+            {
+
+            }
         }
 
         public void SaveIncorrectOption(dynamic checkAnswer, dynamic existingAnswer, string email, QuestionCustomModel value, string checkedOption)

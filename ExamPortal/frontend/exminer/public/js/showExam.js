@@ -10,6 +10,7 @@ function showQuestion(id) {
 }
 
 function updateExam(examObjId) {
+    
     let examDetail = {
         examName: $('#addExamName').val(),
         examCode: $('#addExamCode').val(),
@@ -22,7 +23,8 @@ function updateExam(examObjId) {
         dataType: 'json',
         contentType: "application/json",
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         data: JSON.stringify(examDetail),
         success: function(data) {
@@ -43,11 +45,12 @@ function editExamDetail(id) {
         dataType: 'json',
         contentType: "application/json",
         headers: {
-            'token': localStorage.getItem('token')
+            'token': localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
             let editForm = $("#edit-exam-detail").html()
-            $("#display-form").append(Mustache.render(editForm, data))
+            $("#display-form").append(Mustache.render(editForm, data[0]))
         },
         error: function(error) {
             console.log(error)
@@ -66,7 +69,8 @@ function deleteExam(id) {
         dataType: 'json',
         contentType: "application/json",
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
             location.reload(true)
@@ -78,20 +82,19 @@ function deleteExam(id) {
 }
 
 $(document).ready(() => {
-    console.log('hellooo')
         $.ajax("http://localhost:45728/exam", {
             type: 'GET',
             dataType: 'json',
             contentType: "application/json",
             headers: {
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                Authorization: "Bearer "+localStorage.getItem('token')
             },
             success: function(data) {
                 if (data.msg == 'No Exam') {
                     alert("Exam Doesnot exist in your account")
                     return
                 }
-                console.log(data)
                 let parent = $(".exam-detail")
                     // load html template to display exam detail
                 $.each(data, (index, values) => {
@@ -101,7 +104,6 @@ $(document).ready(() => {
                 })
             },
             error: function(error) {
-                console.log(error)
                 if (error.responseText == 'No Exam') {
                     alert('No Exam created')
                     $(location).attr('href', '../views/examiner.html')

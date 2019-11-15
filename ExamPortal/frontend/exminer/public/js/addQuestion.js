@@ -125,7 +125,8 @@ $(document).ready(function() {
             data: formData,
             dataType: "json",
             headers: {
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                Authorization: "Bearer "+localStorage.getItem('token')
             },
             contentType: false,
             processData: false,
