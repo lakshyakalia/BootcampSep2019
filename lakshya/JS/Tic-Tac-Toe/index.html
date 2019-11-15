@@ -1,0 +1,45 @@
+<html>
+        <head>
+                
+                <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+                <script src="ttt.js"></script>
+                <meta charset="utf-8">
+                <meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
+        <title>
+           Tic-Tac-Toe
+        </title>
+        <script>
+        $(document).ready(function(){
+                            $("#btnn").click(function(){
+                                location.reload(true);
+                            });
+                        });
+        </script>        
+        <link rel="stylesheet" href="ttt.css">
+        </head>
+        <body >
+                <div class="a" style="border-radius: 40px; position:relative;width:580px;height:450px; background-color: rgba(41, 41, 41,0.4); ">
+                        <!-- <canvas id="myCanvas" width="600" height="600" style="border:1px solid black;"></canvas> -->
+                        <button style="position:absolute;left:40px;top:50px;width:150px; height: 100px;" id="1" onclick="in1(1)" class="a1"/>
+                        <button style="position:absolute;left:210px;top:50px;width:150px; height: 100px;" id="2" onclick="in2(2)" class="a2"/>
+                        <button style="position:absolute;left:380px;top:50px;width:150px; height: 100px;" id="3"onclick="in3(3)"  class="a3"/>
+                        <button style="position:absolute;left:40px;top:170px;width:150px; height: 100px;" id="4" onclick="in4(4)"  class="a4"/>
+                        <button style="position:absolute;left:210px;top:170px;width:150px; height: 100px;" id="5" onclick="in5(5)" class="a5"/>
+                        <button style="position:absolute;left:380px;top:170px;width:150px; height: 100px;" id="6" onclick="in6(6)" class="a6"/>
+                        <button style="position:absolute;left:40px;top:290px;width:150px; height: 100px;" id="7" onclick="in7(7)" class="a7"/>
+                        <button style="position:absolute;left:210px;top:290px;width:150px; height: 100px;" id="8" onclick="in8(8)" class="a8"/>
+                        <button style="position:absolute;left:380px;top:290px;width:150px; height: 100px;" id="9" onclick="in9(9)" class="a9"/>
+                        
+                    </div>
+                    <div class="b" style="border-radius: 20px; position: relative; width: 600px; height: 150px; background-color: rgba(122, 122, 122,0.4);">
+                    <input type="text" style="width: 35%; height: 40px; margin-left: 20px; margin-top: 50px;" disabled value="Player 1 : X" id="p1">
+                    <input type="text" style="height: 40px; margin-left: 60px;" value="Player 2 : 0" id="p2" disabled>
+                    </div>
+                    <span class="s">TOE</span><span class="s">TAC</span><span class="s">TIC</span>
+                    <div class="win" id="win"><img class="ii" src="wolvie.gif">
+                    <span class="go">Game Over!</span>
+                    <span class="go2" id="go2"></span>
+                    <button class="btnn" id="btnn">Play Again?</button>
+                </div>
+                </body> 
+</html>
