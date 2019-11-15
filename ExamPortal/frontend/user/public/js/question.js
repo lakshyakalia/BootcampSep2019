@@ -228,20 +228,23 @@ $(document).on('click', '#previousQuestion', function() {
 })
 
 $(document).on('click', '#modalEndTest', function() {
+    dataToSend = {
+        code: localStorage.getItem("examCode")
+    }
+    console.log
     $.ajax('http://localhost:45728/exam/endTest', {
         type: 'POST',
         dataType: 'JSON',
+        contentType: "application/json;charset=utf-8",
         headers: {
             examCode: localStorage.getItem('examCode'),
             token: localStorage.getItem('token'),
             Authorization: "Bearer "+localStorage.getItem('token')
         },
-        body: {
-            code: localStorage.getItem("examCode")
-        },
+        data: JSON.stringify(dataToSend),
         success: function(data) {
-            localStorage.clear()
-            $(location).attr('href', './endTest.html')
+            //localStorage.clear()
+            //$(location).attr('href', './endTest.html')
         },
         error: function(error) {
             console.log(error)

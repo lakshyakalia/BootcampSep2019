@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Examportal.Auth;
+using Examportal.Custom_Models;
+using System.Collections.Generic;
 
 namespace Examportal.Controllers
 {
@@ -43,11 +45,19 @@ namespace Examportal.Controllers
             
         }
 
-        [Authorize]
+        //[Authorize]
         [Route("endTest")]
         [HttpPost]
-        public IActionResult SaveAllQuestions()
+        public IActionResult SaveAllQuestions([FromBody] SubmitAnswerCustomModel value)
         {
+            Dictionary<string, string> email = new Dictionary<string, string>();
+            Authentication auth = new Authentication();
+
+            email = auth.getAllClaims(HttpContext);
+            var allQuestions = db.Questions.Where(s => s.ExamCode == value.code).ToList();
+
+            var savedQuestions = db.CandidateAnswer.Where(s=> s.TestCode == value.code && s.Email == email["Email"]);
+            
             return Ok();
         }
     }

@@ -32,8 +32,7 @@ namespace Examportal.Controllers
             if (lastQuestion[lastQuestion.Count()-1].QuestionText == ques[0].QuestionText) lastQuesStatus = true;
             else lastQuesStatus = false;
             var time = db.ExamDetails.Where(s => s.ExamCode == examcode).ToList();
-
-
+            
             return Ok(new
             {
                 allQuestions = lastQuestion,
@@ -49,7 +48,7 @@ namespace Examportal.Controllers
         [Authorize]
         [Route("/question")]
         [HttpPost]
-        public IActionResult SaveCandidateAnswers([FromBody]QuestionCustomModel value)
+        public IActionResult SaveCandidateAnswer([FromBody] QuestionCustomModel value)
         {
             Dictionary<string, string> email = new Dictionary<string, string>();
 
@@ -58,18 +57,18 @@ namespace Examportal.Controllers
             email = auth.getAllClaims(HttpContext);
 
             string joinValue = qh.radioOrCheckBoxValue(value);
-            var checkAnswer = db.Questions.Where(s => s.Id == Int32.Parse(value.QId)).Select(a=> new {a.Answer,a.Weightage }).FirstOrDefault();
-            var existingAnswer = db.CandidateAnswer.Where(s=> s.Email == email["Email"] && s.TestCode == value.Code).FirstOrDefault();
-            //&& s.Id == Convert.ToInt16(value.QId)
+            var checkAnswer = db.Questions.Where(s => s.Id == Int32.Parse(value.QId)).Select(a => new { a.Answer, a.Weightage }).FirstOrDefault();
+            var existingAnswer = db.CandidateAnswer.Where(s => s.Email == email["Email"] && s.TestCode == value.Code).FirstOrDefault();
+
             if (checkAnswer.Answer == joinValue)
             {
-                qh.SaveCorrectOption(checkAnswer,existingAnswer,email["Email"],value,joinValue);
+                qh.SaveCorrectOption(checkAnswer, existingAnswer, email["Email"], value, joinValue);
             }
             else
             {
-                qh.SaveIncorrectOption(checkAnswer, existingAnswer,email["Email"],value,joinValue);
+                qh.SaveIncorrectOption(checkAnswer, existingAnswer, email["Email"], value, joinValue);
             }
-            return Ok(true);
+            return Ok();
         }
 
     }
