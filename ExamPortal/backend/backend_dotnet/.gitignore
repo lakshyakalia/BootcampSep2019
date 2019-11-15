@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 .vs/
-=======
 *.swp
 *.*~
 project.lock.json
@@ -37,5 +35,4 @@ msbuild.err
 msbuild.wrn
 
 # Visual Studio 2015
-.vs/
->>>>>>> upstream/development
+
