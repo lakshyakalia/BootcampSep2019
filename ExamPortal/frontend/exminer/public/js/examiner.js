@@ -13,6 +13,8 @@ function showEdit() {
         dataType: 'JSON',
         headers: {
             "token": localStorage.getItem('token'),
+            'Authorization': 'Bearer '+localStorage.getItem('token')
+
         },
         success: function(data) {
 
@@ -31,9 +33,11 @@ function showName() {
         dataType: 'JSON',
         headers: {
             "token": localStorage.getItem('token'),
+            'Authorization': 'Bearer '+localStorage.getItem('token')
+
         },
         success: function(data) {
-
+            console.log(data)
             document.getElementById('span').innerHTML = 'Welcome ' + data.name + '! &nbsp; &nbsp; '
             localStorage.setItem("loggedInName", data.name)
         },

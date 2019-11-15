@@ -83,7 +83,7 @@ function showStudents() {
             }
         },
         error: function(error) {
-            console.log('lsakdlasdsalkdsakldjaksldjaskld')
+            console.log(error)
         }
     })
 }

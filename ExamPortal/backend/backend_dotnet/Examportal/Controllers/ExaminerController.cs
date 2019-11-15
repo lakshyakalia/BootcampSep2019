@@ -32,6 +32,7 @@ namespace Examportal.Controllers
             var exams = db.ExamDetails.Where(e => e.Email == userEmail).ToList();
             return Ok(exams);
         }
-        
+
+
     }
 }
