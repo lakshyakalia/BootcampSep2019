@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Examportal.Auth;
 using Examportal.Custom_Models;
 using System.Collections.Generic;
+using Examportal.Handlers;
 
 namespace Examportal.Controllers
 {
@@ -19,8 +20,10 @@ namespace Examportal.Controllers
         [HttpPost]
         public IActionResult CheckAccessKey([FromBody] ExamDetails value)
         {
-            var existingExam = db.ExamDetails.FirstOrDefault(s=> s.ExamCode == value.ExamCode);
-            if(existingExam != null)
+
+            QuestionHandler qh = new QuestionHandler();
+            var existingExam = qh.CheckAccessKey(value);
+            if (existingExam != null)
             {
                 return Ok(true);
             }
@@ -52,11 +55,10 @@ namespace Examportal.Controllers
         {
             Dictionary<string, string> email = new Dictionary<string, string>();
             Authentication auth = new Authentication();
+            QuestionHandler qh = new QuestionHandler();
 
             email = auth.getAllClaims(HttpContext);
-            var allQuestions = db.Questions.Where(s => s.ExamCode == value.code).ToList();
-
-            var savedQuestions = db.CandidateAnswer.Where(s=> s.TestCode == value.code && s.Email == email["Email"]);
+            qh.submitAllQuestions(value,email);
             
             return Ok();
         }

@@ -1,5 +1,7 @@
-﻿using Examportal.Custom_Models;
+﻿using Examportal.Auth;
+using Examportal.Custom_Models;
 using Examportal.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,14 +79,11 @@ namespace Examportal.Handlers
             {
                 if(status[0].CorrectStatus == 0)
                 {
-                    //var a = db.CandidateAnswer.Where(s => s.Email == email && s.TestCode == examCode && s.Id == Convert.ToInt16(QId)).ToList();
                     db.CandidateAnswer.Where(s => s.Email == email && s.TestCode == examCode && s.Id == Convert.ToInt16(QId)).ToList().ForEach(s => s.Answer = checkedOption);
                     db.SaveChanges();
                 }
                 else
                 {
-                    //var b = db.CandidateAnswer.Where(s => s.Email == email && s.TestCode == examCode && s.Id == Convert.ToInt16(QId)).ToList();
-                    //var c = db.CandidateResult.Where(s => s.Email == email && s.TestCode == examCode).ToList();
                     db.CandidateAnswer.Where(s => s.Email == email && s.TestCode == examCode && s.Id == Convert.ToInt16(QId)).ToList().ForEach(toUpdate => { toUpdate.CorrectStatus = 0; toUpdate.Answer = checkedOption; });
                     db.CandidateResult.Where(s => s.Email == email && s.TestCode == examCode).ToList().ForEach(data => data.TotalScore = updatedScore);
                     db.SaveChanges();
@@ -150,6 +149,52 @@ namespace Examportal.Handlers
             return resultDetails;
         }
 
+        public void submitAllQuestions(SubmitAnswerCustomModel value, Dictionary<string, string> email)
+        {
+            var allQuestions = db.Questions.Where(s => s.ExamCode == value.code).ToList();
+            var savedQuestions = db.CandidateAnswer.Where(s => s.TestCode == value.code && s.Email == email["Email"]).ToList();
+           
+            int i;
+            if(savedQuestions.Count != 0)
+            {
+                for (i = 0; i < allQuestions.Count; i++)
+                {
+                    var status = db.CandidateAnswer.Where(s => s.Id == allQuestions[i].Id).FirstOrDefault();
+                    if (status == null)
+                    {
+                        String id = allQuestions[i].Id.ToString();
 
+                        CandidateAnswer answerDetails = AnswerDetailsObject(email["Email"], value.code, id, 0, null);
+                        db.CandidateAnswer.Add(answerDetails);
+                        db.SaveChanges();
+                    }
+                }
+                if (allQuestions.Count == savedQuestions.Count)
+                {
+                    db.CandidateResult.Where(s => s.Email == email["Email"] && s.TestCode == value.code).ToList().ForEach(x=> x.SubmitExam = 1);
+                    return;
+                }
+            }
+            else
+            {
+                CandidateResult resultDetails = ResultDetailsObject(0, email["Email"], value.code, 0);
+                db.CandidateResult.Add(resultDetails);
+                db.SaveChanges();
+                for (i = 0; i < allQuestions.Count; i++)
+                {
+                    String id = allQuestions[i].Id.ToString();
+
+                    CandidateAnswer answerDetails = AnswerDetailsObject(email["Email"], value.code, id, 0, null);
+                    db.CandidateAnswer.Add(answerDetails);
+                    db.SaveChanges();
+                }
+            } 
+        }
+
+        public ExamDetails CheckAccessKey(ExamDetails value)
+        {
+            var existingExam = db.ExamDetails.FirstOrDefault(s => s.ExamCode == value.ExamCode);
+            return existingExam;
+        }
     }
 }
