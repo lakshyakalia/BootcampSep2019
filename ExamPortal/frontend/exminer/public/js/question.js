@@ -1,8 +1,10 @@
 function removeQuestion(id){
+
     console.log(id)
     let qsId = $("#"+id).parent().parent().attr('id')
     console.log(qsId)
     $.ajax("http://localhost:45728/exam/question/"+qsId, {
+
         type: 'DELETE',
         dataType: 'json',
         contentType: "application/json",
@@ -18,7 +20,7 @@ function removeQuestion(id){
         }) 
 }
 function setQsId(id){
-    console.log(id)
+    console.log('id ',id)
     $("#delQ").attr('id', id)
 }
 function updateQues(id,type) {
@@ -63,7 +65,9 @@ function updateQues(id,type) {
         contentType: false,
         processData: false,
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
+
         },
         data: formData,
         success: function(data) {
@@ -79,31 +83,33 @@ function editQuestion(id) {
     let qid = $("#" + id).parent().parent().attr('id')
     let pid = $("#" + qid).parent().parent().parent().parent().attr('id')
     $('#' + pid).hide()
-    $.ajax("http://localhost:45728/exam/question/byid/" + qid, {
+    $.ajax("http://localhost:45728/exam/question/" + qid, {
         type: 'GET',
         dataType: 'json',
         contentType: "application/json",
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
-
-            if(data.answerType== "multipleOption"){
-                let arr = data.answer.split(' ')
+            console.log(data[0].answerType)
+            if(data[0].answerType== "multipleOption"){
+                console.log(data[0].answerType)
+                let arr = data[0].answer.split(' ')
                 let editTemplate = $("#edit-question-template").html();
-                $("#display-edit-form").append(Mustache.render(editTemplate, data))
+                $("#display-edit-form").append(Mustache.render(editTemplate, data[0]))
                     let checkBox = $('input[type=checkbox][name=option]')
                     $.each(checkBox,(i,chk)=>{
                         if( arr.includes($(chk).val())){
                             $(chk).prop('checked',true)
                         }
                     })
-            }else if( data.answerType=="singleOption"){
+            }else if( data[0].answerType=="singleOption"){
                 let editTemplate = $("#edit-single-option").html();
-                $("#display-edit-form").append(Mustache.render(editTemplate, data))
+                $("#display-edit-form").append(Mustache.render(editTemplate, data[0]))
                 let radioBtn = $('input[type=radio][name=option1]')
                     $.each(radioBtn,(i,radio)=>{
-                        if(radio.value == data.answer){
+                        if(radio.value == data[0].answer){
                         $(radio).prop('checked',true)
                    }
                })
@@ -117,13 +123,14 @@ function editQuestion(id) {
 }
 $(document).ready(function(){
     let examCode = localStorage.getItem('examCode')
-    let url = "http://localhost:45728/exam/question/" + encodeURIComponent(examCode)
+    let url = "http://localhost:45728/exam/"+ encodeURIComponent(examCode)+"/question"
     $.ajax(url, {
         type: 'GET',
         dataType: 'json',
         contentType: "application/json;charset=utf-8",
         headers: {
-            'token': localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
             if( data.msg == 'No question'){

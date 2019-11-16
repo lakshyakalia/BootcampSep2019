@@ -63,7 +63,7 @@ $(document).ready(function () {
                 "email": Email,
                 "phoneNumber": PhoneNumber,
                 "password": Password,
-                "accountType": accountType
+                "accountType": "Examiner"
             }),
             success: function (data, status) {
                 alert("Your SignUp has been successful")

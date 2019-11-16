@@ -28,6 +28,6 @@ namespace Examportal.Models
 
         public ExamDetails ExamCodeNavigation { get; set; }
         public ICollection<CandidateAnswer> CandidateAnswer { get; set; }
-        public string Content { get; internal set; }
+        //public string Content { get; internal set; }
     }
 }

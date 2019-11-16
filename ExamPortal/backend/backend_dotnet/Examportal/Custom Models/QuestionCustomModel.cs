@@ -9,6 +9,6 @@ namespace Examportal.Custom_Models
     {
         public string ExamCode { get; set; }
         public string Answer { get; set; }
-        public int Id { get; set; }
+        public int Id { get; set; } 
     }
 }

@@ -3,6 +3,9 @@ body {
     background-color: #ebebeb;
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+.image-size{
+    width: 770px;
+}
 
 .container {
     margin: auto;
@@ -50,7 +53,7 @@ a:hover {
     margin-left: 25%;
     width: 50%;
     border-radius: 5px;
-    padding: 50px;
+    padding: 14px;
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
