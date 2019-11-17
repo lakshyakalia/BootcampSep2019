@@ -6,13 +6,18 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Examportal.Auth;
-using ExcelDataReader ;
-using Newtonsoft.Json;
+using System.Net;
+using Microsoft.Net.Http.Headers;
+using System.Threading.Tasks;
+using OfficeOpenXml;
+using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Hosting;
+using System.Configuration;
 
 namespace Examportal.Controllers
 {
-    
+
     [ApiController]
     public class ExamController : ControllerBase
     {
@@ -22,8 +27,8 @@ namespace Examportal.Controllers
         [HttpPost]
         public IActionResult CheckAccessKey([FromBody] ExamDetails value)
         {
-            var existingExam = db.ExamDetails.FirstOrDefault(s=> s.ExamCode == value.ExamCode);
-            if(existingExam != null)
+            var existingExam = db.ExamDetails.FirstOrDefault(s => s.ExamCode == value.ExamCode);
+            if (existingExam != null)
             {
                 return Ok(true);
             }
@@ -32,10 +37,10 @@ namespace Examportal.Controllers
                 return BadRequest();
             }
         }
-        
+
         [Authorize]
         [Route("exam/accessKey")]
-        [HttpGet]        
+        [HttpGet]
         public IActionResult GetExamTime()
         {
             Authentication auth = new Authentication();
@@ -43,74 +48,99 @@ namespace Examportal.Controllers
             string examcode = HttpContext.Request.Headers["examCode"];
 
             var examData = db.ExamDetails.FirstOrDefault(s => s.ExamCode == examcode);
-                
-            return Ok(new { examData = examData,submitStatus = false});
-            
+
+            return Ok(new { examData = examData, submitStatus = false });
+
         }
+        
 
 
         [Route("/exam/questions/uploadExcel")]
-        public IActionResult ExcelUpload()
+        [HttpPost]
+
+        public async Task createDirectoryAsync()
         {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            var inFilePath = args[0];
-            var outFilePath = args[1];
-
-            using (var inFile = File.Open(inFilePath, FileMode.Open, FileAccess.Read))
-            using (var outFile = File.CreateText(outFilePath))
+            string currentpath = System.IO.Directory.GetCurrentDirectory();
+            string foldername = "Files";
+            string path = Path.Combine(currentpath,foldername);
+            
+           
+            try
             {
-                using (var reader = ExcelReaderFactory.CreateReader(inFile, new ExcelReaderConfiguration()
-                { FallbackEncoding = Encoding.GetEncoding(1252) }))
-                using (var writer = new JsonTextWriter(outFile))
+                // Determine whether the directory exists.
+                if (Directory.Exists(path))
                 {
-                    writer.Formatting = Formatting.Indented; //I likes it tidy
-                    writer.WriteStartArray();
-                    reader.Read(); //SKIP FIRST ROW, it's TITLES.
-                    do
+
+                    var filePayload = HttpContext.Request.Form.Files[0];
+                    //var fileName = ContentDispositionHeaderValue.Parse(filePayload.ContentDisposition).FileName;
+                    if (filePayload.Length > 0)
+                        using (var fileStream = new FileStream(Path.Combine(path, filePayload.FileName ), FileMode.Create))
+                            await filePayload.CopyToAsync(fileStream);
+                    //var filetoread = Directory.GetFiles(Path.Combine( path, filePayload.FileName), "*.xlsx", SearchOption.AllDirectories);
+                    //var file = filesdirectory.FirstOrDefault(c => c.Equals(filePayload.FileName));
+                    var i=0;
+                    var index = 0;
+                    string[] filesdirectory = Directory.GetFiles(path, "*.xlsx", SearchOption.AllDirectories);
+                    for (i=0;i<filesdirectory.Length;i++)
                     {
-                        while (reader.Read())
+                        String[] str = filesdirectory[i].Split("\\");
+                        int length = str.Length;
+                        if (str[length-1] == (filePayload.FileName))
                         {
-                            //peek ahead? Bail before we start anything so we don't get an empty object
-                            var status = reader.GetString(0);
-                            if (string.IsNullOrEmpty(status)) break;
-
-                            writer.WriteStartObject();
-                            writer.WritePropertyName("Status");
-                            writer.WriteValue(status);
-
-                            writer.WritePropertyName("Title");
-                            writer.WriteValue(reader.GetString(1));
-
-                            writer.WritePropertyName("Host");
-                            writer.WriteValue(reader.GetString(6));
-
-                            writer.WritePropertyName("Guest");
-                            writer.WriteValue(reader.GetString(7));
-
-                            writer.WritePropertyName("Episode");
-                            writer.WriteValue(Convert.ToInt32(reader.GetDouble(2)));
-
-                            writer.WritePropertyName("Live");
-                            writer.WriteValue(reader.GetDateTime(5));
-
-                            writer.WritePropertyName("Url");
-                            writer.WriteValue(reader.GetString(11));
-
-                            writer.WritePropertyName("EmbedUrl");
-                            writer.WriteValue($"{reader.GetString(11)}player");
-                           
-
-                            writer.WriteEndObject();
+                            index = i;
                         }
-                    } while (reader.NextResult());
-                    writer.WriteEndArray();
+                    }
+                    FileInfo file = new FileInfo(filesdirectory[index]);
+                    using (var package = new ExcelPackage(file))
+                    {
+                        var worksheet = package.Workbook.Worksheets[1];
+
+                        int rowCount = worksheet.Dimension.Rows;
+                        int ColCount = worksheet.Dimension.Columns;
+                        StringBuilder rawText = new StringBuilder();
+                        String result = "";
+                        for (int row = 1; row <= rowCount; row++)
+                        {
+                            for (int col = 1; col <= ColCount; col++)
+                            {
+                                // This is just for demo purposes
+                                rawText.Append(worksheet.Cells[row, col].Value.ToString() + " ");
+                                result = rawText.ToString();
+                            }
+                            result = result.Trim();
+                            var split = result.Split(" ");
+                            Questions questions = new Questions();
+                            questions.QuestionText = split[0];
+                            questions.Option1 = split[1];
+                            questions.Option2 = split[2];
+                            questions.Option3 = split[3];
+                            questions.Option4 = split[4];
+                            questions.Answer = split[5];
+                            questions.Weightage = int.Parse(split[6]);
+                            questions.QuestionImage = split[7];
+                            questions.AnswerType = split[8];
+                            db.Questions.Add(questions);
+                            db.SaveChanges();
+                        }
+                    }
+                    return;
+
+
                 }
+
+                // create the directory.
+                DirectoryInfo di = Directory.CreateDirectory(path);
+                Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
             }
-            return Ok();
+            catch (Exception e)
+            {
+                Console.WriteLine("The process failed: {0}", e.ToString());
+            }
+
         }
-
-
 
     }
 }
+
+    
