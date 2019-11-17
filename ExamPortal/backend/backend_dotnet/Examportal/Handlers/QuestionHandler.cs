@@ -1,11 +1,8 @@
-﻿using Examportal.Auth;
-using Examportal.Custom_Models;
+﻿using Examportal.Custom_Models;
 using Examportal.Models;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Examportal.Handlers
 {
@@ -183,7 +180,6 @@ namespace Examportal.Handlers
                 for (i = 0; i < allQuestions.Count; i++)
                 {
                     String id = allQuestions[i].Id.ToString();
-
                     CandidateAnswer answerDetails = AnswerDetailsObject(email["Email"], value.code, id, 0, null);
                     db.CandidateAnswer.Add(answerDetails);
                     db.SaveChanges();

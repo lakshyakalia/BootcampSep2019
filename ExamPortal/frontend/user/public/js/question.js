@@ -52,7 +52,7 @@ function setTimeForTest(time, duration) {
 function showPreviousTicks() {
     let keys = Object.keys(localStorage)
     for (let i = 0; i < keys.length; i++) {
-        if (keys[i].length > 20) {
+        if (keys[i].length > 20 || keys[i].length == 3) {
             let values = localStorage.getItem(keys[i])
             values = values.split(',')
             for (j = 0; j < values.length; j++) {
@@ -78,7 +78,7 @@ function loadFullWindow() {
 
 function exitHandler() {
     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-        // $('#modalEndTest').trigger("click")
+        $('#modalEndTest').trigger("click")
     }
 }
 
@@ -243,8 +243,8 @@ $(document).on('click', '#modalEndTest', function() {
         },
         data: JSON.stringify(dataToSend),
         success: function(data) {
-            //localStorage.clear()
-            //$(location).attr('href', './endTest.html')
+            localStorage.clear()
+            $(location).attr('href', './endTest.html')
         },
         error: function(error) {
             console.log(error)
@@ -255,6 +255,7 @@ $(document).on('click', '#modalEndTest', function() {
 $(document).on('click', '#resetRadio', function() {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
     $(`input[name=${questionId}]:checked`).prop("checked", false)
+    localStorage.removeItem(questionId);
 })
 
 $(document).on('click', "input", function() {
