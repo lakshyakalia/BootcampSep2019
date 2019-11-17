@@ -14,11 +14,14 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Hosting;
 using System.Configuration;
+<<<<<<< HEAD
 using Examportal.Custom_Models;
 using System.Collections.Generic;
 using Examportal.Handlers;
 using System.Web;
 using System;
+=======
+>>>>>>> 3181595... Add Excel file feature completed
 
 namespace Examportal.Controllers
 {
@@ -33,9 +36,13 @@ namespace Examportal.Controllers
         [HttpPost]
         public IActionResult CheckAccessKey([FromBody] ExamDetails value)
         {
+<<<<<<< HEAD
 
             QuestionHandler qh = new QuestionHandler();
             var existingExam = qh.CheckAccessKey(value);
+=======
+            var existingExam = db.ExamDetails.FirstOrDefault(s => s.ExamCode == value.ExamCode);
+>>>>>>> 3181595... Add Excel file feature completed
             if (existingExam != null)
             {
                 return Ok(true);
@@ -47,8 +54,13 @@ namespace Examportal.Controllers
         }
 
         [Authorize]
+<<<<<<< HEAD
         [Route("accessKey")]
         [HttpGet]        
+=======
+        [Route("exam/accessKey")]
+        [HttpGet]
+>>>>>>> 3181595... Add Excel file feature completed
         public IActionResult GetExamTime()
         {
             Authentication auth = new Authentication();
@@ -81,9 +93,18 @@ namespace Examportal.Controllers
                 {
 
                     var filePayload = HttpContext.Request.Form.Files[0];
+<<<<<<< HEAD
                     if (filePayload.Length > 0)
                         using (var fileStream = new FileStream(Path.Combine(path, filePayload.FileName ), FileMode.Create))
                             await filePayload.CopyToAsync(fileStream);
+=======
+                    //var fileName = ContentDispositionHeaderValue.Parse(filePayload.ContentDisposition).FileName;
+                    if (filePayload.Length > 0)
+                        using (var fileStream = new FileStream(Path.Combine(path, filePayload.FileName ), FileMode.Create))
+                            await filePayload.CopyToAsync(fileStream);
+                    //var filetoread = Directory.GetFiles(Path.Combine( path, filePayload.FileName), "*.xlsx", SearchOption.AllDirectories);
+                    //var file = filesdirectory.FirstOrDefault(c => c.Equals(filePayload.FileName));
+>>>>>>> 3181595... Add Excel file feature completed
                     var i=0;
                     var index = 0;
                     string[] filesdirectory = Directory.GetFiles(path, "*.xlsx", SearchOption.AllDirectories);
@@ -100,6 +121,7 @@ namespace Examportal.Controllers
                     using (var package = new ExcelPackage(file))
                     {
                         var worksheet = package.Workbook.Worksheets[1];
+<<<<<<< HEAD
 
                         int rowCount = worksheet.Dimension.Rows;
                         int ColCount = worksheet.Dimension.Columns;
@@ -213,6 +235,52 @@ namespace Examportal.Controllers
 
         [Route("/exam/{id}/question")]
         [HttpGet]
+=======
+
+                        int rowCount = worksheet.Dimension.Rows;
+                        int ColCount = worksheet.Dimension.Columns;
+                        StringBuilder rawText = new StringBuilder();
+                        String result = "";
+                        for (int row = 1; row <= rowCount; row++)
+                        {
+                            for (int col = 1; col <= ColCount; col++)
+                            {
+                                // This is just for demo purposes
+                                rawText.Append(worksheet.Cells[row, col].Value.ToString() + " ");
+                                result = rawText.ToString();
+                            }
+                            result = result.Trim();
+                            var split = result.Split(" ");
+                            Questions questions = new Questions();
+                            questions.QuestionText = split[0];
+                            questions.Option1 = split[1];
+                            questions.Option2 = split[2];
+                            questions.Option3 = split[3];
+                            questions.Option4 = split[4];
+                            questions.Answer = split[5];
+                            questions.Weightage = int.Parse(split[6]);
+                            questions.QuestionImage = split[7];
+                            questions.AnswerType = split[8];
+                            db.Questions.Add(questions);
+                            db.SaveChanges();
+                        }
+                    }
+                    return;
+
+
+                }
+
+                // create the directory.
+                DirectoryInfo di = Directory.CreateDirectory(path);
+                Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The process failed: {0}", e.ToString());
+            }
+
+        }
+>>>>>>> 3181595... Add Excel file feature completed
 
         public IActionResult viewQuestions(String id)
         {
