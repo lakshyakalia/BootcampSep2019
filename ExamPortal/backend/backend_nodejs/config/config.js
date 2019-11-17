@@ -4,7 +4,7 @@ const { objectParser } = require('../utils/util')
 const obj = objectParser(process.argv)
 
 module.exports = {
-    PORT: process.env.PORT || obj.PORT || 45728,
+    PORT: process.env.PORT || obj.PORT || 3000,
     HOST: process.env.HOST || obj.HOST || "0.0.0.0",
     baseURI: process.env.baseURI || obj.baseURI || "/api",
     SECRET: "eyJhbGciOi",
