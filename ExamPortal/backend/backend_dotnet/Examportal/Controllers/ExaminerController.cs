@@ -52,7 +52,7 @@ namespace Examportal.Controllers
                 db.SaveChanges();
                 return Ok("User updated");
             }
-            catch (Exception e)
+            catch (Exception e )
             {
                 return BadRequest(new { error = e });
             }
