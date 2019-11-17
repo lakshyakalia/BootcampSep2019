@@ -64,7 +64,7 @@ $(document).ready(function () {
       ),
       success: function (recent) {
 
-        //display(recent); 
+       // display(recent); 
         location.reload();
         console.log("user deleted");
         //window.location.replace("adminHome.html")

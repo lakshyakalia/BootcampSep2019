@@ -18,10 +18,10 @@ namespace Examportal.Controllers
         ExamportalContext db = new ExamportalContext();
         // GET: api/Admin
         [HttpGet]
-        public IEnumerable<Users> Get()
+        public IActionResult display()
         {
-            var itm = db.Users.Where(e => e.AccountType == "Examiner");
-            return itm;
+            var itm = db.Users.Where(e => e.AccountType == "Examiner").Select(a => new { a.Email, _id = a.Email, a.Name, a.CreatedDate });
+            return Ok(itm);
         }
 
         // GET: api/Admin/5
@@ -30,20 +30,20 @@ namespace Examportal.Controllers
         {
             return "value";
         }
-       
+
         // POST: api/Admin
         [HttpPost]
         public IActionResult Post([FromBody] Users value)
         {
             var data = (from c in db.Users where c.Email == value.Email select c).FirstOrDefault();
-            if(data!=null)
+            if (data != null)
             {
-                return Ok(new { message="user already exist" });
+                return Ok(new { message = "user already exist" });
             }
             else if (data == null)
             {
                 value.Password = Bcrypt.BCrypt.HashPassword(value.Password);
-                value.CreatedDate = DateTime.Now.ToString("mm-dd-yyyy");
+                value.CreatedDate = DateTime.Now;
                 db.Users.Add(value);
                 db.SaveChanges();
                 return Ok(true);
@@ -54,7 +54,6 @@ namespace Examportal.Controllers
             }
 
         }
-
         // PUT: api/Admin/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
@@ -63,8 +62,14 @@ namespace Examportal.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void deleteexaminer(String id)
         {
+           // db.Users.Remove(db.Users.FirstOrDefault(e => e.Email == id));
+            var data = db.Users.Where(s => s.Email == id).FirstOrDefault();
+            db.Users.Remove(data);
+            db.SaveChanges();
+           
+
         }
     }
 }
