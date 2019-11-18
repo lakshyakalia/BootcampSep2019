@@ -8,6 +8,8 @@ using Examportal.Custom_Models;
 using System.Collections.Generic;
 using Examportal.Handlers;
 using System;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace Examportal.Controllers
 {
@@ -55,14 +57,40 @@ namespace Examportal.Controllers
             try
             {
                 var req = HttpContext.Request.Form;
-                Questions obj = new Questions();
-                obj.Answer = HttpContext.Request.Form["answer"];
-                obj.QuestionText = req["questionText"]; obj.Option1 = req["option1"]; obj.Option2 = req["option2"];
-                obj.Option3 = req["option3"]; obj.Option4 = req["option4"]; obj.ExamCode = "h093278";
-                obj.Weightage = Convert.ToInt32(req["weightage"]);
+                String path = Directory.GetCurrentDirectory();
+                //String dest = "C:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\ExamPortal\\frontend\\exminer\\public\\assets";
+
+                String dest = "E:\\examportal";
+                var file = HttpContext.Request.Form.Files[0];
+                //dest = dest + "\\file.txt";
+                if (Directory.Exists(dest))
+                {
+                    
+                    var filename = ContentDispositionHeaderValue
+                                      .Parse(file.ContentDisposition)
+                                      .FileName
+                                      .Trim('"');
+                    //filename = Path.Combine(dest, $@"\{filename}");
+                    //filename = "E:\\octaber.jpg";
+                    filename = dest + "\\" + filename;
+
+                    using (FileStream fs = System.IO.File.Create(filename))
+                        {
+                            file.CopyTo(fs);
+                            fs.Flush();
+                        }
+                    
+                    var ImageURL = "/public/assets/" +file.FileName;
+                    
+                }
+                //Questions obj = new Questions();
+                //obj.Answer = HttpContext.Request.Form["answer"];
+                //obj.QuestionText = req["questionText"]; obj.Option1 = req["option1"]; obj.Option2 = req["option2"];
+                //obj.Option3 = req["option3"]; obj.Option4 = req["option4"]; obj.ExamCode = "h093278";
+                //obj.Weightage = Convert.ToInt32(req["weightage"]);
                 //db.Questions.Add(obj);
                 //db.SaveChanges();
-                var file = HttpContext.Request.Form.Files[0];
+
                 return Ok();
             }catch(Exception e)
             {
