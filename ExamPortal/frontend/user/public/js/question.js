@@ -52,7 +52,7 @@ function setTimeForTest(time, duration) {
 function showPreviousTicks() {
     let keys = Object.keys(localStorage)
     for (let i = 0; i < keys.length; i++) {
-        if (keys[i].length > 20) {
+        if (keys[i].length > 20 || keys[i].length == 3) {
             let values = localStorage.getItem(keys[i])
             values = values.split(',')
             for (j = 0; j < values.length; j++) {
@@ -78,7 +78,7 @@ function loadFullWindow() {
 
 function exitHandler() {
     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-        // $('#modalEndTest').trigger("click")
+        $('#modalEndTest').trigger("click")
     }
 }
 
@@ -99,12 +99,12 @@ $(document).ready(function() {
 
     const tok = localStorage.getItem('token');
     if (tok == null) {
-        location.replace("../../index.html")
+        location.replace("./examPortal.html")
     }
     $('#nextQuestion').attr('value', 0)
     $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
     
-    $.ajax('http://localhost:45728/question', {
+    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/question', {
         type: 'GET',
         dataType: 'JSON',
         contentType: "application/json;charset=utf-8",
@@ -133,15 +133,23 @@ $(document).ready(function() {
 
 $(document).on('click', '#submitAnswer', function() {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
-    let examCode = $(this).parent().parent().parent().parent().children().children().children().children().attr('id')
+    let examCode = $(this).parent().parent().parent().parent().children().children().children().children().html()
     let value = []
+    
     $.each($(`input[name=${questionId}]:checked`), function() {
         value.push($(this).val())
     })
     if (value.length === 0) {
         return
     }
-    $.ajax('http://localhost:45728/question', {
+
+    dataToSend = {
+        code: localStorage.getItem('examCode'),
+        checkedOption: value,
+        qId: questionId
+    }
+    console.log(dataToSend)
+    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/question', {
         type: 'POST',
         dataType: 'JSON',
         contentType: "application/json;charset=utf-8",
@@ -149,11 +157,7 @@ $(document).on('click', '#submitAnswer', function() {
             token: localStorage.getItem('token'),
             Authorization: "Bearer "+localStorage.getItem('token')
         },
-        data: {
-            code: examCode,
-            checkedOption: value,
-            qId: questionId
-        },
+        data: JSON.stringify(dataToSend),
         success: function(data) {
             $('#' + questionId + ".circle").css('background-color', "green")
         },
@@ -169,7 +173,7 @@ $(document).on('click', '#nextQuestion', function() {
     if ($('#nextQuestion').attr('value') != 0) {
         $('#previousQuestion').removeAttr("disabled");
     }
-    $.ajax('http://localhost:45728/question', {
+    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/question', {
         type: 'GET',
         dataType: 'JSON',
         contentType: "application/json;charset=utf-8",
@@ -200,7 +204,7 @@ $(document).on('click', '#previousQuestion', function() {
     if (pageNumber == 0) {
         $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
     }
-    $.ajax('http://localhost:45728/question', {
+    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/question', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -224,16 +228,19 @@ $(document).on('click', '#previousQuestion', function() {
 })
 
 $(document).on('click', '#modalEndTest', function() {
-    $.ajax('http://localhost:3000/exam/endTest', {
+    dataToSend = {
+        code: localStorage.getItem("examCode")
+    }
+    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/exam/endTest', {
         type: 'POST',
         dataType: 'JSON',
+        contentType: "application/json;charset=utf-8",
         headers: {
             examCode: localStorage.getItem('examCode'),
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
-        body: {
-            code: localStorage.getItem("examCode")
-        },
+        data: JSON.stringify(dataToSend),
         success: function(data) {
             localStorage.clear()
             $(location).attr('href', './endTest.html')
@@ -247,6 +254,7 @@ $(document).on('click', '#modalEndTest', function() {
 $(document).on('click', '#resetRadio', function() {
     let questionId = $(this).parent().parent().parent().parent().children().children().children().attr('id')
     $(`input[name=${questionId}]:checked`).prop("checked", false)
+    localStorage.removeItem(questionId);
 })
 
 $(document).on('click', "input", function() {
@@ -262,7 +270,7 @@ $(document).on('click', "input", function() {
 
 $(document).on('click', '.circle', function() {
     let upcomingPage = parseInt($(this).children().html()) - 1
-    $.ajax('http://localhost:45728/question', {
+    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/question', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
