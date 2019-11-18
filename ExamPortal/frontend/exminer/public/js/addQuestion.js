@@ -120,7 +120,7 @@ $(document).ready(function() {
         console.log(formData.values('examCode'))
         formData.append('answerType', answerType);
         formData.append('questionImage', $('input[type=file]')[0].files[0]);
-        $.ajax("http://localhost:45728/exam/question", {
+        $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question", {
             type: "POST",
             data: formData,
             dataType: "json",
