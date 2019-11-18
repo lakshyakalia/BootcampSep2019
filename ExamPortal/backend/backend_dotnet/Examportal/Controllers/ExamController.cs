@@ -176,7 +176,7 @@ namespace Examportal.Controllers
                 //String dest = "C:\\Users\\himanshu.chauhan\\Desktop\\BootcampSep2019\\ExamPortal\frontend\\exminer\\public\\assets";
                 String dest = "e:/new-branch/ExamPortal/frontend/exminer/public/assets";
                 //String dest = "E:\examportal";
-                var file = HttpContext.Request.Form.Files[0];
+                var file = HttpContext.Request.Form.Files != null && HttpContext.Request.Form.Count() > 0 ? HttpContext.Request.Form.Files[0]:null;
                 String ImageURL = null;
                 //dest = dest + "\file.txt";
                 if( file != null )
