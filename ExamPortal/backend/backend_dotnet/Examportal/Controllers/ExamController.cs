@@ -88,7 +88,8 @@ namespace Examportal.Controllers
                 {
 
                     var filePayload = HttpContext.Request.Form.Files[0];
-
+                    var examcode = HttpContext.Request.Form["examCode"];
+                  
                     if (filePayload.Length > 0)
                         using (var fileStream = new FileStream(Path.Combine(path, filePayload.FileName), FileMode.Create))
                             await filePayload.CopyToAsync(fileStream);
@@ -166,6 +167,8 @@ namespace Examportal.Controllers
                                 {
                                     questions.AnswerType = result;
                                 }
+                                questions.ExamCode = examcode;
+                                questions.CreatedDate = DateTime.Now;
                                 rawText.Remove(0, rawText.Length);
                             }
                             result = result.Trim();
