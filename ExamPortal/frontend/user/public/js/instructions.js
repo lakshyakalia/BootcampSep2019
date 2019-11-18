@@ -10,12 +10,8 @@ $(document).on('click', '.startTest', function() {
         data: {
             examCode: localStorage.getItem("examCode")
         },
-        success: function(data) {
-            if (data.submitStatus) {
-                $('.error-msg').text("Test is already Submitted")
-            } else {
+        success: function() {
                 $(location).attr('href', './question.html')
-            }
 
         },
         error: function(error) { console.log(error)}
@@ -53,8 +49,16 @@ $(document).ready(function() {
             Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
-            checkTimeForTest(data.examData.examStartTime)
-            document.getElementById('username').innerHTML = "Hie "+localStorage.getItem('name')
+            if (data.submitStatus) {
+                $('.error-msg').text("Test is already Submitted")
+                localStorage.removeItem("token");
+                location.reload();
+            }else {
+                checkTimeForTest(data.examdata.examStartTime)
+            document.getElementById('username').innerHTML = "Hi "+localStorage.getItem('name')
+
+            }
+            
         },
         error: function(error) {
             if(error.status === 401){
