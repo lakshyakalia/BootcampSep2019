@@ -51,7 +51,7 @@ $(document).ready(function () {
     performance.insertAdjacentHTML("beforeend", html)
   }
   $(document).on('click', '.deleteButton', function () {
-    let id = $(this).attr('email')
+    let id = $(this).attr('id')
     console.log(id);
     $.ajax("http://127.0.0.1:45728/examiner/:id", {
       type: "DELETE",

@@ -18,12 +18,10 @@ namespace Examportal.Controllers
         ExamportalContext db = new ExamportalContext();
         // GET: api/Admin
         [HttpGet]
-        public IEnumerable<Users> Get()
+        public IActionResult display()
         {
-            var itm = db.Users.Where(e => e.AccountType == "Examiner");
-           // itm = itm.ToList;
-
-            return itm;
+            var itm = db.Users.Where(e => e.AccountType == "Examiner").Select(a => new { a.Email, _id = a.Email, a.Name, a.CreatedDate }).ToList();
+            return Ok(itm);
         }
 
         // GET: api/Admin/5
@@ -64,14 +62,20 @@ namespace Examportal.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(String id)
         {
-            var user = (from u in db.Users where u.AccountType == "Examiner" && u.Email == "birendra1@gmail.com" select u).First();
+            Users user = (from u in db.Users where u.Email == id select u).FirstOrDefault();
             if (user != null)
             {
                 db.Users.Remove(user);
+                db.submitChanges();
+                return Ok(true);
             }
-            db.submitChanges();
+            else
+            {
+                return BadRequest();
+            }
+           
         }
     }
 }
