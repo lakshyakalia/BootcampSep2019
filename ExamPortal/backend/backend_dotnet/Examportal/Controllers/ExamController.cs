@@ -53,22 +53,28 @@ namespace Examportal.Controllers
 
         [Authorize]
 
-        [Route("exam/accessKey")]
+        [Route("/exam/accessKey")]
         [HttpGet]
 
         public IActionResult GetExamTime()
         {
+            //JsonResult RetVal = new JsonResult(new object());
+
             Authentication auth = new Authentication();
             var header = auth.getAllClaims(HttpContext);
             string examcode = HttpContext.Request.Headers["examCode"];
 
             var examData = db.ExamDetails.FirstOrDefault(s => s.ExamCode == examcode);
 
-            return Ok(new { examData = examData, submitStatus = false });
+            //  RetVal = JsonResult(new { examData = examData, submitStatus = false });
 
+            return Ok(new {examdata = examData, submitStatus=false} );
         }
 
-
+        private JsonResult JsonResult(object p)
+        {
+            throw new NotImplementedException();
+        }
 
         [Route("/exam/questions/uploadExcel")]
         [HttpPost]

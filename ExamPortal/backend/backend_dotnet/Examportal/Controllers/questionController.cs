@@ -50,25 +50,33 @@ namespace Examportal.Controllers
         [HttpPost]
         public IActionResult SaveCandidateAnswer([FromBody] QuestionCustomModel value)
         {
-            Dictionary<string, string> email = new Dictionary<string, string>();
-
-            QuestionHandler qh = new QuestionHandler();
-            Authentication auth = new Authentication();
-            email = auth.getAllClaims(HttpContext);
-
-            string joinValue = qh.radioOrCheckBoxValue(value);
-            var checkAnswer = db.Questions.Where(s => s.Id == Int32.Parse(value.QId)).Select(a => new { a.Answer, a.Weightage }).FirstOrDefault();
-            var existingAnswer = db.CandidateResult.Where(s => s.Email == email["Email"] && s.TestCode == value.Code).FirstOrDefault();
-
-            if (checkAnswer.Answer == joinValue)
+            try
             {
-                qh.SaveCorrectOption(checkAnswer, existingAnswer, email["Email"], value, joinValue);
+                Dictionary<string, string> email = new Dictionary<string, string>();
+
+                QuestionHandler qh = new QuestionHandler();
+                Authentication auth = new Authentication();
+                email = auth.getAllClaims(HttpContext);
+
+                string joinValue = qh.radioOrCheckBoxValue(value);
+
+                var checkAnswer = db.Questions.Where(s => s.Id == Int32.Parse(value.QId)).Select(a => new { a.Answer, a.Weightage }).FirstOrDefault();
+                var existingAnswer = db.CandidateResult.Where(s => s.Email == email["Email"] && s.TestCode == value.Code).FirstOrDefault();
+
+                if (checkAnswer.Answer == joinValue)
+                {
+                    qh.SaveCorrectOption(checkAnswer, existingAnswer, email["Email"], value, joinValue);
+                }
+                else
+                {
+                    qh.SaveIncorrectOption(checkAnswer, existingAnswer, email["Email"], value, joinValue);
+                }
+                return Ok();
             }
-            else
+           catch(Exception ex)
             {
-                qh.SaveIncorrectOption(checkAnswer, existingAnswer, email["Email"], value, joinValue);
+                return Ok();
             }
-            return Ok();
         }
 
     }
