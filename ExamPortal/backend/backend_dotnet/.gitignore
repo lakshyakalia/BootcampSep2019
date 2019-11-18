@@ -1,14 +1,6 @@
-<<<<<<< HEAD
 *.vs/
 *.vs/Examportal/
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-.vs/
-=======
->>>>>>> upstream/development
->>>>>>> upstream/development
+upstream/development
 *.swp
 *.*~
 project.lock.json
@@ -45,13 +37,5 @@ msbuild.err
 msbuild.wrn
 
 # Visual Studio 2015
-<<<<<<< HEAD
+.vs/
 
-=======
-<<<<<<< HEAD
-.vs/
-=======
-.vs/
->>>>>>> upstream/development
->>>>>>> upstream/development
->>>>>>> upstream/development
