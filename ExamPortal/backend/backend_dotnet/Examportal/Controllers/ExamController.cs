@@ -73,12 +73,9 @@ namespace Examportal.Controllers
                 {
 
                     var filePayload = HttpContext.Request.Form.Files[0];
-                    //var fileName = ContentDispositionHeaderValue.Parse(filePayload.ContentDisposition).FileName;
                     if (filePayload.Length > 0)
                         using (var fileStream = new FileStream(Path.Combine(path, filePayload.FileName ), FileMode.Create))
                             await filePayload.CopyToAsync(fileStream);
-                    //var filetoread = Directory.GetFiles(Path.Combine( path, filePayload.FileName), "*.xlsx", SearchOption.AllDirectories);
-                    //var file = filesdirectory.FirstOrDefault(c => c.Equals(filePayload.FileName));
                     var i=0;
                     var index = 0;
                     string[] filesdirectory = Directory.GetFiles(path, "*.xlsx", SearchOption.AllDirectories);
@@ -102,24 +99,56 @@ namespace Examportal.Controllers
                         String result = "";
                         for (int row = 1; row <= rowCount; row++)
                         {
+                            Questions questions = new Questions();
                             for (int col = 1; col <= ColCount; col++)
                             {
+                                
+                            
                                 // This is just for demo purposes
                                 rawText.Append(worksheet.Cells[row, col].Value.ToString() + " ");
                                 result = rawText.ToString();
+                                if (col == 1)
+                                {
+                                    questions.QuestionText = result;
+                                }
+                                if (col == 2)
+                                {
+                                    questions.Option1 = result;
+                                }
+                                if (col == 3)
+                                {
+                                    questions.Option2 = result;
+                                }
+                                if(col == 4)
+                                {
+                                    questions.Option3 = result;
+                                }
+                                if (col == 5) {
+                                    questions.Option4 = result;
+                                }
+
+                                if (col == 6)
+                                {
+                                    questions.Answer = result;
+                                }
+                                if (col == 7)
+                                {
+                                    questions.Weightage = int.Parse(result);
+                                }
+                                if (col == 8)
+                                {
+                                    questions.QuestionImage = result;
+                                }
+                                if (col == 9)
+                                {
+                                    questions.AnswerType = result;
+                                }
+                                rawText.Remove(0, rawText.Length);
                             }
                             result = result.Trim();
-                            var split = result.Split(" ");
-                            Questions questions = new Questions();
-                            questions.QuestionText = split[0];
-                            questions.Option1 = split[1];
-                            questions.Option2 = split[2];
-                            questions.Option3 = split[3];
-                            questions.Option4 = split[4];
-                            questions.Answer = split[5];
-                            questions.Weightage = int.Parse(split[6]);
-                            questions.QuestionImage = split[7];
-                            questions.AnswerType = split[8];
+                            
+                            
+                            
                             db.Questions.Add(questions);
                             db.SaveChanges();
                         }
