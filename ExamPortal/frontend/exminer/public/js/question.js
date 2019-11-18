@@ -1,7 +1,10 @@
 function removeQuestion(id){
+
+    console.log(id)
     let qsId = $("#"+id).parent().parent().attr('id')
     console.log(qsId)
-    $.ajax("http://localhost:45728/exam/question/"+qsId, {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question/"+qsId, {
+
         type: 'DELETE',
         dataType: 'json',
         contentType: "application/json",
@@ -17,7 +20,7 @@ function removeQuestion(id){
         }) 
 }
 function setQsId(id){
-    console.log(id)
+    console.log('id ',id)
     $("#delQ").attr('id', id)
 }
 function updateQues(id,type) {
@@ -56,13 +59,15 @@ function updateQues(id,type) {
             formData.append('answerType', "multipleOption");
             formData.append('questionImage', $('input[type=file]')[0].files[0]);
             // return
-    $.ajax("http://localhost:45728/exam/question/" + id, {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question/" + id, {
         type: 'PATCH',
         dataType: 'json',
         contentType: false,
         processData: false,
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
+
         },
         data: formData,
         success: function(data) {
@@ -78,7 +83,7 @@ function editQuestion(id) {
     let qid = $("#" + id).parent().parent().attr('id')
     let pid = $("#" + qid).parent().parent().parent().parent().attr('id')
     $('#' + pid).hide()
-    $.ajax("http://localhost:45728/exam/question/" + qid, {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question/" + qid, {
         type: 'GET',
         dataType: 'json',
         contentType: "application/json",
@@ -87,7 +92,6 @@ function editQuestion(id) {
             Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
-
             if(data.answerType== "multipleOption"){
                 let arr = data.answer.split(' ')
                 let editTemplate = $("#edit-question-template").html();
@@ -117,7 +121,7 @@ function editQuestion(id) {
 }
 $(document).ready(function(){
     let examCode = localStorage.getItem('examCode')
-    let url = "http://localhost:45728/exam/"+ encodeURIComponent(examCode)+"/question"
+    let url = "http://localhost:"+localStorage.getItem('server-port')+"/exam/"+ encodeURIComponent(examCode)+"/question"
     $.ajax(url, {
         type: 'GET',
         dataType: 'json',

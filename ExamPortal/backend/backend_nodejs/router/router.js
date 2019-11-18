@@ -21,7 +21,20 @@ var storage = multer.diskStorage({
         // Date.now() + '-' + 
       }
 });
+const reqPath = path.join(__dirname, '../../../frontend/exminer/public/assets');
+const storage1 = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, reqPath)
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
 const upload = multer({storage:storage})
+var upload1 = multer({ limits: {fileSize: 2000000 },storage1: storage1 })
+// var upload = multer({ dest: 'upload/'});
+
+
 const createToken = require("../auth/authenticator").checkAuth;
 
 module.exports = () => {
@@ -123,12 +136,14 @@ module.exports = () => {
     })
 
     //examiner will edit questions
-    app.patch('/exam/question/:id', upload.single('questionImage'), middleware, (req, res) => {
+    app.patch('/exam/question/:id', upload1.single('questionImage'), middleware, (req, res) => {
+        console.log('edit pic',req.file)
         if (req.file) {
             req.body['questionImage'] = '../public/assets/' + req.file.filename
         } else {
             req.body['questionImage'] = null
         }
+        console.log(req.file)
         Users.editQuestion(req, res)
     })
 
