@@ -20,7 +20,7 @@ namespace Examportal.Controllers
         [HttpGet]
         public IActionResult display()
         {
-            var itm = db.Users.Where(e => e.AccountType == "Examiner").Select(a => new { a.Email, _id = a.Email, a.Name, a.CreatedDate }).ToList();
+            var itm = db.Users.Where(e => e.AccountType == "Examiner").Select(a => new { a.Email, _id = a.Email, a.Name, a.CreatedDate });
             return Ok(itm);
         }
 
@@ -62,21 +62,13 @@ namespace Examportal.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(String id)
+        public IActionResult deleteexaminer(String id)
         {
-            Users user = (from u in db.Users where u.Email == id select u).FirstOrDefault();
-            if (user != null)
-            {
-                db.Users.Remove(user);
-                db.submitChanges();
-                return Ok(true);
-            }
-            else
-            {
-                return BadRequest();
-            }
-           
+           // db.Users.Remove(db.Users.FirstOrDefault(e => e.Email == id));
+            var data = db.Users.Where(s => s.Email == id).FirstOrDefault();
+            db.Users.Remove(data);
+            db.SaveChanges();
+            return Ok(true);
         }
     }
 }
- 

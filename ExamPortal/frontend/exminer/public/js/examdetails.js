@@ -216,11 +216,11 @@ $(document).ready(function () {
 function excelUpload(event) {
  
     event.preventDefault();
-    //tempExamCode1 = $('#addExamCode').val()
     var formData = new FormData();
     formData.append('examCode', tempExamCode)
     formData.append('excelFile', $('input[type=file]')[0].files[0])
-    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/questions/uploadExcel", {
+    console.log(formData.get('excelFile'));
+    $.ajax('http://localhost:45728/exam/questions/uploadExcel', {
         type: 'POST',
         data: formData,
         headers: {
@@ -228,7 +228,7 @@ function excelUpload(event) {
             Authorization: "Bearer "+localStorage.getItem('token')
         },
         lowerCaseHeaders: true,
-        contentType: false,
+        contentType:false,
         processData: false,
         success: function (data) {
             alert("You have successfully uploaded the questions through excel file")
