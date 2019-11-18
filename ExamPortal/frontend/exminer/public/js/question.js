@@ -92,6 +92,7 @@ function editQuestion(id) {
             Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
+            console.log(data);
             if(data.answerType== "multipleOption"){
                 let arr = data.answer.split(' ')
                 let editTemplate = $("#edit-question-template").html();

@@ -20,13 +20,25 @@ namespace Examportal.Models
         public virtual DbSet<ExamDetails> ExamDetails { get; set; }
         public virtual DbSet<Questions> Questions { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+      
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+<<<<<<< HEAD
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+<<<<<<< HEAD
                 optionsBuilder.UseSqlServer("Server=CYG359;Database=Examportal;Trusted_Connection=True;");
+=======
+                optionsBuilder.UseSqlServer("Server=CYG238;Database=Examportal;Trusted_Connection=True;");
+=======
+
+
+                optionsBuilder.UseSqlServer("Server=CYG362;Database=Examportal;Trusted_Connection=True;");
+>>>>>>> upstream/development
+
+>>>>>>> upstream/development
             }
         }
 
@@ -311,6 +323,11 @@ namespace Examportal.Models
                     .HasMaxLength(10)
                     .IsUnicode(false);
             });
+        }
+
+        internal void submitChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }
