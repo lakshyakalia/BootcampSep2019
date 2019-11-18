@@ -135,7 +135,7 @@ namespace Examportal.Controllers
 
         public IActionResult viewQuestions(String id)
         {
-            id = System.Web.HttpUtility.UrlDecode(id);
+            id = HttpUtility.UrlDecode(id);
             try
             {
                 var data = db.Questions.Where(e => e.ExamCode == id).Select(a => new {
@@ -173,7 +173,7 @@ namespace Examportal.Controllers
                     weightage = a.Weightage,
                     answer = a.Answer,
                     answerType = a.AnswerType
-                });
+                }).ToList();
                 return Ok(data);
             }
             catch (Exception e)
