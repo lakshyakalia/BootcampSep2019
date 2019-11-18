@@ -73,11 +73,12 @@ $(document).ready(function () {
             examDuration: testDuration,
             examStartTime: testDate
         }
-        $.ajax("http://localhost:45728/exam", {
+        $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam", {
             type: "POST",
             dataType: "json",
             headers: {
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                Authorization: "Bearer "+localStorage.getItem('token')
             },
             contentType: "application/json;charset=utf-8",
             data: JSON.stringify(examDetail),
@@ -168,12 +169,13 @@ $(document).ready(function () {
         formData.append('examCode', tempExamCode);
         formData.append('answerType', answerType);
         formData.append('questionImage', $('input[type=file]')[1].files[0]);
-        $.ajax("http://localhost:45728/exam/question", {
+        $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question", {
             type: "POST",
             data: formData,
             dataType: "json",
             headers: {
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                Authorization: "Bearer "+localStorage.getItem('token')
             },
             contentType: false,
             processData: false,
@@ -218,11 +220,12 @@ function excelUpload(event) {
     var formData = new FormData();
     formData.append('examCode', tempExamCode)
     formData.append('excelFile', $('input[type=file]')[0].files[0])
-    $.ajax('http://localhost:45728/exam/questions/uploadExcel', {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/questions/uploadExcel", {
         type: 'POST',
         data: formData,
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         lowerCaseHeaders: true,
         contentType: false,
@@ -240,6 +243,6 @@ function excelUpload(event) {
 
 function submitAllBtn() {
 
-    location.replace("./examiner.html")
+    location.replace("./exam.html")
 
 }

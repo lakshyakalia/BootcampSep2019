@@ -21,7 +21,6 @@ const examDetails = async(req, res) => {
 
 const viewExamDetail = async(req, res) => {
     try {
-        console.log('get exams ')
         let values = await examDetail.find({ examinerId: req.headers.id })
         if (values.length != 0) {
             res.status(200).send(values)
@@ -68,7 +67,7 @@ const fetchExamDetail = async(req, res) => {
 const addQuestion = async(req, res) => {
     try {
        
-        let values = await examDetail.findById(req.query.examinerId);
+        let values = await examDetail.findById(req.query.examinerId); 
         console.log(values);
         res.status(200).send(values)
     } catch (error) {

@@ -27,7 +27,7 @@ $(document).ready(function () {
   // {
   //   location.replace("../../index.html")
   // }
-  $.ajax("http://localhost:45728/examiner", {
+  $.ajax("http://127.0.0.1:"+localStorage.getItem('server-port')+"/examiner", {
     type: "GET",
     dataType: "json",
     contentType: "application/json",
@@ -53,7 +53,7 @@ $(document).ready(function () {
   $(document).on('click', '.deleteButton', function () {
     let id = $(this).attr('id')
     console.log(id);
-    $.ajax("http://localhost:45728/examiner/:id", {
+    $.ajax("http://127.0.0.1:"+localStorage.getItem('server-port')+"/examiner/:id", {
       type: "DELETE",
       dataType: "json",
       contentType: "application/json",
@@ -64,7 +64,7 @@ $(document).ready(function () {
       ),
       success: function (recent) {
 
-       // display(recent); 
+        //display(recent); 
         location.reload();
         console.log("user deleted");
         //window.location.replace("adminHome.html")
@@ -78,7 +78,7 @@ $(document).ready(function () {
 
   $(document).on('click', '.viewButton', function () {
     let id = $(this).attr('id')
-    $.ajax("http://127.0.0.1:3000/examiner/id", {
+    $.ajax("http://127.0.0.1:"+localStorage.getItem('server-port')+"/examiner/id", {
       type: "GET",
       dataType: "json",
       contentType: "application/json",
