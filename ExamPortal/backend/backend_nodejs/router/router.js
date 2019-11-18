@@ -7,14 +7,17 @@ const jwt = require('jsonwebtoken');
 const { SECRET } = require("../config/config")
 const multer = require('multer')
 const path = require('path')
-// var reqPath = path.join(__dirname, '../../frontend/exminer/excelFileUpload')
+var reqPath = path.join(__dirname, '../../frontend/exminer/public/assets')
 var storage = multer.memoryStorage()
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
+        if( file.filename.includes(".xlsx"))
+            callback(null, 'upload/')
+        else
         callback(null, 'upload/')
     },
     filename: function (req, file, callback) {
-        callback(null,file.originalname);
+        callback(null,Date.now() + '-' + file.originalname);
         // Date.now() + '-' + 
       }
 });
