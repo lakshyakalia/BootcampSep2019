@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using Examportal.Handlers;
 using System.Web;
 using System;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace Examportal.Controllers
 {
@@ -99,7 +101,8 @@ namespace Examportal.Controllers
                     option3 = a.Option3,
                     option4 = a.Option3,
                     weightage = a.Weightage,
-                    answer = a.Answer
+                    answer = a.Answer,
+                    questionImage = a.QuestionImage
                 }).ToList();
                 return Ok(data);
             }
@@ -126,7 +129,7 @@ namespace Examportal.Controllers
                     weightage = a.Weightage,
                     answer = a.Answer,
                     answerType = a.AnswerType
-                }).ToList();
+                }).FirstOrDefault();
                 return Ok(data);
             }
             catch (Exception e)
@@ -152,6 +155,56 @@ namespace Examportal.Controllers
                 db.Questions.Update(data);
                 db.SaveChanges();
                 return Ok("User updated");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { error = e });
+            }
+        }
+
+        [Route("/exam/question")]
+        [HttpPost]
+        public IActionResult uploadQuestion()
+        {
+            try
+            {
+                var req = HttpContext.Request.Form;
+                String path = Directory.GetCurrentDirectory();
+                //String dest = "C:\\Users\\himanshu.chauhan\\Desktop\\BootcampSep2019\\ExamPortal\frontend\\exminer\\public\\assets";
+                String dest = "C:/Users/himanshu.chauhan/Desktop/BootcampSep2019/ExamPortal/frontend/exminer/public/assets";
+                //String dest = "E:\examportal";
+                var file = HttpContext.Request.Form.Files[0];
+                String ImageURL = null;
+                //dest = dest + "\file.txt";
+                if (Directory.Exists(dest))
+                {
+
+                    var filename = ContentDispositionHeaderValue
+                                      .Parse(file.ContentDisposition)
+                                      .FileName
+                                      .Trim('"');
+                    //filename = Path.Combine(dest, $@"{filename}");
+                    //filename = "E:\octaber.jpg";
+                    filename = dest + "\\" + filename;
+
+                    using (FileStream fs = System.IO.File.Create(filename))
+                    {
+                        file.CopyTo(fs);
+                        fs.Flush();
+                    }
+
+                     ImageURL = "../public/assets/" + file.FileName;
+
+                }
+                Questions obj = new Questions();
+                obj.Answer = HttpContext.Request.Form["answer"];
+                obj.QuestionText = req["questionText"]; obj.Option1 = req["option1"]; obj.Option2 = req["option2"];
+                obj.Option3 = req["option3"]; obj.Option4 = req["option4"]; obj.ExamCode = req["examCode"];
+                obj.Weightage = Convert.ToInt32(req["weightage"]); obj.QuestionImage = ImageURL;obj.AnswerType = req["answerType"];
+                db.Questions.Add(obj);
+                db.SaveChanges();
+
+                return Ok();
             }
             catch (Exception e)
             {
