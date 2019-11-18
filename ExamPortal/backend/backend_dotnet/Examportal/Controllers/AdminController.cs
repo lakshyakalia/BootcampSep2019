@@ -62,14 +62,13 @@ namespace Examportal.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void deleteexaminer(String id)
+        public IActionResult deleteexaminer(String id)
         {
            // db.Users.Remove(db.Users.FirstOrDefault(e => e.Email == id));
             var data = db.Users.Where(s => s.Email == id).FirstOrDefault();
             db.Users.Remove(data);
             db.SaveChanges();
-           
-
+            return Ok(true);
         }
     }
 }
