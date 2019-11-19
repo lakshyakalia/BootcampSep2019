@@ -32,28 +32,28 @@ namespace Examportal.Controllers
         }
 
         // POST: api/Admin
-        //[HttpPost]
-        //public IActionResult Post([FromBody] Users value)
-        //{
-        //    var data = (from c in db.Users where c.Email == value.Email select c).FirstOrDefault();
-        //    if (data != null)
-        //    {
-        //        return Ok(new { message = "user already exist" });
-        //    }
-        //    else if (data == null)
-        //    {
-        //        value.Password = Bcrypt.BCrypt.HashPassword(value.Password);
-        //        value.CreatedDate = DateTime.Now;
-        //        db.Users.Add(value);
-        //        db.SaveChanges();
-        //        return Ok(true);
-        //    }
-        //    else
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpPost]
+        public IActionResult Post([FromBody] Users value)
+        {
+            var data = (from c in db.Users where c.Email == value.Email select c).FirstOrDefault();
+            if (data != null)
+            {
+                return Ok(new { message = "user already exist" });
+            }
+            else if (data == null)
+            {
+                value.Password = Bcrypt.BCrypt.HashPassword(value.Password);
+                value.CreatedDate = DateTime.Now;
+                db.Users.Add(value);
+                db.SaveChanges();
+                return Ok(true);
+            }
+            else
+            {
+                return BadRequest();
+            }
 
-        //}
+        }
         // PUT: api/Admin/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

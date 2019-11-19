@@ -50,16 +50,8 @@ namespace Examportal.Controllers
             string examcode = HttpContext.Request.Headers["examCode"];
 
             var examData = db.ExamDetails.FirstOrDefault(s => s.ExamCode == examcode);
-            var submitExam = db.CandidateResult.FirstOrDefault(s=> s.TestCode == examcode && s.Email == header["Email"]);
-            if(submitExam!= null && submitExam.SubmitExam == 1)
-            {
-                return Ok(new { examData = examData, submitStatus = true });
-            }
-            else
-            {
-                return Ok(new { examData = examData, submitStatus = false });
-            }
-            
+                
+            return Ok(new { examData = examData,submitStatus = false});
             
         }
 
@@ -75,7 +67,7 @@ namespace Examportal.Controllers
             email = auth.getAllClaims(HttpContext);
             qh.submitAllQuestions(value,email);
             
-            return Ok(true);
+            return Ok();
         }
         //[Authorize]
         [Route("/exam/question/{id}")]
@@ -184,31 +176,28 @@ namespace Examportal.Controllers
                 //String dest = "C:\\Users\\himanshu.chauhan\\Desktop\\BootcampSep2019\\ExamPortal\frontend\\exminer\\public\\assets";
                 String dest = "C:/Users/himanshu.chauhan/Desktop/BootcampSep2019/ExamPortal/frontend/exminer/public/assets";
                 //String dest = "E:\examportal";
-                var file = HttpContext.Request.Form.Files != null && HttpContext.Request.Form.Files.Count() > 0 ?  HttpContext.Request.Form.Files[0] : null;
+                var file = HttpContext.Request.Form.Files[0];
                 String ImageURL = null;
                 //dest = dest + "\file.txt";
-                if( file != null )
+                if (Directory.Exists(dest))
                 {
-                    if (Directory.Exists(dest))
+
+                    var filename = ContentDispositionHeaderValue
+                                      .Parse(file.ContentDisposition)
+                                      .FileName
+                                      .Trim('"');
+                    //filename = Path.Combine(dest, $@"{filename}");
+                    //filename = "E:\octaber.jpg";
+                    filename = dest + "\\" + filename;
+
+                    using (FileStream fs = System.IO.File.Create(filename))
                     {
-
-                        var filename = ContentDispositionHeaderValue
-                                          .Parse(file.ContentDisposition)
-                                          .FileName
-                                          .Trim('"');
-                        //filename = Path.Combine(dest, $@"{filename}");
-                        //filename = "E:\octaber.jpg";
-                        filename = dest + "\\" + filename;
-
-                        using (FileStream fs = System.IO.File.Create(filename))
-                        {
-                            file.CopyTo(fs);
-                            fs.Flush();
-                        }
-
-                        ImageURL = "../public/assets/" + file.FileName;
-
+                        file.CopyTo(fs);
+                        fs.Flush();
                     }
+
+                     ImageURL = "../public/assets/" + file.FileName;
+
                 }
                 Questions obj = new Questions();
                 obj.Answer = HttpContext.Request.Form["answer"];
@@ -240,10 +229,7 @@ namespace Examportal.Controllers
             try
             {
                 // Determine whether the directory exists.
-                DirectoryInfo di = Directory.CreateDirectory(path);
-
-                Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
-                //if (Directory.Exists(path))
+                if (Directory.Exists(path))
                 {
 
                     var filePayload = HttpContext.Request.Form.Files[0];
@@ -345,8 +331,9 @@ namespace Examportal.Controllers
                 }
 
                 // create the directory.
-               
+                DirectoryInfo di = Directory.CreateDirectory(path);
 
+                Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
             }
             catch (Exception e)
             {

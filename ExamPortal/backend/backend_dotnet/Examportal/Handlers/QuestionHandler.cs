@@ -169,7 +169,6 @@ namespace Examportal.Handlers
                 if (allQuestions.Count == savedQuestions.Count)
                 {
                     db.CandidateResult.Where(s => s.Email == email["Email"] && s.TestCode == value.code).ToList().ForEach(x=> x.SubmitExam = 1);
-                    db.SaveChanges();
                     return;
                 }
             }
@@ -182,11 +181,10 @@ namespace Examportal.Handlers
                 {
                     String id = allQuestions[i].Id.ToString();
                     CandidateAnswer answerDetails = AnswerDetailsObject(email["Email"], value.code, id, 0, null);
-                    db.CandidateResult.Where(s => s.Email == email["Email"] && s.TestCode == value.code).ToList().ForEach(x => x.SubmitExam = 1);
                     db.CandidateAnswer.Add(answerDetails);
                     db.SaveChanges();
                 }
-            }
+            } 
         }
 
         public ExamDetails CheckAccessKey(ExamDetails value)

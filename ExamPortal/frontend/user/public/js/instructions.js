@@ -16,6 +16,7 @@ $(document).on('click', '.startTest', function() {
             } else {
                 $(location).attr('href', './question.html')
             }
+
         },
         error: function(error) { console.log(error)}
     })
