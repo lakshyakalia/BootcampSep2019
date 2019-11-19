@@ -107,8 +107,7 @@ namespace Examportal.Controllers
                 data.ExamName = val.ExamName; data.ExamDuration = val.ExamDuration; data.ExamStartTime = val.ExamStartTime;
                 data.ModifiedDate = DateTime.Now;
 
-                Users obj = db.Users.FirstOrDefault(e => e.Email == email["Email"]);
-                //data.ModifiedBy = obj.Name;
+                data.ModifiedBy = db.Users.FirstOrDefault(e => e.Email == email["Email"]).Name;
 
                 db.SaveChanges();
                 return Ok();
@@ -125,7 +124,7 @@ namespace Examportal.Controllers
             {
                 db.ExamDetails.Remove(db.ExamDetails.FirstOrDefault(e => e.Id == id));
                 db.SaveChanges();
-                return Ok();
+                return Ok(new { msg ="exam deleted" });
             }catch(Exception e)
             {
                 return BadRequest(new { error = e });

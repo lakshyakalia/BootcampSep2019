@@ -7,29 +7,6 @@ const jwt = require('jsonwebtoken');
 const { SECRET } = require("../config/config")
 const multer = require('multer')
 const path = require('path')
-<<<<<<< HEAD
-var reqPath = path.join(__dirname, '../../frontend/exminer/public/assets')
-var storage = multer.memoryStorage()
-var storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        if( file.filename.includes(".xlsx"))
-            callback(null, 'upload/')
-        else
-        callback(null, 'upload/')
-    },
-    filename: function (req, file, callback) {
-        callback(null,Date.now() + '-' + file.originalname);
-        // Date.now() + '-' + 
-      }
-});
-const reqPath = path.join(__dirname, '../../../frontend/exminer/public/assets');
-const storage1 = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, reqPath)
-    },
-    filename: function(req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname)
-=======
 const reqPath = path.join(__dirname, '../../../frontend/exminer/public/assets');
 var storage = multer.memoryStorage()
 var storage = multer.diskStorage({
@@ -41,7 +18,6 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, callback) {
         callback(null,Date.now()+'-'+file.originalname);
->>>>>>> upstream/development
     }
 });
 
