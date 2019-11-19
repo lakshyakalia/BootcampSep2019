@@ -9029,6 +9029,7 @@
       "path": "system.composition.attributedmodel/1.0.31",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/System.Composition.AttributedModel.dll",
@@ -13384,23 +13385,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ashish.chopra\\.nuget\\packages\\": {},
+    "C:\\Users\\himanshu.chauhan\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ashish.chopra\\Desktop\\LATEST EXAM PORTAL NOVEMBER\\BootcampSep2019\\ExamPortal\\backend\\backend_dotnet\\Examportal\\Examportal.csproj",
+      "projectUniqueName": "C:\\Users\\himanshu.chauhan\\Desktop\\BootcampSep2019\\ExamPortal\\backend\\backend_dotnet\\Examportal\\Examportal.csproj",
       "projectName": "Examportal",
-      "projectPath": "C:\\Users\\ashish.chopra\\Desktop\\LATEST EXAM PORTAL NOVEMBER\\BootcampSep2019\\ExamPortal\\backend\\backend_dotnet\\Examportal\\Examportal.csproj",
-      "packagesPath": "C:\\Users\\ashish.chopra\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ashish.chopra\\Desktop\\LATEST EXAM PORTAL NOVEMBER\\BootcampSep2019\\ExamPortal\\backend\\backend_dotnet\\Examportal\\obj\\",
+      "projectPath": "C:\\Users\\himanshu.chauhan\\Desktop\\BootcampSep2019\\ExamPortal\\backend\\backend_dotnet\\Examportal\\Examportal.csproj",
+      "packagesPath": "C:\\Users\\himanshu.chauhan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\himanshu.chauhan\\Desktop\\BootcampSep2019\\ExamPortal\\backend\\backend_dotnet\\Examportal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ashish.chopra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\himanshu.chauhan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13488,6 +13489,12 @@
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\himanshu.chauhan\\Desktop\\BootcampSep2019\\ExamPortal\\backend\\backend_dotnet\\Examportal\\obj\\Examportal.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1608",
       "level": "Warning",
