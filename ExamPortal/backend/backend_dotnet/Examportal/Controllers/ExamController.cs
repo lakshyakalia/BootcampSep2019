@@ -78,7 +78,7 @@ namespace Examportal.Controllers
             {
                 db.Questions.Remove(db.Questions.FirstOrDefault(e => e.Id == id));
                 db.SaveChanges();
-                return Ok();
+                return Ok(new { msg ="delete successfull",status = 200});
             }
 
 
@@ -90,7 +90,6 @@ namespace Examportal.Controllers
 
         [Authorize,HttpGet,Route("/exam/{id}/question")]
         
-
         public IActionResult viewQuestions(String id)
         {
             id = HttpUtility.UrlDecode(id);
@@ -107,10 +106,10 @@ namespace Examportal.Controllers
                     answer = a.Answer,
                     questionImage = a.QuestionImage
                 }).ToList();
-                if (data != null)
+                if (data != null && data.Count() > 0 )
                     return Ok(data);
                 else
-                return Ok(new { msg = "No question" });
+                return BadRequest("Not Found");
             }
             catch (Exception e)
             {
@@ -154,7 +153,7 @@ namespace Examportal.Controllers
                
                 String dest = "c:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\ExamPortal\\frontend\\exminer\\public\\assets";
                
-                var file = req.Files != null && HttpContext.Request.Form.Count() > 0 ? req.Files[0] : null;
+                var file = req.Files != null && HttpContext.Request.Form.Files.Count() > 0 ? req.Files[0] : null;
 
                 String ImageURL = null;
                 if (file != null)
@@ -200,7 +199,7 @@ namespace Examportal.Controllers
                 obj.CreatedBy = obj.CreatedBy; obj.CreatedDate = obj.CreatedDate;
                    
                 db.SaveChanges();
-                return Ok("Question updated");
+                return Ok(new { msg ="update successfull", status = 200});
             }
             catch (Exception e)
             {
@@ -220,7 +219,7 @@ namespace Examportal.Controllers
                 //get directory to save image picture
                 String dest = "c:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\ExamPortal\\frontend\\exminer\\public\\assets";
                 
-                var file = HttpContext.Request.Form.Files != null && HttpContext.Request.Form.Count() > 0 ? HttpContext.Request.Form.Files[0]:null;
+                var file = HttpContext.Request.Form.Files != null && HttpContext.Request.Form.Files.Count() > 0 ? HttpContext.Request.Form.Files[0]:null;
 
                 String ImageURL = null;
                 if( file != null )
@@ -268,7 +267,7 @@ namespace Examportal.Controllers
                 db.Questions.Add(obj);
                 db.SaveChanges();
 
-                return Ok();
+                return Ok(new { msg ="question saved successfully"});
             }
             catch (Exception e)
             {

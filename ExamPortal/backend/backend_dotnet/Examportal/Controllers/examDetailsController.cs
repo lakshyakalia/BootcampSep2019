@@ -66,7 +66,14 @@ namespace Examportal.Controllers
                     examDuration = a.ExamDuration,
                     examStartTime = a.ExamStartTime
                 }).ToList();
-                return Ok(data);
+               if( data != null && data.Count() > 0 )
+                {
+                    return Ok(data);
+                }
+                else
+                {
+                    return BadRequest("No Exam ");
+                }
             }catch(Exception e)
             {
                 return BadRequest(new { error = e });
@@ -84,6 +91,7 @@ namespace Examportal.Controllers
                     examCode = a.ExamCode,
                     examDuration = a.ExamDuration,
                     examStartTime = a.ExamStartTime
+
                 }).FirstOrDefault();
                 return Ok(data);
             }catch(Exception e)
@@ -110,7 +118,7 @@ namespace Examportal.Controllers
                 data.ModifiedBy = db.Users.FirstOrDefault(e => e.Email == email["Email"]).Name;
 
                 db.SaveChanges();
-                return Ok();
+                return Ok(new { msg = "exam updated", status=200});
             }catch(Exception e)
             {
                 return BadRequest(new { error = e });
@@ -124,7 +132,7 @@ namespace Examportal.Controllers
             {
                 db.ExamDetails.Remove(db.ExamDetails.FirstOrDefault(e => e.Id == id));
                 db.SaveChanges();
-                return Ok(new { msg ="exam deleted" });
+                return Ok(new { msg ="exam deleted", status=200});
             }catch(Exception e)
             {
                 return BadRequest(new { error = e });

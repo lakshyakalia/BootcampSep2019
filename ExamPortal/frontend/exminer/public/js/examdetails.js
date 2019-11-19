@@ -102,9 +102,8 @@ $(document).ready(function () {
 })
 
 $(document).ready(function () {
-    document.getElementById('submitBtn').addEventListener('click', validateForm)
-
-    function validateForm() {
+    document.getElementById('submitBtn').addEventListener('click', (event) => {
+             event.preventDefault();
         // console.log("hello")
         var question = document.getElementById("addtestQuestion").value;
         var weightage = document.getElementById("addtestWeightage").value;
@@ -169,6 +168,7 @@ $(document).ready(function () {
         formData.append('examCode', tempExamCode);
         formData.append('answerType', answerType);
         formData.append('questionImage', $('input[type=file]')[1].files[0]);
+        debugger
         $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question", {
             type: "POST",
             data: formData,
@@ -179,7 +179,7 @@ $(document).ready(function () {
             },
             contentType: false,
             processData: false,
-            success: function (data, status) {
+            success: function (data) {
                 document.getElementById("addtestQuestion").value = '';
                 // ("#addtestAnswer").value = '';
                 if (answerType == "multipleOption") {
@@ -208,8 +208,9 @@ $(document).ready(function () {
                 console.log(error + " " + "error occurred");
             }
         });
+    })
 
-    }
+    // function validateForm(event) { }
 })
 
 //this uploads excel file
