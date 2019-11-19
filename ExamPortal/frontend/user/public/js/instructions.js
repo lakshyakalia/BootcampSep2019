@@ -12,12 +12,7 @@ $(document).on('click', '.startTest', function() {
         },
         success: function() {
                 $(location).attr('href', './question.html')
-<<<<<<< HEAD
-
-=======
-            }
->>>>>>> upstream/development
-        },
+            },
         error: function(error) { console.log(error)}
     })
 
@@ -79,22 +74,9 @@ $(document).ready(function() {
             Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data) {
-<<<<<<< HEAD
-            if (data.submitStatus) {
-                $('.error-msg').text("Test is already Submitted")
-                localStorage.removeItem("token");
-                location.reload();
-            }else {
-                checkTimeForTest(data.examdata.examStartTime)
-            document.getElementById('username').innerHTML = "Hi "+localStorage.getItem('name')
-
-            }
-            
-=======
             var minToMilliSec = data.examData.examDuration * 60000;
             checkTimeForTest(data.examData.examStartTime,minToMilliSec)
             document.getElementById('username').innerHTML = "Hie "+localStorage.getItem('name')
->>>>>>> upstream/development
         },
         error: function(error) {
             if(error.status === 401){
