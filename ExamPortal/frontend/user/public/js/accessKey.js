@@ -30,12 +30,10 @@ $(document).on('click', '#checkAccessKey', function() {
             examCode: $(".inputBox").val()
         }),
         success: function(data) {
-            console.log('success')
             localStorage.setItem('examCode', $(".inputBox").val())
             $(location).attr('href', '../views/instructions.html')
         },
         error: function(error) {
-            console.log('error')
             $('.error-msg').text("Wrong Access key")
         }
     })
