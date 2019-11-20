@@ -35,7 +35,6 @@ namespace Examportal.Controllers
             var exams = db.ExamDetails.Where(e => e.Email == userEmail).ToList();
             return Ok(exams);
         }
-        
         [Route("/examiner")]
         [HttpPatch]
         public IActionResult examinerUpdate([FromBody] UpdateExaminerCustomModel value)
@@ -50,7 +49,7 @@ namespace Examportal.Controllers
                 examinerData.Password = value.password;
                 db.Users.Update(examinerData);
                 db.SaveChanges();
-                return Ok("User updated");
+                return Ok(new { message = "User Updated" });
             }
             catch (Exception e )
             {

@@ -1,7 +1,7 @@
 // this page will create dom to display details of students
 function drawChart(data, total) {
     let ctx = document.getElementById('myChart').getContext('2d');
-    let labels = ['< 40', '40-60', '60-80', '> 80'];
+    let labels = ['< 40% ', '40%-60% ', '60%-80% ', '> 80% '];
     let colorHex = ['#FB3640', '#EFCA08', '#43AA8B', '#253D5B'];
     let m1 = 0,
         m2 = 0,
@@ -118,7 +118,12 @@ function studentDetails(a) {
                 flag = 1;
                 i++;
             }
+            if(data.b!=''){
             drawChart(data.b, data.c)
+            $('#myChart').show()
+            }
+            else
+            $('#myChart').hide()
         },
         error: function(error) {
             console.log('error')
