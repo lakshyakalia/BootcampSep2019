@@ -11,6 +11,13 @@ $(document).ready(function(){
             document.getElementById('username').innerHTML = "Hie, "+data.name
         }
     })
+
+    $(".inputBox").keypress(function(event){
+        if(event.which == 13){
+            event.preventDefault();
+            $("#checkAccessKey").trigger("click");
+        }
+    })
 })
 $(document).on('click', '#checkAccessKey', function() {
     const tok = localStorage.getItem('token');
