@@ -1,9 +1,10 @@
 $(document).ready(function(){
-    $.ajax('http://localhost:3000/loggedIn',{
+    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/loggedIn',{
         type: 'GET',
         dataType: 'JSON',
         headers:{
-            "token":localStorage.getItem('token')
+            "token":localStorage.getItem('token'),
+            Authorization: "Bearer "+localStorage.getItem('token')
         },
         success: function(data){
             localStorage.setItem('name',data.name)

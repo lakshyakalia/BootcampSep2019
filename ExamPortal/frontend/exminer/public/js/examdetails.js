@@ -103,8 +103,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     document.getElementById('submitBtn').addEventListener('click', (event) => {
-             event.preventDefault();
-        // console.log("hello")
+            
         var question = document.getElementById("addtestQuestion").value;
         var weightage = document.getElementById("addtestWeightage").value;
         if (question === "") {
@@ -168,7 +167,7 @@ $(document).ready(function () {
         formData.append('examCode', tempExamCode);
         formData.append('answerType', answerType);
         formData.append('questionImage', $('input[type=file]')[1].files[0]);
-        debugger
+        // debugger
         $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question", {
             type: "POST",
             data: formData,
@@ -187,6 +186,7 @@ $(document).ready(function () {
                     document.getElementById("addtestOption2").value = '';
                     document.getElementById("addtestOption3").value = '';
                     document.getElementById("addtestOption4").value = '';
+                    document.getElementById("myImage").value = ''
                     let checkBox = $('input[type=checkbox][name=option]')
                     $.each(checkBox, (i, chk) => {
                         if ($(chk).val()) {
@@ -198,6 +198,7 @@ $(document).ready(function () {
                     document.getElementById("addtestOption2G").value = '';
                     document.getElementById("addtestOption3G").value = '';
                     document.getElementById("addtestOption4G").value = '';
+                    document.getElementById("myImage").value = '';
                     if ($('input[type=radio][name=option1]:checked').val()) {
                         $('input[type=radio][name=option1]').prop('checked', false)
                     }

@@ -103,6 +103,9 @@ function editQuestion(id) {
                             $(chk).prop('checked',true)
                         }
                     })
+                if( data.questionImage != null && data.questionImage != undefined){
+                    document.getElementById("myImage").value = data.questionImage
+                }
             }else if( data.answerType=="singleOption"){
                 let editTemplate = $("#edit-single-option").html();
                 $("#display-edit-form").append(Mustache.render(editTemplate, data))
