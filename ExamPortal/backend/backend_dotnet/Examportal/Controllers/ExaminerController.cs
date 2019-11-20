@@ -57,6 +57,18 @@ namespace Examportal.Controllers
             }
 
         }
+        [Route("/examiner/exams/students")]
+        [HttpGet]
+        public IActionResult allStudents()
+        {
+            Dictionary<string, string> email = new Dictionary<string, string>();
+
+            Authentication auth = new Authentication();
+            string examcode = HttpContext.Request.Headers["examId"].ToString();
+            var data = db.CandidateAnswer.FirstOrDefault(e => e.TestCode == examcode);
+            return Ok(new { message = "hello" });
+        }
+
     }
 
 
