@@ -71,10 +71,13 @@ namespace Examportal.Controllers
             try
             {
                 var req = HttpContext.Request.Form;
-                String path = Directory.GetCurrentDirectory();
-               
-                String dest = "c:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\ExamPortal\\frontend\\exminer\\public\\assets";
-               
+
+                string currentpath = Directory.GetCurrentDirectory().ToString();
+                string parent = Directory.GetParent(currentpath).ToString();
+                string parentdirectory = Directory.GetParent(parent).ToString();
+                string root = Directory.GetParent(parentdirectory).ToString();
+                string dest = Path.Combine(root, "assets");
+
                 var file = req.Files != null && HttpContext.Request.Form.Files.Count() > 0 ? req.Files[0] : null;
 
                 String ImageURL = null;
@@ -110,13 +113,15 @@ namespace Examportal.Controllers
 
                 obj.QuestionText = req["questionText"]; obj.Option1 = req["option1"]; obj.Option2 = req["option2"];
 
-                obj.Option3 = req["option3"]; obj.Option4 = req["option4"]; obj.ExamCode = id.ToString();
+                obj.Option3 = req["option3"]; obj.Option4 = req["option4"];
 
                 obj.Weightage = Convert.ToInt32(req["weightage"]); obj.AnswerType = req["answerType"];
 
                 obj.ModifiedDate = DateTime.Now;
 
                 obj.QuestionImage = ImageURL != null ? ImageURL : obj.QuestionImage;
+
+                obj.ModifiedBy = obj.CreatedBy; obj.ExamCode = obj.ExamCode;
 
                 obj.CreatedBy = obj.CreatedBy; obj.CreatedDate = obj.CreatedDate;
                    
@@ -132,25 +137,21 @@ namespace Examportal.Controllers
         [Authorize,HttpPost, Route("/exam/question")]
        //upload questions
         public IActionResult UploadQuestion()
-        {
+        {            
             try
             {
                 var req = HttpContext.Request.Form;
 
-                //String path = configuration[ConfigutationKeys.AssetPath];
-                //String dest = "..\\..\\..\\..\\assets";
-                //get directory to save image picture
                 string currentpath = Directory.GetCurrentDirectory().ToString();
                 string parent = Directory.GetParent(currentpath).ToString();
                 string parentdirectory = Directory.GetParent(parent).ToString();
                 string root = Directory.GetParent(parentdirectory).ToString();
                 string dest = Path.Combine(root, "assets");
-               // String dest = "c:\\Users\\birendra.bhujel\\Desktop\\BootcampSep2019\\ExamPortal\\assets";
 
-                var file = HttpContext.Request.Form.Files != null && HttpContext.Request.Form.Files.Count() > 0 ? HttpContext.Request.Form.Files[0]:null;
+                var file = HttpContext.Request.Form.Files != null && HttpContext.Request.Form.Files.Count() > 0 ? HttpContext.Request.Form.Files[0] : null;
 
                 String imageURL = null;
-                if( file != null )
+                if (file != null)
                 {
                     if (Directory.Exists(dest))
                     {
@@ -161,14 +162,14 @@ namespace Examportal.Controllers
                                           .Trim('"');
                         String date = DateTime.Now.Ticks.ToString();
                         String imageName = date + file.FileName;
-                        filename = dest+"\\"+ date+filename;
+                        filename = dest + "\\" + date + filename;
 
                         using (FileStream fs = System.IO.File.Create(filename))
                         {
                             file.CopyTo(fs);
                             fs.Flush();
                         }
-                        FileUpload fileUpload = new FileUpload();
+                   
                         imageURL = "../../../assets/" + imageName;
 
                     }
@@ -183,7 +184,7 @@ namespace Examportal.Controllers
                 obj.Answer = req["answer"];
 
                 obj.QuestionText = req["questionText"];
-                obj.Option1 = req["option1"]; 
+                obj.Option1 = req["option1"];
                 obj.Option2 = req["option2"];
 
                 obj.Option3 = req["option3"];
@@ -201,7 +202,7 @@ namespace Examportal.Controllers
                 db.Questions.Add(obj);
                 db.SaveChanges();
 
-                return Ok(new { msg ="question saved successfully"});
+                return Ok(new { msg = "question saved successfully" });
             }
             catch (Exception e)
             {

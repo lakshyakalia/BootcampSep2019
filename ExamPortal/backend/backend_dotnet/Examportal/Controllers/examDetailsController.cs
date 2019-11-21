@@ -21,7 +21,6 @@ namespace Examportal.Controllers
         {
             _config = config;
         }
-        ExamportalContext db = new ExamportalContext();
         [Authorize,HttpPost, Route("/exam")]
         public IActionResult SaveExam([FromBody] ExamDetails examDetails)
         {
@@ -44,62 +43,34 @@ namespace Examportal.Controllers
         }
         
         [Authorize, HttpGet,Route("/exam/{id}")]
-        public IActionResult examDetailForUpdate(int id )
+        public IActionResult ViewExamDetailForUpdate(int id )
         {
-            try
-            {
-                var data = db.ExamDetails.Where(e => e.Id == id).Select(a => new {
-                    _id = a.Id,
-                    examName = a.ExamName,
-                    examCode = a.ExamCode,
-                    examDuration = a.ExamDuration,
-                    examStartTime = a.ExamStartTime
-
-                }).FirstOrDefault();
+            SaveExamDetails exam = new SaveExamDetails();
+            var data = exam.ViewExamDeatilForUpdate(id);
+            if (data != null)
                 return Ok(data);
-            }catch(Exception e)
-            {
-                return BadRequest(new { error = e });
-            }
+            return BadRequest(new { msg = "Not Found", status = 404 });
         }
         
         
         [Authorize, HttpPatch,Route("/exam/{id}")]
-        public IActionResult editExamDeatils(int id , [FromBody] ExamDetails val )
+        public IActionResult EditExamDeatils(int id , [FromBody] ExamDetails val )
         {
-            try
-            {
-                Dictionary<string, string> email = new Dictionary<string, string>();
-
-                Authentication auth = new Authentication();
-                email = auth.getAllClaims(HttpContext);
-
-                var data = db.ExamDetails.FirstOrDefault(e => e.Id == id);
-                data.ExamName = val.ExamName; data.ExamDuration = val.ExamDuration; data.ExamStartTime = val.ExamStartTime;
-                data.ModifiedDate = DateTime.Now;
-
-                data.ModifiedBy = db.Users.FirstOrDefault(e => e.Email == email["Email"]).Name;
-
-                db.SaveChanges();
-                return Ok(new { msg = "exam updated", status=200});
-            }catch(Exception e)
-            {
-                return BadRequest(new { error = e });
-            }
+            SaveExamDetails exam = new SaveExamDetails();
+            if (exam.EditExamDetails(id, val, HttpContext))
+                return Ok(new { msg = "update successful", Status = 200 });
+            return BadRequest(new { msg = "Not Found", status = 404 });
         }
         
         [Authorize, HttpDelete,Route("/exam/{id}")]
-        public IActionResult removeExamDetails(int id)
+        public IActionResult RemoveExamDetails(int id)
         {
-            try
-            {
-                db.ExamDetails.Remove(db.ExamDetails.FirstOrDefault(e => e.Id == id));
-                db.SaveChanges();
-                return Ok(new { msg ="exam deleted", status=200});
-            }catch(Exception e)
-            {
-                return BadRequest(new { error = e });
-            }
+            SaveExamDetails exam = new SaveExamDetails();
+
+            if( exam.RemoveExamDetails(id))
+            return Ok(new { msg = "exam deleted", status = 200 });
+
+            return BadRequest(new { msg="Not Found",status=404});
         }
     }
 }

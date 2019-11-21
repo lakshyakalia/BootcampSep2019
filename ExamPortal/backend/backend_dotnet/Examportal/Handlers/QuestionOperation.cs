@@ -12,6 +12,8 @@ namespace Examportal.Handlers
     public class QuestionOperation
     {
         ExamportalContext db = new ExamportalContext();
+        SaveExamDetails exam = new SaveExamDetails();
+        
         public bool RemoveQuestion(int id)
         {
             var data = db.Questions.FirstOrDefault(d => d.Id == id);
