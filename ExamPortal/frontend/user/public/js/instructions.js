@@ -1,5 +1,5 @@
 $(document).on('click', '.startTest', function() {
-    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/exam/accessKey', {
+    $.ajax('https://node-examportal.herokuapp.com/exam/accessKey', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -65,7 +65,7 @@ $(document).ready(function() {
     if(token == null){
         $(location).attr('href','./login.html')
     }
-    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/exam/accessKey', {
+    $.ajax('https://node-examportal.herokuapp.com/exam/accessKey', {
         type: 'GET',
         dataType: 'JSON',
         headers: {
