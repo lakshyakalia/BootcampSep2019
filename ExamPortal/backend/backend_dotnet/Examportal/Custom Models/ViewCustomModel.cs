@@ -16,5 +16,6 @@ namespace Examportal.Custom_Models
         public int? weightage { get; set; }
         public string answer { get; set; }
         public string questionImage { get; set; }
+        public string answerType { get; set; }
     }
 }

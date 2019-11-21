@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Examportal.Auth;
+using Examportal.Handlers;
 using Examportal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -21,63 +22,25 @@ namespace Examportal.Controllers
             _config = config;
         }
         ExamportalContext db = new ExamportalContext();
-        
         [Authorize,HttpPost, Route("/exam")]
-        
-        public IActionResult saveExam([FromBody] ExamDetails examDetails)
+        public IActionResult SaveExam([FromBody] ExamDetails examDetails)
         {
-            try
-            {
-                Dictionary<string, string> email = new Dictionary<string, string>();
-
-                Authentication auth = new Authentication();
-                email = auth.getAllClaims(HttpContext);
-                examDetails.Email = email["Email"];
-                examDetails.CreatedDate = DateTime.Now;
-
-                Users obj = db.Users.FirstOrDefault(e => e.Email == email["Email"]);
-                examDetails.CreatedBy = obj.Name;
-
-                db.ExamDetails.Add(examDetails);
-                db.SaveChanges();
-                return Ok( new { msg="exam details saved",
-                    status=200
-                    });
-            }
-            catch(Exception e)
-            {
-                return BadRequest(new { error = e });
-            }
+            SaveExamDetails exam = new SaveExamDetails();
+            if (exam.SaveExam(examDetails,HttpContext))
+                return Ok(new { msg = "exam save successfully", status = 200, flag = true });
+            return BadRequest(new { msg = "something went wrong", status = 404,flag = false });
         }
         
         [Authorize,HttpGet,Route("/exam")]
-        public IActionResult viewExamDeatils()
+        public IActionResult ViewExamDeatils()
         {
-            try
+            SaveExamDetails exam = new SaveExamDetails();
+            var data = exam.ViewExamDetails(HttpContext);
+            if( data != null)
             {
-                Dictionary<string, string> email = new Dictionary<string, string>();
-
-                Authentication auth = new Authentication();
-                email = auth.getAllClaims(HttpContext);
-                var data = db.ExamDetails.Where(e => e.Email == email["Email"]).Select(a => new {
-                    _id = a.Id,
-                    examName = a.ExamName,
-                    examCode = a.ExamCode,
-                    examDuration = a.ExamDuration,
-                    examStartTime = a.ExamStartTime
-                }).ToList();
-               if( data != null && data.Count() > 0 )
-                {
-                    return Ok(data);
-                }
-                else
-                {
-                    return BadRequest("No Exam ");
-                }
-            }catch(Exception e)
-            {
-                return BadRequest(new { error = e });
+                return Ok(data);
             }
+            return BadRequest(new { msg = "Not found", status = 404 });
         }
         
         [Authorize, HttpGet,Route("/exam/{id}")]

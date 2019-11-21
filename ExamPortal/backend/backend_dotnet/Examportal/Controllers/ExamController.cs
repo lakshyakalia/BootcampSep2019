@@ -160,7 +160,8 @@ namespace Examportal.Controllers
                                           .FileName
                                           .Trim('"');
                         String date = DateTime.Now.Ticks.ToString();
-                        filename = dest + "\\" +date+filename;
+                        String imageName = date + file.FileName;
+                        filename = dest+"\\"+ date+filename;
 
                         using (FileStream fs = System.IO.File.Create(filename))
                         {
@@ -168,7 +169,7 @@ namespace Examportal.Controllers
                             fs.Flush();
                         }
                         FileUpload fileUpload = new FileUpload();
-                        imageURL = "../../../assets/" + filename;
+                        imageURL = "../../../assets/" + imageName;
 
                     }
                 }

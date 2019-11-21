@@ -1,5 +1,6 @@
 ﻿using Examportal.Custom_Models;
 using Examportal.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,7 @@ namespace Examportal.Handlers
                      option4 = data.Option3,
                      weightage = data.Weightage,
                      answer = data.Answer,
+                     answerType = data.AnswerType,
                      questionImage = data.QuestionImage
                  };
                 return obj;
@@ -70,5 +72,9 @@ namespace Examportal.Handlers
             else
                 return null;
         }
+        //public bool UploadQuestion(HttpContext q )
+        //{
+        //    var req = 
+        //}
     }
 }
