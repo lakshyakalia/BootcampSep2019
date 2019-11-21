@@ -54,7 +54,6 @@ function checkTimeForTest(time,duration) {
             clearInterval(x)
             $('.startTest').attr('disabled')
             $('.error-msg').text("Test not started yet")
-            document.getElementById('leftTime').innerHTML = ""
         }
     }, 1000)
 

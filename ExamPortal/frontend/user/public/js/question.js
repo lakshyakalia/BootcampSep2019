@@ -104,7 +104,7 @@ $(document).ready(function() {
     $('#nextQuestion').attr('value', 0)
     $('#previousQuestion').attr({ 'value': 0, 'disabled': true })
     
-    $.ajax('https://cygindiaexamportal.netlify.com/question', {
+    $.ajax('https://node-examportal.herokuapp.com/question', {
         type: 'GET',
         dataType: 'JSON',
         contentType: "application/json;charset=utf-8",

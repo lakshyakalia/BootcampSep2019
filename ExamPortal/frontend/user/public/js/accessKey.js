@@ -11,6 +11,13 @@ $(document).ready(function(){
             document.getElementById('username').innerHTML = "Hie, "+data.name
         }
     })
+
+    $(".inputBox").keypress(function(event){
+        if(event.which == 13){
+            event.preventDefault();
+            $("#checkAccessKey").trigger("click");
+        }
+    })
 })
 $(document).on('click', '#checkAccessKey', function() {
     const tok = localStorage.getItem('token');
@@ -30,12 +37,10 @@ $(document).on('click', '#checkAccessKey', function() {
             examCode: $(".inputBox").val()
         }),
         success: function(data) {
-            console.log('success')
             localStorage.setItem('examCode', $(".inputBox").val())
             $(location).attr('href', '../views/instructions.html')
         },
         error: function(error) {
-            console.log('error')
             $('.error-msg').text("Wrong Access key")
         }
     })
