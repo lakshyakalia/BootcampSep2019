@@ -59,7 +59,7 @@ function updateQues(id,type) {
             formData.append('answerType', "multipleOption");
             formData.append('questionImage', $('input[type=file]')[0].files[0]);
             // return
-    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question/" + id, {
+    $.ajax("https://node-examportal.herokuapp.com/exam/question/" + id, {
         type: 'PATCH',
         dataType: 'json',
         contentType: false,

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/loggedIn',{
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+'/loggedIn',{
         type: 'GET',
         dataType: 'JSON',
         headers:{
@@ -11,6 +11,13 @@ $(document).ready(function(){
             document.getElementById('username').innerHTML = "Hie, "+data.name
         }
     })
+
+    $(".inputBox").keypress(function(event){
+        if(event.which == 13){
+            event.preventDefault();
+            $("#checkAccessKey").trigger("click");
+        }
+    })
 })
 $(document).on('click', '#checkAccessKey', function() {
     const tok = localStorage.getItem('token');
@@ -18,7 +25,7 @@ $(document).on('click', '#checkAccessKey', function() {
     if (tok == null) {
         location.replace("./login.html")
     }
-    $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/exam/accessKey', {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+'/exam/accessKey', {
         type: 'POST',
         dataType: 'JSON',
         contentType: "application/json;charset=utf-8",
@@ -30,12 +37,10 @@ $(document).on('click', '#checkAccessKey', function() {
             examCode: $(".inputBox").val()
         }),
         success: function(data) {
-            console.log('success')
             localStorage.setItem('examCode', $(".inputBox").val())
             $(location).attr('href', '../views/instructions.html')
         },
         error: function(error) {
-            console.log('error')
             $('.error-msg').text("Wrong Access key")
         }
     })
