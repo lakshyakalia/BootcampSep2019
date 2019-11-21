@@ -65,8 +65,21 @@ namespace Examportal.Controllers
 
             Authentication auth = new Authentication();
             string examcode = HttpContext.Request.Headers["examId"].ToString();
-            var data = db.CandidateAnswer.FirstOrDefault(e => e.TestCode == examcode);
-            return Ok(new { message = "hello" });
+            var answers = db.CandidateAnswer.Where(e => e.TestCode == examcode && e.Answer!= null).Count();
+            var data = db.CandidateResult.Where(e => e.TestCode == examcode).ToList();
+            var joinQuery = db.CandidateResult.Join(db.CandidateAnswer, )
+            var i = 0;
+            var len = data.Count();
+            List<Users> arr = new List<Users>();
+            while (i < len)
+            {
+                var stuEmail = data[i].Email;
+                var details = db.Users.FirstOrDefault(e => e.Email == stuEmail);
+               
+                arr.Add(details);
+                i++;
+            }
+            return Ok(new {a= arr , b=data});
         }
 
     }
