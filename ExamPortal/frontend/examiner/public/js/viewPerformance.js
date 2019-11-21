@@ -106,13 +106,13 @@ function studentDetails(a) {
             console.log(data)
             $('#tcan').empty()
             let tr = document.createElement('tr')
-            tr.innerHTML = "<th>" + " Student Name " + "</th>" + "<th>" + " Exam Code " + "</th>" + "<th>" + "Total Score" + "</th>" + "<th>" + "Question Attempted" + "</th>" + "<th>" + "Maximum Marks" + "</th>" + "<th>" + "Percentage %" + "</th>";
+            tr.innerHTML = "<th>" + " Student Name " + "</th>" + "<th>" + " Exam Code " + "</th>" + "<th>" + "Total Score" + "</th>" + "<th>" + "Total Questions" + "</th>" + "<th>" + "Maximum Marks" + "</th>" + "<th>" + "Percentage %" + "</th>";
             $("#tcan").append(tr)
             let i = 0;
             while (i < data.b.length) {
 
                 let tr = document.createElement('tr')
-                tr.innerHTML = "<td>" + data.a[i].name + "</td>" + "<td>" + data.b[i].testCode + "</td>" + "<td>" + data.b[i].totalScore + "</td>" + "<td>" + data.b[i].answers.length + "</td>" + "<td>" + data.c + "</td>" + "<td>" + (data.b[i].totalScore / data.c) * 100 + "%" + "</td>";
+                tr.innerHTML = "<td>" + data.a[i].name + "</td>" + "<td>" + data.b[i].testCode + "</td>" + "<td>" + data.b[i].totalScore + "</td>" + "<td>" + data.b[i].answers + "</td>" + "<td>" + data.c + "</td>" + "<td>" + (data.b[i].totalScore / data.c) * 100 + "%" + "</td>";
                 $("#tcan").fadeIn()
                 $("#tcan").append(tr)
                 flag = 1;

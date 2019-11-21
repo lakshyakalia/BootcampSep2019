@@ -67,7 +67,10 @@ namespace Examportal.Controllers
             string examcode = HttpContext.Request.Headers["examId"].ToString();
             var answers = db.CandidateAnswer.Where(e => e.TestCode == examcode && e.Answer!= null).Count();
             var data = db.CandidateResult.Where(e => e.TestCode == examcode).ToList();
-            var joinQuery = db.CandidateResult.Join(db.CandidateAnswer, )
+           // var rev = data.OrderByDescending(x => x.Email).ToList();
+            var totalWeightage = db.Questions.Where(e => e.ExamCode == examcode).Sum(t => t.Weightage);
+
+            //var joinQuery = db.CandidateResult.Join(db.CandidateAnswer, )
             var i = 0;
             var len = data.Count();
             List<Users> arr = new List<Users>();
@@ -79,7 +82,7 @@ namespace Examportal.Controllers
                 arr.Add(details);
                 i++;
             }
-            return Ok(new {a= arr , b=data});
+            return Ok(new {a= arr , b=data, c=totalWeightage});
         }
 
     }
