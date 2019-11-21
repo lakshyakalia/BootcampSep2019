@@ -153,3 +153,10 @@ $(document).ready(function () {
         })
     })
 })
+var input = document.getElementById("cnfPassword");
+input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("signUpSubmit").click();
+    }
+});
