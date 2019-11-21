@@ -35,9 +35,9 @@ $(document).on('click', '#loginButton', function() {
     })
     var input = document.getElementById("inputPassword");
     input.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("loginButton").click();
-    }
+    if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("loginButton").click();
+  }
 });
     // })
