@@ -73,7 +73,7 @@ $(document).ready(function () {
             examDuration: testDuration,
             examStartTime: testDate
         }
-        $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam", {
+        $.ajax("https://node-examportal.herokuapp.com/exam", {
             type: "POST",
             dataType: "json",
             headers: {
@@ -169,7 +169,7 @@ $(document).ready(function () {
         formData.append('examCode', tempExamCode);
         formData.append('answerType', answerType);
         formData.append('questionImage', $('input[type=file]')[1].files[0]);
-        $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question", {
+        $.ajax("https://node-examportal.herokuapp.com/exam/question", {
             type: "POST",
             data: formData,
             dataType: "json",
@@ -218,10 +218,10 @@ function excelUpload(event) {
     event.preventDefault();
     var formData = new FormData();
     formData.append('examCode', tempExamCode)
-    console.log(tempExamCode);
+   
     formData.append('excelFile', $('input[type=file]')[0].files[0])
     console.log(formData.get('excelFile'));
-    $.ajax('http://localhost:45728/exam/questions/uploadExcel', {
+    $.ajax('https://node-examportal.herokuapp.com/exam/questions/uploadExcel', {
         type: 'POST',
         data: formData,
         headers: {
