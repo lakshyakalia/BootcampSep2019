@@ -3,7 +3,7 @@ function removeQuestion(id){
     console.log(id)
     let qsId = $("#"+id).parent().parent().attr('id')
     console.log(qsId)
-    $.ajax("https://node-examportal.herokuapp.com/exam/question/"+qsId, {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question/"+qsId, {
 
         type: 'DELETE',
         dataType: 'json',
@@ -83,7 +83,7 @@ function editQuestion(id) {
     let qid = $("#" + id).parent().parent().attr('id')
     let pid = $("#" + qid).parent().parent().parent().parent().attr('id')
     $('#' + pid).hide()
-    $.ajax("https://node-examportal.herokuapp.com/exam/question/" + qid, {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/exam/question/" + qid, {
         type: 'GET',
         dataType: 'json',
         contentType: "application/json",
@@ -122,7 +122,7 @@ function editQuestion(id) {
 }
 $(document).ready(function(){
     let examCode = localStorage.getItem('examCode')
-    let url = "https://node-examportal.herokuapp.com/exam/"+ encodeURIComponent(examCode)+"/question"
+    let url = "http://localhost:"+localStorage.getItem('server-port')+"/exam/"+ encodeURIComponent(examCode)+"/question"
     $.ajax(url, {
         type: 'GET',
         dataType: 'json',

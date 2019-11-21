@@ -63,7 +63,7 @@ function showStudents() {
         location.replace("../../index.html")
     }
 
-    $.ajax("https://node-examportal.herokuapp.com/examiner/exams", {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/examiner/exams", {
         type: 'GET',
         dataType: 'JSON',
         headers: {
@@ -95,7 +95,7 @@ function logout() {
 let flag = 0;
 
 function studentDetails(a) {
-    $.ajax("https://node-examportal.herokuapp.com/examiner/exams/students", {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/examiner/exams/students", {
         type: 'GET',
         dataType: 'JSON',
         headers: {

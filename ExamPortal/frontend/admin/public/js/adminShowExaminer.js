@@ -20,7 +20,7 @@ function loadSetupExaminerPage(data) {
 
 $(document).ready(function () {
 
-  $.ajax("https://node-examportal.herokuapp.com/examiner", {
+  $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/examiner", {
     type: "GET",
     dataType: 'JSON',
     contentType: "application/json;charset=utf-8",
@@ -46,7 +46,7 @@ $(document).ready(function () {
   $(document).on('click', '.deleteButton', function () {
     let id = $(this).attr('id')
     console.log(id);
-    $.ajax("https://node-examportal.herokuapp.com/examiner/" + id, {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/examiner/" + id, {
       type: "DELETE",
       dataType: "json",
       contentType: "application/json",
@@ -68,7 +68,7 @@ $(document).ready(function () {
 
   $(document).on('click', '.viewButton', function () {
     let id = $(this).attr('id')
-    $.ajax("https://node-examportal.herokuapp.com/examiner/id", {
+    $.ajax("http://localhost:"+localStorage.getItem('server-port')+"/examiner/id", {
       type: "GET",
       dataType: "json",
       contentType: "application/json",
