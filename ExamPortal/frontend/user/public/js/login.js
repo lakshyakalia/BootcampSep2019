@@ -1,7 +1,7 @@
 $(document).on('click', '#loginButton', function() {
         let email = $('#inputEmail').val()
         let password = $('#inputPassword').val()
-        $.ajax('http://localhost:'+localStorage.getItem('server-port')+'/login', {
+        $.ajax("http://localhost:"+localStorage.getItem('server-port')+'/login', {
             type: 'POST',
             dataType: 'JSON',
             contentType: "application/json;charset=utf-8",

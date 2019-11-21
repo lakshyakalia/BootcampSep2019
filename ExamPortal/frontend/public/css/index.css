@@ -54,7 +54,9 @@
     font-weight: 500;
     margin-left: 10px;
 }
-
+.button-center button:focus{
+    outline: 0 !important;
+}
 p{
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: 100;

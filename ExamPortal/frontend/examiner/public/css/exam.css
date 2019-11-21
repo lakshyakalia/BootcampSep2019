@@ -292,3 +292,6 @@ option {
     margin-left: 73%;
     
 }
+.fixed{
+    display: grid;
+}
