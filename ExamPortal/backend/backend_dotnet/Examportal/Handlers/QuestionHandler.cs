@@ -82,6 +82,7 @@ namespace Examportal.Handlers
                 else
                 {
                     db.CandidateAnswer.Where(s => s.Email == email && s.TestCode == examCode && s.Id == Convert.ToInt16(QId)).ToList().ForEach(toUpdate => { toUpdate.CorrectStatus = 0; toUpdate.Answer = checkedOption; });
+                    db.SaveChanges();
                     db.CandidateResult.Where(s => s.Email == email && s.TestCode == examCode).ToList().ForEach(data => data.TotalScore = updatedScore);
                     db.SaveChanges();
 

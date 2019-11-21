@@ -41,7 +41,7 @@ namespace Examportal.Models
                 entity.Property(e => e.CandidateId).HasColumnName("candidateId");
 
                 entity.Property(e => e.Answer)
-                    .HasMaxLength(20)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CompletionTime)
