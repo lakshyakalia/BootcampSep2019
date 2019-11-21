@@ -17,7 +17,7 @@ $(document).on('click', '#loginButton', function() {
             success: function(data) {
                 localStorage.setItem('token', data.token)
                 if (data.accountType == "Examiner")
-                    $(location).attr('href', '../../exminer/views/examiner.html')
+                    $(location).attr('href', '../../examiner/views/examiner.html')
                 else if (data.accountType == "Student")
                     $(location).attr('href', './accessKey.html')
                 else {
