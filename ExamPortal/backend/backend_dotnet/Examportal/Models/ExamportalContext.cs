@@ -26,7 +26,7 @@ namespace Examportal.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=CYG355;Database=Examportal;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=CYG238;Database=Examportal;Trusted_Connection=True;");
             }
         }
 
@@ -41,7 +41,7 @@ namespace Examportal.Models
                 entity.Property(e => e.CandidateId).HasColumnName("candidateId");
 
                 entity.Property(e => e.Answer)
-                    .HasMaxLength(20)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CompletionTime)
@@ -84,12 +84,14 @@ namespace Examportal.Models
                 entity.HasOne(d => d.EmailNavigation)
                     .WithMany(p => p.CandidateAnswer)
                     .HasForeignKey(d => d.Email)
-                    .HasConstraintName("FK__candidate__email__1EA48E88");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__candidate__email__30C33EC3");
 
                 entity.HasOne(d => d.IdNavigation)
                     .WithMany(p => p.CandidateAnswer)
                     .HasForeignKey(d => d.Id)
-                    .HasConstraintName("FK__candidateAn___id__1F98B2C1");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__candidateAn___id__31B762FC");
             });
 
             modelBuilder.Entity<CandidateResult>(entity =>
@@ -171,7 +173,8 @@ namespace Examportal.Models
                 entity.HasOne(d => d.EmailNavigation)
                     .WithMany(p => p.ExamDetails)
                     .HasForeignKey(d => d.Email)
-                    .HasConstraintName("FK__examDetai__email__66603565");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__examDetai__email__29221CFB");
             });
 
             modelBuilder.Entity<Questions>(entity =>
@@ -248,7 +251,8 @@ namespace Examportal.Models
                 entity.HasOne(d => d.ExamCodeNavigation)
                     .WithMany(p => p.Questions)
                     .HasForeignKey(d => d.ExamCode)
-                    .HasConstraintName("FK__questions__examC__693CA210");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__questions__examC__2BFE89A6");
             });
 
             modelBuilder.Entity<Users>(entity =>
@@ -258,7 +262,7 @@ namespace Examportal.Models
                 entity.ToTable("users");
 
                 entity.HasIndex(e => e.PhoneNumber)
-                    .HasName("UQ__users__4849DA013426D3A4")
+                    .HasName("UQ__users__4849DA0178C2AD3F")
                     .IsUnique();
 
                 entity.Property(e => e.Email)
