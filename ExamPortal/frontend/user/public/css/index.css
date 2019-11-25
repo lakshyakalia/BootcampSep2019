@@ -74,3 +74,9 @@ a:hover {
 .cd-intro {
     color: rgba(255, 255, 255, 1)
 }
+@media (max-width:670px)
+{
+    .footer{
+        flex-direction: row;
+    }
+}
